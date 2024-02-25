@@ -1,0 +1,10 @@
+{
+	"Fraction":{
+		"prefix": "frac",
+		"body": "\\\\frac{$1}{$2}$3"
+	  },
+	"Money Signs":{
+		"prefix": "mon",
+		"body": "$$1$"
+	},
+}
