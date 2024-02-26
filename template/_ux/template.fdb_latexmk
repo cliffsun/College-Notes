@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1708894350 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/template/template.tex" "template.pdf" "template" 1708894351 0
+["pdflatex"] 1708894459 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/template/template.tex" "aux/template.pdf" "template" 1708894460 0
   "C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1708883030 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/cliff/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1699569839 24212834 d4a0edb9e42a4172f00d5d79863f1e42 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -56,11 +56,11 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1665067579 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1698073837 29988 bb6a6635dd6c1ccb32cf27163b4e39bb ""
-  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/template/template.tex" 1708894349 610 e61af313b400eee571c7ed38983be3fd ""
-  "template.aux" 1708894350 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "template.tex" 1708894349 610 e61af313b400eee571c7ed38983be3fd ""
+  "aux/template.aux" 1708894460 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/template/template.tex" 1708894457 610 e61af313b400eee571c7ed38983be3fd ""
+  "template.tex" 1708894457 610 e61af313b400eee571c7ed38983be3fd ""
   (generated)
-  "template.aux"
-  "template.log"
-  "template.pdf"
+  "aux/template.aux"
+  "aux/template.log"
+  "aux/template.pdf"
   (rewritten before read)
