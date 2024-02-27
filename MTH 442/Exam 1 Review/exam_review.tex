@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Math 442 Exam \#1 Review}
+\author{Cliff Sun}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Math 442 Exam \#1 Review}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+\section*{Topics:}
+\begin{enumerate}
+    \item What is a PDE?
+    \item What is a degree of a PDE?
+    \item Whether a PDE is linear or not
+    \item First order linear equation - Method of characteristics, change of variables
+    \item Homogenous and non-homogenous Wave equation 
+    \item Heat Equation - maximum principle, conservation of energy, diffusion on the half line
+\end{enumerate}
+
+\section*{Notes}
+
+First order linear pde:
+
+\begin{equation}
+    a(x,y)u_{x}(x,y) + b(x,y)u_{y}(x,y) = 0
+\end{equation}
+
+Wave equation:
+
+\begin{equation}
+    u_{tt} - c^2u_{xx} = f(x,t)
+\end{equation}
+
+\begin{equation}
+    u(x,0) = \phi(x)
+\end{equation}
+
+\begin{equation}
+    u_t(x,0) = \Psi(x)
+\end{equation}
+
+The general solution is:
+
+\begin{equation}
+    u(x,t) = \frac{1}{2}(\phi(x - ct) + \phi(x + ct)) + \frac{1}{2c}\int_{x-ct}^{x+ct}\Psi(s)ds
+\end{equation}
+
+The heat equation is:
+
+\begin{equation}
+    u_t(x,t) - ku_{xx}(x,t) = f(x,t) \textrm{for} (x,t) \in \mathbb{R} \times (0,\infty)
+\end{equation}
+
+\begin{equation}
+    u(x,0) = \psi(x)
+\end{equation}
+
+The general solution is:
+
+\begin{equation}
+    u(x,t) = \int_{-\infty}^{\infty}S(x-y,t)\psi(y)dy + \int_{0}^{t}\int_{-\infty}^{\infty}S(x-y,t-s)f(y,s)dyds
+\end{equation}
+
+Where 
+
+\begin{equation}
+    S(x,y) = \frac{1}{\sqrt{4\pi kt}}e^{-\frac{x^2}{4kt}}
+\end{equation}
+
+The error function is the following:
+
+\begin{equation}
+    Erf(x) = \frac{2}{\pi}\int_{0}^{x}e^{-p^2}dp
+\end{equation}
+
+Example of linearity within the heat equation:
+
+\begin{equation}
+    u_t - ku_{xx} = \cos(x) 
+\end{equation}
+\begin{equation}
+    u(x,0) = \sin(x)
+\end{equation}
+
+We know that the solution to the homogenous heat equation with the same initial condition is just:
+
+\begin{equation}
+    v(x,t) = e^{-kt}\sin(x)
+\end{equation}
+
+Thus applying linearity, we have that:
+
+\begin{equation}
+    u(x,t) - v(x,t) = w(x,t)
+\end{equation}
+
+Applying this yields:
+
+\begin{equation}
+    w_t - kw_{xx} = \cos(x)
+\end{equation}
+
+Choosing $w_1(x,t)$ to be $\frac{1}{k}\cos(x)$, we see that now:
+
+\begin{equation}
+    w_2 = w - w_1
+\end{equation}
+
+Then, we have that the new heat equation becomes homogenous with an intial condition of $-\frac{1}{k}\cos(x)$. Now applying linearity, we can rederive the full solution. 
+
+
+The maximum principle states that 
+
+\begin{equation}
+    \textrm{Max}_{\gamma}(u(x,t)) = \textrm{Max}_{\mathbb{R}}(u(x,t))
+\end{equation}
+
+Such that $\gamma \in \mathbb{R}$ and that $\gamma$ is the boundary of $\mathbb{R}$.
+
+
+\end{document}
