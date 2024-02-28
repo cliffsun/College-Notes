@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{6.1 \& 6.2: Cartesian Product and Power sets}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Cartesian Product and Power sets}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Previously, we showed that induction implies the well ordering of the natural numbers. 
+
+\paragraph{Remark:} Strong induction is equivalent to this case as well. That is, the validity of Strong induction implies the well-ordering of the natural numbers. 
+
+\section*{Cartesian Products}
+
+\begin{theorem}
+    Let $A$ and $B$ be sets. Then their Cartesian product is 
+    \begin{equation}
+        A \times B = \{(a,b), a \in A, b \in B\}
+    \end{equation}
+    You can also take the product of multiple sets $A$, $B$, $C$ where the definition would be:
+    \begin{equation}
+        A \times B \times C = \{(a,b,c), a \in \mathbb{A}, b \in \mathbb{B}, c \in \mathbb{C}\}
+    \end{equation}
+\end{theorem}
+
+\paragraph{Remark:} $A \times B$ is not equal to $B \times A$ since the group $(a,b) \neq (b,a)$ \\
+
+That means that 
+\begin{equation}
+    (A \times B) \times C \neq A \times (B \times C) \neq A \times B \times C
+\end{equation}
+
+However, there are bijections between them such that 
+
+\begin{equation}
+    f: A \times B \rightarrow B \times A
+\end{equation}
+
+or 
+
+\begin{equation}
+    (b,a) \rightarrow (a,b)
+\end{equation}
+
+Generally speaking the cardinality of $A \times B$ is the same as multiplying the cardinality of $A$ and $B$. 
+
+\begin{proof}
+    Let $A = \{a_1,a_2,\dots,a_m\}$ and $B = \{b_1,b_2,\dots,b_n\}$, then $A \times B$ can be written as: \\
+    $\{(a_1,b_1), (a_1,b_2), \dots, (a_1,b_n) \dots (a_m, b_1)\}$. \\
+    Since there are a total of $m \times n$ number of elements, it follows that the cardinality of $A \times B$ is just $|A||B|$.
+\end{proof}
+
+\begin{theorem}
+    If $A \subseteq C$ and and $B \subseteq D$, then it follows that $A \times B \subseteq C \times D$
+\end{theorem}
+
+\begin{proof}
+    Suppose that $A \subseteq C$ and $B \subseteq D$. We claim that $A \times B \subseteq C \times D$. To prove this, consider an element of $A \times B$. Then this element would be an ordered pair. 
+    This has the form of $(a,b)$ for a in A and b in B. Since $A \subseteq C$, then a is an element in C. Similarly, we can apply the same argument for b. 
+    Therefore, $(a,b)$ is an ordered pair where the first entry is an element in C and the second entry is in D. Thus, by definition, $(a,b)$ is an element in $C \times D$. 
+    This concludes the proof. 
+\end{proof}
+
+\subsection*{What is the compliment of $A \times B$ in the context of $C \times D$?}
+
+Suppose that $(x,y) \in C \times D$, and $(x,y) \not A \times B$. But that implies that 
+$x \in C-A$ and $y \in D-B$. Then that implies that 
+\begin{equation}
+    (x,y) \in (C - A) \times D \cup (C) \times (D - B)
+\end{equation}
+
+\section*{Power Sets}
+
+\begin{theorem}
+    Let A be a set. Then the power set of A is 
+    \begin{equation}
+        P(A) = \{B: B \subseteq A\}
+    \end{equation}
+    Such that 
+    \begin{equation}
+        B \subseteq P(A) \iff B \subseteq A
+    \end{equation}
+    This can include vectors consisting of multiple elements. 
+\end{theorem}
+
+\begin{theorem}
+    If |A| is n, then the cardinality of P(A) = $2^n$
+\end{theorem}
+
+\begin{proof}
+    We will use induction on n. As a base case, $|A| = 0$, thus the power set of A has cardinality 1. 
+    For the inductive step, suppose the theorem is true for all sets of cardinality n, and let $|A| = n+1$, 
+    then B = set of all elements in A until $a_n$ and C = just the last element are subsets of A. 
+\end{proof}
+
+
+
+\end{document}
