@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{6.2/6.3 - Power Sets and Indexed Collections of Sets}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{6.2/6.3 - Power Sets and Indexed Collections of Sets}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}
+    If $A \subseteq B$, then $P(A) \subseteq P(B)$
+\end{theorem}
+
+\begin{proof}
+    Suppose that $A \subseteq B$, then to prove that $P(A) \subseteq P(B)$,
+    choose c to be an element of $P(A)$. That is $c \in A$. Thus, $c \in A \in B$, 
+    thus it follows that $c \in P(B)$. This proves the theorem that $P(A) \in P(B)$. 
+\end{proof}
+
+How do power sets relate to Cartesian Products? That is Is $P(A \times B) = P(A) \times P(B)$? \\
+
+Suppose that that $|A| = a$ and $|B| = b$, then $P(A \times B) = 2^{ab}$ and $P(A) \times P(B) = 2^{a + b}$.\\
+
+However, suppose that A and B are disjoint, that is they don't have any elements in common. Then the cardinality of 
+$P(A) \times P(B)$ and $P(A \cup B)$ have the same cardinality. Therefore, there must be a bijection between them. 
+
+\section*{Indexed Collections of Sets}
+
+Let I be any set, call it an "Indexed Set". Then, for $n \in I$, suppose that we have some set called $A_n$. 
+Generally, $I$ could be the natural numbers, the real numbers, etc. Given this set-up, we can write down some definitions:
+
+\begin{theorem}
+    The collection of all of these sets is called an "Index Collection Of Sets", written in mathematical notation is the following:
+
+    \begin{equation}
+        \{A_n: n \in I\}
+    \end{equation}
+\end{theorem}
+
+
+\begin{theorem}
+    $\cup_{n \in I} A_n = \{x: x \in A_n \textrm{for some} n \in I\}$ \\
+    $\cap_{n \in I} A_n = \{x: x \in A_n \forall n \in I\}$ \\
+    The collection $\{A_n: n \in I\}$ is pairwise disjoint if we have that $A_n \cap A_m$ for $m \neq n$ in I. 
+\end{theorem}
+
+Simply speaking, this $\cup$ represents the union of all sets, where $\cap$ is the intersection of all sets. \\
+
+General fact: 
+
+\begin{enumerate}
+    \item For any $m \in I$, $A_m$ is always a subset of the union of the Sets
+    \item For any $n \in I$, the intersection of all of the sets will be a subset of $A_n$
+\end{enumerate}
+
+
+\end{document}
