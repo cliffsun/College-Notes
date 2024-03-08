@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{7.1-7.2 - Relations and Functions as Relations}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{7.1-7.2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Relations}
+
+Idea: we're often interested in relationships between two elements of a set. In particular:
+
+\begin{enumerate}
+    \item $a < b$ for $a,b \in \mathbb{R}$
+    \item $f(a) = b$ where $f: A \rightarrow B$
+    \item $S \subseteq T$ like where $S, T \in P(U)$ where U is the universal set. 
+\end{enumerate}
+
+\begin{theorem}
+    Let A and B be sets, then a relation from A to B is any subset of $A \times B$.
+\end{theorem}
+
+\begin{theorem}
+    A relation on A is a relation from $A \rightarrow A$.
+\end{theorem}
+
+Notation: $(a,b) \in R \iff$ a R b. In this case, R is a noun and a verb. \\
+
+Example: if $(2,3) \in R$, then 2 R 3.
+
+\begin{theorem}
+    On any set S, we have the relation R = "=" defined as 
+    \begin{equation}
+        R = \{(x,x): x \in S\} \iff x = y
+    \end{equation}
+    That is 
+    \begin{equation}
+        (x,y) \in R \iff x = y
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    Given any set S, we have that R = "$\subseteq$" on P(S) defined as 
+    \begin{equation}
+        R = \{(A,B) \subseteq P(S) \times P(S): A \subseteq B\}
+    \end{equation}
+    That is 
+    \begin{equation}
+        (A,B) \in R \iff A \subseteq B
+    \end{equation}
+\end{theorem}
+
+Inverse relationships:
+
+\begin{theorem}
+    Given a relationship R from A to B, we have that the inverse relationship is 
+    \begin{equation}
+        R^{-1}=\{(x,y) \in B \times A: (y,x) \in R\}
+    \end{equation}
+    A concrete example would be that $<$'s inverse is $>$, etc. 
+\end{theorem}
+
+Functions as relations:
+
+\begin{theorem}
+    Say $f: A \rightarrow B$ is a function, then we have the relation
+    \begin{equation}
+        R = \{(a,f(a)): a \in A\}
+    \end{equation}
+\end{theorem}
+
+This is a relation, but what properties does it have?
+
+\begin{theorem}
+    Given a relation R, the domain of R is 
+    \begin{equation}
+        R = \{a \in A: (a,b) \in R\}
+    \end{equation}
+    For values of a such that $f(a) = b$.
+\end{theorem}
+
+Now we can redefine functions to be 
+
+\begin{theorem}
+    A function $f: A \rightarrow B$ is a relation f from A to B such that 
+    \begin{equation}
+        dom(f) = A
+    \end{equation}
+    and $\forall a \in A, \land \forall b_1,b_2 \in B$ are if $(a,b_1)$ and $(a,b_2)$ are in R, then $b_1 = b_2$. 
+    THIS IS NOT INJECTIVITY
+\end{theorem}
+
+
+
+\end{document}
