@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{7.2 - 7.3}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{7.2 - 7.3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}
+    A \underline{relation} from A to B is a subset 
+    \begin{equation}
+        R \subseteq A \times B
+    \end{equation}
+    In other words
+    \begin{equation}
+        a R b \iff (a,b) \in R
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    A \underline{function} is a relation that satisfies the vertical line test. 
+    \begin{equation}
+        f: A \rightarrow B
+    \end{equation}
+    is the statement that for every a in the domain of f, there exists some value b such that $(a,b)$ passes the vertical line test.
+\end{theorem}
+
+The image is a function from P(A) to P(B). Similarly, the preimage/inverse image is from P(B) to P(A).
+
+In notion it would be 
+
+\begin{equation}
+    f(U) = \{f(u): u \in U\}
+\end{equation}
+
+\begin{equation}
+    f^{-1}(V) = \{a \in A: f(a) \in V\}
+\end{equation}
+
+respectively. Such that U is a set of A and V is a set of B. Notice how these functions spit out a set. 
+
+\subsubsection*{What does it mean for a function to be equal to each other?}
+
+\begin{enumerate}
+    \item Same domain, same codomain, and graph
+    \item Same domain and same graph, different codomains
+\end{enumerate}
+
+\section*{7.3: Equivalence Relations}
+
+Assume 
+\begin{equation}
+    R = \{(a,b): a \equiv b \mod n\}
+\end{equation}
+
+Then $a \equiv a \mod n$, $a \equiv b \implies b \equiv a$, $a \equiv b \equiv c \implies a \equiv c$.
+
+\begin{enumerate}
+    \item R is reflexive if a R a for a in A
+    \item R is symmetric if a R b $\implies$ b R a
+    \item R is transitive if a R b $\land$ b R c $\implies$ a R c
+\end{enumerate}
+
+An equivalence relation satisfies all three requirements. They tell us that a \& b have something in common. 
+\end{document}
