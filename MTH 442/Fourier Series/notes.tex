@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Fourier Series}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Fourier Series}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Recap: previously we talked about the Fourier Sine and Cosine Series. Such that
+we can express functions as a sum of sine functions. Same concept for the cosine series. 
+
+
+\begin{definition}
+    The Fourier Sine Series is defined as the following:
+\begin{equation}
+    \phi(x) = \sum_{n=1}^{\infty}A_n\sin(\frac{n\pi x}{l})
+\end{equation}
+
+such that 
+
+\begin{equation}
+    A_n = \frac{2}{l}\int_{0}^{l}\phi(x)\sin(\frac{n\pi x}{l})dx
+\end{equation}
+\end{definition}
+
+Similarly:
+
+\begin{definition}
+    The Fourier cosine Series is defined as the following:
+\begin{equation}
+    \phi(x) = \frac{A_0}{2} + \sum_{n=1}^{\infty}A_n\cos(\frac{n\pi x}{l})
+\end{equation}
+
+such that 
+
+\begin{equation}
+    A_n = \frac{2}{l}\int_{0}^{l}\phi(x)\cos(\frac{n\pi x}{l})dx
+\end{equation}
+\end{definition}
+
+Then, we arrive at the full Fourier Series:
+
+\begin{definition}
+    Let $\psi(x)$ be a function with a period of 2l. Then $\psi(x)$ is equal to 
+    \begin{equation}
+        \psi(x) = \frac{A_0}{2} + \sum_{n=1}^{\infty}\{A_n\cos(\frac{n\pi x}{l}) + B_n\sin(\frac{n\pi x}{l})\}
+    \end{equation}
+    such that 
+    \begin{equation}
+        A_n = \frac{}{l}\int_{0}^{l}\psi(x)\cos(\frac{n\pi x}{l})dx
+    \end{equation}
+    and
+    \begin{equation}
+        B_n = \frac{}{l}\int_{0}^{l}\psi(x)\sin(\frac{n\pi x}{l})dx
+    \end{equation}
+\end{definition}
+
+To find such a $\psi(x)$, we choose some function $\phi(x)$ such that $\phi(x)$ is odd and has a period of 2l. This will mean that
+there will exist discontinuities throughout the function, but is necessary for the Full Fourier Series. 
+
+
+As well, we notice that the sine series appears to be approximating the odd extension of the function, in other words, does better in approximating odd functions. 
+And vice versa for the cosine series. In other words, we see that every function can be broken down as the following:
+\begin{equation}
+    f(x) = f_{odd}(x) + f_{even}(x)
+\end{equation}
+
+Such that the odd extension can be approximated with the sine series and the latter being approximated with the cosine series. 
+
+In general, taking the sine fourier series of a function is equivalent to taking the full fourier series of the odd extension. 
+
+\begin{proof}
+    Suppose $\phi(x)$ can be written as a sum of sines. And $A_n$ is defined appropriately. Then we must show that 
+    \begin{equation}
+        \phi_{odd}(x) = \frac{\bar{A_0}}{2} + \sum_{n=1}^{\infty}\{\bar{A_n}\cos(\frac{n\pi x}{l}) + \bar{B_n}\sin(\frac{n\pi x}{l})\}
+    \end{equation}
+    Such that $\frac{\bar{A_n}}{2}$ is zero and $\frac{\bar{B_n}}{2}$ is non zero and is the inner product with the odd extension of $\phi(x)$. 
+
+    Taking an informal argument says that the integral
+    \begin{equation}
+        \bar{A_n} = \int_{-l}^{l}\phi_{odd}(x)\cos(\frac{n\pi x}{l})dx
+    \end{equation}
+    is nothing but an integral of an odd function, which by definition is zero. Similarly, for $B_n$, we see that we are taking the integral of an even function which is evidently non-zero.
+    Thus, this concludes the proof. 
+\end{proof}
+
+The same argument can be made for the even extension as well, the proof follows similarly. 
+
+
+\end{document}
