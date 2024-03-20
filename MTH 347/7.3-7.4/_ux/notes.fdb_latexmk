@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1710863298 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/MTH 347/7.2-7.3/notes.tex" "_ux/notes.pdf" "notes" 1710863299 0
+["pdflatex"] 1710964164 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/MTH 347/7.3-7.4/notes.tex" "_ux/notes.pdf" "notes" 1710964165 0
   "C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1708883030 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/cliff/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1699569839 24212834 d4a0edb9e42a4172f00d5d79863f1e42 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -27,12 +27,11 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1247596666 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247596667 36281 c355509802a035cadc5f15869451dcee ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
-  "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
-  "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.sty" 1643997108 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
@@ -61,9 +60,9 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1665067579 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1698073837 29988 bb6a6635dd6c1ccb32cf27163b4e39bb ""
-  "_ux/notes.aux" 1710863299 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/MTH 347/7.2-7.3/notes.tex" 1710863297 2258 ed7e633e848acde7503b97d9592919e7 ""
-  "notes.tex" 1710863297 2258 ed7e633e848acde7503b97d9592919e7 ""
+  "_ux/notes.aux" 1710964165 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/MTH 347/7.3-7.4/notes.tex" 1710964163 1968 e547705ed47ead9077ff1871027d8f56 ""
+  "notes.tex" 1710964163 1968 e547705ed47ead9077ff1871027d8f56 ""
   (generated)
   "_ux/notes.aux"
   "_ux/notes.log"

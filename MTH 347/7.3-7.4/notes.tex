@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{7.2-7.3; Equivalence Relations and Partitions}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{7.2-7.3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+To recap, if R is an Equivalence relation, then 
+
+\begin{equation}
+    x R y \iff \textrm{x and y have something in common}
+\end{equation}
+
+Then abstractly, each piece in $A$ has something in commmon with each other. 
+
+\begin{definition}
+    Let $\sim$ be an Equivalence relation on a set $A$. 
+    \begin{enumerate}
+        \item For an $x \in A$, the equivalence class of x is $[x] = \{z \in A: z \sim x\}$
+        \item The quotient of A by $\sim$ is the set of all equivalence classes for each element $x \in A$
+    \end{enumerate}
+\end{definition}
+
+\section*{Partitions}
+
+\begin{definition}
+    Let X be a set, and let $\{A_n: n \in I\}$ be a collection of non-empty subsets of X.
+    We call this a paritition if 2 things are true
+    \begin{enumerate}
+        \item The Union of all $A_n$'s is X
+        \item They are all pairwise disjoint, in other words. $\forall m,n \in I$, either $A_m = A_n$ or $A_m \cap A_n = \emptyset$
+    \end{enumerate}
+\end{definition}
+
+Given this defintion, we can relate it to Equivalence relations by stating 
+\begin{equation}
+    m \sim n \iff \textrm{m and n are in the same piece of the partition}
+\end{equation}
+
+\begin{lemma}
+    Let $\sim$ be an Equivalence relation on a set A, Then the following are Equivalent:
+    \begin{equation}
+        \forall x,y \in A, x \sim y \iff [x] = [y]
+    \end{equation}
+\end{lemma}
+
+\end{document}
