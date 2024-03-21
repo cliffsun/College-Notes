@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Convergence}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Convergence}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Let $I \subseteq \mathbb{R}$ be an interval, $f(x)$ be a function on I, and $f_n(x)$ be a sequence of functions on I.
+    Then we say that $f_n(x)$ converges to $f(X)$ \underline{pointwisely} on I if and only if for any $x_0 \in I$
+    \begin{equation}
+        \lim_{m \rightarrow \infty}f_m(x_0) = f(x_0)
+    \end{equation}
+\end{definition}
+
+Applying to the Fourier Series, we see that
+
+\begin{definition}
+    $\sum_{n odd} \frac{4}{n\pi}\sin(\frac{n\pi x}{l})$ converges to 1 on (0,l) \underline{pointwisely}
+\end{definition}
+
+However, it's difficult to check pointwise convergence for this function, since you'd have to check an infinite amount of points. Thus, we propose this new method of check convergence:
+
+\begin{definition}
+    We define $f_m \rightarrow f \iff $ $\lim_{m\rightarrow\infty} |f_m - f| = 0$ 
+\end{definition}
+
+However, in order to this, we must have a notion of distance to measure the distance between $f_m$ and $f$. For this problem, we define something called the \underline{sup norm distance}.
+
+\begin{definition}
+    Let $I \subseteq R$ be an interval, and $f(x)$ and $g(x)$ be functions on I. Then the sup norm distance between f and g on I is given by the following:
+    \begin{equation}
+        sup_{x\in I}|f(x) - g(x)|
+    \end{equation}
+    In this case, the sup represents the maximum, so this represents the maximum of the distance between the functions. 
+\end{definition}
+
+Using this definition, choosing some $\epsilon \in \mathbb{R}$, and that $sup|f(x)-g(x)| < \epsilon$, then that implies that g(x) is trapped in an interval of $[f(x) - \epsilon, f(x) + \epsilon]$ for x in I. Then we say that
+
+\begin{definition}
+    $f_m$ \underline{uniformly converges} to $f(x)$ on I $\iff$ $\lim_{m\rightarrow \infty}sup_{x \in I}|f_m(x) - f(x)| = 0$ for all $x \in I$
+\end{definition}
+
+
+\end{document}
