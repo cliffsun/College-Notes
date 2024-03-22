@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{7.4-7.5 Paritions and Modular Arithmetic}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{7.4-7.5 Paritions and Modular Arithmetic}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Partitions}
+
+\begin{lemma}
+    Let $\sim$ be an equivalence relation on a set $X$. Then for $x,y \in X$, we have that 
+    $x \sim y \iff [x] = [y]$. That is the equivalence class of x is equal to that of y. 
+\end{lemma}
+
+\begin{proof}
+    $\implies$, Suppose that $x \sim y$, we must prove that $[x] \subseteq [y]$ and that $[y] \subseteq [x]$. Suppose that $z \in [x]$, which implies that 
+    $z \sim x$. But by definition of the equivalence class, then $z \sim y$ by transitivity. Thus $z \in [y]$. Conversely, suppose that $z \in [y]$, that implies that $z \sim y$ which means that $z \sim x$ by symmetry of the equivalence class. Thus $z \in [x]$ by transitivity. 
+    This proves the $\implies$ direction. 
+
+    $\impliedby$, next suppose that $[x] = [y]$, that is for every element in $[x]$, it also exists in $[y]$. Then because $\sim$ is reflexive, we have that $x \sim x$, then that implies that 
+    $x \in [x]$. But since $[x] = [y]$, it follows that $x \in [y]$ which by definition of the equivalence class, means that $x \sim y$. This concludes the full proof. 
+\end{proof}
+
+\begin{theorem}
+    Let $X$ be a set, then:
+    \begin{enumerate}
+        \item If $\sim$ is an equivalence relation on $X$, then its equivalences classes paritition X. 
+        \item If $\{A_n: n \in I\}$ forms a partition, then there exists some equivalence relation that relates the values in that partition.
+    \end{enumerate}
+    For 2, a more concrete definition is that 
+    \begin{equation}
+        x \sim y \iff \exists n \in I : x \in A_n \land y \in A_n
+    \end{equation}
+    This relation is a equivalence relation. 
+\end{theorem}
+
+\begin{proof}
+    This is a proof of 1 in the theorem. Let $\sim$ be an equivalence relation, then we must prove that 
+    \begin{enumerate}
+        \item Every $x \in X$ is in some equivalence class.
+        \item That given an 2 equivalence classes, they are either the same or disjoint. 
+    \end{enumerate}
+    For the 1st statement above, it follows that x is in its own equivalence class $([x])$ by reflexivity. 
+
+    Next, for the 2nd statement above, suppose that we are given two equivalence classes. We can prove this by stating that if they have a common element, then they must share the same elements. So 
+    suppose $[x]$ and $[y]$ share a common element z. Then we must show that $[x] = [y]$. But this statement that $z \in [x]$ and $z \in [y]$ states that $z \sim x$ and $z \sim y$. Then the lemma states that $[x] = [y] = [z]$. 
+\end{proof}
+
+\begin{proof}
+    This is a proof of 2 in the theorem. We must show that the relation showed in the theorem is an equivalence relation. We begin first by proving reflexivity, 
+
+    Reflexive: For any $x \in X$, it follows that $x \sim x$ since $x \in A_n$ and $x \in A_n$ by definition of partitions. 
+
+    Symmetric: If x and y are in the same parition, then it follows that $y \sim x$ since y and x are in the same partition.
+
+    Transitivity: Suppose that $x \sim y$, and that $y \sim z$. This implies that for some $m, n \in I$, x and y share a partition and that z and y share a partition. We define $A_n$ to be the partition that x and y share for some $n \in I$, then it follows
+    that y and z share that same partition since y lives in $A_n$ by definition of the relation. Thus $x \sim y \sim z$. This concludes the proof.  
+\end{proof}
+
+Recall that $X/\sim \quad = \{[x]: x \in X\}$. Let's make a mobius strip. Suppose X is a rectangle. That is $X = [0,6] \times [0,1]$. Let's glue the ends of this rectangle together. More specifically, 
+for all $(0,y) to (6, 1 - y)$ The parition that does this is that 
+\begin{enumerate}
+    \item $A_{(x,y)} = {x,y}$ for all $x \in (0,6)$ and $y \in (0,1)$. 
+    \item $A_{(0,y)} = {(0,y), (6,1-y)}$ for $y \in [0,1]$. 
+\end{enumerate}
+
+\end{document}
