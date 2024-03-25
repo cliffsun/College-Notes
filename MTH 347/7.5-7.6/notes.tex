@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{7.5-7.6}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Well-def of modular arithmetic, well-def of more generally, cardinalities of infinite sets}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{7.5}
+
+\begin{definition}
+    Let $\sim_n$ be the relation 
+    \begin{equation}
+        \equiv \mod n
+    \end{equation}
+    on $\mathbb{Z}$. Then
+    \begin{equation}
+        Z/\sim_n = \{[0], [1], \dots, [n-1]\}
+    \end{equation}
+\end{definition}
+
+Our goal today is to view this as a number system, including the operations $+_n$ and $\cdot_n$.
+
+We define these operations to be 
+
+\begin{definition}
+    For integers $a$ and $b$, we define the following:
+    \begin{enumerate}
+        \item $[a] +_n [b] = [a+b]$
+        \item $[a] \cdot_n [b] = [a \cdot b]$
+        \item The \underline{ring} of $\mathbb{Z}_n$ or $\mathbb{Z}/n$ is the set $\mathbb{Z}/\sim_n$ equipped with the operations stated above. The term \underline{Ring} is from abstract algebra and roughly means a set of elements which can be added, subtracted, and multiplied. 
+\end{enumerate}
+\end{definition}
+
+To define the operation of $X \cdot_n Y$, we first choose two representatives from $X$ and $Y$, and multiply them together. Then the equivalence class of this new term $xy$ is the result of $X \cdot_n Y$. WLOG. 
+
+\begin{theorem}
+    $+_n$ and $\cdot_n$ are well-defined. That is if $x \equiv x' \mod n$ and $y \equiv y' \mod n$, then $x + y \equiv x' + y' \mod n$ and $x \cdot y \equiv x' \cdot y' \mod n$
+\end{theorem}
+
+Next, suppose $X$ and $Y$ are sets and $\sim$ is an equivalence relation. Then, let's try to define a function f such that 
+\begin{equation}
+    f: X/\sim \rightarrow Y
+\end{equation}
+\begin{enumerate}
+    \item For each $x \in X$, we define $f([x]) \in Y$ by referring to x. 
+    \item Prove that if $[x] = [x']$, then $f([x]) = f([x'])$, that is f is well-defined. 
+\end{enumerate}
+
+\end{document}
