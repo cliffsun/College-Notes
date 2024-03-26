@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Convergence of Sequences of Functions}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Convergence of Sequences of Functions}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Recap, we first have pointwise convergence which operates off the epsilon delta defintion. Next is uniform convergence which operates off the sup norm notation. Now, we define something called the $L^2$ convergence. 
+
+\begin{definition}
+    Let $I \in \mathbb{R}$ be an interval, and let $f(x)$ and $g(x)$ be functions. Then we define $L^{2}$ distance to be the following:
+    \begin{equation}
+        |f - g|_{2} = [ \int_{I}|f(x) - g(x)|^2 dx]^{1/2}
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    Let $I \in \mathbb{R}$ be an interval. Let $f(x)$ be a function on I and $f_m(x)$ be a sequence of functions on I. Then we say that $f_m(x)$ converges to $f(x)$ on I in $L^2$ if 
+    \begin{equation}
+        \lim_{m \rightarrow \infty} |f_m - f|_{2} = 0
+    \end{equation}
+    Where this subscript 2 represents the $L^2$ distance between the functions. 
+\end{definition}
+
+But $f_m$ can converge to multiple functions because the integral would get rid of discontinuities. So we define a notation $\sim$ such that 
+\begin{equation}
+    f \sim g \iff \textrm{$f(x) = g(x)$ almost everywhere}
+\end{equation}
+
+But $L^2$ convergence states that two different continuous functions cannot converge to each other. But a discontinous and a continuous function can converge to each other. 
+
+One thing to note, uniform convergence implies pointwise convergence. 
+
+We apply this to the Full Fourier Series:
+
+\begin{theorem}
+    Fix $l > 0$. Let $\Psi(x)$ be a function on $\mathbb{R}$ with a period of $2l$. That is $\Psi(x + 2l) = \Psi(x)$ for all x in $\mathbb{R}$. Then the full fourier series is the following:
+    \begin{equation}
+        \Psi(x) = \frac{A_0}{2} + \sum_{n =1}^{\infty} [A_n\cos(\frac{n\pi x}{l}) + B_n\sin(\frac{n\pi x}{l})]
+    \end{equation}
+    Where
+    \begin{equation}
+        A_n = \frac{1}{l}\int_{-l}^{l}\Psi(x)\cos(\frac{n\pi x}{l})dx
+    \end{equation}
+    and
+    \begin{equation}
+        B_n = \frac{1}{l}\int_{-l}^{l}\Psi(x)\sin(\frac{n\pi x}{l})dx
+    \end{equation}
+\end{theorem}
+
+Then we can define convergence in the context of the Fourier Series as the following:
+
+\begin{definition}
+    \begin{enumerate}
+        \item If $\Psi(x)$ is differentiable at $x_0$, then the Fourier Series converges pointwisely. 
+        \item If $\Psi(x)$ is continuously differentiable, the the Fourier Series converges uniformly on $\mathbb{R}$
+        \item If $\int_{-l}^{l}|\Psi(x)|^2dx < \infty$, then the full fourier series converges $L^2$ on $(-l, l)$
+    \end{enumerate}
+
+\end{definition}
+
+\end{document}
