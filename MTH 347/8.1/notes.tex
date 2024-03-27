@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{8.1 - Cardinalities of Infinite Sets}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Cardinalities of Infinite Sets}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Recall:
+
+\begin{theorem}
+    Let $A$ and $B$ be finite sets, then 
+    \begin{equation}
+        |A| = |B| \iff \exists F: A \rightarrow B \quad \textrm{Bijective}
+    \end{equation}
+    In addition:
+    \begin{equation}
+        |A| <= |B| \iff \exists f: A \rightarrow B \quad \textrm{Injective}
+    \end{equation}
+    Similarly:
+    \begin{equation}
+        |A| >= |B| \iff \exists f: A \rightarrow B \quad \textrm{Surjective}
+    \end{equation}
+\end{theorem}
+
+\begin{definition}
+    Let $A$ and $B$ be arbitrary sets, perhaps infinite. Then the following is true:
+    \begin{enumerate}
+        \item $|A| = |B|$ if there exists a bijection from A to B
+        \item $|A| <= |B|$ if there exists an injective function from A to B
+        \item $|A| < |B|$ if there exists only an injective function. 
+    \end{enumerate}
+\end{definition}
+
+But $|A|$ hasn't been explicitly stated yet. And it's not a number or $\infty$. Then we claim that 
+\begin{equation}
+    |\mathbb{N}| = |2\mathbb{N}|
+\end{equation}
+Or that the cardinality of the natural numbers is the same as that of the even natural numbers. 
+
+\begin{proof}
+    To prove this claim, we must give a bijective function from $\mathbb{N} \rightarrow 2\mathbb{N}$. Then choose a function as the following:
+    \begin{equation}
+        f: \{\mathbb{N} \rightarrow 2\mathbb{N} : f(x) = 2x \}
+    \end{equation} 
+    This is bijective, thus we have proved the claim. 
+\end{proof}
+
+Claim: $|\mathbb{Z}| <= |\mathbb{R}|$
+
+\begin{proof}
+    THe function $f: \mathbb{Z} \rightarrow \mathbb{R}$ such that $f(n) = n$ is injective.
+\end{proof}
+
+\begin{conjecture} 
+On any collection of sets, the relation 
+\begin{equation}
+    A \sim B \iff |A| = |B|
+\end{equation}
+is an equivalence relation. That is that this relation is reflexive, symmetric, and transitive.
+\end{conjecture}
+
+\begin{conjecture}
+    $|A| = |B| \implies |A| <= |B|$
+\end{conjecture}
+
+\begin{conjecture}
+    $|A| <= |B| <= |C| \implies |A| <= |C|$
+\end{conjecture}
+
+\begin{conjecture}
+    $|A| <= |B| <= |A| \implies |A| = |B|$
+\end{conjecture}
+
+We first prove the first conjecture.
+
+\begin{proof}
+    To prove that this relation is in-fact an equivalence relation, we must first prove its reflexivity. That it
+    for any set A, there exists a bijection from A to A. To choose such a function, we choose the identity funtion, that it 
+    \begin{equation}
+        f: A \rightarrow A \textrm{ such that } f(n) = n
+    \end{equation}
+    To prove symmetry, if $f: A \rightarrow B$ is a bijection, then we choose $f^{-1}$ as the bijective function from B to A. Thus this relation is symmetric. Next to prove 
+    that this relation is transitive. First assume that 
+    \begin{equation}
+        f: A \rightarrow B \textrm{ is bijective }
+    \end{equation}
+    and that $|B| = |C|$, that is 
+    \begin{equation}
+        g: B \rightarrow C \textrm{ is bijective, }
+    \end{equation} 
+    Then we choose a function $g \circ f$ is bijective. 
+\end{proof}
+
+\begin{definition}
+    If $A$ is a set, then its \underline{cardinality} $|A|$ is defined to be its equivalence class under the previous relation. 
+\end{definition}
+
+\section*{Countably Infinite Sets}
+
+\begin{definition}
+    \begin{enumerate}
+    \item $|\mathbb{N}$ is called $\aleph_0$
+    \item We call a set $A$ \underline{countably infinite} (denumerable) $\iff$ $|A| = \aleph_0$.
+    \item We call a set countable if $|A| <= \aleph_0$
+    \end{enumerate}
+\end{definition}
+
+
+
+\end{document}
