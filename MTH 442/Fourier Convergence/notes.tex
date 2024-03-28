@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Fourier Convergence}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Fourier Convergence}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Suppose we define $S_m(x)$ to be following:
+
+\begin{equation}
+    S_m(x) = \frac{A_0}{2} + \sum_{n = 1}^{\infty}[A_n\cos(\frac{n\pi x}{l} + B_n\sin(\frac{n\pi x}{l}))]
+\end{equation}
+
+\begin{theorem}
+    If $\Psi(x)$ is differentiable at $x_0$, then $S_m(x_0) \rightarrow \Psi(x_0)$
+\end{theorem}
+
+\begin{theorem}
+    If $\Psi(x)$ is continously differentiable (that is $\Psi'(x)$ is continuous), then $S_m(x) \rightarrow \Psi(x)$ uniformly on $\mathbb{R}$. 
+\end{theorem}
+
+\begin{theorem}
+    $S_m(x) \rightarrow \Psi(x)$ in $L^2$ on $(-l, l)$. Moreover:
+    \begin{equation}
+        \int_{-l}^{l}|\Psi(x)|^2dx = l[\frac{A_0^2}{2} + \sum_{n = 1}^{\infty}(A_n^2 + B_n^2)]
+    \end{equation}
+\end{theorem}
+
+For the heat equation, the Dirichlet boundary condition says that we must use the Sine Fourier Series. The Neumann Boundary Condition states that we must use the Cosine Fourier Series. 
+
+\end{document}
