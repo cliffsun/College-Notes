@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{8.1-8.2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{8.1-8.2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}
+    $\mathbb{Q}$ is countably infinite. 
+\end{theorem}
+
+First, we prove that $\mathbb{Q}^+$ is countably infinite.
+
+\begin{proof}
+    We can list all the positive rational numbers in a 2-d grid, that is
+
+    \begin{center}
+        \begin{tabular}{c c c}
+            $1/1$ & $2/1$ & $\dots$ \\
+            $1/2$ & $2/2$ & $\dots$ \\
+            $1/3$ & $2/3$ & $\dots$
+         \end{tabular}
+    \end{center}
+
+     We can cross out all the repeat values, then this grid reduces to the following list:
+
+     \begin{center}
+        \begin{tabular}{ |c|c|c|c| } 
+            n & 1 & 2 & 3\\
+            f(n) & $\frac{1}{1}$ & $\frac{2}{1}$ & $\frac{1}{3}$
+        \end{tabular}
+     \end{center}
+     This list would go on forever, and encapsulate all the possible rational numbers. It follows that this function $f(n)$ is a bijection from $\mathbb{N} \Rightarrow \mathbb{Q}^+$. Thus 
+     \begin{equation}
+        |\mathbb{Q}^+| = |\mathbb{N}| = \aleph_0
+     \end{equation}
+     Thus, this concludes this proof. 
+\end{proof}
+
+Similarly, we can also use this proof when constructing a function that maps from $\mathbb{Z} \rightarrow \mathbb{Q}$, so that $|\mathbb{Z}| = |\mathbb{Q}|$. But it follows that $|\mathbb{Z}| = \aleph_0$. Thus it follows that the rational numbers is in fact countably infinite. 
+
+\begin{theorem}
+    In regards to countable sets, we have the following theorems:
+    \begin{enumerate}
+        \item If $A \subseteq B$, then $|A| \leq |B|$.
+        \item The union of countably many countable sets is countable.
+        \item The cartesian product of finitely many countable sets is always countable.
+    \end{enumerate}
+\end{theorem}
+
+Applications:
+
+Let $\mathbb{Z}[x]$ denote the set of polynomials in x with integer coefficients. Then this set is countable. 
+
+\begin{proof}
+    For each $n \in \mathbb{N}$, let 
+    \begin{equation}
+        A_n = \{f \in \mathbb{Z}[x] : deg(f) \leq n\}
+    \end{equation}
+    Then we can prove that each $A_n$ is countable using a bijection:
+    \begin{equation}
+        g: \mathbb{Z}^{n+1} \rightarrow A_n
+    \end{equation}
+    (Think of it like a dot product)
+    Then since $\mathbb{Z}^{n+1}$ is countable, and since $\mathbb{Z}[x]$ is the union of all $A_n$, it follows that $\mathbb{Z}[x]$ is countable. 
+\end{proof}
+
+\begin{lemma}
+    There are only countably many algebraic numbers. 
+\end{lemma}
+
+Recall: a number if algebraic if it's a root of a non-zero polynomial in $\mathbb{Z}[x]$.
+
+\begin{proof}
+    For each nonzero $f \in \mathbb{Z}[x]$, let 
+    \begin{equation}
+        B_f = \{\textrm{Zeros of F}\}
+    \end{equation}
+    Each $B_f$ is finite, thus the union of all $B_f$ is countable. Thus, we conclude the proof. 
+\end{proof}
+
+\begin{theorem}
+    $[0,1]$ is uncountable. 
+\end{theorem}
+
+\begin{proof}
+    We must do 2 things
+    \begin{enumerate}
+        \item Prove that $\exists f : \mathbb{N} \rightarrow [0,1]$ is injective.
+        \item Prove that $\nexists g : \mathbb{N} \nrightarrow [0,1]$ is surjective. 
+    \end{enumerate}
+    For (1), define a function $f = \frac{1}{n}$
+
+    For (2), assume that such a function does exist for the sake of contradiction. 
+\end{proof}
+
+\end{document}
