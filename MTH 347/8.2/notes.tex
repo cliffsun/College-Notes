@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Generic Homework}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Generic Homework}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Recall:
+
+\begin{enumerate}
+    \item $\mathbb{Q}$ is countable.
+    \item $\bar{\mathbb{Q}} = \{\textrm{Algebraic numbers}\}$ is countable.
+    \item $[0,1]$ is uncountable. This implies that $\mathbb{R}$ is also uncountable. 
+\end{enumerate}
+
+\begin{corollary}
+    $\mathbb{R}/\mathbb{Q}$ and $\mathbb{R}/\bar{\mathbb{Q}}$ are uncountable. 
+\end{corollary}
+
+\begin{proof}
+    Suppose for contradiction that $\mathbb{R}/\mathbb{Q}$ is countable. Then $\mathbb{R}$ is the union of both of these countable sets. Thus $\mathbb{R}$ is also countable. This is a contradiction, thus $\mathbb{R}/\mathbb{Q}$ is uncountable. 
+\end{proof}
+
+\begin{theorem}
+    Cantor's theorem. For any set $A$, $|A| < |P(A)|$. 
+\end{theorem}
+
+\begin{proof}
+    We first must show that there exists an injective function from A to its powerset. Secondly, there cannot exist a bijective function from A to its powerset. We first choose
+    \begin{equation}
+        f(a) = \{a\}
+    \end{equation}
+    This is injective if $\{a\} = \{b\}$, then $a = b$. Secondly, suppose for the sake of contradiction that g is a bijection from A to its powerset. In particular, g is surjective. However, we state that there exists some set
+    $X$ such that $X$ is not an element of $g(a_i)$ for $a_i \in A$. We choose $X$ to be:
+    \begin{equation}
+        X = \{a \in A : a \notin g(a)\}
+    \end{equation}
+    Then we claim that X cannot be in $g(a_i)$. 
+    \begin{proof}
+        By definition, b is in X iff
+        \begin{equation}
+            b \in X \iff b \notin g(b)
+        \end{equation}
+        But that means that $X \neq g(b)$ since one contains b and the other does not. 
+    \end{proof}
+\end{proof}
+
+\end{document}
