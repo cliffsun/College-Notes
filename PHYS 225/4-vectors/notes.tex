@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{4-vectors and the Doppler effect}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{4-vectors and the Doppler effect}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{one minute paper}
+    Before: The frequency would increase when the truck drives towards me. 
+
+    After: Moving away
+\end{one minute paper}
+
+\begin{definition}
+    When choosing c = 1, v must be within the range of $[0, 1]$
+\end{definition}
+
+To recap, a vector in Newtonian Mechanics transforms the same way as coordinates under rotations. That is, the components of the vector must be conserved when taking the dot-product with itself. \\
+
+Then, a 4-vector in special relativity is a vector that transforms the same way as coordinates under the Lorentz tranformations.
+That is:
+\begin{equation}
+    x'^\mu = \Lambda^\mu_v x^v \iff v'^\mu = \Lambda^\mu_v v^v 
+\end{equation}
+That is, the components of this transformed vector must be conserved with respect to the relativistic dot-product. 
+Then to take the time-derivative of the 4-vector displacement, we must take the time-derivative with respect to something more absolute. This is the proper time, or 
+expressed by this equation:
+\begin{equation}
+    (d\tau)^2 = dx_\mu dx^\mu \iff (dt)^2 - (dx)^2 - (dy)^2 - (dz)^2
+\end{equation}
+There is an implied metric tensor that is operating this relativistic dot-product. This is Lorentz invariant under any Lorentz transformation frame. 
+Then taking the time-derivative of the spatial 4-vector yields the following result:
+
+\begin{equation}
+    V^\mu = (\gamma, \gamma v)
+\end{equation}
+Where $v$ is the velocity vector, not the 4-vector. Then, 4-momentum is the following:
+\begin{equation}
+    P^\mu = (\gamma m, \gamma m v)
+\end{equation}
+In general, the energy of a particle can be reduced to $mc^2$ in a respective frame. Thus taking the relativistic dot-product, we have that 
+\begin{equation}
+    \gamma^2m^2c^4 - p^2 = m^2c^4  
+\end{equation}
+Thus, we are able to Lorentz transform the 4-momentum vector because this relativistic dot=product is conserved. This is something that we've already proved in class. Then, since momentum is a 4-vector, we can transform it using a Lorentz transformation, that is:
+\begin{equation}
+    P^\mu = \Lambda^\mu_v P^\mu
+\end{equation}
+Thus, we see that 
+\begin{equation}
+    F^\mu = \frac{dP^\mu}{d\tau} \iff mA^\mu
+\end{equation}
+Similarly, the Doppler effect states that the energy of a photon is transformed as the following:
+\begin{equation}
+    E' = E\gamma(1 + \beta) \iff E\sqrt{\frac{1 + \beta}{1 - \beta}}
+\end{equation}
+Such that $\beta \in [0,1]$.
+\end{document}
