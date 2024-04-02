@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Laplace Equation}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Laplace Equation}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+The Laplace Equation is defined as followed:
+
+\begin{equation}
+    \nabla^2 u(x_1,x_2,\dots) = 0 \iff \nabla \cdot \nabla u(x_1,x_2,\dots) = 0
+\end{equation}
+
+Solutions to the Laplace Equation are called harmonic functions. As long as we assign values at the end points of the domain D, we have that the solution exists and is unique. We will
+solve for this solution using Fourier Series. Given some domain D, we can define the boundary of D, denoted as $\partial D$, to be zero horizontally. In other words, $u(0,y) = u(a,y) = 0$. Using this, we can use the 
+Fourier Sine Series to fit a solution to this equation. Then the Fourier expansion is as follows:
+
+\begin{equation}
+    u(x,y) = \sum_{n=1}^{\infty}A_n(y)\sin(\frac{n\pi x}{a})
+\end{equation}
+
+Inserting this equation into the Laplacian, we have that 
+
+\begin{equation}
+    \Delta u = \sum_{n = 1}^{\infty} (A''_n(y) - (\frac{n \pi x}{a})^2\cdot A_n(y))\sin(\frac{n\pi x}{a})
+\end{equation}
+This implies that 
+\begin{equation}
+    A''_n(y) - (\frac{n \pi x}{a})^2\cdot A_n(y) = 0
+\end{equation}
+
+The solution to this equation is 
+
+\begin{equation}
+    A_n(y) = \alpha_n e^{\frac{n\pi}{a}y} + \beta_n e^{-\frac{n\pi}{a}y}
+\end{equation}
+
+In general, if the boundary conditions aren't satisfied. You can always decompose it so that one domain has a zero boundary condition horizontally and another vertically.
+This is due to the nature of linearity within the Laplacian. Just make sure to correctly define the length to be the respective width and length of the rectangle. 
+\end{document}
