@@ -13,6 +13,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
 
 \pagestyle{fancy}
 \lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
@@ -55,4 +56,64 @@ The solution to this equation is
 
 In general, if the boundary conditions aren't satisfied. You can always decompose it so that one domain has a zero boundary condition horizontally and another vertically.
 This is due to the nature of linearity within the Laplacian. Just make sure to correctly define the length to be the respective width and length of the rectangle. 
+
+\section*{Properties of the solutions}
+
+\begin{enumerate}
+    \item Maximum principle
+    \item Invariance of Laplacian
+\end{enumerate}
+
+\begin{definition}
+    Let $D \in \mathbb{R}^2$, (that is $D$ is a open and connected domain), let $\partial D$ be the boundary of D and $\bar{D}: D \cup \partial D$. You can think of D as the open brackets, not including the boundary. 
+\end{definition}
+
+Then we state the maximum principle:
+
+\begin{definition}
+    Let $D \in \mathbb{R}^2$ be a bounded domain, let $U$ be a harmonic function on $D$ (that is $\nabla^2 U = 0$), then we have the following equality:
+    \begin{equation}
+        max_{\bar{D}}U = max_{\partial D} U
+    \end{equation} 
+    That is to say the maximum of a harmonic function must exist on its boundaries. Intuitively, because the divergence of the function is 0 everywhere, if there was a maximum in the middle, then its divegrence would be non-zero. Thus, 
+    there cannot be a maximum inside $D$, only at $\partial D$. Thus, one can also explore the minimum principle. 
+\end{definition}
+
+\begin{corollary}
+    Let $D \in \mathbb{R}^2$, and let $U$ be harmonic function. Then we have that 
+    \begin{equation}
+        min_{\bar{D}}U = min_{\partial D}U
+    \end{equation}
+\end{corollary}
+
+\begin{corollary}
+    This is for uniqueness. Then let $D \in \mathbb{R}^2$ be a bounded domain, let $u_1$ and $u_2$ be harmonic functions. Suppose that 
+    \begin{equation}
+        u_1 = u_2 \textrm{ for } (x,y) \in \partial D
+    \end{equation}
+    Then
+    \begin{equation}
+        u_1 = u_2 \textrm{ for } (x,y) \in D
+    \end{equation}
+\end{corollary}
+
+Next is the invariance of the Laplacian. The Laplacian holds under rigid motion (like rotations). This is due to the invariance of the gradient and divergence, which I proved in a special relativity p-set.
+
+\begin{definition}
+    Firstly, we define what rigid motion is. Rigid motion is the following:
+    \begin{enumerate}
+        \item translation $(x,y) \rightarrow (x + a, y + b)$
+        \item rotation $R\vec{v} = \vec{v'}$ such that $R$ is a rotation matrix. 
+        \item Reflection across an axis
+    \end{enumerate}
+    More precisely, Rigid motion is a map from $\mathbb{R}^2 \rightarrow \mathbb{R}^2$ that is created through combinations of rotations and translations. 
+\end{definition}
+
+\begin{theorem}
+    Let $u$ be a harmonic function, and $R$ is a rigid motion transformation that we apply to a function, then we define the invariance of the harmonic function such that:
+    \begin{equation}
+        \nabla^2u = (\nabla^2(Ru) \iff \nabla^2(\tilde{u})) = 0
+    \end{equation}
+\end{theorem}
+
 \end{document}

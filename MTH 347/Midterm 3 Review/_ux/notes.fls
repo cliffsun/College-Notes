@@ -87,8 +87,6 @@ INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsb.fd
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
-INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
-INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
@@ -100,8 +98,6 @@ INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\MTH 347\Midterm 3 Review\_ux\notes.pdf
 INPUT C:\Users\cliff\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\MTH 347\Midterm 3 Review\_ux\notes.aux
-INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
-INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
