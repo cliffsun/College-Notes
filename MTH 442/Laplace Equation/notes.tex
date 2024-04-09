@@ -116,4 +116,35 @@ Next is the invariance of the Laplacian. The Laplacian holds under rigid motion 
     \end{equation}
 \end{theorem}
 
+\begin{theorem}
+    Let $u(x,y)$ be a 2 variable function, and let $T(x,y)$ be an orientation preserving rigid motion. Such that 
+    \begin{equation}
+        T(x,y) = (\cos\alpha x + \sin\alpha y - a, -\sin\alpha x + \cos\alpha y - b) \iff (\bar{x}, \bar{y})
+    \end{equation}
+    Then we define $\bar{u}(\bar{x}, \bar{y}) = u \circ T^{-1}(\bar{x}, \bar{y})$. The we see that 
+    \begin{equation}
+        \nabla^2\bar{u}(\bar{x}, \bar{y}) = (\nabla^2u) \circ (T^{-1}(\bar{x}, \bar{y}))
+    \end{equation}
+    That is, we are describing this function in terms of the new coordinate system $(\bar{x}, \bar{y})$
+\end{theorem}
+
+\section*{Laplacian under Polar Coordinates}
+
+That is $(x,y) \iff (r, \theta)$ such that $x = r\cos\theta$ and $y = r\sin\theta$. Where $r = \sqrt{x^2 + y^2}$ and $\theta = \arctan(\frac{y}{x})$. Then the Laplacian under this new coordinate system is 
+\begin{equation}
+    \nabla^2u = u_{rr} + \frac{1}{r}u_r + \frac{1}{r^2}u_{\theta \theta}
+\end{equation}
+
+\begin{theorem}
+    Let $h(\theta)$ be a function with period $2\pi$. Let define the domain D to be a circle with radius a. Then $\nabla^2u = 0$ on D and $u = h$ on $\partial D$ has a unique solution. The solution is the following:
+    \begin{equation}
+        u(r, \theta) = \frac{A_0}{2} + \sum_{n=1}^{\infty}(A_n r^n\cos(n\theta) + B_n r^n \sin(n\theta))
+    \end{equation}
+    Where 
+    \begin{equation}
+        A_n = \frac{1}{\pi a^n}\int_{-\pi}^{\pi}h(\theta)\cos(n\theta) d\theta
+    \end{equation}
+    The same equation can be used for $B_n$. Where a is the radius of the circle. 
+\end{theorem}
+
 \end{document}
