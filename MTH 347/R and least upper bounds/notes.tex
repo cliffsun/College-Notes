@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Real numbers and least upper bounds}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{axiom}[theorem]{Axiom}
+
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Real numbers and least upper bounds}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Let $A \in \mathbb{R}$, then
+    \begin{enumerate}
+        \item If there is some real number $b$ such that $\forall a \in A$, $a < b$, then we say that b is an \underline{upper bound} of A and A is \underline{bounded above}.
+        \item If $\exists b \in \mathbb{R}$, such that $b \leq a$, $\forall a \in A$, then we say that b is a \underline{lower bound} of A and A is \underline{bounded below}. 
+        \item A is \underline{bounded} if it is bounded above and below. 
+    \end{enumerate}
+\end{definition}
+
+\begin{axiom}
+
+    Every nonempty $A \subseteq \mathbb{R}$ which is bounded above has a \underline{least} upper bound. 
+
+    \begin{definition}
+        A \underline{Least Upper Bound} is defined as b' such that for all $b \in B$ where $B$ is the set of all upperbounds, $b' \leq b$.
+    \end{definition}
+
+\end{axiom}
+
+The reason why this axiom is called completeness is because it tells us that the real numbers has no "holes".
+
+\section*{Notation}
+
+We call the least upper bound of set $A$ its supremum, or $\sup A$. Similarly, the greatest lower bound of a set $A$ its infimum or $\inf A$. 
+\end{document}
