@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Archimedean Property and Sup/Inf}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Archimedean Property and Sup/Inf}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Recall, suppose that $A \subseteq \mathbb{R}$ (A cannot be $\emptyset$), then 
+\begin{equation}
+    \sup(A) = \textrm{ least upper bound of A}
+\end{equation}
+\begin{equation}
+    \inf(A) = \textrm{ greatest upper bound of A }
+\end{equation}
+
+Claim, $\inf(\mathbb{R}^+) = 0$
+
+\begin{proof}
+    We must prove that 
+    \begin{enumerate}
+        \item $\forall x \in \mathbb{R}^+, 0 \leq x$
+        \item $\forall b \in \mathbb{R} \textrm{ such that b is a lower bound of $\mathbb{R}$ }, b \leq 0$
+    \end{enumerate}
+    To prove (2), suppose that $b \in \mathbb{R}^+$, we must prove that b is not a lower bound of $\mathbb{R}^+$. To prove this, note that $\frac{b}{2}$ is less than $b$, thus b cannot
+    be a lower bound of $\mathbb{R}^+$. This is because $b > 0$.
+\end{proof}
+
+Claim: Let $A \subseteq \mathbb{R}$, then
+\begin{enumerate}
+    \item If $A$ has a smallest element x, then $x = \inf(A)$
+    \item If $A$ has a largest element y, then $y = \sup(A)$
+\end{enumerate}
+
+\begin{proof}
+    To prove (1), suppose that x is the smallest element of A. Then x is a lower bound of A since $x \leq a \forall a \in A$. Moreover, if
+    b is a lower bound of A, then $b \leq a \forall a \in A$. Then in particular, $b \leq x$. Thus x is the greatest lower bound of A, that is $x = \inf(A)$. 
+\end{proof}
+
+\begin{theorem}
+    $\mathbb{N}$ is not bounded above. 
+\end{theorem}
+
+\begin{proof}
+    Suppose for the sake of contradiction that $\mathbb{N}$ is bounded above. In particular, by the least upper bound property, $\mathbb{N}$ must have a least upper bound. Then, we define $n$ is a least upper bound of $\mathbb{N}$. 
+    Then we define $x > n - 1$ such that $x \in \mathbb{N}$, but it follows that $x + 1 \in \mathbb{N}$ by definition of the natural numbers. Thus, it follows that $\mathbb{N}$ doesn't have a upper bound. 
+\end{proof}
+
+\begin{corollary}
+    Let $A = \{\frac{1}{n} : n \in \mathbb{N}\}$, then $\inf(A) = 0$.
+\end{corollary}
+
+\begin{proof}
+    We first must prove that 0 is a lower bound, and that 0 is also the greatest lower bound. To prove the first claim, we have that trivially that $0 \leq \frac{1}{n} \forall n \in \mathbb{N}$. 
+    Secondly, suppose that 0 is not the greatest lower bound for the sake of contradiction. Then there exists some $b \in \mathbb{N}$ such that $b \leq \frac{1}{n}$. Flipping both sides yields $\frac{1}{b} \geq n$, but this implies that the natural numbers is bounded. This is a contradiction. 
+\end{proof}
+
+\begin{theorem}
+    The Archimedean property states that for any $x \in \mathbb{R}^+$ and $y \in \mathbb{R}$, there exists some $n \in \mathbb{N}$ such that
+    \begin{equation}
+        nx > y
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    $\mathbb{Q}$ is dense in $\mathbb{R}$ for all real numbers $x < y$, there exists some rational number $r$ such that 
+    \begin{equation}
+        x < r < y
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    To prove the Archimedean property, given $x \in \mathbb{R}^+$ and $y \in \mathbb{R}$, we want to find $n \in \mathbb{N}$ such that $nx > y$. Equivalently, $n > \frac{y}{x}$. We can find such a number since the natural numbers is not bounded. 
+\end{proof}
+
+\begin{proof}
+    To prove the theorem that follows from the Archimedean Property, we first assume that $0 \leq x < y$. Since $x < y$, we have that $y - x > 0$, in particular, $y - x > \frac{1}{n}$. Fix n, we claim that for some $m \in \mathbb{N}$, $x < \frac{m}{n} < y$. Let
+    \begin{equation}
+        A = \{k \in \mathbb{N} : \frac{k}{n} > x\}
+    \end{equation}
+    Claim that $A$ is nonempty, if it were empty, then that means that $\frac{k}{n} \leq x$ for all $k \in \mathbb{N}$, but that means that the natural numbers is bounded, thus this set must be nonempty. Since $\mathbb{N}$ is well-ordered, it follows that $A$ contains a least element. We must now prove that $x < \frac{m}{n} < y$. By definition, $\frac{m}{n} > x$. 
+    But since $m -1 \notin x$, thus $\frac{m - 1}{n} < x$, or $\frac{m}{n} \leq x + \frac{1}{n} < y$. Thus, this proves the inequality. 
+\end{proof}
+
+\begin{definition}
+    If $A \subseteq \mathbb{R}$ and $x \in \mathbb{R}$, then let 
+    \begin{equation}
+        xA = \{xa : a \in A\}
+    \end{equation}
+    \begin{equation}
+        x + A = \{x + a : a \in A\}
+    \end{equation}
+\end{definition}
+
+Then
+
+\begin{theorem}
+    Suppose that $A \subseteq \mathbb{R}$ and that x is a real number. Assuming that $\sup(A)$ exists, then 
+    \begin{enumerate}
+        \item $\sup(x + A) = \sup(A) + x$
+        \item $\inf(x + A) = \inf(A) + x$
+        \item $\sup(xA) = x\sup(A)$ if $x > 0$
+        \item etc. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    To prove (1), for any b in the real numbers, we have that b is a upper bound of A means that 
+    \begin{equation}
+        b \geq a \forall a \in A
+    \end{equation}
+    \begin{equation}
+        b + x \geq a + x
+    \end{equation}
+    Thus $b + x$ is a upper bound of A. 
+\end{proof}
+
+\end{document}

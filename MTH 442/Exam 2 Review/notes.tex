@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Exam 2 Review}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Exam 2 Review}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Topics covered on the exam:
+
+\begin{enumerate}
+    \item Separation of variables
+    \item Fourier Series
+    \item Harmonic Functions
+\end{enumerate}
+
+For (1), we first assume that 
+\begin{equation}
+    u(x,y) = f(x)g(y)
+\end{equation}
+
+
+For (2), we've discussed the full, sine, and cosine Fourier Series. For Full Fourier Series with period 2l, we have that
+\begin{equation}
+    \phi(x) = \frac{A_0}{2} + \sum_{n=1}^{\infty}(A_n\cos(\frac{n\pi x}{l}) + B_n\sin(\frac{n\pi x}{l}))
+\end{equation}
+
+Where 
+
+\begin{equation}
+    A_n = \frac{1}{l}\int_{-l}^{l}\phi(x)\cos(\frac{n\pi x}{l})dx
+\end{equation}
+
+and
+
+\begin{equation}
+    B_n = \frac{1}{l}\int_{-l}^{l}\phi(x)\sin(\frac{n\pi x}{l})dx
+\end{equation}
+
+For the Sine Fourier Series defined on the interval $[0,l]$ is the following:
+
+\begin{equation}
+    \phi(x) = \sum_{n=1}^{\infty}A_n\sin(\frac{n\pi x}{l})
+\end{equation}
+
+with
+
+\begin{equation}
+    A_n = \frac{2}{l}\int_{0}^{l}\phi(x)\sin(\frac{n\pi x}{l})dx
+\end{equation}
+
+And for Cosine defined on the interval $[0,l]$, we have the following
+
+\begin{equation}
+    \phi(x) = \frac{B_0}{2} + \sum_{n=1}^{\infty}B_n\cos(\frac{n\pi x}{l})
+\end{equation}
+
+and
+
+\begin{equation}
+    B_n = \frac{2}{l}\int_{0}^{l}\phi(x)\cos(\frac{n\pi x}{l})dx
+\end{equation}
+
+\begin{equation}
+    B_0 = \frac{2}{l}\int_{0}^{l}\cos(\frac{n\pi x}{l})dx
+\end{equation}
+
+For full fourier series to work, the function must have a period of 2l. You can always redefine $l$ to fit the criteria. ]
+
+\section*{Convergence}
+
+Let $\Psi(x)$ be a function of period $2l$ defined by equation (2), then we have the following theorems for Convergence. 
+
+\begin{theorem}
+    If $\Psi(x)$ is differentiable at $x = x_0$, then the Fourier Series convergences to $\Psi(x)$ at $x = x_0$. (\underbar{Pointwise Convergence})
+\end{theorem}
+
+\begin{theorem}
+    If $\Psi(x)$ is continuously differentiable, then the Fourier Series converges to $\Psi(x)$ on $\mathbb{R}$. (\underbar{Uniform Convergence})
+\end{theorem}
+
+\begin{theorem}
+    The Fourier Series converges to $\Psi(x)$ on $L^2$ on $[-l, l]$. We also have Parseval's equality:
+    \begin{equation}
+        \int_{-l}^{l}|\Psi(x)|^2dx = l[\frac{A_0^2}{2} + \sum_{n=1}^{\infty}(A_n^2 + B_n^2)]
+    \end{equation}
+    (\underbar{$L^2$ convergence})
+\end{theorem}
+
+Here are Parseval's equalities for sine and cosine:
+
+Sine:
+
+\begin{equation}
+    \int_{0}^{l}|\Psi(x)|^2dx = \frac{l}{2}[\sum_{n=1}^{\infty}A_n^2]
+\end{equation}
+
+Cosine:
+
+\begin{equation}
+    \int_{0}^{l}|\Psi(x)|^2dx = \frac{l}{2}[\frac{A_0^2}{2} + \sum_{n=1}^{\infty}B_n^2]
+\end{equation}
+
+\section*{Harmonic Functions}
+
+Harmonic Functions in a Rectangle D. Assume that the edges are the following: top = $g_2(x)$, bottom = $g_1(x)$, left = $h_1(y)$, right = $h_2(y)$.
+Then the unique function is as follows:
+
+\begin{equation}
+    u(x,y) = \sum_{}^{}\alpha_n e^{\frac{n\pi}{a}y}sin(\frac{n\pi x}{l}) + \beta_n e^{-\frac{n\pi}{a}y}sin(\frac{n\pi x}{l}) + \textrm{ the sine series for the other boundary. }
+\end{equation}
+
+An easy form of this formula will be on the test. The $\sin$'s variable depends on the location of the zeros. That is if the zeros go up and down, then $\sin$'s variable is y, and vice versa.
+The length is the length of the rectangle in the direction of propagation.
+
+\subsection*{Maximum Principle}
+
+\begin{equation}
+    max_{\bar{D}}u = max_{\partial D}u
+\end{equation}
+
+\subsection*{Invariance of Laplace Equation}
+
+Laplace equation is invariant under rigid motion. \underline{But not covered on test}. 
+
+\end{document}
