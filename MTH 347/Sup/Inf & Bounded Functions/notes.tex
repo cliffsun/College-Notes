@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{More properties of sup/inf, bounded functions, triangle inequality}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{More properties of sup/inf, bounded functions, triangle inequality}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Suppose that $A \subseteq \mathbb{R}$ and $x \in \mathbb{R}$, recall:
+\begin{enumerate}
+    \item $\sup(x + A) = x + \sup(A)$
+    \item $\inf(x + A) = x + \inf(A)$
+    \item $\sup(xA) = x\sup(A)$ if $x > 0$
+    \item $\inf(xA) = x\inf(A)$ if $x > 0$
+    \item $\sup(xA) = x\inf(A)$ if $x < 0$
+    \item $\inf(xA) = x\sup(A)$ if $x < 0$
+\end{enumerate}
+
+We first prove $(1)$:
+
+\begin{proof}
+    For any $b \in \mathbb{R}$, b is an upper-bound of A
+    \begin{equation}
+        b \geq a \quad \forall a \in A
+    \end{equation}
+    \begin{equation}
+        b + x \geq  a + x \quad \forall a \in A
+    \end{equation}
+    \begin{equation}
+        b + x \textrm{ is an upperbound of A }
+    \end{equation}
+    Choosing $b = \sup(A)$, this says that $b + x$ is an upperbound of $x + A$. Let $c$ be an upperbound of $A + x$, we claim that
+    $b + x$ is the least upperbound of $c$. Since $c$ is an upperbound of $x + A$, we have that 
+    \begin{equation}
+        c - x \geq a \quad \forall a \in A
+    \end{equation}
+    Since $b$ is the least upperbound of A, it follows that
+    \begin{equation}
+        c - x \geq b
+    \end{equation}
+    This implies that
+    \begin{equation}
+        c \geq b + x
+    \end{equation}
+    Thus, the least upperbound of A is $\sup(A) + x$. 
+\end{proof}
+
+\begin{conjecture}
+    Suppose that $A, B$ are non-empty subsets of $\mathbb{R}$, such that $\forall a \in A$ and $\forall b \in B$, we have that 
+    \begin{equation}
+        a \leq b
+    \end{equation}
+    We claim that 
+    \begin{enumerate}
+        \item $A$ is bounded above
+        \item $B$ is bounded below
+        \item $\sup(A) \leq \inf(B)$
+    \end{enumerate}
+\end{conjecture}
+
+\begin{proof}
+    To prove $(1)$, we choose any element in $B$.
+\end{proof}
+
+\begin{proof}
+    Similarly, to prove $(2)$, we choose any element in $A$.
+\end{proof}
+
+These proofs imply that $A$ and $B$ have a supremum and an infimum, respectively.
+
+\begin{proof}
+    To prove $(3)$, we proceed with contradiction. Suppose that $\inf(B) < \sup(A)$, then we get a contradiction because we have that a value in $B$ is less than a value in $A$. 
+    Thus it follows that $\sup(A) \leq \inf(B)$.
+\end{proof}
+
+\begin{theorem}
+    If $S \subseteq \mathbb{R}$ is an non-empty set which is bounded above, then for all $\epsilon > 0$, there exists an element $x \in S$ such that 
+    \begin{equation}
+        \sup(S) - \epsilon < x \leq \sup(S)
+    \end{equation}
+\end{theorem}
+
+\begin{definition}
+    For $x \in \mathbb{R}$, we define $|x|$ to be the usual definition. 
+\end{definition}
+
+\begin{conjecture}
+    Triangle Inequality: For all real numbers $x, y$ we have the following:
+    \begin{equation}
+        |x+y| \leq |x| + |y|
+    \end{equation}
+\end{conjecture}
+
+\begin{proof}
+    Let $x,y$ be arbitrary real numbers, we have that
+    \begin{equation}
+        -|x| \leq x \leq |x|
+    \end{equation} 
+    \begin{equation}
+        -|y| \leq y \leq |y|
+    \end{equation}
+    Adding these yields 
+    \begin{equation}
+        -|x| - |y| \leq x + y \leq |x| + |y|
+    \end{equation}
+    But this is equivalent to saying
+    \begin{equation}
+        |x + y| \leq |x| + |y|
+    \end{equation}
+    This concludes the proof. 
+\end{proof}
+
+\begin{corollary}
+    The following are true for all $x,y$, $x_1,\dots, x_n \in \mathbb{R}$, 
+    \begin{enumerate}
+        \item $|x - y| \leq |x| + |y|$
+        \item $|(|x| - |y|)| \leq |x-y|$
+        \item $|x_1 + x_2 + \cdots + x_n| \leq |x_1| + |x_2| + \cdots + |x_n|$
+    \end{enumerate}
+\end{corollary}
+
+\begin{definition}
+    Let $f: D \rightarrow \mathbb{R}$ be a function where $D$ is any set. We define 3 things
+    \begin{enumerate}
+        \item f is a \underline{bounded} function is $\exists M \in \mathbb{R}$ such that $|f(x)| \leq M$ for all $x \in D$. 
+        \item $\sup(f)$ is the supremum of the image of $f$
+        \item $\inf(f)$ is the infimum of the image of $f$]
+    \end{enumerate}
+\end{definition}
+
+\end{document}

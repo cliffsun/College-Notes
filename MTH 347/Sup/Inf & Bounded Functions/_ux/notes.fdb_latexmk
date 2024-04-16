@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1712951413 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/MTH 347/Archimedean Prop & Sup/Inf/notes.tex" "_ux/notes.pdf" "notes" 1712951414 0
+["pdflatex"] 1713210298 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/MTH 347/Sup/Inf & Bounded Functions/notes.tex" "_ux/notes.pdf" "notes" 1713210299 0
   "C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1708883030 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/cliff/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1699569839 24212834 d4a0edb9e42a4172f00d5d79863f1e42 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -31,7 +31,6 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
-  "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247596673 34694 870c211f62cb72718a00e353f14f254d ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -61,9 +60,9 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1665067579 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1698073837 29988 bb6a6635dd6c1ccb32cf27163b4e39bb ""
-  "_ux/notes.aux" 1712951414 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
-  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/MTH 347/Archimedean Prop & Sup/Inf/notes.tex" 1712951412 5727 95cb05097cc49cf960ff36d6ed5f3ecc ""
-  "notes.tex" 1712951412 5727 95cb05097cc49cf960ff36d6ed5f3ecc ""
+  "_ux/notes.aux" 1713210299 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
+  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/MTH 347/Sup/Inf & Bounded Functions/notes.tex" 1713210298 4790 d77d1fbe04713d9b2cce99f9ba97bb60 ""
+  "notes.tex" 1713210298 4790 d77d1fbe04713d9b2cce99f9ba97bb60 ""
   (generated)
   "_ux/notes.aux"
   "_ux/notes.log"

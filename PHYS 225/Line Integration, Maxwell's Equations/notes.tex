@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Line Integration, Maxwell's Equations}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Line Integration, Maxwell's Equations}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{one minute paper}
+    Before: Surface Integral - Gauss's Law; Line Integral - Ampere's Law
+\end{one minute paper}
+
+Recall: Line integrals are moving across a higher dimensional area and calculating the summations 
+of all the dot products. 
+
+\begin{equation}
+    \int_{C}F \cdot dr \iff \int_{C}F \cdot \frac{dr}{dt}dt
+\end{equation}
+
+Fundamental Theorem of Vector Calculus:
+
+\begin{equation}
+    \int_{C}\nabla F \cdot dr = f(b) - f(a)
+\end{equation}
+
+This curve goes from $a$ to $b$, both are vectors. Next is the surface integral:
+
+\begin{equation}
+    \int_{S} F \cdot dS \iff \int\int F(r(u,v)) \cdot |\frac{\partial r}{\partial u} \times \frac{\partial r}{\partial u}|dudv
+\end{equation}
+
+Such that 
+
+\begin{equation}
+    dS = \Delta u \Delta v
+\end{equation}
+
+In the generalized coordinates of $u$ and $v$. In general, we have that 
+
+\begin{equation}
+    \int_{R}d\omega = \int_{\partial R}\omega
+\end{equation}
+
+For divergence, we have that
+
+\begin{equation}
+    \int_V (\nabla \cdot F)dV = \int_{\partial V}F \cdot dS
+\end{equation}
+
+Similarly, for curl, we have that
+
+\begin{equation}
+    \int_S (\nabla \times F) \cdot dS = \int_{\partial S} F \cdot dr
+\end{equation}
+
+\begin{equation}
+    \epsilon^{ijk} = 1, -1, 0
+\end{equation}
+
+\begin{equation}
+    1 \textrm{ if $ijk$ is an even permutation of (1,2,3), -1 if odd, etc. }
+\end{equation}
+
+Even permutation means an even amount of rotations relative to $(1,2,3)$, etc. So curl is This
+
+\begin{equation}
+    \nabla \times F \iff \epsilon^{ijk}\partial_j F_k
+\end{equation}
+
+Delta functions
+
+\begin{equation}
+    \int_{V}\delta^(3)(x)dV = \begin{cases}
+        1, & \text{ if V contains the origin } \\
+        0, & \text{ otherwise  }
+    \end{cases}
+\end{equation}
+
+Maxwell's Equations
+\begin{equation}
+    \nabla \cdot E = \frac{\rho}{\epsilon_0}
+\end{equation}
+
+\begin{equation}
+    \nabla \cdot B = 0
+\end{equation}
+
+\begin{equation}
+    \nabla \times E = -\frac{\partial B}{\partial t}
+\end{equation}
+
+\end{document}
