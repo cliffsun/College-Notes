@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Bounded Functions and Sequences \& Limits}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Bounded Functions and Sequences \& Limits}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{proposition}
+
+The sum of any two bounded functions on the same domain D is bounded. 
+
+\end{proposition}
+
+\begin{proof}
+    Suppose that $f: D \rightarrow \mathbb{R}$ and $g: D \rightarrow \mathbb{R}$ are bounded. Then $|f(x)| \leq M$ and $|g(x)| \leq N$ for all $x \in D$. We then add them together
+    \begin{equation}
+        |f(x) + g(x)| \leq |f(x)| + |g(x)| \leq M + N
+    \end{equation}
+    Thus the function sum of both $f(x)$ and $g(x)$ is bounded. 
+\end{proof}
+
+\begin{definition}
+    A sequence of numbers is a function from $f: \mathbb{N} \rightarrow \mathbb{R}$
+\end{definition}
+
+Note:
+\begin{enumerate}
+    \item All sequences are infinite
+    \item We write $x_1, x_2, \cdots$ instead of $f(1), f(2), \cdots$
+    \item The sequences as a whole is denoted as $(x_n)_{n=1}^{\infty}$ or $(x_n)$ for short. 
+    \item An example would be $x_n = n$ or $(n)_{n=1}^{\infty} = (1,2,3,\cdots)$
+\end{enumerate}
+
+Boundedness, sup/inf all apply to sequences, in particular to the Im$(f) = \{x_n : x \in \mathbb{N}\}$
+
+\begin{definition}
+    Let $(x_n)$ be a sequence and $x \in \mathbb{R}$:
+    \begin{enumerate}
+        \item We say that $\lim_{n\rightarrow \infty}x_n = x$ if there exists some $\epsilon > 0$, there exists some $M \in \mathbb{N}$ such that for all $n \geq M$ such that $|x_n - n| < \epsilon$
+        \item A sequence \underline{converges} if $\lim_{n\rightarrow \infty}x_n = x$ for some x, other it \underline{diverges}.
+    \end{enumerate}
+\end{definition}
+
+Suppose that $x_n = \frac{\sin(n)}{n}$, claim is that it converges to 0.
+
+\begin{proof}
+    Let $\epsilon > 0$ be arbitrary, let $n \geq M$ be arbitrary, we must prove that
+    \begin{equation}
+        |\frac{\sin(n)}{n}| < \epsilon
+    \end{equation}
+    We choose $M = \frac{1}{\epsilon} + 1$, and using the fact that 
+    \begin{equation}
+        |\frac{\sin(n)}{n}| \leq \frac{1}{n}
+    \end{equation}
+    We can prove this. 
+\end{proof}
+
+\begin{proposition}
+    If $(x_n)$ is a convergent sequence, then it is bounded. 
+\end{proposition}
+
+\begin{proof}
+    Let $(x_n)$ be a covergent sequence, we claim that it is bounded. In other words, there exists some $B \in \mathbb{R}$ such that 
+    \begin{equation}
+        |x_n| \leq B \quad \forall n \in \mathbb{N}
+    \end{equation}
+    Let $\epsilon = 1$ since this a convergent sequence, we see that there exists some $M \in \mathbb{R}$ such that for all $n \geq M$,
+    \begin{equation}
+        |x_n - x| < 1
+    \end{equation}
+    We see that
+    \begin{equation}
+        |x_n| = |(x_n - x) + x|
+    \end{equation}
+    \begin{equation}
+        \leq |x_n - x| + |x|
+    \end{equation}
+    \begin{equation}
+        < 1 + |x|
+    \end{equation}
+    We now know that all $x_n$ are bounded between this value, except for $x_1, x_2, x_3, \dots$. Then we say that
+    \begin{equation}
+        B = \max(1 + |x|, |x_1|, |x_2|, |x_3|, \dots, |x_{M-1}|)
+    \end{equation}
+\end{proof}
+
+\begin{proposition}
+    A sequence can have, at most, 1 limit. 
+\end{proposition}
+
+\begin{proof}
+    Suppose that $(x_n)$ is a sequence such that $x_n \rightarrow x$ and $x_n \rightarrow y$, then we claim that $x = y$. 
+    To do this, let $\epsilon > 0$ be arbitrary, we claim that $|x - y| < \epsilon$. Plugging in $\frac{\epsilon}{2}$ to the definition, we see that there exists some $M_1$, there exists some $M_1 \in \mathbb{N}$ such that 
+    for all $n \geq M_1$, we have that 
+    \begin{equation}
+        |x_n - x| < \frac{\epsilon}{2}
+    \end{equation} 
+    Similary, we have that for some $M_2 \in \mathbb{N}$, we have that 
+    \begin{equation}
+        |x_n - x| < \frac{\epsilon}{2}
+    \end{equation}
+    Choose $n = \max(M_1,M_2)$, then $n \geq M_1$ and $n \geq M_2$. Then,
+    \begin{equation}
+        |x-y| = |(x_n - y) - (x_n - x)| \leq |x_n - y| + |x_n - x| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+    \end{equation}
+\end{proof}
+
+\end{document}
