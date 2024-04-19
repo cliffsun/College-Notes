@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Monotone Sequences and Tails of Sequences}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Monotone Sequences and Tails of Sequences}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Let $(x_n)$ be a sequence:
+    \begin{enumerate}
+        \item $(x_n)$ is (monotone) increasing if $x_{n+1} \geq x_n$ for all $n$
+        \item $(x_n)$ is (monotone) decreasing if $x_{n+1} \leq x_n$ for all $n$
+        \item $(x_n)$ is monotone if $(x_n)$ is either monotone increasing or monotone decreasing
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Let $(x_n)$ be a montone sequence. 
+    \begin{enumerate}
+        \item $(x_n)$ converges if and only if it is bounded.
+        \item If $(x_n)$ is increasing and bounded, then 
+        \begin{equation}
+            \lim_{n \rightarrow \infty}x_n = \sup\{x_n : n \in \mathbb{N}\}
+        \end{equation}
+        \item If $(x_n)$ is decreasing and bounded, then 
+        \begin{equation}
+            \lim_{n\rightarrow\infty}x_n = \inf(x_n : n \in \mathbb{N})
+        \end{equation}
+    \end{enumerate}
+\end{theorem}
+
+Note:
+\begin{enumerate}
+    \item If $(x_n)$ is increasing, then $(x_n)$ is bounded below by $x_1$.
+    \item If $(x_n)$ is decreasing, then $(x_n)$ is bounded above $x_1$
+    \item The only interesting question is if $(x_n)$ is bounded above/below if it's increasing/decreasing. 
+\end{enumerate}
+
+\begin{corollary}
+    The comparison test for infinite series says that if $\Sigma a_n$ and $\Sigma b_n$ are infinite series and $a_n, b_n \geq 0$, and $a_n \leq b_n$ for all n.
+    Then if $\Sigma b_n$ converges, then $\Sigma a_n$ converges. 
+\end{corollary}
+
+\begin{definition}
+    The sum of some series $a_n$ is the limit as $n \rightarrow \infty$ of the sequence $s_n$ where 
+    \begin{equation}
+        s_n = a_1 + a_2 + \cdots + a_n
+    \end{equation}
+\end{definition}
+
+\begin{proof}
+    We already know the "$\implies$" of $(1)$, we will prove $(2)$. By replacing $x_n = -x_n$, we will prove $(3)$. And combining $(2)$ and $(3)$, we will have proved "$\impliedby$" of $(1)$. So suppose that $(x_n)$ is increasing and bounded above. Since $x_n$ is nonempty and bounded above, we have that it must have a least upper bound, in other words it has a supremum. So we must prove that
+    \begin{center}
+        For all $\epsilon > 0$, there exists some $M \in \mathbb{N}$ such that for all $n \geq M$, $|x_n - x| < \epsilon$ where $x = \sup(x_n)$.
+    \end{center}
+    Recall from homework 11, for any nonempty, bounded above set $S$, and for any $\epsilon > 0$, there exists an $x \in S$ such that 
+    \begin{equation}
+        \sup(S) - \epsilon < x \leq \sup(S)
+    \end{equation}
+    In particular, given any $\epsilon > 0$, there exists some $M \in \mathbb{N}$ such that $\sup(x_n) - \epsilon < x_M \leq \sup(x_n)$. Choose that $M$, then we have that 
+    \begin{equation}
+        x - \epsilon < x_M \leq x_n \leq x < x + \epsilon
+    \end{equation}
+    But in particular
+    \begin{equation}
+        |x_n - x| < \epsilon
+    \end{equation}
+    This concludes the proof. 
+\end{proof}
+
+\section*{Tails of a sequence}
+
+\begin{definition}
+    Let $(x_n)$ be a sequence, and let $k \in \mathbb{N}$. Then the k-Tail of $(x_n)$ is the sequence 
+    \begin{equation}
+        (x_{n+k})_{n=1}^{\infty} = (x_{k+1}, x_{k+2}, \cdots)
+    \end{equation}
+    In other words, you drop the first $k$ terms. 
+\end{definition}
+
+\begin{theorem}
+    If $(x_n)$ is any sequence, $x \in \mathbb{R}$, and $k \in \mathbb{N}$, then 
+    \begin{equation}
+        \lim_{n\rightarrow\infty}(x_n) = x \iff \lim_{n\rightarrow\infty}(x_{n+k}) = x
+    \end{equation}
+\end{theorem}
+
+In particular
+\begin{enumerate}
+    \item If $(x_n)$ converges to x, then all of its k-tails must also converge to the same number $x$. 
+    \item If $(x_n)$ diverges, then all of its k-tails also diverge. 
+\end{enumerate}
+
+\end{document}

@@ -147,4 +147,57 @@ That is $(x,y) \iff (r, \theta)$ such that $x = r\cos\theta$ and $y = r\sin\thet
     The same equation can be used for $B_n$. Where a is the radius of the circle. 
 \end{theorem}
 
+\section*{Solving the Laplacian outside the Domain}
+
+\begin{equation}
+    \Delta u = 0 \textrm{ in D }
+\end{equation}
+\begin{equation}
+    u|_{\partial D} = h
+\end{equation}
+\begin{equation}
+    D = \{a \leq r, 0 \leq \theta \leq 2\pi\}
+\end{equation}
+\begin{equation}
+    u = f(r)g(\theta)
+\end{equation}
+\begin{equation}
+    \Delta u = u_{rr} + \frac{1}{r}u_r + \frac{1}{r^2}u_{\theta \theta}
+\end{equation}
+\begin{equation}
+    = f''(r)g(\theta) + \frac{1}{r}f'(r)g(\theta) + \frac{1}{r^2}f(r)g''(\theta) = 0
+\end{equation}
+\begin{equation}
+    \frac{f''(r) + \frac{1}{r}f'(r)}{f(r)}r^2 = -\frac{g''(\theta)}{g(\theta)} = \lambda
+\end{equation}
+
+If $\lambda = \beta^2 > 0 $, then
+
+\begin{equation}
+    g(\theta) = c_1\cos(\beta\theta) + c_2\sin(\beta\theta)
+\end{equation}
+
+Where $\beta \in \mathbb{N}$, after solving this, we get: 
+
+\begin{equation}
+    u = \frac{A_0}{2} + \sum_{n=1}^{\infty}r^{-n}(A_n\cos(n\theta) + B_n\sin(n\theta))
+\end{equation}
+
+Without boundaries, this solution is \underline{not} unique. 
+
+\section*{Laplacian in Spherical Coordinates}
+
+\begin{equation}
+    \Delta u = u_{rr} + \frac{2}{r}u_r + \frac{1}{r^2}[u_{\theta\theta} + \cot(\theta)u_{\theta} + \frac{1}{\sin^2(\theta)}u_{\phi\phi}]
+\end{equation}
+
+Separation of Variables
+\begin{equation}
+    u = f(r)g(\theta, \phi)
+\end{equation}
+
+\begin{equation}
+    0 = \Delta u = f''(r)(\theta, \phi) + \frac{2}{r}f'(r)g(\theta, \phi) + \frac{1}{r^2}[f(r)g_{\theta\theta}(\theta, \phi) + \frac{1}{\sin^2(\theta)}f(r)g(\theta, \phi) + \cot(\theta)f(r)g_{\theta}(\theta, \phi)]
+\end{equation}
+
 \end{document}
