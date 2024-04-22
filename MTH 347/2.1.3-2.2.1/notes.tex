@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Subsequences and the Squeeze Theorem}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Subsequences and the Squeeze Theorem}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Last time, we defined some function $(x_n)$ such that 
+\begin{equation}
+    x_1 = 1
+\end{equation} 
+\begin{equation}
+    x_{n+1} = \sin(x_n) \quad \forall n \geq 1
+\end{equation}
+Previously, we showed that this function is strictly monotone decreasing and is bounded by 0. As well, by the monotone convergence theorem, 
+this implies that
+\begin{equation}
+    \lim_{n\rightarrow\infty}x_n \textrm{ exists }
+\end{equation}
+We introduce some facts:
+\begin{enumerate}
+    \item If $f$ is a continuous function and $(x_n)$ is a sequence which converges to some limit $x$. Then the sequence $(f(x_n))$ converges to $f(x)$. 
+    \item $\sin(x)$ is continuous.  
+\end{enumerate}
+
+Claim:
+\begin{equation}
+    \lim_{n\rightarrow\infty}x_n = 0
+\end{equation}
+
+\begin{proof}
+    Let $x = \lim_{n\rightarrow\infty}x_n$ since we know that it exists. By facts 1 and 2, 
+    \begin{equation}
+        \lim_{n\rightarrow\infty}\sin(x_n) = \sin(x)
+    \end{equation}
+    But
+    \begin{equation}
+        \sin(x_n) = x_{n+1}
+    \end{equation}
+    and
+    \begin{equation}
+        \sin(x) = \lim_{n\rightarrow\infty}x_{n+1} = \lim_{n\rightarrow\infty}x_{n} = x
+    \end{equation}
+    Thus $x = 0$. 
+\end{proof}
+
+\section*{Subsequences}
+
+Recall, last week we found that 
+\begin{equation}
+    \lim_{n\rightarrow\infty}\frac{\sin(n)}{n} = 0
+\end{equation}
+But what about
+\begin{equation}
+    \lim_{n\rightarrow\infty}\frac{\sin(2n)}{2n} \textrm{ ?}
+\end{equation}
+Or
+\begin{equation}
+    \lim_{n\rightarrow\infty}\frac{\cos(n)}{n} \textrm{ ?}
+\end{equation}
+Or
+\begin{equation}
+    \lim_{n\rightarrow\infty}\frac{\sin(n)}{n} + \frac{1}{2^n} \textrm{ ?}
+\end{equation}
+
+\begin{definition}
+    Let $(x_n)$ be a sequence. Let $(n_i)_{i=1}^{\infty}$ be a strictly increasing sequence of natural numbers. Then we call the sequence
+    \begin{equation}
+        (x_{n_i})_{i=1}^{\infty}
+    \end{equation}
+    a \underline{subsequence} of $(x_n)$. 
+\end{definition}
+
+\begin{theorem}
+    If $(x_n)$ is a sequence that converges to some number $x$, then every subsequence must converge to the same number. 
+\end{theorem}
+
+Note, if $(x_n)$ diverges, then its subsequences may or may not diverge. 
+
+\begin{proof}
+    We prove the subsequence theorem. Let $(x_n)$ be a sequence such that
+    \begin{equation}
+        x = \lim_{n\rightarrow\infty}x_n \textrm{ exists }
+    \end{equation}
+    In particular, for all $\epsilon > 0$, there exists $M \in \mathbb{N}$ such that for all $n \geq M$, we have that 
+    \begin{equation}
+        |x_n - x| < \epsilon
+    \end{equation}
+    Let $(n_i)$ be a sequence of indicies that are strictly increasing. In particular, we can prove that $n_i \geq i$. We claim that 
+    \begin{equation}
+        \lim_{i\rightarrow\infty} x_i = x
+    \end{equation}
+    Let $\epsilon > 0$, choose $M$ to be the same integer as stated in equation 13 with our $\epsilon$. In particular, for all $n \geq M$, we have that 
+    \begin{equation}
+        |x_n - x| < \epsilon
+    \end{equation}  
+    Let $i \geq M$ be arbitrary, since $n_i \geq i$, we have that
+    \begin{equation}
+        |x_{n_i} - x| < \epsilon
+    \end{equation}
+    as claimed. 
+\end{proof}
+
+\section*{Squeeze Theorem}
+
+\begin{theorem}
+    Suppose $(a_n)$, $(b_n)$, and $(x_n)$ are sequences such that 
+    \begin{enumerate}
+        \item $a_n \leq x_n \leq b_n$
+        \item $\lim a_n = x = \lim b_n$
+    \end{enumerate}
+    Then
+    \begin{equation}
+        \lim x_n = x
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Suppose $(a_n)$, $(b_n)$, $(x_n)$ are stated. Then for all $\epsilon > 0$, there exists 2 numbers as follows. 
+    \begin{enumerate}
+        \item $M_1 \in \mathbb{N}$ such that for all $n \geq M_1$, we have that 
+        \begin{equation}
+            |a_n - x| < \epsilon
+        \end{equation}
+        \item $M_2 \in \mathbb{N}$ such that for all $n \geq M_2$, we have that 
+        \begin{equation}
+            |b_n - x| < \epsilon
+        \end{equation}
+    \end{enumerate}
+    We claim that 
+    \begin{equation}
+        \lim x_n = x
+    \end{equation}
+    that is for all $\epsilon > 0$, there exists $M \in \mathbb{N}$ such that for all $n \geq M$, we have that 
+    \begin{equation}
+        |x_n - x| < \epsilon
+    \end{equation}
+    Let $\epsilon > 0$, plugging $\epsilon$ into equations 19 and 20, we get $M_1, M_2 \in \mbox{N}$. Then we choose $M = \max(M_1, M_2)$. 
+    Let $n \geq M$, then $n \geq M_1 \land n \geq M_2$. Then in particular
+    \begin{equation}
+        x - \epsilon < a_n < x + \epsilon
+    \end{equation}
+    \begin{equation}
+        x - \epsilon < b_n < x + \epsilon
+    \end{equation}
+    But we have that 
+    \begin{equation}
+        a_n \leq x_n \leq b_n
+    \end{equation}
+    Then we have that 
+    \begin{equation}
+        x - \epsilon < a_n \leq x_n \leq b_n < x + \epsilon
+    \end{equation}
+    Thus, 
+    \begin{equation}
+        x - \epsilon < x_n < x + \epsilon
+    \end{equation}
+    Thus
+    \begin{equation}
+        |x_n - x| < \epsilon
+    \end{equation}
+\end{proof}
+
+\end{document}
