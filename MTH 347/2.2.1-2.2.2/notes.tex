@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Squeeze Theorem and Continuity of Algebraic Operations}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Squeeze Theorem and Continuity of Algebraic Operations}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Squeeze Theorem}
+
+Claim:
+\begin{equation}
+    \lim_{n\rightarrow\infty}\frac{\cos n}{n} = 0
+\end{equation}
+
+\begin{proof}
+    We use the squeeze theorem, with $a_n = \frac{-1}{n}$, $b_n = \frac{1}{n}$ and $x_n = \frac{\cos n}{n}$. Since we have that
+    \begin{equation}
+        a_n \leq x_n \leq b_n
+    \end{equation}
+    For all n, and that
+    \begin{equation}
+        \lim a_n = 0 \land \lim b_n = 0
+    \end{equation}
+    It follows that
+    \begin{equation}
+        \lim x_n = 0
+    \end{equation}
+\end{proof}
+
+\begin{theorem}
+    Suppose
+    \begin{equation}
+        a_n \leq x_n \leq b_n
+    \end{equation}
+    for all n. Then if
+    \begin{equation}
+        \lim a_n = a
+    \end{equation}
+    \begin{equation}
+        \lim b_n = b
+    \end{equation}
+    and
+    \begin{equation}
+        a \neq b
+    \end{equation}
+    Then if $\lim x_n = x$, then we have that 
+    \begin{equation}
+        a \leq x \leq b
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    Suppose that $(x_n)$ and $(y_n)$ are sequences that converge to $x, y$ respectively. Then
+    \begin{enumerate}
+        \item $\lim (x_n + y_n) = x + y$
+        \item $\lim (x_n - y_n) = x - y$
+        \item $\lim (x_n \cdot y_n) = x \cdot y$
+        \item If $y$ and all $y_n$ are not zero, then $\lim (\frac{x_n}{y_n}) = \frac{x}{y}$
+    \end{enumerate}
+    This tells us that addition, multiplication, subtraction, and division are all continuous functions. That is if $x_n$ is close to x and $y_n$ is close to y.
+    Then $x_n + y_n$ is close to $x + y$. 
+\end{theorem}
+
+To begin, we prove statement (1). 
+
+\begin{proof}
+    Suppose $\lim x_n = x$ and $\lim y_n = y$, we claim that $\lim (x_n + y_n) = x + y$. Let $\epsilon > 0$, 
+    plugging in $\frac{\epsilon}{2}$ for both $x_n$ and $y_n$, then we get $M_1$ and $M_2$. Choosing $M' = \max(M_1, M_2)$, we have that 
+    \begin{equation}
+        |x_n - x| < \frac{\epsilon}{2}
+    \end{equation}
+    and
+    \begin{equation}
+        |y_n - y| < \frac{\epsilon}{2}
+    \end{equation}
+    We rewrite this to be the following:
+    \begin{equation}
+        -\frac{\epsilon}{2} + x < x_n < \frac{\epsilon}{2} + x
+    \end{equation}
+    and
+    \begin{equation}
+        -\frac{\epsilon}{2} + y < y_n < \frac{\epsilon}{2} + y
+    \end{equation}
+    Adding the equations together yields
+    \begin{equation}
+        -\epsilon < x_n + y_n - (x + y) < \epsilon
+    \end{equation}
+    This concludes the proof. 
+\end{proof}
+
+\section*{lim sup and lim inf}
+
+Recall that if $(x_n)$ converges, then $(x_n)$ is bounded. But the converse is clearly not true. Then what is the long-term behavior of a bounded divergent sequence?
+
+Then we define lim inf to be the lower limit of the interval in which the sequence oscillates long term and lim sup similarly.
+
+\begin{definition}
+    Let $(x_n)$ be a bounded sequence such that
+    \begin{enumerate}
+        \item $a_n = \sup\{x_k : k \geq n\}$
+        \item $b_n = \inf\{x_k : k \geq n\}$
+        \item $\lim \sup(x_n) = \lim a_n$
+        \item $\lim \inf(x_n) = \lim b_n$
+    \end{enumerate}
+\end{definition}
+
+\end{document}

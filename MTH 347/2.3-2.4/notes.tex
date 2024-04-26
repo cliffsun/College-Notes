@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Lim sup and Lim Inf; Cauchy Sequence}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Lim sup and Lim Inf; Cauchy Sequence}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle\
+
+\begin{definition}
+    Let $(x_n)$ be a valid sequence:
+    \begin{enumerate}
+        \item $a_n = \sup\{x_n, x_{n+1}, \cdots\}$
+        \item $b_n = \inf\{x_n, x_{n+1}, \cdots \}$
+        \item $\lim \sup x_n = \lim a_n$
+        \item $\lim \inf x_n = \lim b_n$
+    \end{enumerate}
+\end{definition}
+
+An example would be $x_n = \frac{1}{n}$. Its $a_n = x_n$ because it is a monotone decreasing sequence and $b_n = 0$. So we have that:
+
+\begin{equation}
+    \lim \sup x_n = 0
+\end{equation}
+\begin{equation}
+    \lim \inf x_n = 0
+\end{equation}
+
+\subsection*{General facts about $\lim \sup$ and $\lim \inf$}
+
+Suppose that $(x_n)$ is a bounded sequence. 
+
+\begin{enumerate}
+    \item $(a_n)$ is decreasing, $(b_n)$ is increasing, and both converge. 
+    \item $(x_n)$ converges to some number $x$, if and only if the $\lim \sup = \lim \inf = x$ 
+    \item There exists subsequences $(x_{n_i})$ and $(x_{m_i})$ that converge to the $\lim \sup$ and $\lim \inf$ respectively. 
+    \item $\lim \sup x_n$ and $\lim \inf x_n$ are the largest and smallest limits of subsequences. 
+\end{enumerate}
+
+\begin{proof}
+    This a proof of statement $(1)$. To prove that $(a_n)$ is decreasing, recall that 
+    \begin{equation}
+        a_n = \sup\{x_n, x_{n+1}, \cdots\}
+    \end{equation}
+    In particular, $a_n$ is an upper bound. Then consider $a_{n+1}$, thus we have that all possible candidates for $a_{n+1}$ are also candidates for $a_{n}$. Thus, we have that 
+    $a_n \geq a_{n+1}$. Thus $(a_n)$ is decreasing. Same argument for $b_n$. By monotone convergence theorem, if $(a_n)$ is bounded below, and if $(b_n)$ is bounded above, then both are convergent. But $(x_n)$ is bounded, thus both converge. 
+\end{proof}
+
+\begin{proof}
+    This is a proof of $(2) (\impliedby)$. Suppose that $\lim \sup x_n = \lim \inf x_n = x$. By definition that means that $\lim a_n = \lim b_n = x$. Since we have that 
+    \begin{equation}
+        b_n \leq x_n \leq a_n
+    \end{equation} 
+    By the squeeze theorem, we have that $\lim x_n = x$.
+\end{proof}
+
+\begin{proof}
+    Proof that $(3) \implies (2) (\implies)$. Suppose that $(x_n)$ has subsequences converging to $\lim \sup x_n$ and $\lim \inf x_n$ and $\lim x_n = x$. But all the subsequences of $(x_n)$ must also
+    converge to $x$, thus in particular, $\lim \sup x_n = \lim \inf x_n = x$. 
+\end{proof}
+
+\begin{proof}
+    This is a proof of $(3)$. We claim that there exists a subsequence that converges to $\lim \sup x_n = x$. To prove this, we find a sequence of indicies $(n_{i})$ such that 
+    \begin{enumerate}
+        \item $(n_i)$ is increasing
+        \item $(a_{n_i}) - \frac{1}{i} < x_{n_i} \leq a_{n_i}$
+    \end{enumerate}
+    Using this, we can build a sequence recursively. We claim that $\lim x_{n_i} = \lim \sup x_n$. 
+    \begin{proof}
+        We first note that $\lim a_{n_i} = \lim a_n = \lim \sup x_n$. Saying that the $\frac{1}{i}$ goes to $0$, we have that 
+        \begin{equation}
+            \lim a_{n_i} = \lim \sup x_n = x
+        \end{equation}
+    \end{proof}
+\end{proof}
+
+\begin{corollary}
+    This is a corallary of $(3)$. Every bounded sequence has a convergent subsequence. 
+\end{corollary}
+
+\end{document}

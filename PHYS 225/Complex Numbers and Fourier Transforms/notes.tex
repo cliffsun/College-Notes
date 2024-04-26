@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Fourier Transform and Complex Numbers}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Fourier Transform and Complex Numbers}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{one minute paper}
+    Before: MTH 442, After: $i = e^{i\frac{\pi}{2}}$
+\end{one minute paper}
+
+\section*{Complex Numbers}
+
+Magnitude of Complex Numbers
+
+\begin{equation}
+    |z| = \sqrt{\bar{z}z}
+\end{equation}
+
+Euler's Identity
+
+\begin{equation}
+    e^{i\theta} = \cos(\theta) + i\sin(\theta)
+\end{equation}
+
+\begin{equation}
+    z = re^{i\theta} \textrm{ polar form in Complex Coordinates }
+\end{equation}
+
+Suppose the wave equation
+
+\begin{equation}
+    u_{tt} - v^2u_{xx} = 0
+\end{equation}
+
+Then we guess 
+
+\begin{equation}
+    f = Ae^{iwt}e^{ikx}
+\end{equation}
+
+We plug our guess into the wave equation
+
+\begin{equation}
+    A(iw)^2e^{iwt}e^{ikx} = v^2A(ik^2)e^{iwt}e^{ikx}
+\end{equation}
+
+\begin{equation}
+    w^2 = v^2k^2
+\end{equation}
+
+This is called the \underline{dispersion relation}. 
+
+In general, the law of superposition holds for linear PDE's. Thus, an integral also holds
+
+\begin{equation}
+    f(x,t) = \int_{-\infty}^{\infty}dk\tilde{f}(k)e^{ikx}e^{ivkt}
+\end{equation}
+
+This is called the fourier transform of $\widehat{f}$. 
+
+\end{document}

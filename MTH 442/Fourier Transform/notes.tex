@@ -1,0 +1,276 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Fourier Transform}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Fourier Transform}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+The fourier transform is written as follows
+
+\begin{equation}
+    \hat{\phi(p)} = \int_{-\infty}^{\infty}\phi(x)e^{-ipx}dx
+\end{equation}
+
+\begin{center}
+    \begin{tabular}{ c | c } 
+        $\phi(x)$ & $\hat{\phi(x)}$ \\
+        \hline
+        $e^{-\alpha|x|} \quad \alpha > 0$ & $\frac{2\alpha}{\alpha^2 + p^2}$ \\
+        \hline 
+        $e^{-\alpha x^2} \quad \alpha > 0$ & $\sqrt{\frac{\pi}{\alpha}}e^{\frac{-\alpha p^2}{4}}$ \\
+        \hline
+        $\delta(x)$ & 1 \\
+        \hline
+        $1$ & $2\pi \delta(p)$ \\
+        \hline 
+        $H(x) = \begin{cases} 1 & x\geq 0 \\ 0 & x < 0 \end{cases}$ & $\pi \delta(x) + \frac{1}{ip}$
+    \end{tabular}
+\end{center}
+
+\section*{Properties}
+
+\subsection*{Linearity}
+
+\begin{equation}
+    \widehat{af + bg} = a\widehat{f} + b\widehat{g}
+\end{equation}
+
+Where for notation definitions, $\widehat{f}$ means to take the fourier transform of f. 
+
+\subsection*{Fourier transform of derivatives}
+
+Let $f(x)$ be a function on $\mathbb{R}$, and
+\begin{equation}
+    h(x) = f'(x)
+\end{equation}
+Then
+\begin{equation}
+    \widehat{h(p)} = ip \cdot \widehat{f(p)}
+\end{equation}
+
+\subsection*{Convolution}
+
+Let $f(x), g(x)$ be functions
+
+\begin{equation}
+    h(x) = \int_{-\infty}^{\infty}f(x-y)g(y)dy \textrm{ is a convolution of $f, g$ }
+\end{equation}
+
+Notation:
+
+\begin{equation}
+    h = f \ast g
+\end{equation}
+
+Then
+
+\begin{equation}
+    \widehat{h(p)} = \widehat{f(p)} \cdot \widehat{g(p)}
+\end{equation}
+
+\section*{Heat Equation}
+
+Let $\phi(x)$ be a function on $\mathbb{R}$, consider
+
+\begin{center}
+    $\begin{cases}
+    u_t - ku_{xx} - 0 & t > 0, x \in \mathbb{R} \\
+    u(x,0) = \phi(x)
+    \end{cases}$
+\end{center}
+
+Let $\widehat{u(p,t)}$ be the Fourier transform of $u(x,t)$, Then
+
+\begin{center}
+    $\begin{cases}
+    \widehat{u_t} - k(ip)^2\widehat{u_{xx}} - 0 & t > 0, x \in \mathbb{R} \\
+    \widehat{u(x,0)} = \widehat{\phi(x)}
+    \end{cases}$
+\end{center}
+
+This becomes an ode with a fixed $p$, thus we have that the solution must be in the form of 
+
+\begin{equation}
+    \widehat{u}(p,t) = h(p)e^{-kp^2t}
+\end{equation}
+
+Applying the initial condition yields
+
+\begin{equation}
+    \widehat{u}(p,t) = \widehat{\phi}(p)e^{-kp^2t}
+\end{equation}
+
+\section*{Heat Equation}
+
+\begin{equation}
+    u_t - ku_{xx} = 0
+\end{equation}
+\begin{equation}
+    u(x,o) = \phi(x)
+\end{equation}
+
+Let $\widehat{u}(p,t)$ be the fourier transform of $u(x,t)$, then equation 10 turns into
+\begin{equation}
+    \widehat{u_t} + kp^2\widehat{u}(p,t) = 0
+\end{equation}
+with
+\begin{equation}
+    \widehat{u}(p,t) = \widehat{\phi}(p)
+\end{equation}
+
+Combining both equations yields
+
+\begin{equation}
+    \widehat{u}(p,t) = \widehat{\phi}(p)e^{-kp^2t}
+\end{equation}
+
+But since this function is the multiplication of two functions, then 
+
+\begin{equation}
+    u(x,t) = f \ast g
+\end{equation}
+
+We match $\phi(x) = e^{-ax^2}$ to $\widehat{\phi}(p) = \sqrt{\frac{\pi}{\alpha}}e^{-\frac{p^2}{4a}}$ with $a > 0$. So we want 
+\begin{equation}
+    -kp^2t = -\frac{p^2}{4a} \implies a = \frac{1}{4kt}
+\end{equation}
+
+So 
+
+\begin{equation}
+    \phi(x) = e^{-\frac{x^2}{4kt}}
+\end{equation}
+
+\section*{Solve PDE by Fourier transform}
+
+\begin{enumerate}
+    \item Rewrite the equation in terms of $\widehat{u}$
+    \item Solve the transformed ODE equation
+    \item Inverse transform to get $u$
+\end{enumerate}
+
+\section*{Wave Equation}
+
+\begin{equation}
+    u_{tt} - c^2u_{xx} = 0
+\end{equation}
+\begin{equation}
+    u(x,0) = \phi(x)
+\end{equation}
+\begin{equation}
+    u_t(x,0) = \psi(x)
+\end{equation}
+
+We first must transform the equation, so equation 18 becomes
+
+\begin{equation}
+    \widehat{u_{tt}} - c^2(ip)^2\widehat{u} = 0
+\end{equation}
+With all the initial conditions being trivially transformed. We solve the equations to yields
+
+\begin{equation}
+    \widehat{u}(p,t) = c_1(p)\cos(cpt) + c_2(p)\sin(cpt)
+\end{equation}
+
+\begin{equation}
+    c_1(p) = \widehat{\phi}(p)
+\end{equation}
+
+\begin{equation}
+    \widehat{\psi}(p) = cp \cdot c_2(p) \implies c_2(p) = \frac{1}{cp}\widehat{\psi}(p)
+\end{equation}
+
+\begin{equation}
+    \widehat{u}(p,t) = \widehat{\psi}(p)\cos(cpt) + \frac{1}{cp}\widehat{\psi}(p)\sin(cpt)
+\end{equation}
+
+Find $u$ from $\widehat{u}$. But we skip, and we see that this will indeed yield the wave solution
+
+\begin{equation}
+    u(x,t) = \frac{1}{2}[\psi(x-ct) + \psi(x + ct)] + \frac{1}{2c}\int_{x - ct}^{x + ct}\psi(s)ds
+\end{equation}
+
+\section*{Laplace equation}
+
+\begin{equation}
+    u_{xx} + u_{yy} = 0
+\end{equation}
+\begin{equation}
+    u(x,0) = \phi(x)
+\end{equation}
+
+We transform the equation to be the following:
+
+\begin{equation}
+    (ip)^2\widehat{u}(p,y) + \widehat{u}(p,y) = 0
+\end{equation}
+
+With IVP being transformed trivially. We solve the equation to yield:
+
+\begin{equation}
+    u(p,x) = c_1(p)e^{p y} + c_2(p)e^{-p y}
+\end{equation}
+
+We need a extra condition, we will require $\widehat{u}(p,y)$ to be bounded when $y \rightarrow \infty$. Thus, $e^{py}$ is not allowed if $p > 0$. Thus
+
+\begin{equation}
+    \widehat{u}(p,y) = c_2(p)e^{-py}
+\end{equation}
+
+else if $p < 0$
+
+\begin{equation}
+    \widehat{u}(p,y) = c_2(p)e^{py}
+\end{equation}
+
+To solve this issue, we rewrite the transformed function to be 
+
+\begin{equation}
+    \widehat{u}(p,y) = c_3(p)e^{-|p|y}
+\end{equation}
+
+Applying the initial condition yields
+
+\begin{equation}
+    \widehat{u}(p,y) = \widehat{\phi}(p)e^{-|p|y}
+\end{equation}
+
+We notice that it's a multiplication, thus the function must be a convolution, we have that 
+
+\begin{equation}
+    u(x,y) = \frac{1}{\pi}\int_{-\infty}^{\infty}\frac{y}{(x-z)^2 + y^2}\phi(z)dz
+\end{equation}
+
+\section*{Heat equation with source}
+
+\begin{equation}
+    u_t - ku_{xx} = f(x,t)
+\end{equation}
+
+Transforming then solving yields 
+
+\begin{equation}
+    
+\end{equation}
+\end{document}
