@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Cauchy Sequences}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Cauchy Sequences}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    A sequence $(x_n)$ is \underline{Cauchy} if for all $\epsilon > 0$, there exists $M \in \mathbb{N}$ such that for all $n,k \geq M$ we have that 
+    \begin{equation}
+        |x_n - x_k| < \epsilon
+    \end{equation}
+    Basically if all the terms become really close to $x$.
+\end{definition}
+
+Intuitively, a sequence is Cauchy if all the terms in a sequence get close to each other. This is nothing but saying that at most, the distance between terms must be less than $\epsilon$. 
+
+\begin{theorem}
+    For every sequence $(x_n)$, we have that 
+    \begin{center}
+        $(x_n)$ converges $\iff (x_n)$ is Cauchy
+    \end{center}
+\end{theorem}
+
+\begin{proof}
+    This is a proof of $\implies$. Suppose that $(x_n)$ is convergent. Then we claim that it is Cauchy. Let $\epsilon > 0$, and let $M \in \mathbb{N}$ with $n, k \geq M$. Because $(x_n)$ converges, we have that 
+    there exists $M_1 \in \mathbb{N}$ such that for all $n \geq M$, we have that 
+    \begin{equation}
+        |x_n - x| < \frac{\epsilon}{2}
+    \end{equation}
+    Suppose we choose this $M_1$. Then for all $n, k$ we have that 
+    \begin{equation}
+        |x_k - x| < \frac{\epsilon}{2}
+    \end{equation}
+    as well. Then we have that $|x_n - x_k| \iff |x_n - x - x_k + x|$ which simplifies down to $|x_n - x_k$. By the triangle inequality, we have that
+    \begin{equation}
+        |x_n - x_k| \leq |x_n - x| + |x_k - x| < \epsilon
+    \end{equation}
+\end{proof}
+
+Before we prove the opposite direction, let's first prove a lemma. 
+
+\begin{lemma}
+    If $(x_n)$ is Cauchy, then it is bounded. 
+\end{lemma}
+
+\begin{proof}
+    Assume that $(x_n)$ is Cauchy, then we plug in $\epsilon = 1$, then we have that 
+    \begin{equation}
+        |x_n - x_k| < 1
+    \end{equation}
+    for all $n, k \in M$ for some $M \in \mathbb{N}$. Then choose $k = M$, we have that 
+    \begin{equation}
+        |x_n - x_M| < 1
+    \end{equation}
+    for all $n \geq M$. In particular, we have that 
+    \begin{equation}
+        |x_n| = |(x_n - x_M) + x_M| \leq |x_n - x_M| + |x_M| < 1 + |x_M|
+    \end{equation}
+    For all $n \geq M$. Then all terms $x_n$ satisfy 
+    \begin{equation}
+        |x_n| \leq B
+    \end{equation}
+    where
+    \begin{equation}
+        B = \max(1 + |x_M|, |x_1|, |x_2|, \ldots, |x_{n-1}|)
+    \end{equation}
+    This proves the lemma. 
+\end{proof}
+
+\begin{proof}
+    Prove of $(\impliedby)$ of the Cauchy Convergence Theorem. Let $(x_n)$ be a Cauchy Sequence. Then by the lemma it is bounded. Then we can apply $\lim \sup$ and $\lim \inf$. Let $a = \lim \sup x_n$ and $b = \lim \inf x_n$.
+    By a fact that we proved in the previous lecture, this proof will be done by proving that $a = b$. To prove this, we prove that 
+    \begin{equation}
+        |a - b| < \epsilon
+    \end{equation}
+    for all $\epsilon > 0$. 
+    Then we prove this
+    \begin{proof}
+        Let $\epsilon > 0$, we claim that $|a - b| < \epsilon$. By another fact, there exists subsequences in $(x_{n_i})$ that converges to $a$ and $x_{m_i}$ that converges to b. Because of these two facts, there exists $M_1$ and $M_2$ in $\mathbb{N}$ such that for all $i \geq M_1$, we have that 
+        \begin{equation}
+            |x_{n_i} - a| < \frac{\epsilon}{3}
+        \end{equation}
+        and for all $i \geq M_2$, we have that 
+        \begin{equation}
+            |x_{m_i} - b| < \frac{\epsilon}{3}
+        \end{equation}
+        Since $(x_n)$ is Cauchy, there exists $M_3 \in \mathbb{N}$ such that 
+        \begin{equation}
+            |x_{m_i} - x_{n_i}| < \frac{\epsilon}{3}
+        \end{equation}
+        We first choose $i = \max(M_1, M_2, M_3)$. We perform some calculations:
+        \begin{equation}
+            |a - b| \iff |a - x_{n_i} - (b - x_{m_i}) + x_{n_i} - x_{m_i}| \leq |a - x_{n_i}| + |b - x_{m_i}| + |x_{n_i} - x_{m_i}| < \epsilon
+        \end{equation}
+        This concludes the proof. 
+    \end{proof}
+\end{proof}
+
+\end{document}
