@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Final Exam}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Final Exam}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Intro to Partial Differential Equations}
+
+\begin{enumerate}
+    \item What is a PDE\@? (order and linear)
+    \item Important PDEs - first order, linear PDE (characeristic curves, change of variables)
+    \item Heat Equation (Half line extension, heat kernel, with source (piecewise or continuous))
+    \item Wave Equation (weak initial conditions, with source (piecewise or continuous))
+    \item Laplace Equation (coefficients for Fourier Series, how to solve in cartesian and polar)
+\end{enumerate}
+
+We care about their solutions in the explicit and implicit form. Like for the heat equation, its explicit solution is 
+\begin{equation}
+    u(x,t) = \int_{-\infty}^{\infty}S(x-y,t)\phi(y)dy
+\end{equation}
+
+We mostly care about the explicit form in this class. 
+
+\subsection*{Methods for solving}
+
+\begin{enumerate}
+    \item Characeristic lines/curve
+    \item Change of variables
+    \item Separation of variables
+    \item Fourier Series (polar series and convergence theorem)
+    \item Fourier transform (properties of it, convolution theorem, etc., don't need table)
+\end{enumerate}
+
+\subsection*{Misc stuff}
+
+\begin{enumerate}
+    \item Fourier Convergence
+    \item Parseval's Equality (for both full and partial, don't forget to multiply by length)
+    \item Maximum Principle
+    \item Laplacian Invariance
+    \item Comparison Principle
+\end{enumerate}
+
+\subsection*{Not Covered}
+
+\begin{enumerate}
+    \item Spherical Harmonics
+    \item Principle of Causality
+    \item Conservation of Energy
+\end{enumerate}
+
+\end{document}
