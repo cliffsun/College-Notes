@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{Maxwell's Equations and Special Relativity}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Maxwell's Equations and Special Relativity}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{one minute paper}
+    Before: Lorentz Transformations, identities, same physics in different reference frames, divergence of B = 0, fourier transform \\
+    
+    After: Fourier Transform
+\end{one minute paper}
+
+E\&M wave equation:
+
+\begin{equation}
+    \nabla^2E = \frac{1}{c^2}\frac{\partial^2E}{\partial t^2}
+\end{equation}
+
+We use natural units:
+
+\begin{equation}
+    \nabla^2E = \frac{\partial^2E}{\partial t^2}
+\end{equation}
+
+But in what frame? So we define a 4-gradient operator:
+
+\begin{equation}
+    \partial_\mu = (\partial_t, \partial_x, \cdots)
+\end{equation}
+
+This transforms like a 4-vector. Then we define a 4-laplacian called the d'Alembertian
+
+\begin{equation}
+    \partial_\mu \partial^\mu \equiv g_{\mu \mu} \partial_\mu \partial_\mu \iff \partial_t^2 - \nabla^2
+\end{equation}
+
+In natural units, the wave equation is the following:
+
+\begin{equation}
+    \partial_\mu\partial^\mu E  = 0
+\end{equation}
+
+and 
+
+\begin{equation}
+    \partial_\mu\partial^\mu B  = 0
+\end{equation}
+
+Thus this wave equation is invariant. Thus, the speed of the wave is invariant. Now we fourier transform the wave:
+
+\begin{equation}
+    E(t,x) = E_0e^{-ik_\mu x^\mu}
+\end{equation}
+
+Taking the derivative yields
+
+\begin{equation}
+    \partial_{\nu} (e^{-ik_\mu x^\mu}) = -k_{\nu}e^{-ik \cdot x}
+\end{equation}
+
+Similarly:
+
+\begin{equation}
+    \partial^\nu \partial_\nu = -k^2e^{-ik \cdot x}
+\end{equation}
+
+But since we have that 
+
+\begin{equation}
+    \partial^\nu \partial_\nu E = 0
+\end{equation}
+
+Thus
+
+\begin{equation}
+    k^2 = 0
+\end{equation}
+
+In other words, light is massless. Thus E\&M waves are described by massless photons. Thus 
+
+\begin{center}
+    k is proportional to the momentum 4-vector of the wave
+\end{center}
+\end{document}
