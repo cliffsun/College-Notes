@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{PHYS 325: Lecture 1}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 1}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Course Overview
+    \item Newton's Laws
+\end{enumerate}
+
+\section*{Course Overview}
+
+\subsection*{Logistics}
+\begin{itemize}
+    \item Lecture attendance via gradescope: answer $>50\%$ of questions. (NOT GRADED ON CORRECTNESS)
+    \item Bonus points: Must ask question during Office Hours (2pts per week up to 30pts or $3\%$)
+\end{itemize}
+
+\subsection*{Overview of Course Topics}
+\begin{enumerate}
+    \item Newtonian Dynamics
+    \item Conservation Laws
+    \item Damped \& Driven Oscillations
+    \item Motion in rotating reference frames
+    \item Lagrangian Mechanics
+\end{enumerate}
+
+\section*{Ch 1: Newton's Laws}
+
+\subsection*{1.1 General Concepts}
+
+\subsubsection*{1.1.1 Space/Position}
+
+\textbf{Choosing a Reference Frame}
+
+    Note: In general, it's important to choose a coordinate system and use linearly-independent, 
+unit vectors that span all of your chosen vector space. Example includes:
+\begin{equation}
+    \vec{i}, \vec{j}, \vec{k}
+\end{equation}
+
+In this class, we will use mostly Cartesian Coordinates and thus Cartesian Basis Vectors as seen in eq (1). 
+Later, we will use spherical \& cylindrical coordinates to describe rotational motion. \\
+
+\textbf{Position Vector}
+
+We can choose a $\vec{r}$ that goes from $0 \rightarrow \rho$. This position vector will be a linear combination of the basis vectors
+such as
+
+\begin{equation}
+    \vec{r} = a\vec{e_x} + b\vec{e_y} + c\vec{e_z} \leftarrow \text{Basis vector notation}
+\end{equation}
+
+Another form of notation of listing this vector is 
+
+\begin{equation}
+    \vec{r} = (a,b,c) \leftarrow \text{Vector notation}
+\end{equation}
+
+Important thing to note: Physical Characteristics remain the same regardless of the chosen coordinate frames. 
+
+\newpage
+
+\subsubsection*{1.1.2 Time}
+
+Typically, Time is depicted with the variable $t$ or $T$. In Classical Mechanics, time is \underline{\textbf{absolute}} unlike Special Relativity. This means that
+time is measured \textbf{\underline{equally}} by all obsevers. \\
+
+\textbf{Consequences}
+\begin{itemize}
+    \item Information travels at an infinite speed, i.e physical changes are noticed \textbf{\underline{immediately}}
+    \item People can communicate instantly
+\end{itemize}
+
+Thus, Newtonian Mechanics are valid for $v << c$ and $m >> e$ where $e = \text{mass of electron }$ and $c = \text{speed of light }$. 
+
+\subsubsection*{1.1.3 Mass}
+
+Mass is typically depicted using variables $m, M$ and the units of mass is [kg]. This is an instrinsic property of an object. It characertizes the object's inertia; i.e resistance to acceleration.
+
+\subsubsection*{1.1.4 Point/Particle}
+
+It is an object of mass $m$ but neglected size. \\
+
+\textbf{Consequences}
+\begin{itemize}
+    \item Kinetic Energy is purely translational (no rotational kinetic energy)
+    \item Size of object $<<$ distance to observer
+\end{itemize}
+
+\subsubsection*{1.1.5 Force}
+
+Force is depicted by the symbol $\vec{F}$, and is the cause of an object's motion.
+
+\textbf{Strategy for describing the motion of an object}
+\begin{itemize}
+    \item Identify all forces and their directions
+    \item Use vector addition to find the net force
+\end{itemize}
+
+\section*{Recap on Vector Calculus}
+
+Consider two vectors $\vec{r} = (r_1, r_2, r_3)$ and $\vec{s} = (s_1, s_2, s_3)$. 
+
+\textbf{Properties}
+\begin{itemize}
+    \item Addition or $\vec{r} + \vec{s}$
+    \item Scalar Multiplication for some $a \in \mathbb{R}$
+    \item Magnitude (norm), basically $r = ||\vec{r}||^2 \iff \sqrt{\vec{r} \cdot \vec{r}} \iff \sqrt{\sum_i(r_i^2)}$.
+    \item Dot Product: $f : \mathbb{R}^n \rightarrow \mathbb{R}$. This operation commutes, such that $\vec{s} \cdot \vec{r} \iff \vec{r} \cdot \vec{s}$
+    \item Cross product: $f : \mathbb{R}^3 \rightarrow \mathbb{R}^3$. Denoted as $\vec{r} \times \vec{s} = \vec{p}$. Such that $\vec{p} \cdot \vec{r} = \vec{p} \cdot \vec{s} = 0$. In other words, $\vec{p}$ is orthogonal to both $\vec{r}$ and $\vec{s}$. 
+\end{itemize}
+
+\end{document}
