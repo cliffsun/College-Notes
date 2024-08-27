@@ -1,0 +1,235 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{MTH 416: Introduction \& Vector Spaces}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Introduction \& Vector Spaces}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Introduction To Abstract Linear Algebra
+    \item Vector Spaces
+\end{itemize}
+
+Textbook: Linear Algebra by Friedberg, Insel, \& Spence \\
+
+Free Online Textbook: A First Course in Linear Algebra by Robert Beezer \\
+
+\section*{Introduction to Linear Algebra}
+
+\subsection*{Main Objects of Study}
+\begin{itemize}
+    \item Vector Spaces
+    \item Linear Transformation
+    \item Systems of Linear Equations
+    \item Matrices \& Determinants
+    \item Eigenvalues \& Eigenvectors
+    \item Inner Product Spaces
+\end{itemize}
+
+Given a vector $L$ such that
+
+\begin{equation}
+    L = \{tv : t \in \mathbb{R}\}
+\end{equation}
+
+Where 
+
+\begin{equation}
+    L = (t, t, t)
+\end{equation}
+
+And given a vector 
+
+\begin{equation}
+    w = (1,0,0)
+\end{equation}
+
+We have that 
+
+\begin{equation}
+    L + w = (2,1,1) \textbf{ such that } t = 1 \iff P
+\end{equation}
+
+thus
+\begin{equation}
+    P = \{t + u, t, t\} \quad t,u \in \mathbb{R}
+\end{equation}
+
+Remark: $P$ is a plane. 
+
+\newpage
+
+\begin{definition}
+    A \underline{vector space} $V$ is any set which behaves algebraically like $\mathbb{R}^n$. In particular, 
+    \begin{enumerate}
+        \item Given any $v, w \in V$, we can add them such that $v + w \in V$ for some vector space $V$
+        \item Given any $v \in V$ and $c \in \mathbb{R}$, we have that $cV \in \mathbb{V}$
+        \item These operations satisfy all usual rules of arithmetic
+    \end{enumerate}
+\end{definition}
+
+\subsubsection*{Remarks}
+    \begin{enumerate}
+        \item No cross product: this is not present in a \underline{general} vector space
+        \item No dot product: this is a unique operation that goes beyond basic arithmetic \& geometric intuition.
+        \item We don't know what vectors are
+    \end{enumerate}
+
+\subsection*{Why is this so abstract?}
+
+Short answer: Abstraction allows us to generalize vectors into a more applicable theory, (Physics - Quantum Mechanics, Computer Science - ML, etc.) 
+
+\begin{itemize}
+    \item "Vectors" can be functions, equivalence classes, etc.
+\end{itemize}
+
+As long as we can prove that these mathematical objects are vector spaces, then we can apply Abstract Linear Algebra onto it. 
+
+\begin{definition}
+    \underline{Linear Transformations} is a function that transforms a vector space into another vector space. Preserves vector addition \& scalar multiplication geometrically. 
+\end{definition}
+
+Example of L.T:
+
+\begin{equation}
+    T(x,y) = (2x, 3y)
+\end{equation}
+
+Recall: In Differential Calculus, we approximate functions of 1 variable with affine linear functions (Form: $ax +b$, namely add a constant) using derivatives. In multivariable Calculus, we approximate functions of multiple
+variables with linear transformations (Linear functions of $x,y,z\dots$) + constant vector. 
+
+\begin{definition}
+    A \underline{vector space over $\mathbb{R}^n$} is a set equipped with 2 operations:
+    \begin{enumerate}
+        \item Addition: given 2 elements $v,w \in \mathbb{R}^n$, then $v+w$ produces a unique vector
+        \item Scalar multiplication: given a vector $v$ and a scalar $c \in \mathbb{R}$, $cv \in \mathbb{R}^n$ produces some unique vector. 
+    \end{enumerate}
+    They all satisfy the following 8 properties:
+    \begin{enumerate}
+        \item $\forall x,y \in V, \quad x + y \iff y + x$
+        \item $\forall x,y,z \in V, \quad (x+y) + z \iff x + (y+z)$
+        \item $\exists \; 0 \in V$ such that for all vectors $x \in V$, we have that $0 + x = x$
+        \item $\forall x \in V, \exists y \in V$ such that $x + y = 0$. In other words, $y = -x$
+        \item For each $x \in V$, $1\cdot x = x$
+        \item For each $a,b \in \mathbb{R}$ and $x \in V$, $(ab)x = a(bx)$
+        \item For each $a \in \mathbb{R}$ and $x,y \in V$, $a(x+y) = ax + ay$
+        \item For each $a,b \in \mathbb{R}$ and $x \in V$, we have that $(a + b)x = ax + bx$
+    \end{enumerate}
+    \subsubsection*{Terminology}
+    Elements of $V$ are called "vectors", and elements of $\mathbb{R}$ are called "scalars". 
+\end{definition}
+
+\begin{conjecture}
+    For any $x \in V$, 
+    \begin{equation}
+        0 \cdot \vec{x} = \vec{0}
+    \end{equation}
+\end{conjecture}
+
+Example: $\mathbb{R}^n$ for any $n \geq 0$
+\begin{enumerate}
+    \item As a set, $\mathbb{R}^n = \{(x_1,x_2,x_3,\dots)\}: x_i \in \mathbb{R}$
+    \item Given $x = (x_1,x_2,\dots)$ and $y = (y_1,y_2,\dots)$, we define $x + y = (x_1 + y_1, \dots)$ 
+    \item Given $x \in \mathbb{R}^n$, and $c \in \mathbb{R}$, we define $cx = (cx_1, cx_2, \dots)$
+\end{enumerate}
+
+\begin{proof}
+    Property 3: the 0 vector is $(0, 0, 0, \dots)$. Thus we have that $v + 0 = v$ for all $v \in V$
+\end{proof}
+
+\begin{proof}
+    Property 4: Given $x \in \mathbb{R}^n$, we choose $y = -x \iff y = (-x_1, -x_2, \dots)$ which means that $x + y = 0 \iff (0,0,0,0, \dots)$
+\end{proof}
+
+\begin{proof}
+    Propety 6: Given $a,b \in \mathbb{R}$ and $x \in \mathbb{R}^n$, we first calculate the left side.
+    \begin{equation}
+        (ab)x \iff ((ab)x_1, (ab)x_2, \dots)
+    \end{equation}
+    We then manipulate equation (8) using the associate rule of scalar multiplication:
+    \begin{equation}
+        ((ab)x_1, (ab)x_2, \dots) \iff (a(bx_1), a(bx_2), \dots) \iff a(bx)
+    \end{equation}
+\end{proof}
+
+Example 2: $m \times n matrices$
+\begin{enumerate}
+    \item As a set, $M_{m\times n}(\mathbb{R})$ represents a matrix of values with $m$ rows and $n$ columns. 
+    \item Addition \& scalar multiplication are defined entry wise. 
+\end{enumerate}
+
+Example $m \times n$ matrix:
+
+\begin{equation}
+    \begin{pmatrix}
+        a_{11} & \dots & a_{1n} \\
+        \dots & \dots & \dots \\
+        a_{m1} & \dots & a_{mn} \\
+    \end{pmatrix}
+\end{equation}
+
+\subsection*{Notation}
+
+Given a matrix $A \in M_{m\times n}(\mathbb{R})$, we let $A_{ij} = $ the entry in i-th row, and j-th column where $0 \leq i \leq m$ and $0 \leq j \leq n$. 
+
+Claim: $M_{m\times n}(\mathbb{R})$ is a vector space on $\mathbb{R}$.
+
+\begin{proof}
+   $ 0_{m \times n}$ = 
+   \[
+    \begin{pmatrix}
+        0 & \dots & 0 \\
+        \dots & \dots & \dots \\
+        0 & \dots & 0 \\
+    \end{pmatrix}
+    \]
+    We calculate that $A + 0_{m,n} = A$ for all $A \in M$
+\end{proof}
+
+Example 3: Real-valued functions on a set
+\begin{enumerate}
+    \item Fix a set $S$, and define $F(S,\mathbb{R}) = \{ \text{Functions } f: S \rightarrow \mathbb{R}\}$
+    \item Given $f,g \in F(S, \mathbb{R})$, we define $(f + g)(s) = f(s) + g(s)$
+    \item Given $f \in F(S, \mathbb{R})$, and $c \in \mathbb{R}$, $(cf)(s) = c \dot f(s)$ for all $s \in S$ 
+\end{enumerate}
+
+Claim: $F(S,\mathbb{R})$ is a vector space over $\mathbb{R}$, given any set $S$
+
+\begin{proof}
+    Axiom 3: Let $f_0$ be the function $f: S \rightarrow 0$
+\end{proof}
+
+Claim: For all $g \in F(S, \mathbb{R})$, we have that 
+\begin{proof}
+    \begin{equation}
+        g + f_0 = g
+    \end{equation}
+    
+    For any $s \in S$
+    \begin{equation}
+        (g+f_0)(s) = g(s) + f_0(s) \iff g(s) + 0 \iff g(s)
+    \end{equation}
+\end{proof} 
+\end{document}
