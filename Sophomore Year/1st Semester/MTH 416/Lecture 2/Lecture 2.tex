@@ -1,0 +1,215 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{MTH 416: Lecture 2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Vector Spaces
+    \item Subspaces
+\end{itemize}
+
+\section*{8 Axioms}
+\begin{enumerate}
+    \item $\forall x,y \in V, \quad x + y \iff y + x$
+    \item $\forall x,y,z \in V, \quad (x+y) + z \iff x + (y+z)$
+    \item $\exists \; 0 \in V$ such that for all vectors $x \in V$, we have that $0 + x = x$
+    \item $\forall x \in V, \exists y \in V$ such that $x + y = 0$. In other words, $y = -x$
+    \item For each $x \in V$, $1\cdot x = x$
+    \item For each $a,b \in \mathbb{R}$ and $x \in V$, $(ab)x = a(bx)$
+    \item For each $a \in \mathbb{R}$ and $x,y \in V$, $a(x+y) = ax + ay$
+    \item For each $a,b \in \mathbb{R}$ and $x \in V$, we have that $(a + b)x = ax + bx$
+\end{enumerate}
+
+\section*{Vector Spaces}
+
+We will be discussing Vector Spaces over other fields besides $\mathbb{R}^n$. So what is a field?
+
+\begin{definition}
+    A \underline{field} is some set that is equipped as operations addition, subtraction, multiplication, \& division. 
+    All satisfying the usual properties. Examples: $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Q}$, etc. Note, $\mathbb{Z}$ is not a field since dividing an integer by an integer
+    does not necessarily yield an integer. 
+\end{definition}
+
+To define a vector space over $\mathbb{C}$, replace all previous instances of $\mathbb{R}$ with $\mathbb{C}$. \\
+
+Generally, linear algebra works well over any field. But when one introduces a vector space, specifiying the field of scalars is part of defining a vector space. But usually, the field of interest is implied. \\
+
+For example, $\mathbb{C}$ is a vector space over $\mathbb{C}$. But $\mathbb{C}$ is also a vector space over $\mathbb{R}$. But both instances of $\mathbb{C}$ are not the same! If $\mathbb{C}$ is a vector
+space over $\mathbb{C}$, then $\mathbb{C}$ is a \underline{1 dimensional} vector space. But if $\mathbb{C}$ is a vector space over $\mathbb{R}$, then this instance of $\mathbb{C}$ is a \underline{2 dimensional} vector space. 
+
+\subsection*{Non-Examples of vector spaces}
+\begin{enumerate}
+    \item $V = \mathbb{R}^2$ with coordinate wise scalar multiplication, but $(x_1, y_1) + (x_2, y_2) \iff (x_1 + x_2, y_1 - y_2)$. Defining this addition operation as this means that Axiom 1 \& 2 fail!
+    \item $V = \mathbb{R}^2$ with coordinate wise addition, but scalar multiplication is defined as $c(x,y) \iff (cx, y)$. Axiom 8 breaks with this definition of a vector space. 
+\end{enumerate}
+
+\newpage
+
+\section*{Proofs using Axioms}
+
+\subsection*{Cancellation Theorem for addition}
+
+\begin{theorem}
+    If $u,v,w$ are vectors in $V$, and $u + w = v + w$, then $u = v$. 
+\end{theorem}
+
+\begin{proof}
+    Suppose $u + w = v + w$. By Axiom 4, $w$ has an additive inverse $y$. In particular, $w + y = 0$. Thus, if we add $y$ to both sides, then we get 
+    \begin{equation}
+        u + w = v + w
+    \end{equation}
+    \begin{equation}
+        (u + w) + y = (v + w) + y
+    \end{equation}
+    \begin{equation}
+        u + (w + y) = v + (w + y)
+    \end{equation}
+    \begin{equation}
+        u = v
+    \end{equation}
+    This concludes the proof. 
+    (Note: We have to specify the parenthesis in equation 2 since the original equation involved just adding $u + w$ and $y$ was not in the picture.) 
+\end{proof}
+
+\begin{corollary}
+    The $0$ vector is unique. As in suppose $0$ and $0'$ both satisfy Axiom 3, then $0 = 0'$.
+\end{corollary}
+
+\begin{corollary}
+    Additive inverses are unique. That is, suppose $y$ and $y'$ satisfy Axiom 4, then $y = y'$. 
+\end{corollary}
+
+\begin{corollary}
+    If $v$ is a vector in $V$, then $0\cdot v = 0$. 
+\end{corollary}
+
+\begin{proof}
+    Suppose
+    \begin{equation}
+        v = v
+    \end{equation}
+    We claim that 
+    \begin{equation}
+        v + 0 \cdot v = v + 0
+    \end{equation}
+    Indeed,
+    \begin{equation}
+        v + 0 \cdot v = 1 \cdot v + 0 \cdot v
+    \end{equation}
+    \begin{equation}
+        = (1 + 0) \cdot v
+    \end{equation}
+    \begin{equation}
+        = 1 \cdot v
+    \end{equation}
+    \begin{equation}
+        = v
+    \end{equation}
+    \begin{equation}
+        = v + 0
+    \end{equation}
+    Thus, 
+    \begin{equation}
+        v + 0 \cdot v = v + 0
+    \end{equation}
+    Using the cancellation theorem, we have that 
+    \begin{equation}
+        0 \cdot v = 0
+    \end{equation}
+\end{proof}
+
+\section*{Subspaces}
+
+Suppose $V = \mathbb{R}^3$. Suppose some plane $W$ lives in $V$. If we give $V$ the same operations as $V$, is $W$ a vector space? Claim: Yes!
+
+\hbox{We claim that $W$ is closed over addition and multiplication. That is, $(\forall w_1, w_2 \in W, w_1 + w_2 \in W)$ and $(cw \in W)$.}
+
+Suppose that $W$ is closed over addition and multiplication, we still have to check all 8 axioms. Answer: Yes, this is true even for all $x,y \in V \supseteq W$
+
+\begin{definition}
+    Given a vector space $V$, a \underline{subspace} of V is the subset $W \subseteq V$ such that 
+    \begin{enumerate}
+        \item $0 \in W$
+        \item W is closed under addition $(w_1, w_2 \in W \implies w_1 + w_2 \in W)$
+        \item W is closed under scalar multiplication $(c \in F, \; \forall w \in W \implies c \cdot w \in W)$
+    \end{enumerate}
+    Note, Subspace and Vector Space are \underline{NOT} the same thing. 
+\end{definition}
+
+\begin{theorem}
+    Let $V$ be a vector space and $W$ be a subset of V. Then $W$ is a \underline{subspace} of $V$ if and only if
+    $W$ is a vector space when given the same operations as $V$. 
+\end{theorem}
+
+\begin{proof}
+    This is a proof of the $\implies$ direction. Suppose that $W$ is a subspace, then we claim that it is a vector space when given the same operations as $V$. Because of properties $2, 3$, addition and scalar multiplication produce outputs in $W$. 
+    So we must check the 8 Axioms. Axioms $1,2,5,6,7,8$ are true within $V$, thus must be true in $W$. For $3$, we know that from property 1. But for $4$, let $w \in W$, then we know that there exists $y = -w \in V$ because $V$ is a vector space. But is $y \in W$? But because $W$ is closed under scalar multiplication, we multiply by $-1$ to achieve $-w$.
+    Thus it follows that $-w \in W$. 
+    \begin{lemma}
+        $-1 \cdot w \iff -w$
+        \begin{proof}
+            We know that
+            \begin{equation}
+                w + -1 \cdot w = 1 \cdot w + -1 \cdot w
+            \end{equation}
+            \begin{equation}
+                = (1 + -1) \cdot w 
+            \end{equation}
+            \begin{equation}
+                = 0 \cdot w
+            \end{equation}
+            \begin{equation}
+                = 0
+            \end{equation}
+            \begin{equation}
+                = w + -w
+            \end{equation}
+        \end{proof}
+    \end{lemma}
+\end{proof}
+
+\subsubsection*{Examples:}
+\begin{enumerate}
+    \item For any $V$, $V$ and ${0}$ are subspaces. 
+    \item If $V = \mathbb{R}^3$, then any line/plane containing $0$ that lives within $V$ is a subspace.
+    \item If $V = M_{n \times n}(\mathbb{R})$, then the following are subspaces: Diagonal Matrices (all entries are 0 except for the diagonal), upper triangular matrices (all entries are 0 except for the upper triangular section of the matrix), and symmetrical matrices $(A^T = A)$
+    \item If $V = F(\mathbb{R}, \mathbb{R}) = \{ f: \mathbb{R} \rightarrow \mathbb{R} \}$, then the following are subspaces:
+        \begin{enumerate}
+            \item Polynomials 
+            \item Continuous Functions
+            \item Differential Functions
+            \item Functions such that $f(7) = 0$. The only constraint is that $f(7) = 0$, the rest of the function is unmonitored. 
+        \end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Non-Examples in $\mathbb{R}^2$:}
+\begin{enumerate}
+    \item $\{(x,y): x,y \geq 0\}$, multiplying by a negative scalar doesn't work. 
+    \item $\{(x,y): x = 0 \lor y = 0\}$, addition fails
+\end{enumerate}
+
+\end{document}

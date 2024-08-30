@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{CS 225: Lecture 3}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{CS 225: Lecture 3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{
+    Lecture Span
+}
+
+\begin{itemize}
+    \item Templates
+\end{itemize}
+
+\section*{Templates}
+A way to write generic code, whose type is determined at compliation. Compiler will not use the recipe until you explicitly use it. 
+
+\subsection*{Example template in C++}
+\begin{verbatim}
+    T sum (T a, T b) {
+        
+    }
+\end{verbatim}
+
+\section*{List ADT}
+
+A list is an ordered collection of items. It can either be homoegenous or hetergenous, and can be of fixed size or resizeable.
+
+A minimal set of operations can be used to achieve all tasks
+\begin{enumerate}
+    \item Insert
+    \item Delete
+    \item isEmpty
+    \item getData
+    \item Create an empty list
+\end{enumerate}
+
+\subsection*{List Implementations}
+
+\begin{enumerate}
+    \item Linked List (series of objects linked together using pointers )
+    \item Array List
+\end{enumerate}
+
+
+\begin{lstlisting}[caption=Example Linked List Single Object]
+    class ListNode {
+        T& data; \\ houses the current data
+        next; \\ points to the next object
+    }
+\end{lstlisting}
+
+Some things to note:
+\begin{enumerate}
+    \item data is stored as a reference because we don't care about its memory management
+    \item next is a pointer because a reference cannot point to null
+\end{enumerate}
+
+\end{document}

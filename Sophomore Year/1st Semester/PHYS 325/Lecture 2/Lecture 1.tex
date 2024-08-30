@@ -1,0 +1,132 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+
+\title{PHYS 325: Lecture 2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Vector Recap
+    \item Newton's 3 Laws
+    \item 1 Dimensional Particle Dynamics
+\end{itemize}
+
+\section*{Vector Recap}
+\subsection*{Vector Differentiation}
+Given a vector space in $\mathbb{R}^3$ with a set of basis: $(\vec{e_x}, \vec{e_y}, \vec{e_z})$
+\begin{equation}
+    \vec{r} = x\vec{e_x} + y\vec{e_y} + z\vec{e_z}
+\end{equation}
+\begin{equation}
+    \dot{\vec{r}} = \dot{x}\vec{e_x} + \dot{y}\vec{e_y} + \dot{z}\vec{e_z}
+\end{equation}
+Which is equivalent to 
+\begin{equation}
+    \vec{v} = v_x\vec{e_x} + v_y\vec{e_y} + v_z\vec{e_z}
+\end{equation}
+Similarly
+\begin{equation}
+    \vec{a} = \frac{d\vec{v}}{dt} \iff \frac{d^2\vec{r}}{dt^2}
+\end{equation}
+
+\subsection*{Leibniz/Product Rule}
+\begin{equation}
+    \frac{d}{dt}(f(t)g(t)) = \dot{f}g + f\dot{g}
+\end{equation}
+
+\subsection*{Dot product}
+
+\begin{equation}
+    \frac{d}{dt}(\vec{v} \cdot \vec{w}) = \vec{v} \cdot \dot{\vec{w}} + \dot{\vec{v}} \cdot \vec{w}
+\end{equation}
+
+\subsection*{Cross Produc}
+
+\begin{equation}
+    \frac{d}{dt}(\vec{r} \times \vec{w}) = \vec{r} \times \dot{\vec{w}} + \dot{\vec{r}} \times \vec{w}
+\end{equation}
+
+\section*{Newton's 3 Laws}
+\begin{enumerate}
+    \item 1st law: object in motion stays in motion
+    \item 2nd law: $\vec{F} = m\vec{a} \iff m\ddot{\vec{r}}$ (an ordinary differential equation!) 
+    \item 3rd law: Equal and opposite reactions
+\end{enumerate}
+
+Consider a box of mass $m$ being pushed on by a constant force $F_0$ at $x_0$ with an initial velocity $v_0$. Find the box's displacement. Answer:
+\begin{equation}
+    x(t) = \frac{F_0}{2m}t^2 + v_0t + x_0
+\end{equation}
+
+\subsection*{Linear Momentum}
+\begin{equation}
+    \vec{p} = m\vec{v}
+\end{equation}
+\begin{equation}
+    \dot{\vec{p}} = m\dot{\vec{v}} \iff m\vec{a} \iff \vec{F} = \dot{\vec{p}}
+\end{equation}
+
+\subsection*{Inertial Frames}
+One system in 2 reference frames
+\begin{enumerate}
+    \item Cartesian coordinate with origin at rest. Particle at rest $\vec{a} = 0$
+    \item Rotating reference frame, particle in rest has a non-zero acceleration. Newton's Laws don't hold in non-zero acceleration frames.  
+\end{enumerate}
+
+\begin{definition}
+    \underline{Inertial Frames} is a reference frame in which Newton's Laws can predict its motion. In other words, particles move with a constant velocity if there is no force acting on them. That is
+    \begin{equation}
+        \ddot{\vec{r}} = 0 \implies \vec{F} = 0
+    \end{equation} 
+    Inertial Frames are not unique, i.e there exists more than one inertia frames.
+\end{definition}
+
+Take inertial frame $S$ with $\vec{r}$, then we can construct another inertial frame $S'$ with another $\vec{r}'$. 
+They include
+\begin{itemize}
+    \item Boosts
+    \item Translations
+    \item Rotations
+\end{itemize}
+
+\textbf{Translations}
+\begin{equation}
+    \vec{r'} = \vec{r} + \vec{k}
+\end{equation}
+
+\textbf{Boost}
+\begin{equation}
+    \vec{v'} = \vec{v} + \vec{k}
+\end{equation}
+
+\textbf{Rotation}
+\begin{equation}
+    \vec{r'} = A\vec{r}
+\end{equation}
+\begin{proof}
+    Suppose that $\ddot{\vec{r}} = 0$, then $\ddot{\vec{r'}} = A\ddot{\vec{r}} \iff A0 \iff 0$. Because $A$ is not time dependent.  
+\end{proof}
+
+\end{document}

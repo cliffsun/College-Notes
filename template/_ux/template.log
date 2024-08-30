@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.9)  27 AUG 2024 12:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.9)  30 AUG 2024 11:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -155,29 +155,78 @@ Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 \f@nch@O@erf=\skip62
 \f@nch@O@olf=\skip63
 \f@nch@O@orf=\skip64
+) (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
+Package: verbatim 2022-07-02 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks30
+\verbatim@line=\toks31
+\verbatim@in@stream=\read2
+) (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count275
+\lst@gtempboxa=\box53
+\lst@token=\toks32
+\lst@length=\count276
+\lst@currlwidth=\dimen160
+\lst@column=\count277
+\lst@pos=\count278
+\lst@lostspace=\dimen161
+\lst@width=\dimen162
+\lst@newlines=\count279
+\lst@lineno=\count280
+\lst@maxwidth=\dimen163
+ (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+\c@lstnumber=\count281
+\lst@skipnumbers=\count282
+\lst@framebox=\box54
+) (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2023/02/27 1.9 listings configuration
+))
+Package: listings 2023/02/27 1.9 (Carsten Heinz)
+ (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+ (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-\c@theorem=\count275
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+ (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
+Package xcolor Info: Model `RGB' extended on input line 1369.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+) (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+) (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+) (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+)
+\c@theorem=\count283
  (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-10-23 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count276
-\l__pdf_internal_box=\box53
+\l__color_backend_stack_int=\count284
+\l__pdf_internal_box=\box55
 ) (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\_ux\template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -215,28 +264,29 @@ LaTeX Font Info:    ... okay on input line 25.
 
 (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count277
-\scratchdimen=\dimen160
-\scratchbox=\box54
-\nofMPsegments=\count278
-\nofMParguments=\count279
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count280
-\MPscratchDim=\dimen161
-\MPnumerator=\count281
-\makeMPintoPDFobject=\count282
-\everyMPtoPDFconversion=\toks31
+\scratchcounter=\count285
+\scratchdimen=\dimen164
+\scratchbox=\box56
+\nofMPsegments=\count286
+\nofMParguments=\count287
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count288
+\MPscratchDim=\dimen165
+\MPnumerator=\count289
+\makeMPintoPDFobject=\count290
+\everyMPtoPDFconversion=\toks34
 ) (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
+\c@lstlisting=\count291
+LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
  (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
  (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -248,15 +298,15 @@ L3 programming layer <2023-11-01>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3372 strings out of 474592
- 50567 string characters out of 5745799
+ 5315 strings out of 474592
+ 78585 string characters out of 5745799
  1924533 words of memory out of 5000000
- 25533 multiletter control sequences out of 15000+600000
+ 27448 multiletter control sequences out of 15000+600000
  563013 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,321b,220s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,6n,65p,481b,265s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on "c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\_ux\template.pdf" (1 page, 31961 bytes).
+Output written on "c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\_ux\template.pdf" (1 page, 32050 bytes).
 PDF statistics:
  21 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
