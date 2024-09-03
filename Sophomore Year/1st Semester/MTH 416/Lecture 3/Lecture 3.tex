@@ -1,0 +1,175 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 3}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Linear combinations
+    \item Systems of linear equations
+\end{itemize}
+
+\section*{Recall}
+
+\begin{theorem}
+    If $W$ is a subset of a vector space $V$, then 
+    \begin{equation}
+        0 \in W \land W \text{ is closed under $+$ and $\cdot$} \iff W \text{ is a Vector Space with the same operations as $V$}
+    \end{equation}
+\end{theorem}
+
+Last time, we prove $(\implies)$, this time we want to prove $(\impliedby)$. That is, if either left or right is true, then $W$ is a \underline{subspace} of $V$. 
+
+\begin{proof}
+    Suppose $W$ is a vector space with the same operations as $V$, that is $W$ satisfies all 8 axioms. Then we must prove that
+    \begin{enumerate}
+        \item $0 \in W$
+        \item $W$ is closed under $+$ and $\cdot$
+    \end{enumerate}
+    We first prove $(2)$, as it is the easiest to start with. 
+    \begin{proof}
+        If it weren't closed under these operations, then $+$ and $\cdot$ doesn't make sense as operations under $W$. 
+    \end{proof}
+    We then prove $(1)$, 
+    \begin{proof}
+        $W$ is a vector space, so it contains a $0_W$ vector. Such that
+        \begin{equation}
+            w + 0_W = w \; \text{ for all } w \in W
+        \end{equation} 
+        Since $V$ is a vector space, it also contains $0_V$, such that
+        \begin{equation}
+            v + 0_V = v \; \text{ for all } v \in V
+        \end{equation}
+        We claim that $0_W = 0_V$. 
+        \begin{proof}
+            \begin{equation}
+                w + 0_W = w = w + 0_V \text{ because } w \in V
+            \end{equation}
+            Using the cancellatin theorem we have that 
+            \begin{equation}
+                0_W = 0_V
+            \end{equation}
+        \end{proof}
+    \end{proof}
+\end{proof}
+
+\newpage
+
+\section*{Linear combinations}
+
+\begin{definition}
+    Let $u_1, \dots, u_n$ be vectors in a vector space $V$, then 
+    \begin{enumerate}
+        \item A \underline{linear combination} of the vectors $u_i$ is any vector that can be written as the following form:
+        \begin{equation}
+            u_i = a_1u_1 + \cdots + a_n u_n
+        \end{equation}
+        \item A set of all linear combinations $u_i$ is called the span of $u_i$. 
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    If $u_1, \cdots, u_n$ are vectors in a vector space $V$, then $span(u_1,\cdots, u_n)$ is always going to be a subspace of $V$. 
+\end{theorem}
+
+\begin{proof}
+    We must show that this span has the $0$ vector and is closed under addition \& scalar multiplication. 
+    \begin{enumerate}
+        \item $0 = 0u_1 + \cdots + 0u_n$
+        \item Assume we are given $v = a_1u_1 + \cdots a_n u_n$ and $w = b_1u_1 + \cdots + b_n u_n$, we have that prove that $v + w$ is also a linear combination. In other words, $v + w \in span(u_i)$. We first expand this out:
+        \begin{equation}
+            v + w \iff (a_1u_1 + \cdots a_n u_n) + (b_1u_1 + \cdots b_n u_n) \iff (a_1 + b_1)u_1 \cdots (a_n + b_n)u_n
+        \end{equation}
+        This an element of $span(u_i)$. 
+        \item Suppose $v = a_1 u_1 + \cdots + a_n u_n$ and $c \in \mathbb{R}$. Then, 
+        \begin{equation}
+            cv = c(a_1u_1 + \cdots + a_n u_n) \iff ca_1u_1 + \cdots + ca_nu_n \in span(u_i)
+        \end{equation}
+    \end{enumerate}
+\end{proof}
+
+Moreover, $span(u_i)$ is the smallest subspace of $V$ containing all $u_1, \cdots u_n$. That is, there cannot be a smaller subspace that also contains all $u_1, \cdots, u_n$. 
+\begin{enumerate}
+    \item $u_1, \cdots, u_n \in span(u_i)$ (Choose $a_i = 1$, all other $0$)
+    \item If $W$ is any subspace of V also containing all $u_i$, then $span(u_i) \in W$
+\end{enumerate}
+
+\section*{Systems of Linear Equations/Linear System}
+
+\begin{definition}
+    A system of $m$ linear equations with $n$ unknowns is a system of the form:
+    \begin{equation}
+        a_{11}x_ + \cdots + a_{1n}x_n = b_1
+    \end{equation}
+    \begin{equation}
+        a_{21}x_ + \cdots + a_{2n}x_n = b_2
+    \end{equation}
+    \begin{equation}
+        a_{m1}x_ + \cdots + a_{mn}x_n = b_m
+    \end{equation}
+    Where $a_{ij}$ and $b_i$ are scalars.
+\end{definition}
+
+\subsection*{Goals}
+\begin{enumerate}
+    \item Determine whether if there is a solution $(x_1, \cdots, x_n)$
+    \item Find all solutions
+\end{enumerate}
+
+\subsection*{Notation}
+
+We can associate to a linear system the \underline{augmented} matrix
+\[
+\begin{pmatrix}
+    a_{11} & \cdots & a_{2n} & b_1\\
+    \cdots & \cdots & \cdots & \cdots\\
+    a_{m1} & \cdots & a_{mn} & b_m\\
+\end{pmatrix}    
+\]
+
+Where the $m\times n$ matrix are all the coefficients and the right hand $b$ are the constraints. We denote this as 
+\begin{equation}
+    LS(A|b)
+\end{equation}
+
+\end{document}
