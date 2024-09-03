@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 3}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Equations of Motion
+    \item Simple Harmonic Oscillator
+\end{itemize}
+
+\section*{Equations of Motion (EOM)}
+\textbf{Goal:} Derive EOM and solve for the particle's trajectory $\vec{r}(t)$
+
+\begin{definition}
+    An \underline{equation of motion} is a differential equation for $\vec{r}(t)$. An example is 
+    \begin{equation}
+        \vec{F} = m\vec{a} \iff m\ddot{\vec{r}}(t)
+    \end{equation}
+    \begin{center}
+        or 
+    \end{center}
+    \begin{equation}
+        \vec{F} = \dot{\vec{p}}
+    \end{equation}
+\end{definition}
+
+\subsection*{Strategy}
+\begin{enumerate}
+    \item Choose reference frame \& coordinate system
+    \item Identify relevant (external) forces, that is not including any forces within the system (molecular forces, etc.)
+    \item Determine equation of motion
+    \begin{equation}
+        \vec{F} = m\Ddot{\vec{r}}
+    \end{equation}
+    \item Integrate EOM for a given $\vec{F}(\vec{r}, \dot{\vec{r}}, t)$ to find $\vec{r}(t)$
+    \item Fix integration constants using initial or boundary conditions
+\end{enumerate}
+
+\subsection*{Zero forces}
+
+From Newton's 2nd law (N2L),
+\begin{equation}
+    0 = \vec{F} = m\vec{a} = m\dot{\vec{v}} \implies \vec{v} = \vec{v_0}
+\end{equation}
+Thus
+\begin{equation}
+    \vec{v} = \frac{d\vec{r}}{dt} \implies \vec{r}(t) = \vec{v_0}t + \vec{k_0} 
+\end{equation}
+
+\subsection*{Constant Force}
+
+Derive EOM:
+\begin{equation}
+    \vec{F} = m\vec{a} = c
+\end{equation}
+\begin{equation}
+    \vec{a} = \frac{\vec{F}}{m} = \ddot{\vec{r}}
+\end{equation}
+\begin{equation}
+    \vec{v}(t) = \frac{\vec{F}}{m}t + \vec{v_0}
+\end{equation}
+\begin{equation}
+    \vec{r}(t) = \frac{\vec{F}}{2m}t^2 + \vec{v_0}t + \vec{r_0}
+\end{equation}
+Where
+\begin{equation}
+    \vec{a} = \frac{\vec{F}}{m}
+\end{equation}
+
+\newpage
+
+\section*{Time dependent force}
+\begin{enumerate}
+    \item Derive EOM from N2L
+    \begin{equation}
+        \vec{a} = \frac{\vec{F}(t)}{m}
+    \end{equation}
+    \item Integrate twice to get $\vec{r}(t)$ with the appropriate constants of integration
+\end{enumerate}
+
+\subsection*{Example: Forced Harmonic Oscillator}
+
+\textbf{Setup: } Particle of mass $m$ that moves along the x-axis $-\infty < x < \infty$ and is subject to a force $\vec{F} = F_0\cos(\alpha t)$. Find the equation of motion. The particle starts at $t = 0, x = 0, v = 0$
+
+\begin{equation}
+    \vec{a} = \frac{F_0}{m}\cos(\alpha t)
+\end{equation}
+\begin{equation}
+    \vec{v} = \frac{F_0}{\alpha m}\sin(\alpha t)
+\end{equation}
+\begin{equation}
+    \vec{r} = -\frac{F_0}{\alpha^2 m}\cos(\alpha t) + r_0
+\end{equation}
+but 
+\begin{equation}
+    \vec{r}(0) = -\frac{F_0}{\alpha^2 m} + r_0 = 0
+\end{equation}
+Thus
+\begin{equation}
+    r_0 = \frac{F_0}{\alpha^2 m}
+\end{equation}
+So 
+\begin{equation}
+    \vec{r} = \frac{F_0}{\alpha^2 m}(1-\cos(\alpha t))
+\end{equation}
+
+\section*{Position Dependent Force}
+\begin{equation}
+    ma = F(x) = m\dot{v}
+\end{equation}
+\begin{equation}
+    \frac{dv}{dt} = \frac{dv}{dx} \cdot \frac{dx}{dt} \iff v \cdot \frac{dv}{dx}
+\end{equation}
+\begin{equation}
+    mv\frac{dv}{dx} = F(x)
+\end{equation}
+\begin{equation}
+    \frac{1}{2}m(v^2 - v_0^2) = \int_{x_0}^{x}F(x)dx
+\end{equation}
+If Force is conservative, then it could be written as a potential gradient.
+\begin{itemize}
+    \item Path independent
+    \item $\vec{F} = -\vec{\nabla} U$
+    \item Conservative means there musn't be friction, or be time dependent(?)
+\end{itemize}
+
+Assuming that Force is conservative, then we call $F = -\frac{dU}{dx}$, then 
+\begin{equation}
+    \int_{x_0}^{x}-\frac{dU}{dx} = -[U(x) - U(x_0)]
+\end{equation}
+Then,
+\begin{equation}
+    E = KE + U(x) = KE_0 + U(x_0)
+\end{equation}
+Conservation of mechanical energy!!
+Then
+\begin{equation}
+    v(x) = \pm \sqrt{\frac{2}{m}(E - U(x))}
+\end{equation}
+
+\end{document}
