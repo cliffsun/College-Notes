@@ -1,0 +1,236 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 4}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 4}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Solving systems of linear equations
+    \item Reduced row echelon form
+    \item Types of solution sets
+\end{itemize}
+
+\section*{Systems of linear equations (SLEs)}
+
+We saw that SLEs corresponded to augmented matrices. That is
+\begin{equation}
+    x_1 - x_2 = 4
+\end{equation}
+\begin{equation}
+    x_1 + x_2 = 6
+\end{equation}
+\begin{equation}
+    -x_1 + 2x_2 = -3
+\end{equation}
+
+corresponded to 
+
+\[
+\left[
+\begin{array}{cc|c}
+    1 & -1 & 4 \\
+    1 & 1 & 6 \\
+    -1 & 2 & -3
+\end{array}
+\right]    
+\]
+
+\begin{theorem}
+    Any system of linear equations over $\mathbb{R}$ has either zero, one, or infinite solutions. 
+\end{theorem}
+
+\subsection*{Elementary row operations}
+
+\begin{definition}
+    The following 3 types of operations on an augmented matrix, called \underline{Elementary Row Operations}. None of these operations
+    change the solution set of the linear equations. 
+    \begin{enumerate}
+        \item Switch the order of 2 rows
+        \item Scale any row by a non-zero constant
+        \item Add some constant multiple of 1 row to any different row
+    \end{enumerate}
+\end{definition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Switching two rows just trivially reorders the equations. 
+        \item Scaling a row with a non-zero constant is nothing but scaling that equation by a non-zero constant.
+        \item This adds $c\cdot \text{ some row}$ to another row for some $c \in \mathbb{R}$, 
+        \begin{equation}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1
+        \end{equation}
+        \begin{equation}
+            a_{21}x_1 + \cdots + a_{2n}x_n = b_2
+        \end{equation}
+        Adding row 1 and $c \cdot$ row 2 yields row 2':
+        \begin{equation}
+            (a_{11}+ c\cdot a_{21})x_1 + \cdots = b_1 + b_2
+        \end{equation}
+        If some vector was a solution to row 1 \& row 2, then it would also be a solution to row 1 \& row 2'. That is scaling and adding true equations yields true equations. 
+        Conversely, if $(x_1, \cdots, x_n)$ was a solution to row 1 and row 2', then it is a solution to row 2 = row 2' - row 1. 
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Two matrices $M,N$ of the same size are \underline{row equivalent} iff there are some finite sequence of elementary row operations that can transform $M \rightarrow N$ WLOG. 
+\end{definition}
+
+\begin{corollary}
+    If $M,N$ are row equivalent, then the corresponding linear systems have the same solution set. 
+\end{corollary}
+
+\textbf{Question:} is 
+\begin{equation}
+    M \sim N \iff M \; \& \; N \text{ are row-equivalent}
+\end{equation}
+an equivalence relation? YES!
+
+\textbf{Example:} Find all solutions to 
+\[\left[
+\begin{array}{ccc|c}
+    1 & 1 & 0 & 1 \\
+    2 & 2 & 1 & -1 \\
+    0 & 2 & 4 & -8
+\end{array}
+\right]\]
+
+We define $R_1,R_2,R_3$ to be the rows of this matrix, we first perform $R_2 - 2R_1$.
+\[\left[
+\begin{array}{ccc|c}
+    1 & 1 & 0 & 1 \\
+    0 & 0 & 1 & -3 \\
+    0 & 2 & 4 & -8
+\end{array}
+\right]\]
+$R_3 = R_3/2$
+\[\left[
+\begin{array}{ccc|c}
+    1 & 1 & 0 & 1 \\
+    0 & 0 & 1 & -3 \\
+    0 & 1 & 2 & -4
+\end{array}
+\right]\]
+Switch $R_2, R_3$
+\[\left[
+\begin{array}{ccc|c}
+    1 & 1 & 0 & 1 \\
+    0 & 1 & 2 & -4 \\
+    0 & 0 & 1 & -3
+\end{array}
+\right]\]
+Subtract $R_2 - 2R_3$
+\[\left[
+\begin{array}{ccc|c}
+    1 & 1 & 0 & 1 \\
+    0 & 1 & 0 & 2 \\
+    0 & 0 & 1 & -3
+\end{array}
+\right]\]
+Subtract $R_1 - R_2$
+\[\left[
+\begin{array}{ccc|c}
+    1 & 0 & 0 & -1 \\
+    0 & 1 & 0 & 2 \\
+    0 & 0 & 1 & -3
+\end{array}
+\right]\]
+This corresponds to
+\begin{equation}
+    x_1 = -1, x_2 = 2, x_3 = -3
+\end{equation}
+
+\begin{definition}
+    A matrix is in \underline{Reduced Row Echelon Form} (RREF) if it satisfies the following 4 conditions:
+    \begin{enumerate}
+        \item Any rows of all 0's are at the bottom
+        \item The leftmost non-zero number is every row is a 1 (a leading 1 or pivot)
+        \item Every leading 1 is the only non-zero number in its column
+        \item If there are leading 1's at positions $(i,j)$ and $(s,t)$ with $i < s$, then $j < t$. 
+    \end{enumerate}
+\end{definition}
+
+So why do we care about matrices in RREF?
+\begin{enumerate}
+    \item If $(A|b)$ is in RREF, then we will be able to solve its linear system easily.
+    \item Every $m \times n$ matrix is row-equivalent to some $m\times n$ matrix in RREF. 
+\end{enumerate}
+In RREF, the pivot variables only appear once each in the entire SLEs. We can rearrange the equations in terms of the pivot variables. The variables that make up the pivot variables are thus the degrees of freedoms. Example
+\begin{equation}
+    x_1 = 2 - 2x_2 - x_4
+\end{equation} 
+\begin{equation}
+    x_3 = 3 - 3x_4
+\end{equation}
+\begin{equation}
+    x_5 = 4
+\end{equation}
+For any $x_2, x_4 \in \mathbb{R}$. Suppose we have an augmented matrix $(A|b)$, which is in reduced row echelon form. 
+
+\subsection*{Case 1} If there is a pivot in the last column $(b)$, then the system is inconsistent (or has no solution).
+\begin{proof}
+    We would have some row that looks as follows:
+    \[\left[
+        \begin{array}{cccc|c}
+            0 & 0 & \cdots & 0 & 1
+        \end{array}
+        \right]
+    \]
+    This is the only case of which the system is inconsistent. 
+\end{proof} 
+\subsection*{Case 2} If there is no pivot in $b$, but there are all pivots in $A$, then we claim that there is only 1 solution.
+\begin{proof}
+    Then the matrix would look like the following:
+    \[\left[
+        \begin{array}{ccc|c}
+            1 & \cdots & 0 & b_1 \\
+            0 & 1 & \cdots & b_2 \\
+            \cdots & \cdots & 1 & b_n 
+        \end{array}
+    \right]\]
+    This assigns each variable to exactly one constant, thus there can only be 1 solution.  
+\end{proof}
+
+\subsection*{Case 3} Suppose that there are no pivots in $b$, and there are $r<n$ pivots in $A$. Such that $r$ = \# pivot columns and $n$ = \# non-zero columns. 
+Then there are infinitely many solutions and they're all specified by $n-r$ parameters. 
+
+\end{document}
