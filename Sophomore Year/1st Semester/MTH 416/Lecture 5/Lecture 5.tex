@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 5}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 5}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Reduced row echelon form (RREF)
+    \item Linear independence
+\end{itemize}
+
+\section*{Recap:}
+
+\subsubsection*{Elementary row operations}
+
+\begin{enumerate}
+    \item Switch 2 rows
+    \item Scalar a row by a const $\neq 0$
+    \item Add multiple of one row to another row
+\end{enumerate}
+
+\subsubsection*{RREF}
+\begin{enumerate}
+    \item All rows of 0's are at the bottom
+    \item First non-zero entry per row is a $1$
+    \item Each leading $1$ is the only non-zero entry in its column
+    \item Leading $1$'s go Northwest to Southeast. 
+\end{enumerate}
+
+\textbf{Goal:} Put any matrix in RREF using elementary row operations. The algorithm that establishes this is Gaussian Elimination.
+
+\subsubsection*{Notation}
+\begin{enumerate}
+    \item $M$ is a $m \times n$ matrix (m rows \& n columns)
+    \item $R_i$ = i-th row
+    \item $C_j$ = j-th column
+\end{enumerate}
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Set $r = 0$ and $j = 0$
+    \item If $j \geq n$, then stop and return current matrix, otherwise increment $j$.
+    \item If $C_j$ has all $0$'s, below the r-th row, then go to step $1$.
+    \item Find a non-zero among rows $r+1$ of $C_j$, by switching rows put it on $r+1$, then set $r = r + 1$. 
+    \item Scale row $r$ by a constant to make its j-th entry = $1$. 
+    \item Subtract multiples of $R_r$ from every other row to zero out all of column j except for $R_r$.
+    \item Go to step 1.
+\end{enumerate}
+
+\subsection*{Proof of Gaussian Elimination}
+
+\begin{proof}
+    First, the algorithm must stop eventually because when we reach step 1 $n$ times, then $j=n$ which stops the algorithm.
+
+    To prove that this algorithm returns a matrix in RREF, we claim that everytime we get to step 1, the matrix has the form 
+    \[\begin{pmatrix}
+        RREF & ? \\ 
+        0 & ?
+    \end{pmatrix}
+    \]
+    That is the RREF form is $j$ columns wide and $r$ rows long. 
+    We will prove this by induction on $j$, or the column index. This means that once $j=n$, we will have the above matrix be in completely RREF form, which proves our claim.
+
+    \subsubsection*{Base Case} The first time we reach step 1, $j = 0$. But this means that any $m\times n$ matrix has the form of the above matrix when $j = 0$.
+
+    \subsubsection*{Induction Step}
+
+    Suppose that the matrix is currently in the form of the above matrix, then we must prove that the next time we go to step 1 that the matrix remains in the form of the above matrix, but with the known RREF section expanded. There are 2 cases:
+    \begin{enumerate}
+        \item If we leave step 1, and proceed to step 2 and immediately go back to step 1, then $j$ has been incremented and the matrix has been unchanged. In this case,
+        the known RREF section has increased a column, but this section is still in RREF form.
+        \item We return to step 1 from step 6. In this case, $r$ and $j$ have incremented, and the matrix has changed. In particular, the RREF section has increased by 1 in both its rows and columns. But we claim that this matrix is still in RREF. In step 3, we found some non-zero number and brought it to $r+1$ (note the RREF matrix has not been changed)
+        Then in step 4, we scale the column by a constant such that the value at $M_{r,j} = 1$, then we take this row and subtract multiples of this row from other rows to "zero-out" all other entires in $C_j$. Note that the entire left side of the matrix has been left untouched. To prove that $M$ is still in the form 
+        \[\begin{pmatrix}
+            RREF & ? \\
+            0 & ?
+        \end{pmatrix}\]
+        Note that the top left corner by adding a pivot plus a row of $0$'s ($0$'s in front of pivot) and a column of $0$'s. Therefore, by induction, we have shown that the final matrix will be in RREF. 
+    \end{enumerate}
+\end{proof}
+
+\section*{Linear Independence}
+
+Recall: one powerful method to construct subspaces $W$ of vector space $V$ is through spans. 
+\begin{equation}
+    span(u_1, \cdots, u_k) = \{a_1u_1 + \cdots + a_ku_k\}
+\end{equation}
+
+\begin{enumerate}
+    \item If $W = span(u_1, \cdots, u_k)$, are all these vectors necessary?  
+    \item Or can $W$ be written as 
+    \begin{equation}
+        span(u_1, \cdots, u_k)
+    \end{equation} 
+    And how many vectors do I need?
+    \item Given $W \subseteq V$, then how "big" is $W$. e.g Subspaces of $\mathbb{R}^3$ include $\{0\}$, a line through 0, a plane through 0, or $\mathbb{R}^3$. Can we mathematically measure its "dimensionality"?
+\end{enumerate}
+
+\begin{definition}
+    Let $V$ be a vector space and $u_1, \cdots, u_k \in V$, then 
+    \begin{enumerate}
+        \item The vectors are \underline{linearly dependent} if there exist scalars $a_1, \cdots, a_k$ not zero such that 
+        \begin{equation}
+            a_1u_1 + \cdots + a_ku_k = 0    
+        \end{equation}
+        All scalars equaling zero is the "trivial solution". 
+        \item Otherwise, the vectors are a \underline{linearly independent} set. 
+    \end{enumerate}
+\end{definition}
+
+\end{document}
