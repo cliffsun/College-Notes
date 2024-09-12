@@ -1,0 +1,271 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 5}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 5}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Non-linear Drag
+    \item Time varying mass
+\end{itemize}
+
+\section*{Non-linear Drag}
+
+\begin{equation}
+    F(v) = -mg + cv^2 \iff -mg + \frac{c}{m}mv^2 \land \sigma = \frac{c}{m}
+\end{equation}
+Thus, this simplifies to
+\begin{equation}
+    F(v) = m(g - \sigma)v^2 \iff m\dot{v} = m(g - \sigma v^2) \iff \boxed{\dot{v} = g-\sigma v^2}
+\end{equation}
+\begin{equation}
+    \frac{\dot{v}}{g - \sigma v^2} = 1
+\end{equation}
+\begin{equation}
+    \int_{v_0}^{v} \frac{\dot{v}}{g - \sigma v^2} dt = \int_{t_0}^{t} dt
+\end{equation}
+\begin{equation}
+    \frac{-1}{\sqrt{g\sigma}}\tanh^{-1}\left(v\sqrt{\frac{\sigma}{g}}\right) = t
+\end{equation}
+\begin{equation}
+    v(t) = -\sqrt{\frac{g}{\sigma}}\tanh\left(\sqrt{g \sigma} t\right)
+\end{equation}
+\begin{equation}
+    t \rightarrow \infty \implies v(t) \rightarrow -\sqrt{\frac{g}{\sigma}}
+\end{equation}
+In general, a special case of ODEs would be if
+\begin{equation}
+    F(v) = f(v)g(t)
+\end{equation}
+Then you can split the terms and achieve the following:
+\begin{equation}
+    m\frac{dv}{dt}\frac{1}{f(v)} = g(t)
+\end{equation}
+Then you're able to integrate both sides. Then what about
+\begin{equation}
+    F = f(v)h(x)
+\end{equation}
+Then we say 
+\begin{equation}
+    m\frac{dv}{dt} = m\frac{dv}{dx}\frac{dx}{dt}\frac{1}{f(v)} \iff m\frac{dv}{dx}v \frac{1}{f(v)} = g(x)
+\end{equation}
+\begin{equation}
+    \int m \frac{v}{f(v)} dv = \int g(x)
+\end{equation}
+
+\newpage
+
+\section*{Time Varying Mass, $M(t)$}
+
+Given this rocket with mass = $M(t)$ and velocity = $v(t)$ at time $t$, then say a mass $dm$ is thrown out of the rocket at $t + \Delta t$ at some speed $u$ relative to the rocket. We say that 
+$v_f = v_i + dv$ and $M_f = M_i - dm$. Then
+\begin{equation}
+    P_f = dm(v-u) + M_f v_f \iff dm(v-u) + (M_i + dm)(v_i + dv)
+\end{equation}
+So expanding this out yields
+\begin{equation}
+    P_f = dm(-u) + M_iv_i -dmdv + Mdv = M_iv_i
+\end{equation}
+
+We can assume that 
+\begin{equation}
+    -dmdv \sim 0 \text{ due to the 2nd order pertubation }
+\end{equation}
+
+So we get 
+
+\begin{equation}
+    Mdv = udm
+\end{equation}
+We know that 
+\begin{equation}
+    dm = -dM \text{ change of the mass of the ejected propellant = change of the mass of the rocket}
+\end{equation}
+\begin{equation}
+    Mdv = -udM
+\end{equation}
+\begin{equation}
+    dv = -u \frac{dM}{M}
+\end{equation}
+\begin{equation}
+    v = v_0 - u\ln(\frac{M}{M_0})
+\end{equation}
+Where $u$ is the speed of the propellant, we assume that this is constant. Then assume $M = 0.1M_0$, at some time $t$ with $v_0 = 0$, then we get that 
+\begin{equation}
+    v_f = -u\ln(0.1) \sim 2.3u
+\end{equation}
+Which means that about $90\%$ of the rocket must be mass in order to achieve $2.3u$, which isn't alot of velocity!
+
+\subsection*{Time varying mass in gravity}
+Now we can't assume that 
+\begin{equation}
+    P_i = P_f
+\end{equation}
+But rather
+\begin{equation}
+    P_f - P_i = dp = -Mgdt
+\end{equation}
+
+\begin{equation}
+    Mdv + udM = -Mgdt
+\end{equation}
+\begin{equation}
+    \frac{dv}{dt}M +  u \frac{dM}{dt} = -Mg
+\end{equation}
+\begin{equation}
+    \frac{dv}{dt} = -\frac{u}{M}\frac{dM}{dt} - g
+\end{equation}
+We have to specify $\frac{dM}{dt}$ because it is a degree of freedom, and can vary from rocket to rocket. For our cases, assume that
+\begin{equation}
+    \frac{dM}{dt} = c \implies \dot{M} = \alpha
+\end{equation}
+Then 
+\begin{equation}
+    M = M_0 - \alpha t
+\end{equation}
+\begin{equation}
+    \frac{dv}{dt} = -g - u\frac{\alpha}{M_0 - \alpha t}
+\end{equation}
+\begin{equation}
+    v(t) = v_0 - gt - u\ln\left(\frac{M_0 - \alpha t}{M_0}\right)
+\end{equation}
+
+\newpage 
+
+In general,
+
+\begin{equation}
+    \vec{F}(\vec{r}, \dot{\vec{r}}, t) = m\vec{a} = m \ddot{\vec{r}}
+\end{equation}
+
+In cartesian, we obtain a system of ODEs with respect to $m\ddot{x}$, $m\ddot{y}$, and $m\ddot{z}$. For example, assume 
+that a particle lives in the B field, with a magnetic field that goes in the z direction. We have that 
+\begin{equation}
+    \vec{F} = q\vec{v} \times \vec{B}
+\end{equation}
+The particle then spirals in a helix shape, with a radius dependent on its velocity. 
+
+\begin{equation}
+    = q\left[\vec{v} \times \vec{B}\right]
+\end{equation}
+
+We take the determinant of the following matrix:
+
+\[\left[\begin{array}{ccc}
+    \vec{e_x} & \vec{e_y} & \vec{e_z} \\
+    v_x & v_y & v_z \\
+    B_x & B_y & B_z
+\end{array}\right]\]
+
+This simplifies down to 
+
+\begin{equation}
+    qB(v_y\vec{e_x} - v_x\vec{e_y}) = \vec{F}
+\end{equation}
+
+\begin{equation}
+    F_x = qBv_y = m\ddot{x}
+\end{equation}
+\begin{equation}
+    F_y = -qBv_x = m\ddot{y}
+\end{equation}
+\begin{equation}
+    F_z = 0 = m\ddot{z} \implies \dot{z} = c \implies z = cx + b
+\end{equation}
+
+\begin{equation}
+    qB\dot{y} = m\ddot{x}
+\end{equation}
+\begin{equation}
+    -qB\dot{x} = m\ddot{y}
+\end{equation}
+\begin{equation}
+    qB\ddot{y} = m\dddot{x}
+\end{equation}
+\begin{equation}
+    qB(-\frac{qB}{m})\dot{x} = m\dddot{x}
+\end{equation}
+\begin{equation}
+    -(\frac{qB}{m})^2 v_x = \ddot{v_x}
+\end{equation}
+Then, 
+\begin{equation}
+    \ddot{v_x} = -\omega^2v_x \land \omega^2 = (\frac{qB}{m})^2
+\end{equation}
+Then the solution 
+\begin{equation}
+    v_x = A\sin(\omega t + \phi)
+\end{equation}
+The velocity is going in a circle! Now let's try using complex numbers!
+
+\begin{equation}
+    v_x + iv_y = \eta 
+\end{equation}
+Then 
+\begin{equation}
+    Re(\eta) = v_x
+\end{equation}
+\begin{equation}
+    Im(\eta) = v_y
+\end{equation}
+Then we have 
+\begin{equation}
+    \ddot{v_x} = -\omega^2 v_x
+\end{equation}
+\begin{equation}
+    \ddot{v_y} = -\omega^2 v_y
+\end{equation}
+\begin{equation}
+    \dot{\eta} = \dot{v_x} + i\dot{v_y}
+\end{equation}
+\begin{equation}
+     = -i\omega(iv_y + v_x)
+\end{equation}
+\begin{equation}
+    \dot{\eta} = -i\omega\eta
+\end{equation}
+\begin{equation}
+    \eta = e^{-i\omega t}
+\end{equation}
+\end{document}

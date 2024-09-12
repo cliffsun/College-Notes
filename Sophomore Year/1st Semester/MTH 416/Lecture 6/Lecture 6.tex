@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 6}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 6}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Linear (in)dependence
+    \item Bases \& Dimensions
+\end{itemize}
+
+\section*{Linear (in)dependence}
+
+
+\textbf{Recall:} $\{u_1, \dots, u_k\} \subseteq V$ is \underline{linearly dependent} if there exists some non-trivial solution to the equation
+\begin{equation}
+    a_1u_1 + \dots + a_ku_k = 0
+\end{equation}
+if not then they are \underline{linearly independent}.
+
+\subsection*{Example:}
+
+In $\mathbb{R}^2$, given $u_1 = (x_1,y_1)$, $u_2 = (x_2, y_2)$, and $u_3 = (x_3, y_3)$, then we look for solutions
+\begin{equation}
+    a_1u_1 + a_2u_2 + a_3u_3 = 0
+\end{equation}
+Then make the augmented matrix:
+\[
+    \left[\begin{array}{ccc|c}
+    x_1 & x_2 & x_3 & 0 \\
+    y_1 & y_2 & y_3 & 0
+\end{array}\right]\]
+
+Then we row reduce it using Gaussian elimination to 
+
+\[
+    \left[\begin{array}{ccc|c}
+    1 & 0 & ? & 0 \\
+    0 & 1 & ? & 0
+\end{array}\right]\]
+
+Then we see that they are linearly dependent, as there are infinitely many solutions with $a_3$ being a free variable. That means that 
+there must exist a non-zero solution.
+
+\subsection*{Generally$\dots$}
+
+Given vectors $u_1, \dots, u_k \in \mathbb{R}^n$, then write the columns as a matrix and put it in RREF. If there is at least one free variable, then the vectors are linearly dependent. Then no free variables
+imply linearly independence. Since that would imply that $a_k = 0 \; \forall k \in \mathbb{N}$. 
+
+\subsection*{Observation}
+
+Vectors $\{u_1, \dots, u_k\}$ are lin. dep. if and only iff one of them is a linear combination of another. 
+
+\begin{proof}
+    $\implies$, suppose $u_1, \dots, u_K$ are linearly dependent. That is there exists non-trivial solutions to 
+    \begin{equation}
+        a_1u_1 + \dots + a_ku_k = 0
+    \end{equation}
+    Choose some $i < k$, such that $a_i \neq 0$, then move it to the other side. Then divide by $a_i$. Then 
+    \begin{equation}
+        u_i = \frac{\sum(a_ju_j)}{a_i}
+    \end{equation}
+    $\impliedby$, suppose that $u_i = a_1'u_1 + \dots$, then subtracting $u_i$ from both sides yields a linear dependence. 
+\end{proof}
+
+\subsection*{Edge cases}
+
+\begin{enumerate}
+    \item Any set containing the $0$ vector is linearly dependent. 
+    \begin{equation}
+        a_1 \cdot 0 + \dots = 0 \; \forall a_1 \in \mathbb{R}
+    \end{equation}
+    \item Any set consisting of one non-zero vector is linearly independent
+    \item The empty set is linearly independent. 
+\end{enumerate}
+
+We can also talk about linear independence of infinite sets $S \subseteq V$. Linear combinations of 
+infinitely many vectors is defined to be linear combinations of finite subsets. So $S$ is linearly dependent if and only if $u_1, \dots, u_k$ are a finite amount of vectors in $S$. 
+
+\begin{theorem}
+    Suppose $u_1, \dots, u_k$ are vectors in $V$, then $W = span(u_1, \dots, u_k)$. Then there is a subset of these vectors
+    which is linearly independent and span $= W$. 
+\end{theorem}
+
+\begin{proof}
+    If $u_1, \dots, u_k$ are already linearly independent, then choose the subset to be all of them. Else, if $u_1, \dots, u_k$ are linearly dependent, then by definition at least 
+    1 $u_i$ is a linear combination of the rest, and thus removing $u_i$ wouldn't change the span since we can reproduce $u_i$ using the other vectors. We can repeat this until the set is linearly independent. 
+\end{proof}
+
+\section*{Bases \& Dimensions}
+
+\begin{definition}
+    \begin{enumerate}
+        \item A set $S \in V$ is called a \underline{spanning set} if $span(S) = V$. 
+        \item $S$ is a \underline{basis} if it is a linearly independent spanning set.
+    \end{enumerate}
+\end{definition}
+
+\textbf{Claim:} $\{(1,0,0), (0,1,0), (0,0,1)\}$ is a basis of $\mathbb{R}^3$
+
+\begin{proof}
+    Linearly dependent if $a_1u_1 + a_2u_2 + a_3u_3 = 0$, then $(a_1,a_2,a_3) = \vec{0}$. \\
+    Spanning set, given $(a_1,a_2,a_3) \in \mathbb{R}^3$, we can write it as $a_1u_1 + a_2u_2 + a_3u_3$. 
+\end{proof}
+
+\textbf{Example:} In $\mathbb{R}^n$, let $e_i = \{0,\dots, 1, \dots, 0\}$ where 1 is in the i-th position. Then the set $\{e_1,\dots\}$ is a basis of $\mathbb{R}^n$, then this is called the \underline{standard basis}. \\
+
+\textbf{Example:} The set $\{1,x,\dots\}$ is a basis of $P_n(\mathbb{R})$.  \\
+
+\textbf{Example:} The set $\{1,x,x^2,\dots\}$ is a basis of $P(\mathbb{R})$. Note this is an infinite set. \\
+
+\textbf{Note:} We will define the \underline{dimensionality} to be the number of basis vectors that span the vector space. But that gives arise to some issues
+\begin{enumerate}
+    \item We don't know that every vector space has a basis
+    \item We haven't proved all basis of $V$ have the same size.
+\end{enumerate}
+
+\begin{theorem}
+    Suppose $\beta$ is the candidate basis of $V$. Then $\beta$ is a basis if and only if every single vector in 
+    $V$ can be write uniquely as a linear combination of 
+    \begin{equation}
+        a_1u_1 + a_2u_2 + \dots
+    \end{equation}
+    By uniquely, that means that there is only one set of $a_i$'s that satisfies the above equation. 
+\end{theorem}
+
+\begin{proof}
+    ($\implies$), Assume that $\beta$ is a basis, choose that there is one and only one way to write every single vector in $V$ for a given choice of scalars $(a_1, \dots)$.
+    Since $\beta$ spans the vector space $V$, the constants $a_1, \dots$ do exist. Suppose $v = a_1u_1 + \dots = b_1u_1 + \dots$. Then we prove that $a_1 = b_1, \dots$. Subtracting $a - b$ yields
+    \begin{equation}
+        (a_1 - b_1)u_1 + \dots = 0
+    \end{equation} 
+    But since $\beta$ is linearly independent, then we have that all constants $c_i = a_i - b_i$ are all 0, thus $a_i = b_i$. This means that 
+    \begin{equation}
+        v = \sum a_iu_i
+    \end{equation}
+    is unique. 
+\end{proof}
+
+\end{document}
