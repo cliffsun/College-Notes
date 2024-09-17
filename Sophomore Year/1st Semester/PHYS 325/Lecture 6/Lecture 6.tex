@@ -1,0 +1,190 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 6}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 6}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Previous lecture
+    \item Curvilinear Coordinates (non-Cartesian Coordinates)
+\end{itemize}
+
+\section*{Notes}
+\begin{enumerate}
+    \item Midterm 1 is in \textbf{1 month}, on October 10th, 12:00-13:30
+    \item Midterm 1 covers Lecture 1 to Lecture 13
+\end{enumerate}
+
+\section*{Previous lecture}
+
+Building from previous lecture, we considered a charged particle in a homogenous magnetic field. We found that 
+\begin{equation}
+    \dot{v_x} = \omega v_Y
+\end{equation}
+\begin{equation}
+    \dot{v_y} = -\omega v_x
+\end{equation}
+Such that 
+\begin{equation}
+    \omega = \frac{qB}{m}
+\end{equation}
+We would also "complexify" the velocity, where we introduce a new complex variable
+\begin{equation}
+    \eta = v_x + iv_y
+\end{equation}
+Thus
+\begin{equation}
+    \dot{\eta} = \dot{v_x} + i\dot{v_y}
+\end{equation}
+Thus we insert equations 1 \& 2
+\begin{equation}
+    \dot{\eta} = (\omega v_y - i\omega v_x) \iff -i\omega (v_x  + iv_y) \iff i\omega \eta
+\end{equation}
+Then we solve this using separation of variables:
+\begin{equation}
+    \frac{1}{\eta}d\eta = -i\omega dt
+\end{equation}
+\begin{equation}
+    ln(\eta) = -i\omega t + C
+\end{equation}
+\begin{equation}
+    \eta = Ae^{-i \omega t}
+\end{equation}
+Such that 
+\begin{equation}
+    A = Ce^{-i\delta}
+\end{equation}
+Where our final solution condenses into 
+\begin{equation}
+    \eta = Ce^{-i(\omega t + \delta)}
+\end{equation}
+Where $\delta$ is phase. We can show that the amplitude of the velocity stays constant:
+\begin{equation}
+    A = \sqrt{v_x^2 + v_y^2}
+\end{equation}
+By taking the time derivative, that is 
+\begin{equation}
+    \frac{d}{dt}T = \frac{1}{2}m\frac{d}{dt}(v^2) = 0 \implies v^2 = const
+\end{equation}
+We take the time derivative:
+\begin{equation}
+    \frac{1}{2}m 2v \cdot \dot{v} \implies v \cdot (F) \implies \vec{v} \cdot (q(v \times B)) = 0
+\end{equation}
+Thus, the amplitude of the velocity is constant.
+
+\subsection*{Trajectory}
+
+We can now get the trajectory from the velocity through 
+\begin{equation}
+    x(t) = \int v_x dt = \int A \cos(\omega t - \delta) = \frac{A}{\omega}\sin(\omega t - \delta) + C_x
+\end{equation}
+\begin{equation}
+    y(t) = \int v_y dt = \int A -\sin(\omega t - \delta) = \frac{A}{\omega}\cos(\omega t - \delta) + C_y
+\end{equation}
+\begin{equation}
+    z(t) = \int v_z dt = v_{z,0}t + z_0
+\end{equation}
+Such that
+\begin{equation}
+    A = \sqrt{v_x^2 + v_y^2}
+\end{equation}
+
+\section*{Curvilinear Coordinates}
+
+\subsection*{2-D Polar Coordinates $(r, \phi)$}
+
+\begin{equation}
+    x = r\cos(\phi(t))
+\end{equation}
+\begin{equation}
+    y = r\sin(\phi(t))
+\end{equation}
+\begin{equation}
+    r = x^2 + y^2
+\end{equation}
+\begin{equation}
+    \phi(t) = \arctan(\frac{x}{y})
+\end{equation}
+
+\subsection*{3D Cylindrical Coordinates  $(r, \phi, z)$}
+
+\begin{equation}
+    x = r\cos(\phi(t))
+\end{equation}
+\begin{equation}
+    y = r\sin(\phi(t))
+\end{equation}
+\begin{equation}
+    z = z
+\end{equation}
+
+\subsection*{3D Spherical Coordinates $(r, \theta, \phi)$}
+
+\begin{equation}
+    \theta \in (\frac{\pi}{2}, -\frac{\pi}{2})
+\end{equation}
+\begin{equation}
+    \phi \in (0, 2\pi]
+\end{equation}
+\begin{equation}
+    x = r\cos\phi \sin\theta
+\end{equation}
+\begin{equation}
+    y = r\sin\phi\sin\theta
+\end{equation}
+\begin{equation}
+    z = r\cos\theta
+\end{equation}
+
+\subsection*{Bead on whirling stick}
+
+\subsubsection*{Set-up}
+\begin{itemize}
+    \item A rigid stick whirling with frequency $\omega$
+    \item a Bead sliding along stick with no friction
+\end{itemize}
+
+We choose 2D Polar Coordinates to do this problem:
+
+\end{document}

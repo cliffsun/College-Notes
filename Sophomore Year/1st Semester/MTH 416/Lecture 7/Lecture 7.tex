@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 7}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 7}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Bases \& dimensions
+\end{itemize}
+
+\begin{theorem}
+    If $V$ has a finite spanning set, then it has a finite basis. 
+\end{theorem}
+
+\begin{proof}
+    Suppose that $V$ is spanned by $S = \{u_1, \dots, u_k\}$, then by a theorem from last class, there exists some linearly independent subset of $S$, $\beta$,
+    such that
+    \begin{equation}
+        span(\beta) = span(S) = V
+    \end{equation}
+\end{proof}
+
+\textbf{Fact:} Every vector space has a basis
+
+\begin{theorem}
+    Let $V$ be a vector space containing 
+    \begin{enumerate}
+        \item Spanning set $G$ consisting of $n$ vectors
+        \item A linearly independent set $L$ containing of $m$ vectors
+    \end{enumerate}
+    Then:
+    \begin{enumerate}
+        \item $m \leq n$, and
+        \item There exists a subset $H \subseteq G$ that contains $m - n$ vectors such that $H \cup L$ spans $V$. 
+    \end{enumerate}
+    Ideas:
+    \begin{enumerate}
+        \item $m \leq dim(V) \leq n$
+        \item Any linearly independent set can be substituted into any spanning set the result still spanning the vector space. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    If $V$ has a finite basis, all basis of $V$ are finite \& exactly the same size. 
+\end{corollary}
+
+\begin{proof}
+    Suppose $V$ has a finite basis $\beta = \{u_1, \dots, u_n\}$. And some other basis $\gamma$. We need to prove that $\gamma$ is finite and $\gamma$ has the smae size as $\beta$. 
+
+    \subsubsection*{Finite}
+
+    Suppose by contradiction that $\gamma$ is infinite. Choose some $\gamma' \subset \gamma$ consisting of $n+1$ vectors. By homework 3, $\gamma'$ is also linearly independent. Applying
+    the replacement theorem $G = \beta$ and $L = \gamma'$. Then $m \leq n$ and $m = n + 1 \leq n$ which is a contradiction. 
+
+    \subsubsection*{\textbf{$\#(\gamma) = \#(\beta)$}}
+
+    Applying the replacement theorem, we let $G = \beta$ and $L = \gamma$, then $m \leq n$ but similar $G = \gamma$ and $L = \beta$, then $n \leq m$. Thus $n = m$. Thus this proves the corallary. 
+\end{proof}
+
+Therefore, this let's us define 
+\begin{enumerate}
+    \item $V$ is \underline{finite-dimensional} if it has a finite basis (if and only if it has a finite spanning set)
+    \item If $V$ is finite dimensional, then we define its $\#$ of dimensions to be the number of vectors in any basis. 
+\end{enumerate}
+
+\begin{theorem}
+    Suppose that $W$ is a subspace of $V$, where $V$ is finite dimensional. Then 
+    \begin{enumerate}
+        \item $dim(W) \leq dim(V)$
+        \item $\dim(W) = dim(V) \iff W = V$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $\beta_v = \{v_1, \dots, v_k\}$ be a basis of $V$. Assume that $W$ has a finite basis $\beta_w = \{w_1, \dots, w_m\}$.
+    Applying the replacement theorem to $G = \beta_v$ and $L = \beta_w$, we're given that $m \leq n \iff dim(W) \leq dim(V)$, if $m = n$, then part 2 of the replacement theorem says that 
+    some set $H = \emptyset$ union with $\beta_w$ spans $V$. In particular, that means that $\beta_w$ spans $V$. Then $W = span(\beta_w) = V$. 
+\end{proof}
+
+\textbf{So how do we know that $W$ has a finite basis?}
+
+\begin{proof}
+    Procedure to build one:
+    \begin{enumerate}
+        \item Start with $S = \emptyset$
+        \item As long as the $span(S) \neq W$, add $S$ one vector in $W$ which is not already in $span(S)$. 
+    \end{enumerate}
+    One can verify that the set $S$ is linearly independent at each step. By the replacement theorem, this must stop before $S$ contains $n+1$ vectors. It stops when $span(S) = W$ and $S$ is linearly dependent. In other words, $S$ is a basis and is finite dimensional. 
+\end{proof}
+
+Some more collaries from the replacement theorem: if $dim(V) = n$, then 
+\begin{enumerate}
+    \item Every spanning set of $V$ contains $\geq n$ vectors, and has a basis as a subset 
+    \item Every linearly independent set contains at most $n$ vectors, and can be enlarged to a basis. 
+    \item Given a set of $n$ vectors, we claim that it is linearly independent iff it spans $V$. 
+\end{enumerate}
+
+
+Let's prove the replacement theorem:
+
+\begin{proof}
+    Induction on $m$, namely starting at $m = 0$.
+    \subsubsection*{Base case}
+    If $m = 0$, then $L = \emptyset$, clearly $0 \leq n$. Then choose $H = G$, then $H \cup L = H$ and $H = G$, and the theorem assumed that $G$ was a spanning set. Thus we have proved the base case. 
+
+    \subsubsection*{Inductive step}
+    Assume that the theorem is true for some value of $m$, then we claim it to be true for $m+1$. Given a spanning set $G = \{u_1, \dots, u_n\}$ and $L = \{v_1, \dots, v_{m+1}\}$. Set $L' = \{v_1, \dots, v_{m}\} \subset L$. By HW 3, we have that $L'$ is linearly independent. Plugging $G$ and $L'$ into the inductive hypothesis, $m \leq n$ and we can substitute $L'$ into $G$ to get a spanning set. 
+    That is after relabeling the vectors $u_i's$ $\{v_1, \dots, v_{m}, u_1, \dots, u_{n-m} \} = V$. It follows that $v_{m+1} = a_1v_1 + a_mv_m + b_1u_1 + b_{n-m}u_{n-m}$ for some constants $a_i, b_i \in \mathbb{R}$. Because $L$ is linearly independent, then $v_{m+1}$ is not a linear combination of $v_1, \dots, v_m$. Thus, at least one $b_j \neq 0$. WLOG let $b_1 \neq 0$. In particular, $n - m >0$, thus $n > m$ which proves statement $1$. For 2, I claim that 
+    \begin{equation}
+        span(v_1, \dots, v_{m+1}, u_2, \dots, u_{n-m}) = V
+    \end{equation} 
+    We claim that $u_1$ is also in this span. Since you can solve for $u_1$ using 
+    \begin{equation}
+        v_{m+1} = a_1v_1 + a_mv_m + b_1u_1 + b_{n-m}u_{n-m}
+    \end{equation}
+    Thus $V$ is spanned by these vectors. This concludes the proof. 
+\end{proof}
+
+\end{document}
