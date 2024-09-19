@@ -1,0 +1,183 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 7}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 7}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Bead on a whirling rod
+\end{itemize}
+
+\section*{Bead on a whirling rod}
+
+\subsection*{Given}
+\begin{enumerate}
+    \item Rod is spinning with angular velocity $\omega$
+    \item Thus $\phi(t) = \omega t$
+    \item Solve for $\vec{r}(t)$
+\end{enumerate}
+
+\subsection*{Strategy}
+\begin{enumerate}
+    \item Draw a sketch
+    \item Choose coordinates
+    \item Write out positions
+    \item Velocity and acceleration vectors
+    \item Plug into $F = ma$
+    \item Solve Diff Eq
+\end{enumerate}
+
+\subsection*{Solving}
+
+\begin{equation}
+    a(t) = \left[\ddot{r} - r\dot{\phi}^2\right]e_r + \left[r\ddot{\phi} + 2\dot{r}\dot{\phi}\right]
+\end{equation}
+
+Plug into $F = ma$
+
+\begin{equation}
+    F_n\vec{e_\phi(t)} = m\left[\ddot{r} - r\dot{\phi}^2\right]e_r + m\left[r\ddot{\phi} + 2\dot{r}\dot{\phi}\right]e_\phi
+\end{equation}
+
+Thus
+
+\begin{equation}
+    e_r : 0 =  m\left[\ddot{r} - r\dot{\phi}^2\right]
+\end{equation}
+\begin{equation}
+    e_\phi: F_n = m\left[r\ddot{\phi} + 2\dot{r}\dot{\phi}\right]
+\end{equation}
+
+For $e_r$, 
+\begin{equation}
+    0 = \ddot{r} - r\ddot{\phi}
+\end{equation}
+\begin{equation}
+    \ddot{r} = r\omega^2
+\end{equation}
+
+Let $r = e^{\lambda t}$
+
+\begin{equation}
+    \lambda^2 = \omega^2 \iff \lambda = \pm \omega
+\end{equation}
+
+\begin{equation}
+    r(t) = Ae^{\lambda t} + Be^{-\lambda t}
+\end{equation}
+Let \begin{equation}
+    r(t = 0) = r_0 \land v(t = 0) = v_0
+\end{equation}
+\begin{equation}
+    A = \frac{1}{2}(r_0 + \frac{v_0}{\omega})
+\end{equation}
+\begin{equation}
+    B = \frac{1}{2}(r_0 - \frac{v_0}{\omega})
+\end{equation}
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            title={$r(t)$},
+            xlabel={x},
+            ylabel={y}
+        ]
+            \addplot[color=red, domain=-5:5, samples=100]{cosh(x)};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\begin{equation}
+    F_n = m(r\ddot{\phi} + 2\dot{r}\dot{\phi})
+\end{equation}
+\begin{equation}
+    \frac{F_n}{2m\omega} = \dot{r}  
+\end{equation}
+\begin{equation}
+    \frac{F_n}{2m\omega^3} = \sinh(\omega t)
+\end{equation}
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            title={Force in a spinning rod},
+            xlabel={x},
+            ylabel={y}
+        ]
+            \addplot[color=red, domain=0:5, samples=100]{sinh(x)};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\section*{Fixed Bead on a spinning loop}
+
+Loop of fixed radius $R$, spinning about its vertical axis at rate $\Omega$. Bead of mass $m$, free to move in large loop, in gravitational field.
+Remember, our basis vectors are time-dependent, using spherical coordinates. We have that 
+\begin{equation}
+    e_r = \sin\theta\cos\phi e_x + \sin\theta\sin\phi e_y + \cos\theta e_z
+\end{equation}
+\begin{equation}
+    e_\theta = \cos\theta\cos\phi e_x + \cos\theta\sin\phi e_y - \sin\theta e_z
+\end{equation}
+\begin{equation}
+    e_\phi = \sin\phi e_x + \cos\phi e_y
+\end{equation}
+
+\subsection*{Given}
+\begin{equation}
+    r(t) = R = \text{const}
+\end{equation}
+\begin{equation}
+    \phi(t) = \Omega t
+\end{equation}
+\begin{equation}
+    \vec{r}(t) = r(t)e_r(t)
+\end{equation}
+\begin{equation}
+    v(t) = \dot{r}e_r + r\dot{e_r} \iff r\dot{\theta}e_\theta + r\Omega\sin\theta e_\phi
+\end{equation}
+\begin{equation}
+    a(t) = \text{ hell nah }
+\end{equation}
+\end{document}

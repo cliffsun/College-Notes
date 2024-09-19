@@ -1,0 +1,208 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 8}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 8}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Conservative Forces
+\end{itemize}
+
+\section*{Conservative Forces}
+
+\begin{definition}
+    A force $\vec{F}(r)$ is conservative if it can be written as a gradient of a potential $U(r)$, that is 
+    \begin{equation}
+        \vec{F}(r) = -\vec{\nabla}U(r)
+    \end{equation}
+\end{definition}
+
+\subsubsection*{Consequence 1}
+
+Curl of conservative force vanishes, but note, not every force has
+\begin{equation}
+    \nabla \times F = 0
+\end{equation}
+
+In general, every force can be expressed as the following:
+
+\begin{equation}
+    \vec{F} = \vec{F}_{\text{cons.}} + \vec{F}_{\text{diss}}
+\end{equation}
+
+Thus
+
+\begin{equation}
+    \nabla \times \vec{F} = \nabla \times \vec{F}_{\text{cons.}} + \nabla \times \vec{F}_{\text{diss}} \neq 0
+\end{equation}
+
+\subsection*{Consequence 2}
+
+Let's consider the work along a path, from $p_1 \rightarrow p_2$. To compute the work along this path:
+
+\begin{equation}
+    W = \int_{p_1}^{p_2}\vec{F} \cdot d\vec{r}
+\end{equation}
+
+If $\vec{F}$ is conservative, then we get the following relationship
+
+\begin{equation}
+    W = -\int_{p_1}^{p_2}\nabla U \cdot d\vec{r} \iff U(p_1) - U(p_2)
+\end{equation}
+
+If path is closed, that is $(p_1 \rightarrow p_1)$, then 
+
+\begin{equation}
+    W = -(U(p_1) - U(p_1)) = 0
+\end{equation}
+
+Conservative forces do NO work along a closed path.
+
+\section*{Energy Conservation}
+
+If force is conservative, that is $\vec{F}(r) = -\nabla U$, then E = KE + PE is constant. We call this constant of the motion. But how do we go about this?
+An idea would be to take the time derivative of $E$, and see what happens. 
+
+We are trying to prove:
+\begin{equation}
+    D_t(E) = D_t(T + U) = 0
+\end{equation}
+
+Thus,
+
+\begin{equation}
+    D_t T = \frac{1}{2}m|v|^2 = mv\cdot \frac{dv}{dt} \iff m\vec{v} \cdot \vec{a} \iff \vec{v} \cdot \vec{F}
+\end{equation}
+
+Note, $\vec{v} \cdot \vec{F}$ can be non-zero.
+
+\begin{equation}
+    D_t(U(t,\vec{r}(t))) = \partial_t U + (\partial_x U \partial_t x + \partial_y U \partial_t y + \partial_z U \partial_t z)
+\end{equation}
+
+\begin{equation}
+    D_t(U(t,\vec{r}(t))) = \partial_t U + \partial_t \vec{r} \cdot \nabla U \iff \partial_t U + -\vec{v} \cdot \vec{F}
+\end{equation}
+
+\begin{equation}
+    D_t(E) = \vec{v} \cdot \vec{F} + -\vec{v} \cdot \vec{F} + \partial_t U \iff \partial_t U
+\end{equation}
+
+If $U$ has no explicit time dependence, then $D_t E = 0$, thus 
+
+\begin{equation}
+    E = c \; \text{ for some fixed } c \in \mathbb{R}
+\end{equation}
+
+\section*{How to find the potential given the force}
+
+\begin{enumerate}
+    \item Indefinitely integrate $\vec{F} = -\nabla U$
+    \item Definitely integrate $\vec{F} = -\nabla U \iff \int_{p_1}^{p_2}dU \iff -\int_{p_1}^{p_2}\vec{F} \cdot d\vec{r}$
+\end{enumerate}
+
+\subsection*{Example}
+
+\begin{equation}
+    \text{Force } = (2xy + 1)\hat{i} + (x^2+2)\hat{j}
+\end{equation}
+
+Trick: choose a convenient path $\Gamma$
+
+\begin{equation}
+    -U = \int_{\Gamma} \vec{F} \cdot d\vec{r} = \int_{\Gamma} (F_xdx + F_ydy + F_zdz)
+\end{equation}
+
+We decompose our arbitrary path into its counterparts:
+
+\begin{equation}
+    \int_{0}^{x} F_{x'}(x',0,0)dx' + \int_{0}^{y}F_{y'}(x,y',0)dy' + \int_{0}^{z}F_z(x,y,z')dz'
+\end{equation}
+
+\begin{equation}
+    = \int_{0}^{x}dx' + \int_{0}^{y}(x^2 + 2)dy' + \int_{0}^{z}0 dz'
+\end{equation}
+
+\begin{equation}
+    = x + (x^2y+2y)
+\end{equation}
+
+\begin{equation}
+    U = -x - x^2y - 2y
+\end{equation}
+
+\section*{Central Forces}
+
+\begin{definition}
+    A \underline{Central Force} that is directed away from a center point. Could be centripetal, etc. We depict this as 
+    \begin{equation}
+        \vec{F} = f(r,\theta,\phi)\vec{e_r}
+    \end{equation}
+\end{definition}
+
+\subsection*{Conservation of Angular Momentum}
+
+\begin{definition}
+    \underline{Angular Momentum}, or $\vec{L}$, is defined with respect to a refernece point. (this means that this is a pseudovector!) Then we define 
+    \begin{equation}
+        \vec{L} = \vec{r} \times m\vec{v}
+    \end{equation}
+    Thus the magnitude of the angular momentum is 
+    \begin{equation}
+        |\vec{L}| = m|\vec{r}||\vec{v}|\sin\alpha
+    \end{equation}
+    This vector is orthogonal to the $\vec{r}-\vec{v}$ plane. 
+\end{definition}
+
+\subsubsection*{Notes}
+
+\begin{enumerate}
+    \item If reference point is at the center of a central force field, then
+    \begin{equation}
+        \vec{L} = c \; c \in \mathbb{Z}
+    \end{equation}
+    Or would be constant with respect to motion.
+\end{enumerate}
+
+\end{document}
