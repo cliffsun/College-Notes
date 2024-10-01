@@ -1,0 +1,202 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 10}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 10}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Midterm
+    \item Gravitation
+\end{itemize}
+
+\section*{Midterm}
+
+Will cover up to the gravitational forces. On \textbf{\underline{OCTOBER 10th}} or in 2 weeks! There will be a practice midterm, \& we will be allowed
+our own formula sheet. 
+
+\section*{Gravitation}
+
+Given some mass with density $\rho(\vec{r})$, we have that
+
+\begin{equation}
+    \vec{F} = -Gm_2 \int \frac{\rho(r_n)}{|r_2-r_1|^3}(r_2-r_1)dr_1
+\end{equation}
+
+\subsubsection*{Gravitational field} 
+
+\begin{equation}
+    \vec{g} = \frac{\vec{F}}{m_2}
+\end{equation}
+
+\subsubsection*{Gravitational potential $\Phi$}
+
+\begin{equation}
+    \vec{g} = -\nabla\Phi
+\end{equation}
+
+In general, for a point mass $m_1$, we have that the \underline{potential energy} is 
+\begin{equation}
+    u = \frac{-Gm_1m_2}{r}
+\end{equation}
+and the \underline{potential} is 
+\begin{equation}
+    \Phi = \frac{-Gm_1}{r}
+\end{equation}
+
+For an \underline{extended mass}, we have that 
+
+\begin{equation}
+    \Phi = -G\frac{\int \rho(r_1)}{|r_2-r_1|}d^3r_1
+\end{equation}
+
+\subsection*{Example 1: Finding $\Phi$ of a spherical shell}
+
+\subsubsection*{Set-up}
+\begin{enumerate}
+    \item Uniform Spherical shell
+    \item Mass $m$, radius $r$, thickness $h$, $\rho = \frac{M}{4\pi R^2h}$ (Assume thickness is really small)
+\end{enumerate}
+
+Let $s(\theta)$ be the line pointing from a point on the shell to the point mass $m_2$. 
+
+\subsubsection*{Strategy}
+
+\begin{equation}
+    \Phi = \int d\Phi \implies d\Phi - \frac{-G}{|r-r_1|}dm
+\end{equation}
+
+\begin{enumerate}
+    \item Mass element of a shell
+    \begin{equation}
+    dm(r_1) = \rho(r_1)d^3r_1 = \rho r^2dr \sin\theta d\theta d\phi
+    \end{equation}
+    \item $d\Phi = -\frac{Gdm}{|r-r_1|}$ 
+    \begin{equation}
+        \iff \frac{-G}{s(\theta)}dm
+    \end{equation}
+    \item Now we integrate!
+    \begin{equation}
+        \Phi = \int d\Phi = -G\int \frac{dm}{s(\theta)}
+    \end{equation}
+    \begin{equation}
+        -G\rho h R^2 \int_{0}^{2\pi}\int_{0}^{\pi}\frac{\sin\theta}{s(\theta)}d\theta d\phi
+    \end{equation}
+    \begin{equation}
+        \iff -2\pi G\rho hR^2 \int_{0}^{\pi}\frac{\sin\theta}{s(\theta)}d\theta
+    \end{equation}
+    We find $s(\theta)$
+    \begin{equation}
+        s^2(\theta) = |r-r_1|^2 \iff r^2 - 2r \cdot r_1 + r_1^2
+    \end{equation}
+    \begin{equation}
+        x^2 + R^2 - 2Rx\cos\theta 
+    \end{equation}
+    We note that 
+    \begin{equation}
+        \frac{d s^2}{d\theta} \iff 2s \frac{ds}{d\theta} \iff 2s (Rx\sin\theta)
+    \end{equation}
+    \begin{equation}
+        \frac{\sin\theta}{s}d\theta = \frac{1}{Rx}ds
+    \end{equation}
+    \begin{equation}
+        \int_{0}^{\pi}\frac{\sin\theta}{s}d\theta = \int_{s_{min}}^{s_{max}}\frac{1}{Rx}ds
+    \end{equation}
+    Consider 2 sections, $s_{min} = \pm(R-x) > 0$ and $s_{max} = +(R+x) > 0$
+    \begin{equation}
+        \Phi = -2\pi G \frac{\rho h R}{x}(s_{max} - s_{min})
+    \end{equation}
+    \subsubsection*{Case 1}
+    $m_2$ is outside of the shell. That is $x > R$, then $s_{min} = x - R > 0$ and $s_{max} = (R + x)$ Then 
+    \begin{equation}
+        \Phi = 4\pi G \frac{\rho h R^2}{x} \iff \frac{-Gm}{x}
+    \end{equation}
+
+    \subsubsection*{Case 2:}
+    Then $s_{max} = R - x > 0$ and $s_{min} = R + x$, then 
+    \begin{equation}
+        -4\pi G\rho hR = -\frac{GM}{R} = \text{ constant! }
+    \end{equation}
+    \subsubsection*{Results}
+    For a mass that's inside a shell, the potential is constant. But for a mass outside the shell, the potential is the well known $-\frac{GM}{x}$
+\end{enumerate}
+
+\subsection*{Example 2: Finding $\Phi$ of a uniform sphere}
+
+\subsubsection*{Set-up}
+\begin{enumerate}
+    \item Solid sphere with radius $R_1$
+    \item Mass $M_1$, constant density inside the sphere, and 0 everywhere else. 
+\end{enumerate}
+
+\subsubsection*{Goal}
+Find $\Phi = \Phi(x)$
+
+\subsubsection*{Work}
+
+Let's use previous results, that is relabel $R = r$ and $h = dr$
+
+\begin{equation}
+    d\Phi = \begin{cases}
+        -4\pi G\frac{\rho r^2}{x}dr : x > r \\
+        -4\pi G\rho r dr : x < r 
+    \end{cases}
+\end{equation}
+
+\subsubsection*{Case 1 : $x > R$}
+
+\begin{equation}
+    \Phi = \int -4\pi G \int_{0}^{R} \frac{\rho r^2}{x}dr = \frac{-GM}{r}
+\end{equation}
+
+\subsubsection*{Case 2: $x < R$}
+
+\begin{equation}
+    \Phi = \int_{0}^{x}d\Phi_{inner} + \int_{x}^{R}d\Phi_{outer}
+\end{equation}
+
+\begin{equation}
+    \frac{1}{2}GM \frac{3R^2 - x^2}{R^3}
+\end{equation}
+
+\end{document}

@@ -1,0 +1,200 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 11}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 11}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item 2 Body problem
+\end{itemize}
+
+\section*{Midterm}
+\begin{enumerate}
+    \item Force in 3 dimensions
+    \item Curvilinear coordinates
+    \item Central force
+    \item Check out the email she sent
+\end{enumerate}
+
+\section*{2 Body problem}
+
+\subsection*{Kepler's Laws}
+\begin{enumerate}
+    \item Orbits around the sun are planar ellipses
+    \item The line between the sun and planet produces the same area in equal time. That is given 2 points in the orbit separated by a time $dt$, then we have that
+    the area between these two points (should be like a triangle) is the same everywhere given the same dt. 
+    \item Orbital period $P$ around the sun is proportional to $\frac{3}{2}$ power of the semi-major axis. Ellipses have 2 axis, the semi-minor and semi-major. The semi-major is the longer radius in 
+    an ellipse and the semi-minor is the smaller radius in an ellipse.  
+\end{enumerate}
+
+\subsection*{Characterize Orbits}
+
+\begin{enumerate}
+    \item We first introduce \textbf{angular momentum per unit mass} 
+    \begin{equation}
+        L = mr^2 \dot{\phi} \implies l = \frac{L}{m} \iff r^2\dot{\phi}
+    \end{equation}
+    Thus 
+    \begin{equation}
+        \dot{\phi} = \frac{l}{r^2}
+    \end{equation}
+    \textbf{Note:} The angle between $\vec{r}$ and $\vec{v}$ is NO LONGER 90 DEGREES!
+    \item \textbf{Energy per unit mass} conservation
+    \begin{equation}
+        \epsilon = \frac{E}{m} \iff \frac{1}{m}(T + U_{grav})
+    \end{equation}
+    \begin{equation}
+        \iff \frac{1}{2}|\vec{v}|^2 - \frac{GM}{r}
+    \end{equation}
+    \begin{equation}
+        \iff \frac{1}{2}(\dot{r}^2 + r^2\dot{\phi}^2) - \frac{GM}{r}
+    \end{equation}
+    \begin{equation}
+        \epsilon = \frac{1}{2}\dot{r}^2 + \frac{l^2}{2r^2} - \frac{GM}{r}
+    \end{equation}
+    This is a one-dimesional problem with an effective potential.
+    \item Perigee [$r_p$] (minimal distance to focal point (M)) and Apogee [$r_a$] (maximal distance to focal point (M))
+    \begin{itemize}
+        \item Velocity vectors $\vec{v}_p$ and $\vec{v}_a$ are perpendicular to $\vec{r}_p$ and $\vec{r}_a$. Thus
+        \begin{equation}
+            \vec{r_p} \cdot \vec{v_p} = 0
+        \end{equation}
+        \item Angular momentum $\vec{l} = \vec{r} \times \vec{v}$. At the Perigee and Apogee
+        \begin{equation}
+            \vec{l} = \vec{r} \times \vec{v} = |r_p||v_p| = |r_a||v_a|
+        \end{equation}
+    \end{itemize}
+    \item Energy per unit mass in $r_p$ and $r_a$ in Apogee and Perigee, we have that $\dot{r} = 0$, thus 
+    \begin{equation}
+        \epsilon_{p,a} = \frac{l^2}{2r_{p,a}^2} - \frac{GM}{r_{p,a}}
+    \end{equation}
+    \begin{equation}
+        \epsilon_{p,a} = \frac{1}{2}v_{p,a}^2 - \frac{GM}{r_{p,a}}
+    \end{equation}
+    \begin{equation}
+        \epsilon_{p,a} = \frac{1}{2}v_{p,a}^2 - \frac{GM}{l}v_{p,a}
+    \end{equation}
+    Thus 
+    \begin{equation}
+        v_{p,a} = \frac{GM}{l} \pm \sqrt{(\frac{GM}{l})^2 + 2\epsilon}
+    \end{equation}
+    Note, plus is for perigee and minus is for the apogee. 
+    \begin{equation}
+        r_{p,a} = \frac{l}{v_{p,a}} = l\left[\frac{GM}{l} \pm \sqrt{(\frac{GM}{l})^2 + 2\epsilon}\right]^{-1}
+    \end{equation}
+\end{enumerate}
+
+\section*{Effective Potential and Orbits}
+
+\begin{equation}
+    \epsilon = \frac{1}{2}\dot{r}^2 + U_{eff}
+\end{equation}
+\begin{equation}
+    U_{eff} = \frac{l^2}{2r^2} - \frac{GM}{r}
+\end{equation}
+
+\begin{enumerate}
+    \item Circular Orbit with radius $r_c$
+    \begin{itemize}
+        \item Minimum in effective potential
+        \begin{equation}
+            U_{eff}'|_{r=r_c} = 0
+        \end{equation}
+        In this scenario, we have that 
+    \begin{equation}
+        \frac{mv^2}{r} = -\frac{GMm}{r^2}
+    \end{equation}
+    \begin{equation}
+        v = \sqrt{\frac{GM}{r}}
+    \end{equation}
+    Thus, 
+    \begin{equation}
+        P = \frac{2\pi}{\omega} \implies \omega = \frac{v}{r} \implies 2\pi \sqrt{\frac{r^3}{GM}}
+    \end{equation}
+    We have that 
+    \begin{equation}
+        l = rv \implies v = \frac{GM}{l} \iff r = \frac{l^2}{GM}
+    \end{equation}
+    Energy
+    \begin{equation}
+        \epsilon = \frac{1}{2}\dot{r}^2 - \frac{GM}{r}
+    \end{equation}
+    \begin{equation}
+        \iff -\frac{1}{2}v^2 = -\frac{1}{2}(\frac{GM}{l})^2
+    \end{equation}
+    \end{itemize}
+    \item Elliptical orbits $\epsilon_{central} < \epsilon_{elliptical} < 0$
+    \begin{itemize}
+        \item Bound orbit with 
+        \begin{equation}
+            -\frac{1}{2}(\frac{GM}{l})^2 = \epsilon_c < \epsilon_e < 0
+        \end{equation}
+    \end{itemize}
+    \item Parabolic "orbit" $\epsilon = 0$
+    \begin{itemize}
+        \item The orbiting mass gets "flung" by the larger mass $M$ (like the sun).
+        \item Perigee:
+        \begin{equation}
+            V_p = \frac{2GM}{l}
+        \end{equation}
+        \begin{equation}
+            r_p = \frac{l^2}{2GM}
+        \end{equation}
+        \item Apogee, $v_a \rightarrow 0$ and $r_a = \frac{l}{r_a} \rightarrow \infty$
+    \end{itemize}
+    \item Hyperbola $\epsilon > 0$
+    \begin{itemize}
+        \item \underline{Unbound orbit} ("scattering hyperbola")
+        \begin{equation}
+            v_{p,a} = \frac{GM}{l} \pm \sqrt{(\frac{GM}{l})^2 + 2\epsilon}
+        \end{equation}
+        For $v,r>0$, hyperbola, $v<0$ unphysical
+    \end{itemize}
+\end{enumerate}
+
+\section*{Two body problem}
+
+
+
+\end{document}

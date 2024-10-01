@@ -1,0 +1,359 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 9}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 9}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Midterm Announcement
+    \item Linear transformations and rank-nullity theorem
+\end{itemize}
+
+\section*{Midterm}
+
+\textbf{In class next week thursday, HW 5 is due the week after M1. And midterm will cover up to this lecture}
+
+\section*{Linear transformations}
+
+\subsection*{Recall}
+
+\begin{equation}
+    T: V \rightarrow W
+\end{equation}
+
+is a linear transformation if 
+
+\begin{enumerate}
+    \item $T(x+y) = T(x) + T(y)$
+    \item $T(cx) = cT(x)$
+\end{enumerate}
+
+for all $x,y \in V, c \in \mathbb{R}$. For any linear transformation $T: V \rightarrow W$, we can define two important subspaces:
+
+\begin{definition}
+    Given a linear transformation: $T: V \rightarrow W$:
+    \begin{enumerate}
+        \item The \underline{range} (or image) of $T$ is the set
+        \begin{equation}
+            R(T) = \{T(v): v \in V\} \subseteq W
+        \end{equation}
+        \item The \underline{kernel} or (nullspace) of T is 
+        \begin{equation}
+            N(T) = \{v \in V: T(v) = 0\} \subseteq V
+        \end{equation}
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item $R(T)$ is a subspace of $W$
+        \item $N(T)$ is a subspace of $V$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $R(T)$ contains $0_w$ because $0_w = T(0_v)$
+        if $w_1$ and $w_2$ are in $R(T)$, then we must prove that $w_1 + w_2 \in R(T)$.
+        \begin{proof}
+            $w_1 = T(v_1)$ and $w_2 = T(v_2)$, for some $v_1, v_2 \in V$. Then $w_1 + w_2 = T(v_1 + v_2)$ which is in $R(T)$. 
+        \end{proof}
+        Finally, if $w = T(v) \in R(T)$, and $c \in \mathbb{R}$, then 
+        \begin{equation}
+            cw = c(T(v)) = T(cv) \in R(T)
+        \end{equation}
+
+        \item $N(T)$ contains $0_v$ because $T(0_v) = 0_w$. 
+        If $v_1, v_2 \in N(T)$, then 
+        \begin{equation}
+            T(v_1 + v_2) = T(v_1) + T(v_2) = 0 + 0 = 0
+        \end{equation}
+        if $v \in N(T)$ and $c \in \mathbb{R}$, then 
+        \begin{equation}
+            T(cv) = c(T(v)) = c(0) = 0
+        \end{equation}
+    \end{enumerate}
+\end{proof}
+
+Because we know that $R(T)$ and $N(T)$ are subspaces, then we can talk about their dimensions. 
+
+\begin{definition}
+    The dimension of $R(T)$ is called the \underline{rank}, and the dimension of $N(T)$ is called the \underline{nullity}. 
+\end{definition}
+
+\subsection*{Example 1.}
+
+\begin{equation}
+    T: \mathbb{R}^3 \rightarrow \mathbb{R}^4
+\end{equation}
+\begin{equation}
+    T(a,b,c) = (a,b,c,a + b + c)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    R(T) = \{(a,b,c,a+b+c): a,b,c \in \mathbb{R}\}
+\end{equation}
+
+This is a 3 dimensional subspace of $\mathbb{R}^4$. 
+
+\begin{equation}
+    N(T) = \{(a,b,c) \in \mathbb{R}^3 : (a,b,c,a+b+c) = 0\}
+\end{equation}
+
+So 
+
+\begin{equation}
+    N(T) = \{(0,0,0)\}
+\end{equation}
+
+0 dimensional subspace in $\mathbb{R}^3$. 
+
+\subsection*{Example 2}
+
+\begin{equation}
+    T: \mathbb{R}^3 \rightarrow \mathbb{R}^2
+\end{equation}
+
+\begin{equation}
+    T(a,b,c) = (a,b)
+\end{equation}
+
+\begin{equation}
+    R(T) = \{(a,b) : (a,b,c) \in \mathbb{R}^3\} \iff \mathbb{R}^2
+\end{equation}
+
+In other words, $R(T)$ is surjective. 
+
+\begin{equation}
+    N(T) = \{(a,b,c) \in \mathbb{R}^3: (a,b) = 0\} \iff \{(0,0,c) : c \in \mathbb{R}\}
+\end{equation}
+
+This is the z-axis. So rank = 2, and nullity = 1. 
+
+\subsubsection*{Note}
+
+For $T : V \rightarrow W$ linear, 
+\begin{enumerate}
+    \item $0 \leq rank(T) \leq dim(W)$ and 
+    \item $0 \leq nullity(T) \leq dim(V)$
+\end{enumerate}
+
+\begin{theorem}
+    Suppose $T : V \rightarrow W$, and $\beta = \{u_1, \dots, u_n\}$ is a basis for $V$. Then 
+    \begin{enumerate}
+        \item $R(T) = span(\{T(v_1), \dots, T(v_n)\})$
+        \item $T$ is completely determined by what it "does" to $\{u_1, \dots, u_n\}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    For (2), let $v \in V$ be arbitrary, since $\beta$ is a basis, then $v$ can be uniquely expressed as 
+    \begin{equation}
+        v = a_1v_1 + \dots + a_nv_n
+    \end{equation}
+    Then:
+    \begin{equation}
+        T(v) = T(a_1v_1 + \dots + a_nv_n)
+    \end{equation}
+    \begin{equation}
+        \iff a_1T(v_1) + \dots a_nT(v_n)
+    \end{equation}
+    This shows that $T(v)$ is completely determined by $T(v_i)$.
+\end{proof}
+
+\begin{proof}
+    For (1), $R(T)$ is the set of all possible $T(v)$, which according to the above proof, is 
+    \begin{equation}
+        span(\{T(v_1), \dots, T(v_n)\})
+    \end{equation}
+\end{proof}
+
+In fact, generally given any $w_1, \dots, w_n \in W$, then there is always exactly one linear transformation
+\begin{equation}
+    T: V \rightarrow W
+\end{equation}
+such that $T(v_i) = w_i$ for each $i$. 
+
+\begin{theorem}
+    Given a linear transformation $T: V \rightarrow W$, we have that 
+    \begin{equation}
+        N(T) = \{0\} \iff T \text{ is injective, or 1 to 1 }
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    First assume $N(T) = \{0\}$, then we claim that $T$ is injective. Suppose 
+    \begin{equation}
+        T(v) = T(v')
+    \end{equation}
+    For $v, v' \in V$, then we prove that $v = v'$. Then
+    \begin{equation}
+        T(v - v') \iff T(v) - T(v') \iff 0
+    \end{equation}
+    Thus, $v - v' \in N(T)$, but 
+    \begin{equation}
+        N(T) = \{0\}
+    \end{equation}
+    then 
+    \begin{equation}
+        v = v'
+    \end{equation}
+\end{proof}
+
+\begin{proof}
+    Now, suppose $T$ is injective, that is 
+    \begin{equation}
+        T(v) = T(v') \implies v = v'
+    \end{equation}
+    Thus, there is at most one vector such that $T(w) = 0$, namely $w = 0$. So it must be the only one. 
+\end{proof}
+
+\section*{Rank nullity theorem}
+
+\begin{theorem}
+    \underline{Rank-nullity theorem} states that suppose $T$ is linear transformation from $V \rightarrow W$ where $V$ is finite dimensional. Then 
+    \begin{equation}
+        \dim(R(T)) + \dim(N(T)) = \dim(V)
+    \end{equation} 
+\end{theorem}
+
+Nullity = number of dimensions "flattened" out, and Rank = number of dimensions left.
+
+\subsection*{Example 1}
+
+\begin{equation}
+    T: \mathbb{R}^{a+b} \rightarrow \mathbb{R}^{a+c}
+\end{equation}
+for some $a,b,c \geq 0$, then 
+\begin{equation}
+    T(x_1, \dots x_a, \dots x_{a+b}) = (x_1, \dots, x_a, 0, \dots, 0)
+\end{equation}
+
+For this $T$, $R(T) = \{(x_1, \dots, x_a, 0, \dots, 0)\}$, then the dimension of $R(T) = a$. Then 
+\begin{equation}
+    N(T) = \{(x_1, \dots, x_{a+b}) \in \mathbb{R}^{a+b} : x_1 = \dots = x_a = 0\}
+\end{equation} 
+This is 
+\begin{equation}
+    N(T) = \{(0, \dots, 0, x_{a+1}, \dots, x_{a+b})\}
+\end{equation}
+So 
+\begin{equation}
+    \dim(N(T)) = nullity = b
+\end{equation}
+Thus 
+\begin{equation}
+    \dim(R(T)) + \dim(N(T)) = a + b = \dim(V)
+\end{equation}
+
+\begin{proof}
+    Let $\dim(V) = n$ and let $\dim(N(T)) = k$. Choose a basis $\{v_1, \dots, v_k\}$ for $N(T)$. By corallary of the replacement theorem:
+    $\{v_1, \dots, v_k\}$ can be extended to a basis $v_1, \dots, v_n$ for $V$. Then we claim that $\{T(v_{k+1}), \dots, T(v_n)\} = R(T)$.
+    \subsubsection*{Note}
+    If this is true, then $\dim(R(T)) = n-k$ so 
+    \begin{equation}
+        \dim(R(T)) + \dim(N(T)) = n-k + k = n = \dim(V)
+    \end{equation}
+    In other words, we claim that 
+    \begin{enumerate}
+        \item $span(T(v_{k+1}), \dots, T(v_n)) = R(T)$
+        \item $T(v_{k+1}), \dots, T(v_n)$ are linearly independent. 
+    \end{enumerate}
+    \begin{proof}
+        This is the proof of (1), 
+        \begin{equation}
+            R(T) = span(T(v_1), \dots, T(v_n))
+        \end{equation}
+        But 
+        \begin{equation}
+            T(v_1), \dots, T(v_k) = 0, \dots, 0
+        \end{equation}
+        Thus 
+        \begin{equation}
+            R(T) = span(T(v_{k+1}), \dots T(v_n))
+        \end{equation}
+        \begin{proof}
+            This is the proof of linearly independence. For the sake of contradiction, then suppose we have a linear dependency, then 
+            \begin{equation}
+                a_{k_1}T(v_{k+1}) + \dots + a_nT(v_n) = 0
+            \end{equation}
+            We claim that 
+            \begin{equation}
+                a_{k+1}, \dots, a_n = 0
+            \end{equation}
+            Since $T$ is linear, then we have that 
+            \begin{equation}
+                0 = T(a_{k+1}v_{k+1}) + \dots + T(a_nv_n) 
+            \end{equation}
+            \begin{equation}
+                \iff T(a_{k+1}v_{k+1} + \dots + a_nv_n)
+            \end{equation}
+            Then 
+            \begin{equation}
+                a_{k+1}v_{k+1} + \dots + a_nv_n \in N(T)
+            \end{equation}
+            Therefore, 
+            \begin{equation}
+                a_{k+1}v_{k+1} + \dots + a_nv_n = b_1v_1 + \dots + b_kv_k
+            \end{equation}
+            Then 
+            \begin{equation}
+                -b_1v_1 - \dots - b_kv_k + a_{k+1}v_{k+1} + \dots + a_nv_n = 0
+            \end{equation}
+            But because $v_1, \dots, v_n$ are a basis for $V$, then that means that 
+            \begin{equation}
+                b_1,\dots b_k, a_{k+1}, \dots a_n = 0
+            \end{equation}
+            In particular, 
+            \begin{equation}
+                a_{k+1}, \dots, a_n = 0
+            \end{equation}
+            Thus all vectors in $R(T)$ are linearly independent. 
+        \end{proof}
+    \end{proof}
+\end{proof}
+
+\end{document}

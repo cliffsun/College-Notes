@@ -1,0 +1,192 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 9}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 9}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Central forces
+\end{itemize}
+
+\section*{Central Forces}
+
+Let 
+\begin{equation}
+    \vec{L} = \vec{r} \times m\vec{v}
+\end{equation}
+We try to show that $\vec{L}$ is constant. Or 
+
+\begin{equation}
+    D_t (L) = 0
+\end{equation}
+
+We expand this out
+
+\begin{equation}
+    D_t(L) = D_t(\vec{r} \times m\vec{v})
+\end{equation}
+\begin{equation}
+    \iff \dot{\vec{r}} \times m\vec{v} + \vec{r} \times m\vec{a}
+\end{equation}
+\begin{equation}
+    \iff \vec{r} \times \vec{F}
+\end{equation}
+But since $\vec{F}$ is in the direction of the $\hat{r}$ component, we have that 
+
+\begin{equation}
+    \vec{r} \times F\hat{r} \iff 0
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    D_t(L) = 0 \iff L = c 
+\end{equation}
+
+Because $\vec{L}$ is constant, then we have that 
+\begin{enumerate}
+    \item motion remains in the $\vec{v} - \vec{r}$ plane
+    \item Then we can rotate the coordinate plane such that $\theta = \frac{\pi}{2} \iff \dot{\theta} = 0$
+    \item $\vec{r} = r(t)\hat{r}$
+    $\vec{v} = \dot{r}\hat{r} + r\dot{\theta}\hat{\theta} + r\dot{\phi}\sin\theta\hat{\phi}$ which simplifies to 
+    \begin{equation}
+        \vec{v} = \dot{r}\hat{r} + r\dot{\phi}\hat{\phi}
+    \end{equation}
+    \item Thus $\vec{L} = \vec{r} \times m\vec{v}$
+     \begin{equation}
+        = mr\hat{r} \times m(\dot{r}\hat{r} + r\dot{\phi}\hat{\phi})
+     \end{equation}
+     \begin{equation}
+        = -mr^2\dot{\phi}\hat{\theta}
+     \end{equation}
+     \begin{equation}
+        = mr^2\dot{\phi}\hat{z}
+     \end{equation}
+\end{enumerate}
+
+\section*{Conservative Central Force}
+
+Given 
+\begin{equation}
+    \vec{F} = f\hat{r} \iff -\vec{\nabla}u
+\end{equation}
+Because there is no dependence of $\theta, \phi$, we have that 
+\begin{equation}
+    U = \int \vec{f} \cdot \vec{dr}
+\end{equation}
+
+We write 
+
+\begin{equation}
+    L = mr^2\dot{\phi}
+\end{equation}
+
+We write this as 
+
+\begin{equation}
+    \dot{\phi} = \frac{L}{mr^2}
+\end{equation}
+
+\begin{equation}
+    E = T + U
+\end{equation}
+
+\begin{equation}
+    E = \frac{1}{2}m(\dot{r}^2 + r^2\dot{\phi}^2) + U
+\end{equation}
+\begin{equation}
+    E = \frac{1}{2}m\dot{r}^2 + \frac{L^2}{2mr^2} + U
+\end{equation}
+
+Given 
+
+\begin{equation}
+    U = \frac{L^2}{2mr^2} - \frac{k}{r}
+\end{equation}
+
+\subsection*{Case 1}
+
+\begin{equation}
+    E > 0
+\end{equation}
+
+\begin{equation}
+    \frac{L^2}{2mr^2}
+\end{equation}
+
+dominates. 
+
+\subsection*{Case 2}
+
+\begin{equation}
+    E < 0
+\end{equation}
+
+\begin{equation}
+    \frac{k}{r}
+\end{equation}
+
+dominates. 
+
+\section*{Gravitational Force}
+
+Consider 2 masses of $m_1, m_2$, gravitational force between the 2 masses would be 
+
+\begin{equation}
+    -\frac{Gm_1m_2}{r^2}\hat{r}
+\end{equation}
+
+Consider an extended object with mass $m_1$, then 
+
+\begin{equation}
+    m_1 = \int_{V}\rho(r)dr
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    F = -Gm_1\frac{\int_{V}\rho(r)}{(r_2-r_1)^3}(r_2-r_1)dr_1
+\end{equation}
+
+\end{document}
