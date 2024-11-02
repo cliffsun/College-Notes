@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 14}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 14}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Harmonic \& damped motion}
+
+\subsection*{Simple harmonic oscillator}
+
+\subsubsection*{Using f = ma}
+
+Let $x(t)$ be time dependent location. And $x_0 = L$ be the equilibrium point. Then 
+
+\begin{equation}
+    m\ddot{x} = -k(x-L)
+\end{equation}
+Letting $x' = x - L$, then 
+\begin{equation}
+    m\ddot{x'} = -kx'
+\end{equation}
+
+The solution is 
+
+\begin{equation}
+    x(t) = A\cos(\omega t + \phi_0)
+\end{equation}
+
+\subsubsection*{Using energy conservation}
+
+\begin{equation}
+    E = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}k(x-L)^2 = c
+\end{equation}
+\begin{equation}
+    \partial_t E = m\ddot{x}\dot{x} + k(x-L)\dot{x} = 0
+\end{equation}
+Thus 
+\begin{equation}
+    m\ddot{x} = -k(x-L)
+\end{equation}
+
+\subsection*{Energy of Oscillations}
+
+\begin{equation}
+    U = \frac{1}{2}ky^2 \iff \frac{1}{2}kC^2\cos^2(\omega t - \phi)
+\end{equation}
+Non negative.
+
+\begin{equation}
+    T = \frac{m}{2}C^2\omega^2\sin^2(\omega t - \phi)
+\end{equation}
+
+Thus total energy is 
+
+\begin{equation}
+    E = \frac{kC^2}{2}
+\end{equation}
+
+\end{document}

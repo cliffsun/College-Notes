@@ -1,0 +1,381 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 19}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 19}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Diagonalizability
+    \item Eigenvalues, Eigenvectors
+\end{itemize}
+
+
+\begin{theorem}
+    Suppose $A \in M_{n \times n}$
+    \begin{enumerate}
+        \item $\lambda$ is an eigenvalue $\iff$ 
+        \begin{equation}
+            \det(A - \lambda I) = 0
+        \end{equation}
+        \item Given some $0 \neq v \in \mathbb{R}^n$, then $v$ is an eigenvector with an eigenvector $\lambda \iff$
+        \begin{equation}
+            v \in N(A - \lambda I)
+        \end{equation}
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We first prove $2.$. Given $v \neq 0$, then $v$ is an eigenvector with eigenvalue $\lambda \iff$
+    \begin{equation}
+        Av = \lambda v
+    \end{equation} 
+    \begin{equation}
+        \iff Av = (\lambda I) v
+    \end{equation}
+    \begin{equation}
+        \iff (A - \lambda I)v = 0
+    \end{equation}
+    \begin{equation}
+        v \in N(A - \lambda I)
+    \end{equation}
+    We now prove statement $1.$, now $\lambda$ is an eigenvalue of $A \iff$
+    \begin{equation}
+        \exists v \neq 0 \text{ such that } v \in N(A - \lambda I)
+    \end{equation} 
+    \begin{equation}
+        \iff \null(A - \lambda I) > 0
+    \end{equation}
+    \begin{equation}
+        \iff A - \lambda I \text{ is not invertible. }
+    \end{equation}
+    \begin{equation}
+        \iff \det(A - \lambda I) = 0
+    \end{equation}
+\end{proof}
+
+\subsubsection*{Note 1:}
+
+$N(A - \lambda I)$ is called the \underline{Eigenspace} of $A$ with eigenvalue $\lambda$, denoted $E_\lambda$. 
+\begin{center}
+    $E_\lambda = $ \{ eigenvalues with eigenvalue $\lambda$ \} $\cup$ $\{ 0 \}$
+\end{center} 
+
+\subsubsection*{Note 2:}
+
+The function $f(t) = \det(A - tI)$ is polynomial of degree $n$, called the \underline{characteristic polynomial} of $A$. Its leading 
+coefficient is always $\pm 1$, specifically $(-1)^n$. 
+
+\begin{corollary}
+    Any $n \times n$ matrix has at most $n$ eigenvalues.
+\end{corollary}
+
+\begin{proof}
+    Any polynomial of degree $n$ has at most $n$ roots. 
+\end{proof}
+
+\subsubsection*{Aside}
+
+It also makes sense to talk about eigenstuff of an operator $T$ on an infinite dimensional vector space $V$. 
+
+\subsubsection*{Ex:}
+
+Let $V = $ \{ functions $f: \mathbb{R} \rightarrow \mathbb{R}$ that are infinitely differentiable. \} Then we claim that every $\lambda \in \mathbb{R}$ is an eigenvalue of $T$.
+
+\begin{proof}
+    Given $\lambda$, choose $e^{\lambda x}$. Trivial
+\end{proof}
+
+\subsection*{Example}
+
+\begin{equation}
+    A = \begin{pmatrix}
+        0 & 0 & 1\\
+        0 & 2 & 0 \\
+        -2 & 0 & 3
+    \end{pmatrix}
+\end{equation}
+
+\textbf{Goal:} Calculate all eigenstuff; try to diagonolize the $A$ if possible.
+
+\subsubsection*{Step 1:}
+
+\begin{equation}
+    \det(A - tI)
+\end{equation}
+
+\begin{equation}
+    = \det\begin{pmatrix}
+        -t & 0 & 1 \\
+        0 & 2-t & 0 \\
+        -2 & 0 & 3-t
+    \end{pmatrix}
+\end{equation}
+
+Cofactor expansion on the middle row:
+
+\begin{equation}
+    = (2-t)\det\begin{pmatrix}
+        -t & 1 \\
+        -2 & 3-t
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    = (2-t)(-3t + t^2 + 2)
+\end{equation}
+
+\begin{equation}
+    = (2-t)(t-1)(t-2)
+\end{equation}
+
+Thus: $\lambda = 1,2$
+
+\subsubsection*{Step 2:}
+
+Eigenvectors for $\lambda = 1$,
+
+\begin{equation}
+    A - I = \begin{pmatrix}
+        -1 & 0 & 1 \\
+        0 & 1 & 0 \\
+        -2 & 0 & 2
+    \end{pmatrix}
+\end{equation}
+
+So 
+
+\begin{equation}
+    E_1 = N(A - I) = \text{ solution set to LS }\left(\begin{array}{ccc|c}
+        -1 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0 \\
+        -2 & 0 & 2 & 0
+    \end{array}\right)
+\end{equation}
+
+We row reduce
+
+\begin{equation}
+    \left(\begin{array}{ccc|c}
+        -1 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0 \\
+        -2 & 0 & 2 & 0
+    \end{array}\right)
+\end{equation}
+
+\begin{equation}
+    R_3 = R_3 - 2R_1
+\end{equation}
+
+\begin{equation}
+    \left(\begin{array}{ccc|c}
+        -1 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{array}\right)
+\end{equation}
+
+Thus we have that 
+
+\begin{equation}
+    a_1 = a_3
+\end{equation}
+
+\begin{equation}
+    a_2 = 0
+\end{equation}
+
+Thus, 
+
+\begin{equation}
+    E_1 = \{a_3, 0, a_3\} \; a_3 \in \mathbb{R}
+\end{equation}
+
+\begin{equation}
+    = span(\{(1,0,1)\})
+\end{equation}
+
+Eigenvectors for $\lambda = 2$. 
+
+\begin{equation}
+    E_2 = N(A - 2I)
+\end{equation}
+
+Row reduce 
+
+\begin{equation}
+    \left(\begin{array}{ccc|c}
+        -2 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 \\
+        -2 & 0 & 1 & 0
+    \end{array}\right)
+\end{equation}
+
+\begin{equation}
+    R_3 = R_3 - R_1
+\end{equation}
+
+\begin{equation}
+    \left(\begin{array}{ccc|c}
+        -2 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{array}\right)
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    a_1 = \frac{1}{2}a_3
+\end{equation}
+
+Thus our solution set is 
+
+\begin{equation}
+    E_2 = \{(\frac{1}{2}a_3, a_2, a_3)\}
+\end{equation}
+
+\begin{equation}
+    = span(\{(\frac{1}{2}, 0 , 1), (0,1,0)\})
+\end{equation}
+
+\subsubsection*{Step 3:}
+
+Recall from last time, 
+\begin{center}
+    $A$ is diagonolize $\iff \exists$ basis of $\mathbb{R}^3$ consisting of eigenvectors of A.  
+\end{center}
+
+\begin{center}
+    Try $\beta = \begin{pmatrix}
+        1 & 0 & \frac{1}{2} \\
+        0 & 1 & 0 \\
+        1 & 0 & 1
+    \end{pmatrix}$
+\end{center}
+
+This is a basis. So 
+
+\begin{equation}
+    [L_A]_\beta = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 2 & 0 \\
+        0 & 0 & 2
+    \end{pmatrix}
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    L_A(v_1) = v_1
+\end{equation}
+
+\begin{equation}
+    L_A(v_2) = 2v_2
+\end{equation}
+
+\begin{equation}
+    L_A(v_3) = 2v_3
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    [L_A]_\beta = Q^{-1}AQ
+\end{equation}
+
+Such that $Q$ is the change of basis matrix
+
+\begin{equation}
+    Q = \begin{pmatrix}
+        1 & 0 & \frac{1}{2}\\
+        0 & 1 & 0 \\
+        1 & 0 & 1
+    \end{pmatrix}
+\end{equation}
+
+Yes, $A$ is diagonolizable, and 
+
+\begin{equation}
+    Q^{-1}AQ = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 2 & 0 \\
+        0 & 0 & 2
+    \end{pmatrix}
+\end{equation}
+
+\subsection*{Application}
+
+For the same matrix $A$, what is $A^n$? We know that 
+
+\begin{equation}
+    Q^{-1}AQ = D
+\end{equation}
+
+Thus
+
+\begin{equation}
+    A = QDQ^{-1}
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    A^n = (QDQ^{-1})^n \iff QD^nQ^{-1}
+\end{equation}
+
+In general, there are 2 things that can stop us from diagonalizing a matrix:
+\begin{enumerate}
+    \item Not enough eigenvalues 
+    \item Not enough eigenvectors 
+\end{enumerate}
+
+\begin{definition}
+    If $f(t)$ is a polynomial, with coefficients in a field $F (= \mathbb{R}, \mathbb{C}, \dots)$. Then we say that $f$ splits over the field $F$ if 
+    \begin{equation}
+        f(t) = c(t - a_1)(t-a_2)\dots(t-a_d)
+    \end{equation} 
+    Where $d$ is the degree of the polynomial. 
+\end{definition}
+
+\end{document}

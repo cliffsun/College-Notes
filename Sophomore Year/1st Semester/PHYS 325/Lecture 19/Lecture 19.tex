@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{Generic Title}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Generic Title}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Delta Distribution}
+
+Denoted as $\delta(t - a)$. Note thta 
+
+\begin{equation}
+    f(a) = \int_{-\infty}^{\infty}f(t)\delta(t-a)dt
+\end{equation}
+
+For functions continuous at $t = a$. Note that $\delta(\pm\infty) = 0$. Note that 
+\begin{center}
+    Dirac Delta $\neq$ Kronecker Delta
+\end{center}
+
+Example:
+
+\begin{equation}
+    \int_\mathbb{R}\sin(t)\delta(t-\frac{3}{2}\pi)dt = \sin(\frac{3}{2}\pi) = -1
+\end{equation}
+
+Note: because the delta distribution is defined within the integral, any delta distribution that isn't in its standard form, that is 
+
+\begin{equation}
+    \delta(f(t)) \neq \delta(t - a)
+\end{equation}
+
+Then performing u substitution is absolutely necessary. 
+
+\section*{Impulse Forces}
+
+Consider force $\Delta t << \frac{1}{\omega_n}$, then 
+\begin{equation}
+    F(t) = I\delta(t)
+\end{equation}
+A response to an impulse is called a \underline{Green's Function}. Then a response to an impulse function at $t=0$, we have that 
+\begin{equation}
+    G(t) = \begin{cases}
+        0 & t< 0 \\
+        \exp(-\frac{c}{2m}t)\frac{\sin(\omega_d t)}{m\omega_d} & t > 0
+    \end{cases}
+\end{equation}
+
+This is the response for 
+
+\begin{equation}
+    m\ddot{x} + c\dot{x} + kx = \delta(t-a)
+\end{equation}
+
+Heavyside ("step") function 
+
+\begin{equation}
+    H(y-y_0) = \begin{cases}
+        1 & y > y_0 \\
+        0 & y < y_0
+    \end{cases}
+\end{equation}
+
+You can rewrite the Green's function using this Heavyside function.
+
+In general, 
+
+\begin{equation}
+    L[G(t-a)] = \delta(t-a)
+\end{equation}
+
+\section*{Arbitrary Forcing \& Convolution}
+
+Force with 2 impulses, $I_1(t=t_1)$, $I_2(t=t_2)$. 
+
+\begin{equation}
+    F(t) = I_1\delta(t-t_1) + I_2\delta(t-t_2)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    x_p(t) = I_1G(t - t_1) + I_2G(t-t_2)
+\end{equation}
+
+Then a force with $N$ impulses @ $t_q$
+
+\begin{equation}
+    F(t) = \sum I_q\delta(t-t_q)
+\end{equation}
+
+Now 
+
+\begin{equation}
+    x_p(t) = \sum I_qH(t-t_q)G(t-t_q)
+\end{equation}
+
+In the limit that $\Delta t \rightarrow 0$, we have that 
+
+\begin{equation}
+    F(t) = \int_{-\infty}^{\infty}F(s)\delta(t-s)ds
+\end{equation}
+
+Response $x_p(t)$:
+
+\begin{equation}
+    x_p(t) = \int_{-\infty}^{\infty}F(s)G(t-s)ds
+\end{equation}
+
+This is the general solution for a damped oscillator for an arbitrary driving force!
+
+\end{document}

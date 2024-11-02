@@ -1,0 +1,233 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 13}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 13}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Invertibility \& Isomorphisms
+    \item Change of coordinates
+\end{itemize}
+
+\section*{Invertibility \& Isomorphisms}
+
+\subsection*{Calculating Inverse Matrices}
+
+Suppose $A,B \in M_{n\times n}(\mathbb{R})$. Note, $B = A^{-1} \iff Ab_i = e_i$. Suppose 
+\begin{equation}
+    B = \begin{pmatrix}
+        b_1 & b_2 & b_3 & \dots
+    \end{pmatrix}
+\end{equation}
+
+We expand out $AB \rightarrow$
+
+\begin{equation}
+    AB = \begin{pmatrix}
+        Ab_1 & Ab_2 & \dots
+    \end{pmatrix}
+\end{equation}
+
+Note: $AB = I_n \iff BA = I_n$. How to find $A^{-1}$: solve $Ab_i = e_i$ which is a LSOE to calculate each $b_i$. In fact,
+we can do all of them at the same time.
+
+\subsection*{Example:}
+
+Let 
+
+\begin{equation}
+    A = \begin{pmatrix}
+        1 & 4 & 3 \\
+        -1 & 3 & 0 \\
+        0 & 2 & 1
+    \end{pmatrix}
+\end{equation}
+
+Then we augment this matrix:
+
+\begin{equation}
+    \left(\begin{array}{ccc|ccc}
+        1 & 4 & 3 & 1 & 0 & 0 \\
+        -1 & 3 & 0 & 0 & 1 & 0 \\
+        0 & 2 & 1 & 0 & 0 & 1
+    \end{array}\right)
+\end{equation}
+
+Row reducing the matrix yields 
+
+\begin{equation}
+    \left(\begin{array}{ccc|ccc}
+        1 & 0 & 0 & 3 & 2 & -9 \\
+        0 & 1 & 0 & 1 & 1 & -3 \\
+        0 & 0 & 1 & -2 & -2 & 7 \\
+    \end{array}\right)
+\end{equation}
+
+Thus $A^{-1}$ exists and equals the right hand side of this augmented matrix. 
+
+\subsection*{Application}
+
+If we know $A^{-1}$, then it becomes easier to solve $LS(A|b)$ because
+\begin{center}
+    \{solutions to $LS(A|B)$\} = \{vectors $x$ such that $Ax = b$\}
+\end{center}
+
+Then 
+
+\begin{equation}
+    Ax = b \iff A^{-1}Ax = A^{-1}b \iff x = A^{-1}b
+\end{equation}
+
+So there is a unique solution $x = A^{-1}b$ for any given $b$ for $LS$. 
+
+\newpage 
+
+Suppose $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$. Then $T = L_A$ where $A = [T]_\beta^\beta$ where $\beta$ is the standard basis.
+
+\subsubsection*{Question:}
+
+How can we tell whether $T$ is invertible? 
+
+\subsubsection*{Answer:}
+
+\begin{theorem}
+    The following are equivalent 
+    \begin{enumerate}
+        \item $T$ is invertible
+        \item $A$ is invertible
+        \item $T$ has rank $n$
+        \item $T$ has nullity $0$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    If $U$ is a linear transformation, given by a matrix $B$, then $U = T^{-1} \iff B = A^{-1}$. For 3,4 this is just the rank-nullity theorem. To relate 1 to 3,4: we note 
+    \begin{center}
+        T is invertible $\iff$ T is bijective \\
+        $\iff$ T is injective and surjective \\
+        $\iff$ nullity of T is $0$ \& rank of T is $n$
+    \end{center}
+    \textbf{Note:} an analagous statement is true for $T: V \rightarrow W$ where $\dim(V) = \dim(W) = n$ and replacing $A$ with $[T]_\beta^\gamma$ for some basis $\beta$ of $V$, and $\gamma$ of $W$. 
+\end{proof}
+
+\subsubsection*{Consequence:}
+
+\begin{theorem}
+    If $A,B \in M_{n \times n}(\mathbb{R})$ and $AB = I_n$, then $B = A^{-1}$. In particular, $BA = I_n$. 
+\end{theorem}
+
+\begin{proof}
+    Suppose $A,B \in M_{n\times n}(\mathbb{R})$ and $AB = I$. Then $L_A$ and $L_B$ are linear transformations from $\mathbb{R}^n \rightarrow \mathbb{R}^n$ such that 
+    \begin{equation}
+        L_a \circ L_B = I_{\mathbb{R}^n}
+    \end{equation}
+    In particular, then $L_A \circ L_B$ is invertible. Facts:
+    \begin{enumerate}
+        \item If $f \circ g$ is injective, then $g$ is injective
+        \item If $f \circ g$ is surjecitve, then $f$ is surjective
+    \end{enumerate}
+    By fact 2, $L_A$ is surjective, in other words, its rank is $n$. Therefore, $L_A$ is invertible, and thus $A$ is invertible. 
+    To prove that $A^{-1} = B$: 
+    \begin{equation}
+        A^{-1} \iff A^{-1}(AB) \iff B
+    \end{equation}
+\end{proof}
+
+\section*{Change of coordinates}
+
+\textbf{Motivating Question:} Given a vector/linear transformation written in one coordinate system, how can we express it in another coordinate system?
+
+\subsection*{Vectors}
+
+\textbf{Q:} Given a vector space $V$ with two basis $\beta, \beta'$, how can we calculate some vector $[v]_\beta'$ from $[v]_\beta$. 
+
+\textbf{Idea:} Consider $I_V: V_\beta \rightarrow V_\beta'$. Then for any $v \in V$, then 
+\begin{equation}
+    [v]_{\beta'} = [I_V(v)]_{\beta'} \iff [I_V]_\beta^{\beta'} [v]_\beta
+\end{equation}
+This is called change in coordinates. How to calculate $[I_v]_\beta^{\beta'}$? By definition, the columns of $[I_v]_\beta^{\beta'}$ are representations of vectors in $\beta$ in terms of $\beta'$. 
+
+\subsection*{Example:}
+
+$V = \mathbb{R}^2$ with $\beta = {e_1, e_2}$. Then let $\beta' = \{v_1 = <1,1>, v_2 = <-1,1>\}$. Then 
+\begin{equation}
+    e_1 = \frac{v_1 - v_2}{2}
+\end{equation}
+and 
+\begin{equation}
+    e_2 = \frac{v_1 + v_2}{2}
+\end{equation}
+
+\subsection*{Case of Linear Transformations}
+
+\subsubsection*{General Question}
+Suppose $V, W$ are vector spaces, and we're given basis $\beta$ and $\beta'$ for $V$ and $\gamma, \gamma'$ for $W$. Given $T: V \rightarrow W$, how can we calculate $[T]_{\beta'}^\gamma$ from $[T]_\beta^{\gamma'}$?
+
+\subsubsection*{Idea}
+
+$[T]_{\beta'}^{\gamma'}$ is the matrix that we multiply $[v]_\beta'$ by to produce $[T(v)]_{\gamma'}$. To do that, we write 
+
+\begin{equation}
+    [v]_{\beta'} \rightarrow [v]_{\beta} \rightarrow [T(v)]_\gamma \rightarrow [T(v)]_{\gamma'}
+\end{equation}
+
+Then formula is 
+
+\begin{equation}
+    [T]_{\beta'}^{\gamma'} = [I_W]_{\gamma}^{\gamma'}[T]_{\beta}^{\gamma}[I_v]_{\beta'}^{\beta}
+\end{equation}
+
+In the special case:
+
+\begin{equation}
+    [T]_{\beta'} = [I_V]_{\beta}^{\beta'}[T]_\beta[I_V]_{\beta'}^{\beta}
+\end{equation}
+
+This is nothing but 
+
+\begin{equation}
+    [T]_{\beta'} = Q^{-1}[T]_\beta Q
+\end{equation}
+
+\end{document}

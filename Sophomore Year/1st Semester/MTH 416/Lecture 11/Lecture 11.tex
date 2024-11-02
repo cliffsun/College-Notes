@@ -1,0 +1,271 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 11}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 11}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Matrix multiplication \& composition
+\end{itemize}
+
+\section*{Matrix Multiplication \& composition}
+
+\subsection*{Recall}
+
+\begin{equation}
+    T: V \rightarrow W
+\end{equation}
+a linear transformation where $V = \mathbb{R}^n$ and $W = \mathbb{R}^m$ for now. Given an ordered basis 
+
+\begin{equation}
+    \beta = \{e_1, \dots, e_n\} \text{ for } \mathbb{R}^n
+\end{equation}
+\begin{equation}
+    \gamma = \{e_1, \dots, e_m\} \text{ for } \mathbb{R}^m
+\end{equation}
+Which means we can write $T$ as a matrix $[T]_\beta^\gamma$. Then if $V = W$, then $\beta = \gamma$ then $[T]_\beta \iff [T]_\beta^\beta$. We note that 
+the columns of $[T]_\beta^\gamma$ is $T(e_1), \dots, T(e_n)$. In general
+
+\begin{equation}
+    [T]_\beta^\gamma = \left([T(v_1)]_\gamma, \dots, [T(v_n)]_\gamma\right)
+\end{equation}
+
+Then we have that $T(v) = [T]_\beta^\gamma v$ for any column vector $v \in \mathbb{R}^n$. Then if $v = <a_1, \dots, a_n$, then 
+\begin{equation}
+    T(v) = a_1T(e_1) + \dots + a_nT(e_n)
+\end{equation}
+
+It follows that 
+
+\begin{itemize}
+    \item $R(T) = \{T(v) : v \in \mathbb{R}^n\}$ = span(columns of A) = columnspace of A or $(C(A))$
+    \item $N(T) = \{v \in \mathbb{R}^n : T(v) = 0 \}$ = $N(A)$ = kernel of a Linear Transformation
+\end{itemize}
+
+This gives a fresh perspective on the rank nullity theorem. That is if we row-reduce $A$, then 
+\begin{itemize}
+    \item $\dim R(T) = $ \# of columns that contain pivots 
+    \item $\dim N(T) = $ \# of non-pivot columns
+\end{itemize}
+
+\subsection*{Composition of Linear Transformations}
+Suppose $V,W,X$ are vector spaces and we have that 
+
+\begin{equation}
+    V \rightarrow^T W \rightarrow^U X
+\end{equation}
+
+\begin{theorem}
+    $U \cdot T$ $V \rightarrow X$ is a linear transformation. 
+\end{theorem}
+
+\begin{proof}
+    Recall from HW 4, 
+    \begin{center}
+        Some function $T$ is linear $\iff$ $T(cv_1 + v_2) = cT(v_1) + T(v_2)$ for all $v_1,v_2,c$
+    \end{center}
+    Calculate
+    \begin{equation}
+        U\cdot T(cv_1 + v_2) \iff U(T(cv_1 + v_2))
+    \end{equation}
+    \begin{equation}
+        \iff U(cT(v_1) + T(v_2))
+    \end{equation}
+    \begin{equation}
+        \iff cU(T(v_1)) + U(T(v_2))
+    \end{equation}
+    \begin{equation}
+        \iff c[U \cdot T(v_1)] + U \cdot T(v_2)
+    \end{equation}
+    Thus $U \cdot T$ is linear. 
+\end{proof}
+
+Now suppose we're given ordered basis $\alpha$ ofr $V$, $\beta$ for $W$, and $\gamma$ for $X$. Then we have the matrices
+\begin{equation}
+    [T]_\alpha^\beta,  \; [U]_\beta^\gamma, \& \; [U \circ T]_\alpha^\gamma
+\end{equation}
+
+Note this is matrix multiplication. Also a transformation from $\mathbb{R}^n \rightarrow \mathbb{R}^n$ means that $\beta = \beta$
+
+\begin{definition}
+    Suppose $A \in M_{m \times n}(\mathbb{R})$ and $B \in M_{n\times p}(\mathbb{R})$. The product $AB \in M_{m \times p}(\mathbb{R})$
+    is defined by 
+    \begin{equation}
+        (AB)_{ij} = \sum_{k=1}^{n}A_{ik}B_{kj}
+    \end{equation}
+    Note, this only makes sense for $(m \times n) \cdot (n' \times p)$ where $n = n'$. 
+\end{definition}
+
+Note: if $B = \left(b_1, \dots, b_p\right)$, then 
+
+\begin{equation}
+    AB = (Ab_1, \dots, Ab_p)
+\end{equation}
+
+\begin{theorem}
+    Given $V,W,X,T,U,\alpha,\beta,\gamma$ as before, then 
+    \begin{equation}
+        [U \cdot T]_\alpha^\gamma = [U]_\beta^\gamma \cdot [T]\alpha^\beta
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    We'll calculate the RHS, recall 
+    \begin{enumerate}
+        \item \begin{equation}
+            [T]_\gamma^\beta = \left([T(v_1)]_\gamma, \dots, [T(v_n)]_\gamma\right)
+        \end{equation}
+        \item For any $w \in W$, we have that 
+        \begin{equation}
+            [U(w)]_\gamma = [U]_\beta^\gamma \cdot [w]_\beta 
+        \end{equation}
+    \end{enumerate}
+    Thus,
+    \begin{equation}
+        [U]_\beta^\gamma \cdot [T]_\alpha^\beta = \left([U]_\beta^\gamma [v]_\alpha, \dots\right)
+    \end{equation}
+    \begin{equation}
+        \iff [U \cdot T]_\alpha^\gamma
+    \end{equation}
+\end{proof}
+
+In general, 
+
+\begin{enumerate}
+    \item Matrix multiplication is not generally communutative. That is 
+    \begin{equation}
+        AB \neq BA
+    \end{equation}
+    Say if $A = (2 \times 3)$ and $B = (3 \times 4)$, then $AB = (2 \times 4)$, but $BA$ doesn't exist.
+    \item Even if $A,B$ are borth $n \times n$, then $AB$ is usually not equal to $BA$.
+\end{enumerate}
+
+\begin{theorem}
+    Matrix multiplication is 
+    \begin{enumerate}
+        \item Associative, meaning 
+        \begin{equation}
+            A(BC) \iff (AB)C
+        \end{equation}
+        \item Distributive, meaning 
+        \begin{equation}
+            A(B + C) \iff AB + AC
+        \end{equation}
+        and 
+        \begin{equation}
+            (A+B)C \iff AC + BC
+        \end{equation}
+    \end{enumerate}
+\end{theorem}
+
+Note: (1) corresponds to the fact that for linear transformations
+
+\begin{equation}
+    V \rightarrow^S W \rightarrow^T \rightarrow^U Y
+\end{equation}
+Then 
+\begin{equation}
+    U \circ (T \circ S) = (U \circ T) \circ S
+\end{equation}
+
+For any $a,b \in W$, we have that the zero matrix 
+
+\begin{equation}
+    0_{a\times b} = \begin{pmatrix}
+         0 \dots 0
+    \end{pmatrix}
+\end{equation}
+
+Similarly, the identity matrix is 
+
+\begin{equation}
+    I_{a \times b} = \begin{pmatrix}
+        1 & 0 & 0 & \dots & 0 \\
+        0 & 1 & 0 & \dots & 0 \\
+        \dots 
+    \end{pmatrix}
+\end{equation}
+
+Facts: Whenever the equations (matrix multiplication) makes sense, we have:
+
+\begin{equation}
+    A0 = 0
+\end{equation}
+
+\begin{equation}
+    0B = 0
+\end{equation}
+
+\begin{equation}
+    AI = A
+\end{equation}
+
+\begin{equation}
+    IB = B
+\end{equation}
+
+Let $V = \mathbb{R}^n$ and $W = \mathbb{R}^m$, and $A \in M_{m\times n}(\mathbb{R})$, then 
+
+\begin{definition}
+    The \underline{left-multiplication operation} by $A$ is the function
+    \begin{equation}
+        L_A: \mathbb{R}^n \rightarrow \mathbb{R}^m
+    \end{equation}
+    \begin{equation}
+        L_A(v) = Av
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item $L_A$ is linear
+        \item $[L_A]_\beta^\gamma = A$ where $\beta, \gamma$ are the same ordered basis for $\mathbb{R}^n$ and $\mathbb{R}^m$. 
+        \item Given matrices $A = M_{m \times n}(\mathbb{R})$ and $B = M_{m \times p}(\mathbb{R})$, then we have that 
+        \begin{equation}
+            L_{AB} = L_A \circ L_B
+        \end{equation} 
+    \end{enumerate}
+\end{theorem}
+
+\end{document}

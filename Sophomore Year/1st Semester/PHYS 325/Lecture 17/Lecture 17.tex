@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 17}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 17}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Harmonic Force}
+
+EOM:
+\begin{equation}
+    m\ddot{x} + c\dot{x} + kx = F_0\cos(\omega t - \theta)
+\end{equation}
+
+Solution:
+
+\begin{equation}
+    x(t) = x_h(t) + x_p(t)
+\end{equation}
+
+\begin{equation}
+    x_p(t) = F_0G(\omega)\cos(\omega t - \theta - \phi(\omega))
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    G(\omega) = \frac{1}{k}\left[(1-(\frac{\omega}{\omega_n}^2)^2 + (2\zeta\frac{\omega}{\omega_n})^2)\right]^{-\frac{1}{2}}
+\end{equation}
+
+Phase is 
+
+\begin{equation}
+    \phi(\omega) = \arctan(\frac{2\zeta\omega\omega_n}{\omega_n^2 - \omega^2})
+\end{equation}
+
+\section*{Analyze $x_p(t)$}
+
+$x_p(t)$ has a resonance frequency, such that the amplitude of the particular solution is maximized. Thus, 
+
+\begin{equation}
+    D_w (G(\omega_0)) = 0
+\end{equation}
+
+Thus, 
+
+\begin{equation}
+    w_0 = \pm\omega_n \sqrt{1 - 2\zeta^2}
+\end{equation}
+
+\section*{Periodic Force \& Fourier Series}
+
+Periodic Force:
+
+\begin{equation}
+    F(t + T) = F(t)
+\end{equation}
+
+with period $T = \frac{2\pi}{\Omega}$. We can describe the solution as a sum of harmonic functions. 
+
+\section*{Fourier Series}
+
+\begin{equation}
+    f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty}a_n\cos(n\Omega t) = \sum_{p = 1}^{\infty}b_p\sin(p\Omega t)
+\end{equation}
+
+Note
+\begin{itemize}
+    \item $n, p \in \mathbb{N}$
+\end{itemize}
+
+with 
+
+\begin{equation}
+    a_0 = \frac{2}{T}\int_{0}^{T}F(t)dt
+\end{equation}
+
+\begin{equation}
+    a_n = \frac{2}{T}\int_{0}^{T}F(t)\cos(n\Omega t)dt
+\end{equation}
+
+\begin{equation}
+    b_n = \frac{2}{T}\int_{0}^{T}F(t)\sin(n\Omega t)dt
+\end{equation}
+
+\end{document}

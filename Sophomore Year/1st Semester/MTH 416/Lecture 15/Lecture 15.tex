@@ -1,0 +1,268 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 15}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 15}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item $2 \times 2$ determinants
+    \item $n \times n$ determinants
+\end{itemize}
+
+\section*{Recall}
+
+\begin{enumerate}
+    \item $\det(A) \neq 0 \iff$ A is invertible
+    \item $\det(AB) = \det(A)\det(B)$
+    \item $L_A$ scales volumes by factor of $|\det(A)|$
+    \item $\det$ is not linear, but \underline{"multilinear"}
+\end{enumerate}
+
+Let $R = [0,t]\times [0,t]$, such that $t > 0$. Then performing $T(R)$ yields
+\begin{equation}
+    T(R) = \text{ parallelogram scaled by t }
+\end{equation}
+Thus 
+\begin{equation}
+    \text{area}(T(R)) = t^2|\det(A)|
+\end{equation}
+
+So in general, let $S = $ some general area in $\mathbb{R}^2$. Then we claim that 
+\begin{center}
+    area($T(S)$) = area(S) $\cdot |\det(A)|$
+\end{center}
+
+We can divide up the region $S$ into a bunch of little parallelograms, then applying $T$ to the paralleograms scales each parallelogram by a factor $\det(A)$. Thus,
+\begin{center}
+    area($T(S)$) = area(S)$\cdot |\det(A)|$
+\end{center}
+
+\begin{theorem}
+    (multilinearity for $2 \times 2$ det) Let 
+    \begin{equation}
+        \det: M_{2 \times 2}(\mathbb{R}) \rightarrow \mathbb{R}
+    \end{equation}
+    Becomes a linear transformation if we view it as a function of only one row, and treat the other rows as constants. That is, if $u,v,w$ are row vectors in $\mathbb{R}^2$ and $k \in \mathbb{R}$. Then 
+    \begin{equation}
+        \det\begin{pmatrix}
+            ku + v \\
+            w
+        \end{pmatrix} = k\det\begin{pmatrix}
+            u \\
+            w
+        \end{pmatrix} + \det\begin{pmatrix}
+            v \\
+            w
+        \end{pmatrix}
+    \end{equation}
+    Similarly
+    \begin{equation}
+        \det\begin{pmatrix}
+            w\\
+            ku + v
+        \end{pmatrix} = k\det\begin{pmatrix}
+            w \\
+            u
+        \end{pmatrix} + \det\begin{pmatrix}
+            w \\
+            v
+        \end{pmatrix}
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Let $u = (a_1,a_2)$, $v = (b_1,b_2)$, and $w=(c_1,c_2)$. For the first equation, we expand it out to be 
+    \begin{equation}
+        \begin{pmatrix}
+            ka_1 + b_1 & ka_2 + b_2 \\
+            c_1 & c_2
+        \end{pmatrix}
+    \end{equation}
+    Calculating the determinant yields
+    \begin{equation}
+        (ka_1 + b_1)c_2 - (ka_2 + b_2)c_1
+    \end{equation}
+    \begin{equation}
+        k(a_1c_2 - a_2c_1) + (b_1c_2 - b_2c_1)
+    \end{equation}
+    \begin{equation}
+        = k\det\begin{pmatrix}
+            u \\\
+            w
+        \end{pmatrix} + \begin{pmatrix}
+            v \\
+            w
+        \end{pmatrix}
+    \end{equation}
+    The second calculation is similar. 
+\end{proof}
+
+\section*{n x n determinants}
+
+\begin{definition}
+    The determinant of an $n \times n$ matrix ($n > 1$) is 
+    \begin{equation}
+        \det(A) = \sum_{j=1}^{n}(-1)^{j+1}A_{1j}\det(\tilde{A}_{1j})
+    \end{equation}
+    Where $\tilde{A}$ is the matrix given by deleting row $1$ and column $j$ from $A$. This is called \underline{cofactor expansion} on the first row. 
+\end{definition}
+
+\subsection*{Example, n=2}
+
+\begin{equation}
+    A = \begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix} = \begin{pmatrix}
+        A_{11} & A_{12} \\
+        A_{21} & A_{22}
+    \end{pmatrix}
+\end{equation}
+
+Then
+\begin{equation}
+    \det(A) = \sum_{j=1}^{n}(-1)^{j+1}A_{1j}\det(\tilde{A}_{1j})
+\end{equation}
+
+\begin{equation}
+    = (-1)^{1 + 1}A_{11}\det(A_{22}) + (-1)^{1 + 2}A_{12}\det(A_{21})
+\end{equation}
+\begin{equation}
+    A_{11}A_{22} - A_{12}A_{21}
+\end{equation}
+\begin{equation}
+    ad - bc
+\end{equation}
+
+\subsection*{Example, n=3}
+
+\begin{equation}
+    A = \begin{pmatrix}
+        2 & 1 & 3 \\
+        5 & 0 & 2 \\
+        1 & 2 & 1
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    \det(A) = 2\det\begin{pmatrix}
+        0 & 2 \\
+        2 & 1
+    \end{pmatrix} - 1\det\begin{pmatrix}
+        5 & 2 \\
+        1 & 1 
+    \end{pmatrix} + 3\det\begin{pmatrix}
+        5 & 0 \\
+        1 & 2
+    \end{pmatrix}
+\end{equation}
+
+\begin{theorem}
+    The $n \times n$ determinant is multilinear in the $n rows$. That is suppose we have matirces $A,B,C \in M_{2 \times 2}(\mathbb{R})$ which are 
+    identical except in row r, where 
+    \begin{equation}
+        a_r = kb_r + c_r \text{ for some $k \in \mathbb{R}$}
+    \end{equation}
+    Then 
+    \begin{equation}
+        \det(A) = k\det(B) + \det(C)
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Induct on $n$. 
+    \subsubsection*{Base Case: n = 1}
+    This just says that the $1 \times 1$ determinant is linear, which we already know to be true. 
+    \subsubsection*{Inductive Step}
+    Assume that this theorem is true for all $n \times n$ matrices, then we must prove it for $(n + 1) \times (n + 1)$ matrices $A,B,C$ as well.
+    Let $A,B,C$ be as above, then there are 2 cases. When $r = 1$ and $r \neq 1$. 
+    \subsubsection*{r=1}
+    \begin{equation}
+        \det(A) = \sum_{j=1}^{n}(-1)^{j+1}A_{1j}\det(\tilde{A}_{1j})
+    \end{equation}
+    \begin{equation}
+        = \sum_{j =1}^{n+1}(-1)^{j+1}(kB_{1j} + C_{1j})\det(\tilde{A}_{1j})
+    \end{equation}
+    But note that 
+    \begin{equation}
+        \det(\tilde{A}_{1j}) = \det(\tilde{B}_{1j}) = \det(\tilde{C}_{1j})
+    \end{equation}
+    \begin{equation}
+        = k\sum_{j=1}^{n+1}-1^{j+1}B_{1j}\det(\tilde{B}_{1j}) + \sum_{j=1}^{n+1}-1^{j+1}C_{1j}\det(\tilde{C}_{1j})
+    \end{equation}
+    \begin{equation}
+        = k\det(B) + \det(C)
+    \end{equation}
+    \subsubsection*{r>1}
+    \begin{equation}
+        \det(A) = \sum_{j=1}^{n+1}(-1)^{j+1}A_{1j}\det(\tilde{A}_{1j})
+    \end{equation}
+    The matrices $\tilde{A}_{1j}$, $\tilde{B}_{1j}$, $\tilde{C}_{1j}$ are identical except for the $r-1$ row. So 
+    \begin{equation}
+        \det(A) = \sum_{j=1}^{n+1}(-1)^{j+1}A_{1j}\det(\tilde{A}_{1j})
+    \end{equation}
+    \begin{equation}
+        = \sum (-1)^{j+1}A_{1j}(k\det(\tilde{B}_{1j}) + \det(\tilde{C}_{ij}))
+    \end{equation}
+    \begin{equation}
+        = \sum (-1)^{j+1}B_{1j}\det(\tilde{B}_{1j}) + \sum(-1)^{j+1}C_{1j}\det(\tilde{C}_{1j})
+    \end{equation}
+    This proves the theorem. 
+\end{proof}
+
+\begin{theorem}
+    Let $A \in M_{2 \times 2}(\mathbb{R})$ and let $1 \leq r \leq n$. Then 
+    \begin{equation}
+        \det(A) = \sum_{j=1}^{n}(-1)^{r+j}A_{rj}\det(\tilde{A}_{rj})
+    \end{equation}
+\end{theorem}
+
+\begin{lemma}
+    If $A$ is a $n \times n$ matrix, with row $r = e_{j}$. Then 
+    \begin{equation}
+        \det(A) = (-1)^{r+j}\det(\tilde{A}_{rj})
+    \end{equation}
+\end{lemma}
+
+\end{document}

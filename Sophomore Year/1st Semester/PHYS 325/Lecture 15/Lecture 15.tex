@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 15}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 15}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Damped harmonic oscillator
+\end{itemize}
+
+The EOM for damped harmonic oscillators is 
+
+\begin{equation}
+    m\ddot{y} + c\dot{y} + ky = 0
+\end{equation}
+
+The "normal" form:
+
+\begin{equation}
+    \ddot{y} + 2\zeta\omega_n\dot{y} + \omega_n^2y = 0
+\end{equation}
+
+Then the eigen frequency, or the normal frequency is 
+
+\begin{equation}
+    \omega_n = \sqrt{\frac{k_{eff}}{m_{eff}}}
+\end{equation}
+
+and 
+
+\begin{equation}
+    \zeta = \frac{c}{2m\omega_n}
+\end{equation}
+
+Guess 
+
+\begin{equation}
+    y \sim e^{\lambda t}
+\end{equation}
+
+insert in EOM
+
+\begin{equation}
+    \lambda^2 + 2\zeta\omega_n\lambda + \omega_n^2 = 0
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \lambda_\pm = -\omega_n(\zeta \pm \sqrt{\zeta^2 -1})
+\end{equation}
+
+\subsection*{Undamped}
+
+Let $\zeta = 0$, then 
+
+\begin{equation}
+    \lambda_\pm = \pm i\omega_n
+\end{equation}
+
+\subsection*{Overdamped}
+
+Let $\zeta > 1$
+
+\begin{equation}
+    \lambda_\pm = -\omega_n(\zeta \pm \sqrt{\zeta^2 - 1})
+\end{equation}
+
+Note that
+
+\begin{equation}
+    \lambda_\pm < 0
+\end{equation}
+
+\subsection*{Critical damping}
+
+Let $\zeta = 1$, then 
+
+\begin{equation}
+    \lambda_\pm = -omega_n
+\end{equation}
+
+Then 
+
+\begin{equation}
+    y(t) = A_1e^{\omega_nt} + A_2te^{-\omega_nt}
+\end{equation}
+
+\subsection*{Underdamping}
+
+Let $0 < \zeta < 1$, then 
+
+\begin{equation}
+    \lambda_pm = -\omega_n(\zeta \pm \sqrt{\zeta^2 - 1})
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \lambda_pm = \omega_n\zeta \pm i\sqrt{1 - \zeta^2}
+\end{equation}
+
+Versions we can work with:
+
+\begin{equation}
+    y(t) = e^{-\zeta\omega t}(A\cos(\omega t) + B\sin(\omega t))
+\end{equation}
+
+What happens if $\zeta < 0$? Then double yo work dumbass. 
+
+\section*{Forced oscillator}
+Oscillator with external driving force. Note, energy is \underline{not} conserved. Then 
+
+\begin{equation}
+    \frac{dE}{dt} + P_{\text{diss}} = \frac{dW}{dt}_{\text{ext}} \iff F_{\text{ext}} \cdot v
+\end{equation}
+
+\begin{equation}
+    m_{\text{eff}}\frac{d^2\vec{x}}{dt^2} + c_{\text{eff}}\frac{d\vec{x}}{dt} + k_{\text{eff}}\vec{x} = \vec{F_{\text{ext}}}(t)
+\end{equation}
+
+No damping means that 
+
+\begin{equation}
+    P_{\text{diss}} = 0
+\end{equation}
+
+We also have 
+
+\begin{equation}
+    T = \frac{1}{2}mv^2 \iff \frac{1}{2}mL^2\dot{\theta}^2
+\end{equation}
+
+\begin{equation}
+    U = mgh \iff mgL(1-\cos\theta)
+\end{equation}
+
+Note we have that 
+
+\begin{equation}
+    F \cdot v \iff L\dot{\theta}F\cdot e_{\theta} \iff L\dot{\theta}F\cos\theta
+\end{equation}
+
+Thus we have that 
+
+\begin{equation}
+    \frac{1}{2}mL^2 2\dot{\theta}\ddot{\theta} + mgL\dot{\theta}\sin\theta = L\dot{\theta}F\cos\theta
+\end{equation}
+
+\begin{equation}
+    mL\ddot{\theta} + mg\sin\theta = F\cos\theta
+\end{equation}
+
+For small angles:
+
+\begin{equation}
+    mL\ddot{\theta} + mg\theta = F(t)
+\end{equation}
+
+\section*{Cart on a cart}
+
+\begin{itemize}
+    \item Big cart as acceleration $\ddot{y}$
+    \item Displacement of big truck = $y$, displacement of everything is $y + x$
+    \item also another force $-kx$
+\end{itemize}
+
+Then 
+
+\begin{equation}
+    m(\ddot{x} + \ddot{y}) = -kx
+\end{equation}
+
+then 
+
+\begin{equation}
+    m\ddot{x} + kx = -m\ddot{y}
+\end{equation}
+
+\end{document}

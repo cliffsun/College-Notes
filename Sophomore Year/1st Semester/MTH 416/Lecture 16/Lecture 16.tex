@@ -1,0 +1,326 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item $n \times n$ determinant
+    \item Properties \& calculating with row operations
+\end{itemize}
+
+\section*{Recall}
+
+\begin{theorem}
+    For any $1 \leq r \leq n$, then 
+    \begin{equation}
+        \det(A) = \sum_{j=1}^{n}(-1)^{r+j}A_{rj}\det(\tilde{A_{rj}})
+    \end{equation}
+\end{theorem}
+
+then 
+
+\begin{lemma}
+    If $A$ has some row that is $e_j$, then 
+    \begin{equation}
+        \det(A) = (-1)^{r + j}\det(\tilde{A}_{rj})
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Using the Lemma, let $A \in M_{2 \times 2}(\mathbb{R})$, then define new matrices $B_j$ such that 
+    $B_j$ is identical to $A$ except that row $r$ is replaced by $e_j$. Then 
+    \begin{equation}
+        \det(A) = \sum A_{rj}\det(B_j)
+    \end{equation}
+    \begin{equation}
+        \det(A) = \sum (-1)^{r + j}A_{rj}\det(\tilde{A_{rj}})
+    \end{equation}
+\end{proof}
+
+To prove the lemma, we induct on $n$. 
+
+\begin{proof}
+    Base cases: $n = 1$ and $n = 2$. For $n = 1$, we define the determinant of the $0 \times 0$ matrix to be 1. 
+
+    \subsubsection*{Induction}
+
+    Assume true for some $n$, then let $A$ be some form $(n + 1) \times (n + 1)$. Then we use cofactor expansion on the first row:
+    \begin{equation}
+        \det(A) = \sum (-1)^{1 + j}A_{1j}\det(\tilde{A_{1j}})
+    \end{equation}
+    Each $\tilde(A_{1j})$ has two forms:
+    \begin{enumerate}
+        \item If we cross out column $j \neq k$ (or not where the standard basis appears), then we can use the IH to calculate the determinant. 
+        \item If we do cross out column $j = k$, then we can use $\tilde{A_{1j}}$ has a row of all $0's$, then we can use the following theorem:
+        \begin{theorem}
+            If $A$ has a row of all $0's$, then the determinant is 0. 
+        \end{theorem}
+        \begin{proof}
+            If row $r$ of $A$ is all 0's, then row $r = 0 \cdot $(row $r$), so multilinearity states that 
+            \begin{equation}
+                \det(A) = 0\cdot \det(A) = 0
+            \end{equation} 
+        \end{proof}
+    \end{enumerate}
+\end{proof}
+
+\subsection*{Triangular matrices}
+
+Calculate the determinant of this matrix:
+
+\begin{equation}
+    \begin{pmatrix}
+        2 & 1 & 4 & 5\\
+        0 & 1 & 1 & 6\\
+        0 & 0 & 4 & 9\\
+        0 & 0 & 0 & 3
+    \end{pmatrix}
+\end{equation}
+
+Expand this out using the last row:
+
+\begin{equation}
+    \det(A) = - 0 + 0 - 0 + 3\det\begin{pmatrix}
+        2 & 1 & 4 \\
+        0 & 1 & 1 \\
+        0 & 0 & 4
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    \det(A) = 3 \cdot 4 \cdot \det \begin{pmatrix}
+        2 & 1 \\
+        0 & 1
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    = 3 \cdot 4 \cdot 1 \cdot 2
+\end{equation}
+
+These are the diagonal entries of the matrix. 
+
+\begin{theorem}
+    If $A$ is upper or lower triangular, then 
+    \begin{equation}
+        \det(A) = \text{ product of the diagonal entries }
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    If $A$ has two identical rows, then the determinant of $A = 0$. 
+\end{theorem}
+
+\begin{proof}
+    Induct on $n$. The base case is $n = 2$ is trivial. 
+    \subsubsection*{Induction}
+    Suppose the theorem is true for some $n$, then let $A$ be $(n + 1) \times (n + 1)$ with 2 identical rows. Then we calculate the determinant of $A$ using cofactor 
+    expansion using any other rows other than the two rows. 
+    \begin{equation}
+        \det(A) = \sum_{j = 1}^{n + 1}(-1)^{r + j}A_{rj}\det(\tilde{A_{rj}})
+    \end{equation}
+    But $\tilde{A_{rj}}$ still has two identical rows, which means that we can apply the base case. Thus, by the IH, this determinant is $0$. 
+\end{proof}
+
+\begin{theorem} \textbf{Main Theorem}
+    Suppose $A$ and $B$ are $M_{2 \times 2}(\mathbb{R})$, and $B$ is the result of applying one elementary row operation to $A$. Then,
+    \begin{enumerate}
+        \item Switching 2 rows, then $\det B = -\det A$
+        \item Scaling a row by factor $c \neq 0$, then $\det B = c\det A$
+        \item Adding $c R_{i}$ to  $R_{j}$, then $\det(B) = \det(A)$ 
+    \end{enumerate} 
+\end{theorem}
+
+\begin{corollary}
+    $\det(A) \neq 0 \iff$ A is invertible. 
+\end{corollary}
+
+\begin{proof}
+    If $A$ is invertible, then it row-reduces to $I_n$. Since $\det(I_n) = 1$, then it follows that $\det(A) \neq 0$. If $A$ is not invertible, then it reduces to some RREF matrix with \# of pivots less than n.
+    This has a row of all zeros, so $\det(B) = 0$, and the $\det(A) = 0$.  
+\end{proof}
+
+\begin{theorem}
+    If $A$ has 2 identical rows, then $\det(A) = 0$.
+\end{theorem}
+
+\begin{proof}
+    Use multilinearity and above theorem. 
+    \subsubsection*{Property 2}
+    This is just multilinearity. 
+    \subsubsection*{Property 3}
+    Let
+    \begin{equation}
+        A = \begin{pmatrix}
+            \dots \\
+            R_i \\
+            \dots \\
+            R_j \\
+            \dots 
+        \end{pmatrix}
+    \end{equation}
+    Then 
+    \begin{equation}
+        B = \begin{pmatrix}
+            \dots \\
+            R_i \\
+            \dots \\
+            R_j + cR_i\\
+            \dots 
+        \end{pmatrix}
+    \end{equation}
+    Taking this determinant, we notice that 
+    \begin{equation}
+        \det(B) = \det\begin{pmatrix}
+            \dots \\
+            R_i \\
+            \dots \\
+            R_j\\
+            \dots
+        \end{pmatrix} + c \det\begin{pmatrix}
+            \dots \\
+            R_i \\
+            \dots \\
+            R_i\\
+            \dots
+        \end{pmatrix}
+    \end{equation}
+    The first matrix is $A$, and the second matrix has 2 identical rows, thus its determinant is $0$. Therefore, 
+    \begin{equation}
+        \det(B) = \det(A)
+    \end{equation}
+    \subsection*{Property 1}
+    Let 
+    \begin{equation}
+        A = \begin{pmatrix}
+            \dots \\
+            R_i \\
+            \dots \\
+            R_j\\
+            \dots
+        \end{pmatrix}
+    \end{equation}
+    Then we switch two rows 
+    \begin{equation}
+        B = \begin{pmatrix}
+            \dots \\
+            R_j \\
+            \dots \\
+            R_i\\
+            \dots
+        \end{pmatrix}
+    \end{equation}
+    Trick: consider 
+    \begin{equation}
+        C = \begin{pmatrix}
+            \dots \\
+            R_i + R_j \\
+            \dots \\
+            R_i + R_j\\
+            \dots
+        \end{pmatrix}
+    \end{equation}
+    Thus, $\det(C) = 0$. But we can also calculate the determinant of $C$ using multilinearity. 
+    \begin{equation}
+        \det(C) = \det(\begin{pmatrix}
+            \dots \\
+            R_i\\
+            \dots \\
+            R_i + R_j\\
+            \dots
+        \end{pmatrix} + \begin{pmatrix}
+            \dots \\
+            R_j\\
+            \dots \\
+            R_i + R_j\\
+            \dots
+        \end{pmatrix})
+    \end{equation}
+    \begin{equation}
+        \det(C) = \det(\begin{pmatrix}
+            \dots \\
+            R_i\\
+            \dots \\
+            R_j\\
+            \dots
+        \end{pmatrix})  + \det\begin{pmatrix}
+            \dots \\
+            R_i\\
+            \dots \\
+            R_i\\
+            \dots
+        \end{pmatrix} + \det\begin{pmatrix}
+            \dots \\
+            R_j\\
+            \dots \\
+            R_j\\
+            \dots
+        \end{pmatrix} + \det\begin{pmatrix}
+            \dots \\
+            R_j\\
+            \dots \\
+            R_i\\
+            \dots
+        \end{pmatrix}
+    \end{equation}
+    Thus 
+    \begin{equation}
+        \det\begin{pmatrix}
+            \dots \\
+            R_j\\
+            \dots \\
+            R_i\\
+            \dots
+        \end{pmatrix} = -\det(\begin{pmatrix}
+            \dots \\
+            R_i\\
+            \dots \\
+            R_j\\
+            \dots
+        \end{pmatrix})  
+    \end{equation}
+\end{proof}
+
+\end{document}

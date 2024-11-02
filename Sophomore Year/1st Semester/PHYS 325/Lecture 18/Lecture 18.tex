@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 18}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 18}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Greens functions
+    \item Delta functions
+    \item Fourier Stuff
+\end{itemize}
+
+\section*{Fourier Series}
+
+Applied for periodic functions.
+
+\begin{equation}
+    F(t) = \frac{a_0}{2} + \sum_{p=1}^{\infty}a_p\cos(p\Omega t) + \sum_{p=1}^{\infty}\sin(p\Omega t)
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    a_0 = \frac{2}{T}\int_{T}F(t)dt
+\end{equation}
+
+\begin{equation}
+    a_p = \frac{2}{T}\int_T F(t)\cos(p\Omega t)dt
+\end{equation}
+
+and 
+
+\begin{equation}
+    b_p = \frac{2}{T}\int_TF(t)\sin(p\Omega t)dt
+\end{equation}
+
+Note: $\cos(mx)$ and $\cos(nx)$ are "orthogonal" for $m \neq n$, that is 
+
+\begin{equation}
+    <\cos(mx), \cos(nx)>_T = 0
+\end{equation}
+
+Same argument for $\sin([m,n]x)$.
+
+\section*{Gibbs Phenomenon}
+
+Overshooting followed by undershooting. This is prevalent in Fourier series fitting. 
+
+\section*{Summary}
+
+EOM:
+
+\begin{equation}
+    m\ddot{x} + c\dot{x} + kx = F(t)
+\end{equation}
+
+Then for $\Omega = \frac{2\pi}{T}$, then 
+
+\begin{equation}
+    F(t) = \frac{a_0}{2} + \sum a_p\cos(p\Omega t) + \sum b_p\sin(p\Omega t)
+\end{equation}
+
+The steady state solution $x(t)$ is the solution for $t >> 0$. 
+
+\end{document}

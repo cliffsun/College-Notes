@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Forced oscillators}
+
+EOM:
+
+\begin{equation}
+    m_{eff}\ddot{x} + c_{eff}\dot{x} + kx = F(t)
+\end{equation}
+
+\subsection*{General Solution}
+
+Introduce linear operator:
+
+\begin{equation}
+    \mathbb{L}[x] = F
+\end{equation}
+
+Linear operator is a map of a function to another function. Note that linear operators obey this condition:
+\begin{equation}
+    L(af + bg) = aL(f) + bL(g)
+\end{equation}
+
+\section*{Force as power series}
+
+\begin{equation}
+    F_{ext} = a + bt + ct^2 + \cdots
+\end{equation}
+
+\begin{equation}
+    L(x) = F_{ext}
+\end{equation}
+
+Ansatz for $x_p(t)$
+
+\begin{equation}
+    x_p(t) \sim \alpha + \beta y + \gamma t^2 + \cdots 
+\end{equation}
+
+Given some EOM with 
+
+\begin{equation}
+    F = F_0\cos(\omega t)
+\end{equation}
+Then the particular solution is 
+
+\begin{equation}
+    x = \frac{F_0}{k}e^{-i\theta}\left[1 + 2i\zeta\frac{\omega}{\omega_n} - \left(\frac{\omega}{\omega_n}\right)^2\right]^{-1}
+\end{equation}
+
+\begin{equation}
+    \iff \tilde{G(\omega)}F_0e^{-i\theta}
+\end{equation}
+
+Note 
+
+\begin{equation}
+    \tilde{G(\omega)} = G(\omega)e^{-i\phi(\omega)}
+\end{equation}
+
+\begin{equation}
+    G(\omega) = |\tilde{G}(\omega)| = \frac{1}{k}\left[(1 - \frac{\omega^2}{\omega_n^2} + (2\zeta \frac{\omega}{\omega_n})^2)\right]^{-\frac{1}{2}}
+\end{equation}
+
+This is called the \underline{response function}. 
+
+\end{document}

@@ -10,5 +10,9 @@
 	"Right Arrow":{
 		"prefix": "rarrow",
 		"body" : "\\rightarrow"
+	}, 
+	"Isomorphisms": {
+		"prefix": "isom",
+		"body": "\\overset{\\sim}{=}"
 	}
 }

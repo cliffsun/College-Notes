@@ -1,0 +1,356 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 12}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 13}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Invertibility
+    \item Isomorphisms
+\end{itemize}
+
+\section*{Recall}
+
+\begin{equation}
+    T: V \rightarrow W \equiv A = [T]_\beta^\gamma
+\end{equation}
+
+But "\underline{left multiplication}" does the following: given $A \in M_{m \times n}(\mathbb{R})$, 
+\begin{equation}
+    L_A : \mathbb{R}^n \rightarrow \mathbb{R}^m
+\end{equation}
+\begin{equation}
+    L_A(v) = Av
+\end{equation}
+
+Claim: given $\beta, \gamma$ are the standard ordered basis for $\mathbb{R}^n, \mathbb{R}^m$
+
+\begin{equation}
+    [L_A]_\beta^\gamma = [A]
+\end{equation}
+
+\subsection*{Example}
+
+\begin{equation}
+    A = \begin{pmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6
+    \end{pmatrix}
+\end{equation}
+Then 
+\begin{equation}
+    L_A\begin{pmatrix}
+        x \\
+        y \\
+        z
+    \end{pmatrix} = \begin{pmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6
+    \end{pmatrix}\begin{pmatrix}
+        x \\
+        y \\
+        z
+    \end{pmatrix} \iff \begin{pmatrix}
+        x + 2y + 3z \\
+        4x + 5y + 6z
+    \end{pmatrix}
+\end{equation}
+
+Then 
+\begin{equation}
+    L_A(e_1) = \begin{pmatrix}
+        1 \\
+        4
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    L_A(e_2) = \begin{pmatrix}
+        2 \\
+        5
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    L_A(e_3) = \begin{pmatrix}
+        3 \\
+        6
+    \end{pmatrix}
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    [L_A]_\beta^\gamma = \begin{pmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6
+    \end{pmatrix} \iff [A]
+\end{equation}
+
+\section*{Inverse Functions}
+
+Suppose $f: S \rightarrow T$ is any function, then 
+\begin{theorem}
+    f has an inverse $\iff$ f is bijective (one-to-one \& onto), that is 
+    \begin{equation}
+        g \circ f = I_S \land f \circ g = I_T
+    \end{equation}
+    Then 
+    \begin{equation}
+        g(f(s)) = s \land f(g(t)) = t
+    \end{equation}
+    for all $s \in S$ and $t \in T$. Note, if f has an inverse, then it is unique and we call it $f^{-1} = g$
+\end{theorem}
+
+Goal: understand invertibility of linear transformations. Let $T: V \rightarrow W$ be a linear transformation, then 
+\begin{enumerate}
+    \item When does $T$ have an inverse?
+    \item What can we say about $T^{-1}$ when it exists? 
+\end{enumerate}
+
+\subsection*{Example:}
+
+Let $V = W = \mathbb{R}^2$, and 
+\begin{equation}
+    T: \mathbb{R}^2 \rightarrow \mathbb{R}^2 : T(x,y) = (-y,x)
+\end{equation}
+We define 
+\begin{equation}
+    U(x,y) = (y,-x)
+\end{equation}
+then 
+\begin{equation}
+    T(U(x,y)) = T(y,-x) \rightarrow (-(-x), y) \iff (x,y)
+\end{equation}
+similarly, 
+\begin{equation}
+    U(T(x,y)) = U(-y,x) \rightarrow (x,-(-y)) \iff (x,y)
+\end{equation}
+Thus $U = T^{-1}$
+
+\begin{theorem}
+    If $T$ is invertible, then $T^{-1}$ is also a linear transformation. 
+\end{theorem}
+
+\begin{proof}
+    Suppose $T$ is an invertible linear transformation, then let $w_1,w_2 \in W$ and $c \in \mathbb{R}$. We claim that 
+    \begin{equation}
+        T^{-1}(cw_1 + w_2) = cT^{-1}(w_1) + T^{-1}(w_2)
+    \end{equation}
+    Let $v_1 = T^{-1}(w_1)$ and $v_2 = T^{-1}(w_2)$, then $T(v_1) = w_1$ and $T(v_2) = w_2$.
+    \begin{equation}
+        T(cv_1 + v_2) \iff cT(v_1) + T(v_2)
+    \end{equation} 
+    \begin{equation}
+        \iff cw_1 + w_2
+    \end{equation}
+    Therefore, 
+    \begin{equation}
+        T^{-1}(cw_1 + w_2) = cv_1 + v_2
+    \end{equation}
+    But this is nothing but 
+    \begin{equation}
+        \iff cT^{-1}(w_1) + T^{-1}(w_2)
+    \end{equation}
+\end{proof}
+
+\begin{theorem}
+    Suppose $T: V \rightarrow W$ is an invertible linear transformation, and $\beta$ is a basis for $V$. Then 
+    \begin{equation}
+        \gamma = \{T(v) : v \in \beta\} \text{ is a basis for $W$ }
+    \end{equation}
+\end{theorem}
+
+\begin{corollary}
+    If $V$ is n-dimensional, then $W$ is too. 
+\end{corollary}
+
+\begin{proof}
+    Proof of theorem in finite dimensional case. Suppose $T: V \rightarrow W$ is an invertible linear transformation. Let 
+    \begin{equation}
+        \beta = \{v_1, \dots, v_n\}
+    \end{equation} 
+    be a basis for $V$. Then we claim that 
+    \begin{equation}
+        \gamma = \{T(v_1), \dots, T(v_n)\}
+    \end{equation}
+    is a basis for $W$. 
+    \subsubsection*{Spanning Proof}
+    Let $w \in W$, then we claim that $w$ is a linear combination of $\gamma$. Then let $v = T^{-1}(w)$, then 
+    \begin{equation}
+        v = a_1v_1 + \dots + a_nv_n
+    \end{equation}
+    for some constants $a_i$. Applying $T$ to both sides, we yield
+    \begin{equation}
+        T(v) = T(a_1v_1 + \dots + a_nv_n)
+    \end{equation}
+    Then 
+    \begin{equation}
+        w = a_1T(v_1) + \dots + a_nT(v_n)
+    \end{equation}
+    So $w \in span(T(v_1), \dots, T(v_n))$
+    \subsubsection*{Linear Independent}
+    Suppose 
+    \begin{equation}
+        a_1T(v_1) + \dots + a_nT(v_n) = 0
+    \end{equation}
+    for some $a_i \in \mathbb{R}$. We claim that all of these $a_i$'s are equal to 0. We take $T^{-1}$ of both sides:
+    \begin{equation}
+        T^{-1}(a_1T(v_1) + \dots + a_nT(v_n)) \iff a_1v_1 + \dots + a_nv_n = 0
+    \end{equation}
+    But because $\beta$ is linearly independent, we have that all $a_i$'s are 0. Thus, $\gamma$ is linearly independent. Therefore, $\gamma$ is a basis for $W$. 
+\end{proof}
+
+\begin{definition}
+    \begin{enumerate}
+        \item We call vector spaces $V$ and $W$ \underline{isomorphic} if there exists an invertible linear transformation from one to another. 
+        \item Any invertible linear transformation is called \underline{isomorphism}
+    \end{enumerate}
+    Notation: $V \overset{\sim}{=} W \iff$ $V$ and $W$ are isomorphic.  
+\end{definition}
+
+If $V \overset{\sim}{=} W$, then an isomorphism $T: V \rightarrow W$ allows us to translate any linear algebra fact about $V$ to one about $W$ and so one. In other words, any 
+properties that we discover of $V$ can be applied to $W$ due to symmetry. "$V$ and $W$ are like the same vector space written in different ways". 
+
+\subsection*{Example}
+
+\begin{equation}
+    P_2(\mathbb{R}) \overset{\sim}{=} \mathbb{R}^3
+\end{equation}
+We define an isomorphism $T$ to be 
+
+\begin{equation}
+    T(ax^2 + bx + c) = \begin{pmatrix}
+        a \\
+        b \\
+        c
+    \end{pmatrix}
+\end{equation}
+
+\subsection*{Example}
+
+\begin{equation}
+    M_{2\times 2}(\mathbb{R}) \overset{\sim}{=} \mathbb{R}^4
+\end{equation}
+
+Then 
+
+\begin{equation}
+    U\begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix} = \begin{pmatrix}
+        a \\
+        b\\
+        c\\
+        d
+    \end{pmatrix}
+\end{equation}
+
+is also an isomorphism. 
+
+\subsubsection*{Note}
+
+The relation $V \overset{\sim}{=} W$ is an equivalence relation, this implies
+\begin{enumerate}
+    \item $V \overset{\sim}{=} V$
+    \item $V \overset{\sim}{=} W \implies W \overset{\sim}{=} V$
+    \item $V \overset{\sim}{=} W \land W \overset{\sim}{=} X \implies V \overset{\sim}{=} X$
+\end{enumerate}
+
+\begin{theorem}
+    Suppose $V$ is finite dimensional and $W$ is any vector space. Then 
+    \begin{center}
+        $V \overset{\sim}{=} W \iff \dim(W) = \dim(V)$ 
+    \end{center}
+\end{theorem}
+
+\begin{proof}
+    $\implies$ is the corollary from earlier. Suppose $\dim(W) = \dim(V) = n$. We claim that 
+    \begin{equation}
+        V \overset{\sim}{=} \mathbb{R}^n \overset{\sim}{=} W
+    \end{equation}
+    Which implies $V \overset{\sim}{=} W$. For that, we choose an isomorphism 
+    \begin{equation}
+        T(v) = [v]_\beta
+    \end{equation}
+    So $V \overset{\sim}{=} \mathbb{R}^n$. Similarly for $W$. Thus, this proves the theorem. 
+\end{proof}
+
+Conclusion: all n-dimensional vector spaces are isomorphic to each other, in fact, they are \underline{only} isomorphic to each other. That is, all n-dimensional vector spaces "look alike", that is 
+they look like $\mathbb{R}^n$ if you choose coordinates. 
+
+\section*{Note about matrix invertibility}
+
+\begin{definition}
+    An $n \times n$ matrix $A$ is \underline{invertible} if there exists an $n \times n$ matrix $B$ such that 
+    \begin{equation}
+        AB = BA = I
+    \end{equation}
+\end{definition}
+
+\begin{lemma}
+    If $A^{-1}$ exists, then it is unique. 
+\end{lemma}
+\begin{proof}
+    Suppose $A$ has two inverses $B, C$. Then 
+    \begin{equation}
+        AB = AC = BA = CA = I
+    \end{equation}
+    Then 
+    \begin{equation}
+        CAB = C(AB) \iff CI = (CA)B \iff IB \iff C = B
+    \end{equation}
+\end{proof}
+
+\subsection*{Connecting it to linear transformations}
+
+Let $T$ be a linear transformation from $V \rightarrow W$, where $\dim(V) = \dim(W) = n$. And let $\beta, \gamma$ be basis for $V, W$ respectively. 
+
+\textbf{Claim:} If $A$ is $[T]_\beta^\gamma$, then $A^{-1} = [T^{-1}]_\beta^\gamma$. 
+
+\begin{proof}
+    $AA^{-1} = [T]_\beta^\gamma[T^{-1}]_\gamma^\beta = [T \circ T^{-1}]_\gamma^\gamma = I$
+\end{proof}
+
+\end{document}
