@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 435: Lecture 2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 435: Lecture 2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Potential Theory}
+
+We restate Maxwell's Equations:
+
+\begin{equation}
+    \vec{\nabla} \cdot \vec{E}(\vec{r}) = \frac{\rho(\vec{r})}{\epsilon_0}
+\end{equation}
+\begin{equation}
+    \vec{\nabla} \times \vec{E}(\vec{r}) = -\frac{\partial }{\partial t}\vec{B}
+\end{equation}
+\begin{equation}
+    \vec{\nabla} \cdot \vec{B} = 0
+\end{equation}
+\begin{equation}
+    \vec{\nabla} \times \vec{B} = \mu_0 \vec{J} + \mu_0\epsilon_0\frac{\partial }{\partial t}\vec{E}
+\end{equation}
+
+Assume static conditions, then all $\frac{\partial }{\partial t}f = 0$ for all functions $f$. Then if 
+\begin{equation}
+    \vec{\nabla} \times \vec{E} = 0
+\end{equation} 
+Then we can find $\vec{E}$ by defining a potential function. The issue is that potential functions are not uniquely defined. Then 
+\begin{equation}
+    \int_{P_i}d\vec{l} \cdot \vec{E}
+\end{equation}
+is path independent for all paths $P_i$. Then let $P_1$ go from a point $O$ to a point $R$ from $P_2$ goes from $R$ to $O$. Then 
+\begin{equation}
+    \int_{P_1} + \int_{P_2} = \oint_{\partial S} d\vec{l} \cdot \vec{E} = \int_S \vec{\nabla} \times \vec{E} = 0
+\end{equation} 
+Thus 
+\begin{equation}
+    \int_{P_1} = -\int_{P_2}
+\end{equation}
+Without loss of generality. Then we define a vector potential function relative to a point $O$ to be 
+\begin{equation}
+    V(\vec{r}) = -\int_{O}^{\vec{r}}d\vec{l'} \cdot \vec{E}
+\end{equation}
+Note this is a potential function. We define the potential energy function of a charged particle in the presence of an E and B field as 
+\begin{equation}
+    u(\vec{a}) - u(\vec{b}) = -\int_{a}^{b}d\vec{l} \cdot \vec{F}
+\end{equation}
+Where $F$ is the lorentz force. We note that the magnetic field does no work on the particle. 
+\begin{proof}
+    Let $F_{B}$ be the force exerted by the B Field. That is 
+    \begin{equation}
+        F_{B} = q\vec{v} \times \vec{B}
+    \end{equation}
+    Then the work done is 
+    \begin{equation}
+        W = q\int_{a}^{b}d\vec{l} \cdot \vec{v} \times \vec{B}
+    \end{equation}
+    We note that 
+    \begin{equation}
+        \frac{d\vec{l}}{dt} = \vec{v}
+    \end{equation}
+    Then the work turns into  
+    \begin{equation}
+        q\int_{a}^{b}d\vec{l} \cdot \frac{d\vec{l}}{dt} \times \vec{B}
+    \end{equation}
+    We multiply this integral by $\frac{dt}{dt}$ to obtain 
+    \begin{equation}
+        q\int_{a}^{b}dt\frac{d\vec{l}}{dt} \cdot \frac{d\vec{l}}{dt} \times \vec{B}
+    \end{equation}
+    But 
+    \begin{equation}
+        \frac{d\vec{l}}{dt} \perp \frac{d\vec{l}}{dt} \times \vec{B}
+    \end{equation}
+    Thus this integral evaluates to $0$.
+\end{proof} 
+
+We first define 
+\begin{equation}
+    V(\vec{r}) = -\int_{O}^{\vec{r}}d\vec{l'} \cdot \vec{E}
+\end{equation}
+Let 
+\begin{equation}
+    \vec{r} \rightarrow \vec{r} + dx \hat{x}
+\end{equation}
+Then 
+\begin{equation}
+    V(\vec{r} + dx\hat{x}) \approx V(\vec{r}) + dx \hat{x} \cdot \vec{E}
+\end{equation}
+Because this is how work is defined. Then 
+\begin{equation}
+    \frac{V(\vec{r} + \hat{x}dx) - V(\vec{r})}{dx} = E_{x}(\vec{r})
+\end{equation}
+\end{document}

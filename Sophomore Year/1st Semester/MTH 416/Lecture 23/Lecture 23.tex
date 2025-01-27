@@ -1,0 +1,286 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 23}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 23}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Inner product spaces
+    \item Orthonormal bases \& Gram-Schmidt
+\end{itemize}
+
+Recall: Inner product axioms
+\begin{enumerate}
+    \item $\langle x + z, y \rangle = \langle x,y \rangle + \langle z,y \rangle$
+    \item $\langle cx,y \rangle = c\langle x,y \rangle$
+    \item $\overline{\langle x,y \rangle} = \langle y,x \rangle$
+    \item If $x \neq 0$, then $\langle x,x \rangle > 0$ and $||x|| = \sqrt{\langle x,x \rangle}$ 
+\end{enumerate}
+
+\begin{theorem}
+    Let $V$ be an inner product space, for all $x,y \in V$, we have that 
+    \begin{enumerate}
+        \item (Cauchy-Schwarz) $|\langle x,y \rangle| \leq ||x||||y||$
+        \item (Triangle Inequality) $||x + y|| \leq ||x|| + ||y||$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We can prove $2$ assuming $1$. We first square both sides:
+    \begin{equation}
+        ||x + y||^2 = \langle x + y, x + y \rangle 
+    \end{equation}
+    \begin{equation}
+        = \langle x, x+y \rangle + \langle y, x + y \rangle
+    \end{equation}
+    \begin{equation}
+        = \langle x, x \rangle + \langle x, y \rangle + \langle y,x \rangle + \langle y,y \rangle 
+    \end{equation}
+    Note:
+    \begin{equation}
+        \langle x,y \rangle + \langle y,x \rangle = 2\mathbb{R}(\langle x,y \rangle)
+    \end{equation}
+    \begin{equation}
+        = \langle x,x \rangle + 2\mathbb{R}(\langle x,y \rangle) + \langle y,y \rangle 
+    \end{equation}
+    We note that if $2\mathbb{R}(\langle x,y \rangle) = 2a$, then 
+    \begin{equation}
+        2|a| \leq |a + bi| + |a-bi|
+    \end{equation}
+    \begin{equation}
+        2|a| \leq 2\sqrt{a^2 + b^2}
+    \end{equation}
+    Then the whole equation simplifies down to 
+    \begin{equation}
+        \leq \langle x,x \rangle + 2|\langle x,y \rangle| + \langle y,y \rangle 
+    \end{equation}
+    \begin{equation}
+        \leq ||x||^2 + 2||x|| ||y|| + ||y||^2
+    \end{equation}
+    \begin{equation}
+        = (||x|| + ||y||)^2
+    \end{equation}
+\end{proof}
+
+We prove $(1)$, then 
+\begin{proof}
+    It is clearly true if $y = 0$, thus we assume that $y \neq 0$. For any $c \in F$, then 
+    \begin{equation}
+        0 \leq \langle x - cy, x - cy \rangle
+    \end{equation}
+    We first expand out the first value:
+    \begin{equation}
+        = \langle x, x-cy \rangle -c \langle y,x-cy \rangle 
+    \end{equation}
+    \begin{equation}
+        = \overline{\langle x-cy, x \rangle} - c \overline{\langle x-cy, y \rangle}
+    \end{equation}
+    \begin{equation}
+        = \langle x,x \rangle - \overline{c\langle y,x \rangle} - c\overline{\langle x,y \rangle} + c\overline{c\langle y,y \rangle}
+    \end{equation}
+    \begin{equation}
+        = \langle x,x \rangle - \overline{c}\langle x,y \rangle - c \overline{\langle x,y \rangle} + c\overline{c}\langle y,y \rangle
+    \end{equation}
+    Choose
+    \begin{equation}
+        c = \frac{\langle x,y \rangle}{\langle y,y \rangle }
+    \end{equation}
+    Then we have 
+    \begin{equation}
+        \overline{c}\langle x,y \rangle = \frac{\overline{\langle x,x \rangle}}{\langle y,y \rangle}\langle x,y \rangle = \frac{\langle x,y \rangle \langle y,x \rangle}{\langle y,y \rangle}
+    \end{equation}
+    \begin{equation}
+        c\overline{\langle x,y \rangle} =  \frac{\langle x,y \rangle \langle y,x \rangle}{\langle y,y \rangle}
+    \end{equation}
+    \begin{equation}
+        c\overline{c} \langle y,y \rangle = \frac{\langle x,y \rangle \langle y,x \rangle}{\langle y,y \rangle}
+    \end{equation}
+    So 
+    \begin{equation}
+        0 \leq \langle x,x \rangle - \frac{\langle x,y \rangle \langle y,x \rangle}{\langle y,y \rangle}
+    \end{equation}
+    Thus 
+    \begin{equation}
+        \langle x,y \rangle \langle y,x \rangle \leq \langle x,x \rangle \langle y,y \rangle 
+    \end{equation}
+    \begin{equation}
+        = (|\langle x,y \rangle|)^2 \leq ||x||^2||y||^2
+    \end{equation}
+    Then, because all numbers are positive, we have that  
+    \begin{equation}
+        |\langle x,y \rangle| \leq ||x|| ||y||
+    \end{equation}
+    This is the Cauchy-Schwarz inequality. 
+\end{proof}
+
+\begin{definition}
+    Let $V$ be an inner product space with $x,y \in V$, then 
+    \begin{enumerate}
+        \item $x$ and $y$ are \underline{orthogonal} if $\langle x,y \rangle = 0$
+        \item A subset $S \subseteq V$ is \underline{orthogonal} if all pairs of distinct $x,y \in S$ are orthogonal
+        \item $x$ is a unit vector if $\langle x,x \rangle = 1 \iff ||x|| = 1 = \sqrt{\langle x,x \rangle}$
+        \item A set $S \subseteq V$ is orthonormal if it is orthogonal and consists entirely of unit vectors. 
+    \end{enumerate}
+\end{definition}
+
+\subsection*{Example 1}
+Let $V = \mathbb{C}^2$, then 
+\begin{enumerate}
+    \item $\{e_1,e_2\}$ are still orthonormal. 
+    \item $v = \begin{pmatrix}
+        2 + i \\
+        i
+    \end{pmatrix}$ and $w = \begin{pmatrix}
+        -1 \\
+        1 + 2i
+    \end{pmatrix}$ are orthogonal. Then 
+    \begin{equation}
+        \langle x,w\rangle = (2 + i)(-1) + i(\overline{1+2i}) = 0
+    \end{equation}
+\end{enumerate}
+
+\subsection*{Example 2}
+
+Let $V = P_1(\mathbb{R})$ with 
+\begin{equation}
+    \langle f,g \rangle = \int_{-1}^{1}f(x)g(x)dx
+\end{equation}
+Claim vectors that 
+\begin{equation}
+    f(x) = \frac{1}{\sqrt{2}}
+\end{equation}
+and 
+\begin{equation}
+    g(x) = \sqrt{\frac{3}{2}}x
+\end{equation}
+are orthonormal basis. We check:
+\begin{equation}
+    \langle f,g \rangle \int_{-1}^{1} \frac{1}{\sqrt{2}}\sqrt{\frac{3}{2}}xdx
+\end{equation}
+This is an odd function, thus this evaluates to 0.
+\begin{equation}
+    \langle f,f \rangle = \int_{-1}^{1}\frac{1}{2}dx \iff 2 \cdot \frac{1}{2} = 1
+\end{equation}
+\begin{equation}
+    \langle g,g \rangle = \int_{-1}^{1}\frac{3}{2}x^2 dx \iff x^3(\frac{1}{2}) = \frac{1}{2} \cdot 2 = 1
+\end{equation}
+
+\subsection*{Goal:}
+Let's try to orthonormal bases for a given inner product space. Then 
+\begin{theorem}
+    Every finite dimensional inner product space has an orthonormal basis. 
+\end{theorem}
+\begin{theorem}
+    Given an orthogonal set 
+    \begin{equation}
+        S = \{v_1, \dots, v_k\} \text{ with } 0 \notin S
+    \end{equation}
+    with 
+    \begin{equation}
+        y = a_1v_1 + \dots + a_kv_k
+    \end{equation}
+    \begin{equation}
+        a_i = \frac{\langle y, v_i \rangle}{\langle v_i, v_i \rangle}
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Given
+    \begin{equation}
+        y = a_1v_1 + \dots + a_kv_k
+    \end{equation}
+    Calculate
+    \begin{equation}
+        \langle y,v_i \rangle = a_1 \langle v_1,v_i\rangle + \dots
+    \end{equation}
+    Because this is an orthongal basis, we have that 
+    \begin{equation}
+        \langle v_j, v_i \rangle = 0 \iff j \neq i
+    \end{equation}
+    Then the only one standing is 
+    \begin{equation}
+        \langle y,v_i \rangle = a_i \langle v_i, v_i \rangle
+    \end{equation}
+    In other words 
+    \begin{equation}
+        a_i = \frac{\langle y, v_i \rangle}{\langle v_i, v_i \rangle}
+    \end{equation}
+\end{proof}
+
+\begin{corollary}
+    If $S \subseteq V$ is an orthogonal set in $V$, and $0 \notin S$, then $S$ is linearly independent. 
+\end{corollary}
+
+\begin{proof}
+    If we have any linear dependency, that is 
+    \begin{equation}
+        a_1v_1 + \dots + a_kv_k = 0 = y
+    \end{equation}
+    Then
+    \begin{equation}
+        a_i = \frac{\langle y, v_i \rangle }{\langle v_i, v_i \rangle }
+    \end{equation}
+    This means that 
+    \begin{equation}
+        a_i = 0
+    \end{equation}
+\end{proof}
+
+\subsection*{Fourier Series}
+
+Let $V = C[-\pi, \pi]$ where $C$ represents continuous functions in the interval $[-\pi, \pi]$. We define 
+\begin{equation}
+    \langle f, g \rangle = \frac{1}{\pi}\int_{\pi}^{-\pi}f(x)g(x)dx
+\end{equation}then
+\subsubsection*{Fact}
+The following set is orthonormal in $V$:
+\begin{equation}
+    S = \{\frac{1}{\sqrt{2}}\} \cup \{\cos(nx) \; n \in \mathbb{N}\} \cup \{\sin(nx) \; n \in \mathbb{N}\}
+\end{equation}
+We can solve for the coefficients using 
+\begin{equation}
+    a_i = \frac{\langle y(x), v_i \rangle}{\langle v_i, v_i \rangle}
+\end{equation}
+$S$ is not a basis of $V$, but most functions in practice can be expressed as Fourier Series. 
+\end{document}

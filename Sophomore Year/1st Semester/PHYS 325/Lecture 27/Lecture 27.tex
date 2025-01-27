@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 27}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 27}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lagrange Multipliers}
+
+Extremize a functional $S_1$ subject to a global constraint $S_2$. Concrete example:
+\begin{center}
+    \textit{Minimize Area under curve given a fixed length of the curve}
+\end{center}
+
+Given 
+
+\begin{equation}
+    C = S_1 - \lambda S_2
+\end{equation}
+Where $\lambda$ is the Lagrange multiplier, we have that 
+\begin{equation}
+    \delta C = \delta S_1 - \lambda \delta S_2
+\end{equation}
+We have that 
+\begin{equation}
+    \delta S_1 = 0
+\end{equation}
+Because we want to extremize $S_1$, similarly, we have that 
+\begin{equation}
+    \delta S_2 = 0
+\end{equation}
+Because $S_2$ is constant. Thus 
+\begin{equation}
+    \delta S_1 - \lambda \delta S_2 = 0
+\end{equation}
+\subsection*{Hanging Chain}
+Given a chain of mass density $\rho = \frac{dm}{dl}$, we have that 
+\begin{equation}
+    m = \int \rho dl \iff \int \rho \sqrt{x'^2 + 1}dy
+\end{equation}
+Thus
+\begin{equation}
+    PE = -mgh \iff -\int \rho gy\sqrt{x'^2 + 1}dy = S_1
+\end{equation}
+This is our first functional. Our second functional fixes the length of the chain to be a length $L$, that is 
+\begin{equation}
+    L = \int \sqrt{x'^2 + 1}dy = S_2
+\end{equation}
+We choose $\tilde{\lambda} = g\rho\lambda$, we get 
+\begin{equation}
+    C = PE - \tilde{\lambda}L = -g\rho \int dy (y - \lambda)\sqrt{x'^2 + 1}
+\end{equation}
+
+\section*{Local Constraints}
+Consider functionals of 2 or more functions, that is 
+\begin{equation}
+    F(x(t),y(t))  = \int f(x,x',y,y';z)dz
+\end{equation}
+with conditions 
+\begin{equation}
+    g(x,y;z) = 0
+\end{equation}
+Similarly, 
+\begin{equation}
+    C = f - \lambda g
+\end{equation}
+Extremize 
+\begin{equation}
+    C = \int (f-\lambda g)dz
+\end{equation}
+
+\section*{Lagrangian Mechanics}
+
+\begin{equation}
+    L = T - UN
+\end{equation}
+
+\end{document}

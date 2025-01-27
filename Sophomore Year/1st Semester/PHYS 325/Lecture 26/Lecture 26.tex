@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 26}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 26}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    A \underline{Phase space} is a space of all possible behaviors for the system. 
+\end{definition}
+
+Recap: a functional is 
+
+\begin{equation}
+    S[\vec{q}_i(t)] = \int_{t_1}^{t_2}dt L(q, \dot{q}; t)
+\end{equation}
+
+We note some things:
+
+\begin{enumerate}
+    \item If we didn't specify 2 fixed end points, maybe $q(t_1)$ but not $q(t_2)$, then 
+    \begin{equation}
+    \frac{\partial L}{\partial \dot{q}} \delta q \bigg|_{t_1}^{t_2} \neq 0
+    \end{equation}
+    So then, to "fix" an endpoint, we impose the restriction that 
+    \begin{equation}
+        \frac{\partial L}{\partial \dot{q}}\bigg|_{t_2} = 0
+    \end{equation}
+\end{enumerate}
+
+\section*{Brachistochrone Problem}
+
+We note that the total time $T$ is 
+\begin{equation}
+    T = \int_{\gamma}dt
+\end{equation}
+Where $\gamma$ is the curve that the particle takes. We have that 
+\begin{equation}
+    dt = \frac{dl}{v}
+\end{equation}
+Where $dl$ is a small step in the curve and $v$ is the velocity of the particle. We can derive the velocity of the particle using conservation of energy:
+\begin{equation}
+    \frac{1}{2}mv^2 + mgy(t) = mgy(t_0)
+\end{equation}
+Then 
+\begin{equation}
+    v^2 = 2g(y(t_0) - y(t))
+\end{equation}
+Thus 
+\begin{equation}
+    v = \sqrt{2g(y(t_0) - y(t))}
+\end{equation}
+We define $y(t_0) = 0$, thus 
+\begin{equation}
+    v = \sqrt{2g(y(t))}
+\end{equation}
+Where $y(t)$ is defined as positive from below the x,y axis. 
+\begin{equation}
+    T = \int_{t_1}^{t_2}\frac{dl}{v} \iff \int_{t_1}^{t_2}\frac{\sqrt{dx^2 + dy^2}}{\sqrt{2g(y)}}
+\end{equation}
+We choose $t = y$, $q = x(y)$, and $\dot{q} = x'(y)$, thus 
+\begin{equation}
+    \int_{t_1}^{t_2}\frac{\sqrt{x'^2 + 1}}{\sqrt{2gy}}
+\end{equation}
+We use the euler lagrangian equations to get 
+\begin{equation}
+    \frac{1}{\sqrt{2gy}}\frac{x'}{\sqrt{x'^2+1}} = c
+\end{equation}
+This implies that 
+\begin{equation}
+    x' = \pm \frac{\sqrt{2gy}c}{\sqrt{1-2gyc^2}}
+\end{equation}
+Thus 
+\begin{equation}
+    x = \frac{1}{2c}\sqrt{\frac{2}{gy}-4c^2} + \frac{1}{2gc^2}\arctan\left[\sqrt{\frac{1}{2gyc^2} - 1}\right]
+\end{equation}
+\end{document}

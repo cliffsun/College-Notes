@@ -1,0 +1,201 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 22}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 22}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Non-rotating reference frames}
+
+Consider
+\begin{enumerate}
+    \item 2 Frames accelerating relative to each other
+    \item $O$: rest frame with fixed unit vectors
+    \item $O'$: accelerated frame with unfixed basis vectors  
+\end{enumerate}
+
+Define
+\begin{enumerate}
+    \item $\vec{r}_{OA}$ from $O$ to point $A$.
+    \item $\vec{r}_{OO'}$ from $O$ to accelerated frame $O'$.
+    \item $\vec{r}_{O'A}$ from $O'$ to point $A$. 
+\end{enumerate}
+
+Thus 
+
+\begin{equation}
+    \vec{r}_{OA} = \vec{r}_{OO'} + \vec{r}_{O'A}
+\end{equation}
+
+Velocity is 
+
+\begin{equation}
+    \vec{v}_{OA} = \vec{v}_{OO'} + \vec{v}_{O'A}
+\end{equation}
+
+Acceleration is also defined similarly. So 
+
+\begin{equation}
+    F = ma_{OA}
+\end{equation}
+Thus 
+\begin{equation}
+    F = m(a_{OO'} + a_{O'A})
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    F - ma_{OO'} = ma_{O'A}
+\end{equation}
+
+We define 
+
+\begin{equation}
+    F_{\text{fictious}} = ma_{OO'}
+\end{equation}
+
+And 
+
+\begin{equation}
+    F_{\text{true}} = ma_{O'A}
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    F_{\text{tot}} = F_{\text{fictious}} + F_{\text{true}} = ma_{O'A}
+\end{equation}
+
+This is newton's 2nd law in an accelerated frame. 
+
+\section*{Rotating Frames}
+
+Rest frame $O$ is fixed. Consider a rotating reference frame $O'$ with $\vec{\omega}$. Then let 
+\begin{enumerate}
+    \item $\vec{L}$ is fixed on $O'$
+    \item Then $\dot{\vec{L}} = \vec{\omega}\times \vec{L}$
+\end{enumerate}
+
+Then we define the vectors as the following:
+\begin{enumerate}
+    \item $\vec{r}_{OA} = \vec{r}_{OO'} + \vec{r}_{O'A}$ 
+    \item $\vec{v}_{OA} = \vec{v}_{OO'} + \vec{v}_{O'A}$
+    We define this further:
+    \begin{equation}
+        \vec{v}_{OO'} = \frac{d}{dt}\vec{r_{OO'}} = \frac{d}{dt}(\vec{r}_{OO'}\vec{e}_x + \dots)
+    \end{equation} 
+    Note that 
+    \begin{equation}
+        \dot{\vec{e}_x} = 0, \dots
+    \end{equation}
+    Thus 
+    \begin{equation}
+        \vec{v}_{OO'}\vec{e}_x + \dots
+    \end{equation}
+    Note 
+    \begin{equation}
+        \vec{v}_{O'A} = \frac{d}{dt}(x'\vec{e}_{x'} + \dots)
+    \end{equation}
+    These basis vectors do change in time, so 
+    \begin{equation}
+        = \dot{x}\vec{e}_{x'} + \dots + x\dot{\vec{e}}_{x'} + \dots 
+    \end{equation}
+    Note that 
+    \begin{equation}
+        \dot{\vec{e}}_{x'} = \omega times \vec{e}_{x'}
+    \end{equation}
+    \begin{equation}
+         = v_{\text{apparant}} + \omega \times \vec{r}_{O'A}
+    \end{equation}
+\end{enumerate}
+
+Thus 
+
+\begin{equation}
+    \vec{v}_{\text{rest frame}} = \vec{v}_{OO'} + \vec{v}_{\text{apparant}} + \omega \times \vec{r}_{O'A}
+\end{equation}
+
+\subsection*{Acceleration}
+
+\begin{equation}
+    \vec{a}_{OA} = \frac{d}{dt}\vec{v}_{OO'} + \frac{d}{dt}v_{\text{app}} + \frac{d}{dt}(\omega \times r_{O'A})
+\end{equation}
+
+We note that 
+
+\begin{equation}
+    \frac{d}{dt}v_{\text{app}} = \frac{d}{dt}(v_{\text{app}, x'}\vec{e}_{x'} + \dots)
+\end{equation}
+
+\begin{equation}
+    \vec{a}_{\text{app}} + \omega \times \vec{v}_{\text{app}}
+\end{equation}
+
+And 
+
+\begin{equation}
+    \frac{d}{dt}(\omega \times r_{O'A}) = \omega \times r_{O'A} + \omega \times (v_{app} + \omega \times r_{O'A})
+\end{equation}
+
+\begin{equation}
+    a_{OA} = a_{OO'} + a_{app} + \omega \times (\omega \times r_{O'A}) + 2\omega \times v_{app} + \omega \times r_{O'A}
+\end{equation}
+
+We define the following:
+\begin{enumerate}
+    \item $a_{OO'}$: relative acceleration between frames $O$ and $O'$.
+    \item $a_{\text{app}}$: apparant acceleration of $A$ in $O'$. 
+    \item $\omega \times (\omega \times r_{O'A})$: generalized centripetal acceleration
+    \item $2\omega \times v_{app}$ is the coriolis "force". 
+    \item $\dot{\omega} \times r_{O'A}$ is the Euler term
+\end{enumerate}
+
+\section*{Dynamics in non-inertial reference frames}
+
+Write N2L in non-inertial reference frame, 
+\begin{enumerate}
+    \item account for fictious forces
+\end{enumerate}
+
+
+\end{document}

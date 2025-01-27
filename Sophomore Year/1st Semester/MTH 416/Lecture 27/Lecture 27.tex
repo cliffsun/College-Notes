@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 27}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 27}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Jordan Canonical Form
+\end{itemize}
+
+\begin{theorem}
+    If $A \in M_{n\times n}(F)$ is such that char poly(A) splits over $F$, then $A$ is similar to some $B$ in JCF. 
+\end{theorem}
+
+\begin{center}
+    \textbf{Application:} Calculating the powers of a non-diagonalizable matrix $A$
+\end{center}
+
+A matrix in JCF has a specific formula that we can use to calculate its powers.
+
+\begin{center}
+    \textbf{Recall:} To diagonalize $A$, we need a basis of eigenvectors.
+\end{center}
+
+For JCF, we need \underline{generalized eigenvectors}. 
+
+\begin{definition}
+    \begin{enumerate}
+        \item A vector $v\neq 0$ is a \underline{generalized eigenvector} if $A$ for an eigenvalue of $\lambda$ is 
+        \begin{equation}
+            (A - \lambda I)^{p}v = 0
+        \end{equation}
+        For some integer $p$. 
+        \item Given $\lambda$, the \underline{generalized eigenspace} $K_{\lambda}$, is the set of all $v$ (including $0$) satisfying the above. 
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    This generalized eigenspace $K_{\lambda_i}$ is a subspace of $F^{n}$, containing the normal eigenspace. 
+\end{lemma}
+
+Given a Jordan block of typical form, what is the generalized eigenvectors? 
+
+\begin{equation}
+    Ae_{n} = \lambda e_{n} + e_{n-1}
+\end{equation}
+\begin{equation}
+    (A - \lambda I)e_{n} = e_{n-1}
+\end{equation}
+\begin{equation}
+    (A - \lambda I)e_{n-1} = e_{n-2} 
+\end{equation}
+etc. 
+\begin{definition}
+    A set of vectors is called a \underline{cycle of generalized eigenvectors} if it has the form
+    \begin{equation}
+        \beta = \{v_1, \dots, v_p\}
+    \end{equation}
+    Where 
+    \begin{equation}
+        (A- \lambda I)v_p = v_{p-1}
+    \end{equation}
+    \begin{equation}
+        (A- \lambda I)v_{p-1} = v_{p-2}
+    \end{equation}
+    \begin{equation}
+        \cdots
+    \end{equation}
+    \begin{equation}
+        (A - \lambda I)v_{1} = 0
+    \end{equation}
+\end{definition}
+
+\begin{center}
+    \textbf{Idea of proof of main theorem:}
+\end{center}
+\begin{enumerate}
+    \item Show that $F^{k} = \oplus_{i=1}^{k}K_{\lambda_i}$ (generalized sum of eigenspaces). That is for any $v \in F$ can be written uniquely as 
+    \begin{equation}
+        v = v_1 + \dots + v_k    
+    \end{equation}
+    for $v_i \in K_{\lambda_i}$ for each $v$. 
+    \item Each $K_{\lambda_i}$ has a basis consisting of a disjoint union of cycles of generalized eigenvectors. 
+    \begin{center}
+        \textbf{Note:} The basis vectors for each $K_{\lambda_i}$ would compose the "diagonalized" matrix. 
+    \end{center}
+\end{enumerate}
+
+\end{document}

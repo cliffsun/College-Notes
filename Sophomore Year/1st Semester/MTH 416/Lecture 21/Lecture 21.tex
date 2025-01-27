@@ -1,0 +1,228 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 21}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 21}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Criteria for diagonalizability
+    \item Cayley-Hamilton
+\end{itemize}
+
+Continuing from previous Lecture
+
+\begin{theorem}
+    Let $A \in M_{n \times n}$ is diagonalizable if and only if 
+    \begin{enumerate}
+        \item char poly(A) splits completely over $\mathbb{R}$
+        \item For every eigenvalue $\lambda$, 
+        \begin{center}
+            geo multi = alg multi
+        \end{center}
+    \end{enumerate}
+\end{theorem}
+
+This required that 
+
+\begin{lemma}
+    If $\beta_1, \dots$ are linearly independent sets in different eigenspaces $E_{\lambda_1}, \dots$ of $A$, then 
+    \begin{equation}
+        \beta = \beta_1\cup\dots
+    \end{equation}
+    is also linearly independent. 
+\end{lemma}
+
+\begin{proof}
+    We first prove a special case, that each $\beta_i = \{v_i\}$ where $v_i$ is a non-zero vector. Prove this by induction
+    \subsubsection*{Base Case}
+    If $k=1$, then this is linearly independent. 
+    \subsubsection*{Induction}
+    Assume that the special case works for some value of $k$, then we consider $k+1$. Let 
+    \begin{equation}
+        \beta_1 = \{v_1\}, \dots, \beta_{k+1}=\{v_{k+1}\}
+    \end{equation}
+    We claim that 
+    \begin{equation}
+        \beta = \{v_1, \dots, v_{k+1}\}
+    \end{equation}
+    Suppose that 
+    \begin{equation}
+        a_1v_1 + \dots + a_{k+1}v_{k+1} = 0
+    \end{equation}
+    Then 
+    \begin{equation}
+        A(a_1v_1) + \dots + A(a_{k+1}v_{k+1}) = 0
+    \end{equation}
+    \begin{equation}
+        a_1\lambda_1v_1  + \dots + a_{k+1}\lambda_{k+1}v_{k+1} = 0
+    \end{equation}
+    Subtract (6) - $\lambda_{k+1}$(5)
+    \begin{equation}
+        a_1(\lambda_1 - \lambda_{k+1})v_1 + \dots + a_k(\lambda_k - \lambda_{k+1})v_k = 0
+    \end{equation}
+    We can apply IH, and conclude that 
+    \begin{equation}
+        a_1 = \dots = a_k = 0
+    \end{equation}
+    This implies that 
+    \begin{equation}
+        a_{k+1} = 0
+    \end{equation}
+\end{proof}
+But what about the general case? Given $\beta_1 = \{v_1,v_2\}, \dots$. We can call 
+\begin{equation}
+    a_1v_1 + a_2v_2 = w_1
+\end{equation}
+And sum 
+\begin{equation}
+    w_1 + w_2 + \dots = 0
+\end{equation}
+But since the coefficients in front are non-zero, it implies that 
+\begin{equation}
+    w_1 = w_2 = \dots = 0
+\end{equation}
+Thus implies that 
+\begin{equation}
+    a_1 = a_2 = \dots = 0
+\end{equation}
+\section*{Cayley Hamilton}
+Suppose $A \in M_{n\times n}(\mathbb{R})$, then 
+\begin{equation}
+    \det(A - tI) = 0
+\end{equation}
+is the characteristic polynomial. But what if we plug in $t = $ matrix? \\
+\textbf{Warning:} the equation 
+\begin{equation}
+    \det(A - tI) = 0
+\end{equation}
+is only valid when $t$ is a number, not a matrix. So we're only interested in plugging $t= $ matrix into the 
+characteristic polynomial. 
+\subsection*{Example:}
+\begin{equation}
+    f(t) = t^2 + 1
+\end{equation}
+Then let 
+\begin{equation}
+    A = \begin{pmatrix}
+        0 & -1 \\
+        1 & 0
+    \end{pmatrix}
+\end{equation}
+Then we claim that 
+\begin{equation}
+    f(A) = A^2 + I_2 = 0_{2\times 2}
+\end{equation}
+Then 
+\begin{equation}
+    A^2 + I_2 = \begin{pmatrix}
+        -1 & 0 \\
+        0 & -1 
+    \end{pmatrix} + \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix} = 0_2
+\end{equation}
+So we know that
+\begin{center}
+    char poly(A) = $t^2 + 1$
+\end{center}
+Interesting...
+\begin{theorem}
+    \underline{Cayley-Hamilton Theorem:} For any $A \in M_{n \times n}(\mathbb{R})$, $A$ satisfies its own characteristic equation. 
+\end{theorem}
+Aside, we can also state this for linear operations 
+\begin{equation}
+    T: V \rightarrow V
+\end{equation}
+Read lecture notes for proof. 
+
+\section*{Direct Sum Decomposition}
+
+Suppose $A \in M_{n\times n}(\mathbb{R})$ is diagonalizable. Let $\lambda_1, \dots, \lambda_k$ be eigenvalues and $E_{\lambda_i}$ be eigenspaces. \\
+\textbf{Fact:} If $\beta_1, \dots, \beta_k$ are basis for $E_{\lambda_1}, \dots$, then 
+\begin{equation}
+    \beta = \beta_1 \cup \dots 
+\end{equation}
+is a basis for $\mathbb{R}^n$. 
+
+This fact can be reinterpreted as follows:
+
+\begin{theorem}
+    Suppose $W_1, \dots, W_k$ are subspaces of $V$. Then the following are equivalent:
+    \begin{enumerate}
+        \item One can form a basis of $V$ by taking the union of a basis of each $W_i$
+        \item Every vector $v \in V$ can be expressed uniquely in the following form: 
+        \begin{equation}
+            w_1 + \dots + w_k
+        \end{equation}
+        where $w_i \in W_i$. 
+        \item \begin{equation}
+            \sum_{i=1}^{k}W_i = V
+        \end{equation}
+        For all $j$, then 
+        \begin{equation}
+            W_j \cap \sum_{i=1}^{k}W_i = \{0\}
+        \end{equation}
+        \begin{definition}
+            Given subspaces $W_i \subseteq V$, then 
+            \begin{equation}
+                \sum_i W_i = \{\text{vectors of the form $w_1 + \dots + w_k$}\}
+            \end{equation}
+        \end{definition}
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    If $W_i \subseteq V$ satisfies the conditions above, then we can say that $V$ is a \underline{direct sum} of the $W_i$, and write 
+    \begin{equation}
+        V = W_1 '+' \dots '+' W_k
+    \end{equation}
+\end{definition}
+
+\subsubsection*{Conclusion}
+
+Then if $A$ is diagonalizable, then $\mathbb{R}^n$ decomposes as the \underline{direct sum} of its eigenspaces. 
+
+
+\end{document}

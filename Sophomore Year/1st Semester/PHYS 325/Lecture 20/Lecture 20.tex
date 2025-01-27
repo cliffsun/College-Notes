@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 20}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 20}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Given some Green's function $G(t)$ and some forcing $F(t)$, then our solution is 
+
+\begin{equation}
+    x_p(t) = \int_{\mathbb{R}}F(t')G(t-t')dt'
+\end{equation}
+
+Such that 
+
+\begin{equation}
+    G(t-t') = H(t-t')\exp\left(\frac{-c(t-t')}{2m}\right)\frac{\sin(\omega_d(t-t'))}{m\omega_d}
+\end{equation}
+
+Such that 
+
+\begin{equation}
+    H(t) = \begin{cases}
+        1 & t > t' \\
+        0 & t < t' 
+    \end{cases}
+\end{equation}
+
+\subsection*{Example}
+
+In the case of $F_0$ is a constant driving force, then we integrate from $0$ to $t$. 
+
+\section*{Fourier Transformation}
+
+\begin{equation}
+    \tilde{f}(\omega) = \int_\mathbb{R}f(t)e^{-i\omega t}dt
+\end{equation}
+
+Inverse FT:
+
+\begin{equation}
+    f(t) = \frac{1}{2\pi}\int_\mathbb{R}\tilde{f}(\omega)e^{i\omega t}d\omega
+\end{equation}
+
+\end{document}

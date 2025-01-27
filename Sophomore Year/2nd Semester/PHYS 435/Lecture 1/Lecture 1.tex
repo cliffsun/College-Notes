@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 435: Lecture 1}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 435: Lecture 1}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Coulomb's Law:
+
+\begin{equation}
+    \vec{E}(\vec{r}) = \frac{1}{4\pi\epsilon_0}\frac{q_0}{|r-r'|^3}(r-r')
+\end{equation}
+
+Because this is a linear phenomenon, that is doubling the charge yields a double in the electric field (because you are just adding another charge to the same position), this implies superposition.
+Then 
+\begin{equation}
+    \vec{E}(\vec{r}) = \sum\frac{1}{4\pi\epsilon_0}\frac{q_{0,i}}{|r-r'|^3}(r-r')
+\end{equation}
+\begin{equation}
+    \implies \frac{1}{4\pi\epsilon_0}\int d^{3}r'\frac{(r-r')}{|r-r'|^3}\rho(r')
+\end{equation}
+
+Gauss's law states:
+
+\begin{equation}
+    \frac{1}{\epsilon_0}\int_V d^3r' \rho(r') = \int_{\partial V} d\vec{a} \cdot \vec{E}(\vec{r})
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \int_V d^3r' \vec{\nabla} \cdot \vec{E}(\vec{r}) = \int_{\partial V}d\vec{a} \cdot \vec{E}(\vec{r})
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \vec{\nabla} \cdot \vec{E}(\vec{r}) = \frac{\rho(\vec{r})}{\epsilon_0}
+\end{equation}
+
+Faraday's Law: the \underline{circulation} of any E field around any given point is equivalent to $-1$ times the time partial derivative of the B field. 
+
+\begin{equation}
+    \int_{\partial S}dl \cdot E = -\frac{d}{dt}\int_S da \cdot B
+\end{equation}
+
+This is a non-local statement, that is calculating the value at specific point depends on the value at other points. 
+
+We use stokes theorem:
+
+\begin{equation}
+    \int_{\partial S}dl \cdot E = \int_{S} d\vec{a} \cdot \vec{\nabla} \times \vec{E}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \int_{S} d\vec{a} \cdot \vec{\nabla} \times \vec{E} = -\int_S da \cdot \frac{dB}{dt}
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    vec{\nabla} \times \vec{E} = -\frac{\partial B}{\partial t}
+\end{equation}
+
+Similarly,
+
+\begin{equation}
+    \vec{\nabla} \times \vec{B} = \mu_0 \vec{J}
+\end{equation}
+\end{document}

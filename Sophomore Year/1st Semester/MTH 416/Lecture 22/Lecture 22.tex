@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTh 416: Lecture 22}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTh 416: Lecture 22}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Sum decomposition
+    \item Inner product spaces
+\end{itemize}
+\begin{definition}
+    If $A$ is diagonalizable, then $\mathbb{R}^n$ is a \underline{direct sum} of the eigenspaces of $A$. That is every $v \in \mathbb{R}^n$ can be uniquely 
+    expressed as 
+    \begin{equation}
+        w_1 + \dots + w_k
+    \end{equation}
+    where $w_i \in E_{\lambda_i}$. 
+\end{definition}
+
+\section*{Inner product spaces}
+
+Inner products will abstract away from dot product on $\mathbb{R}^n$. Note, up until now, nearly everything mentioned works over any field 
+\begin{equation}
+    F = \mathbb{R}, \mathbb{C}, \mathbb{Q}, \dots 
+\end{equation}
+Exception: Fundamental theorem of Algebra, which implies that matrices have enough eigenvalues. For \underline{inner products}, we really only care about $\mathbb{R}$ and $\mathbb{C}$. Then the following
+abstracts from the dot product, then 
+\begin{definition}
+    Let $V$ be a vector space over $\mathbb{R}$. Then an \underline{inner product} on $V$ is a function which given $x,y \in V$, produces a scalar $c \in \mathbb{R}$. Denoted as 
+    \begin{equation}
+        <x,y> = c \in \mathbb{R}
+    \end{equation}
+    It satisfies the following properties:
+    \begin{enumerate}
+        \item $\langle x+z,y \rangle = <x,y> + <z,y>$
+        \item $<cx,y> = c<x,y>$
+        \item $<x,y> = <y,x>$
+        \item If $x \neq 0$, then $<x,x> > 0$
+    \end{enumerate}
+\end{definition}
+
+\subsection*{Example}
+Let 
+\begin{equation}
+    V = C[0,1] = \{\text{continuous functions from 0 to 1 to $\mathbb{R}$}\}
+\end{equation}
+
+We define 
+
+\begin{equation}
+    \langle f, g \rangle  = \int_{0}^{1}f(x)g(x)dx
+\end{equation}
+
+\subsection*{Non-examples}
+
+Let $V = \mathbb{R}^2$, then we define $\langle x, y \rangle$ as 
+\begin{enumerate}
+    \item $a_1^2b_1^2 + a_2^2b_2^2$ (not linear)
+    \item $a_1b_1 + a_1b_2 + a_2b_2$ (not symmetric)
+    \item $-a_1b_1 - a_2b_2$
+\end{enumerate}
+
+\begin{definition}
+    Let $V$ be a vector space over $\mathbb{C}$, an \underline{inner product} on $V$ is a function that takes 
+    two vector inputs and produces a complex number scalar, that is 
+    \begin{equation}
+        \langle x,y \rangle = c \in \mathbb{C}
+    \end{equation}
+    We impose the following properties:
+    \begin{enumerate}
+        \item As same as before
+        \item As same as before
+        \item $\langle x,y \rangle* = \langle x,y \rangle$ where this star is the complex conjugate of such.
+        \item As same as before (note $\langle x,x \rangle = \langle x,x \rangle* \iff \langle x,x \rangle \in \mathbb{R}$)
+    \end{enumerate}
+\end{definition}
+
+\subsection*{Non Example}
+
+Let $V \in \mathbb{C}$, then if we define 
+\begin{equation}
+    \langle x,y \rangle = a_1b_1 + \dots 
+\end{equation}
+
+Then if $x =y = (i,0)$, then this inner product evaluates to $-1$ which doesn't make sense. Thus we want to define 
+\begin{equation}
+    \langle x,y \rangle = a_1\overline{b_1} + a_2\overline{b_2} + \dots
+\end{equation}
+
+So this works out now. 
+
+\subsection*{Example}
+
+Let $V = M_{n \times n}(\mathbb{C})$, and if $A, B \in V$, then 
+
+\begin{equation}
+    \langle A,B \rangle = \sum \sum a_{ij}\overline{b_{ij}}
+\end{equation}
+
+This is called the \underline{Forbenius inner product}, it has the following reinterpretation 
+\begin{definition}
+    If $A \in M_{n\times n}(\mathbb{C})$, then \underline{conjugate transpose}, or the \underline{adjoint matrix}, is the denoted as 
+    \begin{equation}
+        \overline{A} = \overline{A^T}
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The \underline{trace} of a matrix $A \in F$ is the sum of its diagonal entries:
+    \begin{equation}
+        Tr(A) = \sum a_{ii}
+    \end{equation}
+\end{definition}
+
+\subsubsection*{Fact}
+
+The Forbenius inner product is equivalent to 
+\begin{equation}
+    \langle A,B \rangle = tr(\overline{B}A)
+\end{equation}
+
+\begin{definition}
+    An \underline{inner product space} is a pair ($V, \langle, \rangle$) where $V$ is a vector space over 
+    $\mathbb{R}$ or $\mathbb{C}$ and $\langle, \rangle$ is an inner product of $V$. 
+\end{definition}
+
+\subsubsection*{Fact}
+
+For any inner product space, the following holds for all $x,y,z \in V$ and $c \in F(=\mathbb{R} \lor \mathbb{C})$. 
+\begin{enumerate}
+    \item $\langle x, y + z \rangle = \langle x, y \rangle + \langle x, z \rangle$
+    \item $\langle x, cy \rangle = \overline{c}\langle x,y \rangle$
+    \item $\langle x, 0 \rangle = 0$
+    \item $\langle x,x \rangle = 0 \iff x = 0$
+\end{enumerate}
+
+\begin{definition}
+    If $V$ is an inner product space and $x \in V$, then the \underline{length/norm} of $x$ is 
+    \begin{equation}
+        ||x|| = \sqrt{\langle x, x \rangle}
+    \end{equation} 
+\end{definition}
+
+\begin{theorem}
+    Let $V$ be an inner product space for all vectors $x,y \in V$ and $c \in F$, 
+    \begin{enumerate}
+        \item $||cx|| = |c| \cdot ||x||$
+        \item $||x|| = 0 \iff x = 0$
+        \item Cauchy-Schwarz inequality: $|\langle x,y \rangle| \leq ||x|| \cdot ||y||$
+        \item Triangle inequality: $|x+y| \leq |x| + |y|$
+    \end{enumerate}
+\end{theorem}
+
+\end{document}

@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 24}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 24}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Foucault pendulum}
+
+We have that 
+
+\begin{equation}
+    ma_{\text{app}} = \sum F_{\text{true}} + F_{\text{fict}}
+\end{equation}
+We have that 
+\begin{equation}
+    F_{\text{true}} = -\nabla U
+\end{equation}
+We have that 
+\begin{equation}
+    U = -mgh \iff -mgL\cos\beta
+\end{equation}
+For small $\beta$, we have that 
+\begin{equation}
+    c + \frac{mg}{2L}(x^2 + y^2)
+\end{equation}
+Thus 
+\begin{equation}
+    F_{\text{net}} = -\nabla U = -\frac{mg}{L}(x\hat{e} + y\hat{n})
+\end{equation}
+\subsubsection*{Coriolis Force}
+\begin{equation}
+    F_{\text{cor}} = -2m\vec{\omega} \times \vec{v}_{\text{app}}
+\end{equation}
+\begin{equation}
+    \ddot{x} = -\frac{g}{L}x + 2\omega \dot{y}\sin\theta
+\end{equation}
+\begin{equation}
+    \ddot{y} = -\frac{g}{L}y - 2\omega\dot{x}\sin\theta
+\end{equation}
+\begin{equation}
+    \ddot{z} = 0 + 2\omega \dot{x}\cos\theta 
+\end{equation}
+Let $\omega_z = \omega\sin\theta$
+\begin{equation}
+    \ddot{x} = -\frac{g}{L}x + 2\omega_z \dot{y}
+\end{equation}
+\begin{equation}
+    \ddot{y} = -\frac{g}{L}y - 2\omega_z \dot{x}
+\end{equation}
+If $\theta = 0$, then this is a simple harmonic oscillator.     
+\end{document}

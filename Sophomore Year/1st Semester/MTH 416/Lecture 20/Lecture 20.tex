@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 20}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 20}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Criteria for Diagonalizability
+\end{itemize}
+
+Recall: 2 things can prevent diagonalizability:
+\begin{enumerate}
+    \item Not enough eigenvalues
+    \item Not enough eigenvectors
+\end{enumerate}
+
+\begin{theorem}
+    \textbf{Fundamental Theorem of Algebra}: Every non-zero polynomial with complex number coefficients splits completely over the 
+    Complex Numbers. In other words, 
+    \begin{equation}
+        f(t) = c(t-a_1)(t-a_2)\dots
+    \end{equation}
+    Note, this is not true of $\mathbb{R}$, e.g. $f(t) = t^2 + 1$
+\end{theorem}
+
+\begin{theorem}
+    Let $A \in M_{n \times n}(F)$ where $F$ is some field, then if $A$ is diagonalizable, then the characteristic polynomial of $A$ splits completely in $F$. 
+\end{theorem}
+
+\begin{proof}
+    Let $A \in M_{n \times n}$ be diagonalizable, then $A$ is similar to some diagonal matrix $D$. Then 
+    \begin{center}
+        char poly($A$) = char poly($D$)
+    \end{center}
+    \begin{equation}
+        = \det(D) \iff (\lambda_1 - t)(\lambda_2 - t)\dots
+    \end{equation}
+    This completely splits $F$. 
+\end{proof}
+
+Is this an iff statement? NO
+
+For example, 
+
+\begin{equation}
+    A = \begin{pmatrix}
+        1 & 1 \\
+        0 & 1
+    \end{pmatrix}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    char(A) = (t-1)^2
+\end{equation}
+
+In other to diagonalize the matrix, we need a basis of $\mathbb{R}^2$ eigenvectors, which we don't have. 
+
+\begin{definition}
+    Suppose $\lambda$ is an eigenvalue of $A$
+    \begin{enumerate}
+        \item The \underline{algebraic multiplicity} of $\lambda$ is the number of times $(t-\lambda)$ divides the polynomial. 
+        \item The \underline{geometric multiplicity} of $\lambda$ is the dimension of the Eigenspace associated with $\lambda$. 
+    \end{enumerate}
+\end{definition}
+
+Main facts about algebraic \& geometric multiplicity:
+
+\begin{theorem}
+    For any $\lambda$,
+    \begin{center}
+        geo multi $\leq$ alg multi
+    \end{center}
+\end{theorem}
+
+\begin{theorem}
+    A matrix $A \in M_{n \times n}(\mathbb{R})$ is diagonalizable iff the follow are true:
+    \begin{enumerate}
+        \item Its characteristic polynomial splits completely
+        \item For every eigenvalue, the geometric multiplicity and algebraic multiplicity are equal. 
+    \end{enumerate} 
+\end{theorem}
+
+\begin{corollary}
+    If $A \in M_{n \times n}$ has $n$ distinct real eigenvalues, then it is diagonalizable.  
+\end{corollary}
+
+Note that the converse is false. 
+
+\begin{proof}
+    Let $M \in M_{n \times n}(\mathbb{R})$ and let $\lambda$ be an eigenvalue of $A$. Then, we prove that 
+    \begin{center}
+        geo multi $\leq$ alg multi
+    \end{center}
+    If $\lambda = 1$ has geo multi = $k$, then $\dim(E_\lambda) = k$. Then we choose a basis for $E_\lambda$, then we extend this 
+    to a basis $\beta = \{v_1, \dots, v_n\}$ for all $\mathbb{R}^n$. Then we write $L_A$ in $\beta$ coordinates. Then we have that the right hand corner of this matrix is a 
+    diagonal line of $\lambda$'s. Then 
+    \begin{center}
+        char poly(A) = char poly($[L]_\beta$)
+    \end{center}
+    Then char poly($[L]_\beta$) has at least $k$ repititions of $\lambda$, thus 
+    \begin{center}
+        geo multi $\leq$ alg multi
+    \end{center}
+\end{proof}
+
+\begin{proof}
+    We now prove theorem 0.5, then we first proceed in the $\implies$ direction. We've already proved that char poly($A$) splits completely. We now note that $A \sim D$ where $D$ is some 
+    diagonal matrix. Then for any $\lambda$, alg multi $\lambda$ = \# of times $\lambda$ appears on $D$. Claim: the geo multi of $\lambda$ is the same as 
+    \begin{equation}
+        = \dim(E_\lambda)
+    \end{equation}
+    \begin{equation}
+        = \dim N(A - \lambda I)
+    \end{equation}
+    \begin{equation}
+        \dim N(D - \lambda I)
+    \end{equation}
+    \begin{equation}
+        = \text{ \# of times $\lambda$ appears on diagonal }
+    \end{equation}
+    \begin{center}
+        = alg multi of $\lambda$
+    \end{center}
+    ($\impliedby$) Suppose that char poly(A) splits and all $\lambda$ have geo multi = alg multi. 
+    \begin{equation}
+        char poly(A) = (-1)^n(t - \lambda_1)^{m_1}\dots
+    \end{equation}
+    Where $\lambda_i$ are all distinct and real numbers, and $m_i$ are the algebraic multiplicity of each $\lambda_i$. The degree of this polynomial is 
+    \begin{equation}
+        m_1 + \dots + m_k = n
+    \end{equation}
+    But since $m_i = $ geo multi of $\lambda_i$ which is the dimension of $E_{\lambda_i}$. Let 
+    \begin{equation}
+        \beta_i = \text{ a basis for $E_{\lambda_i}$}
+    \end{equation}
+    This contains $m_i$ vectors. Let 
+    \begin{equation}
+        \beta = \beta_1 \cup \dots \cup \beta_k
+    \end{equation}
+    This is a set of $n$ linearly independent vectors. But how do we know this?? To complete the proof, we need the following lemma
+    \begin{lemma}
+        If $\beta_i$ is a linearly independent set in $E_{\lambda_i}$ for various distinct eigenvalues $\lambda_1, \dots, \lambda_k$, then 
+        \begin{equation}
+            \beta = \beta_1 \cup \dots \cup \beta_k
+        \end{equation} 
+        Is another linearly independent set. 
+    \end{lemma}
+\end{proof}
+
+
+
+\end{document}

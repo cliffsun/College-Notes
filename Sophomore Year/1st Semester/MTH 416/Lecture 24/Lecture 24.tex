@@ -1,0 +1,212 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 416: Lecture 24}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 416: Lecture 24}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Gram-Schmidt 
+\end{itemize}
+
+\textbf{Idea:} Given a basis for $V$, can we adjust it to make it orthonormal? 
+
+Given that $\{w_1,w_2\}$ is a basis in $\mathbb{R}^2$, how to make them orthonormal?
+
+\subsubsection*{Solution}
+
+We let $v_1 = w_1$, then we can decompose $w_2$ to have a portion that is orthogonal to $w_1$, (call it $v_2$), and a portion that is along the lines of $w_1$, (call it $cv_1$).
+How do we find $c$? We use the inner product:
+\begin{equation}
+    \langle w_2, v_1 \rangle = \langle v_2, v_1 \rangle + c\langle v_1,v_1 \rangle 
+\end{equation}
+\begin{equation}
+    \implies c = \frac{\langle w_2, v_1 \rangle}{\langle v_1, v_1 \rangle} \in \mathbb{R}
+\end{equation}
+
+Given that 
+\begin{equation}
+    w_2 = cv_1 + v_2
+\end{equation}
+
+So 
+
+\begin{equation}
+    \{v_1 = w_1, v_2 = w_2 - \frac{\langle w_2, v_1 \rangle}{\langle v_1, v_1 \rangle}v_1\}
+\end{equation}
+
+\subsubsection*{Example in $\mathbb{R}^3$}
+
+Given 2 orthogonal vectors $v_1, v_2$ and a 3rd non-orthogonal vector $w_3$, how do we find the 3rd orthogonal vector?
+
+\subsubsection*{Solution}
+
+We can write 
+
+\begin{equation}
+    w_3 = c_1v_1 + c_2v_2 + v_3
+\end{equation}
+
+WIth $v_3$ perpendicular to $v_1, v_2$. How can we find $c_1, c_2$? 
+
+\begin{equation}
+    \langle w_3, v_1 \rangle = c_1\langle v_1, v_1 \rangle + 0 + 0
+\end{equation}
+\begin{equation}
+    c_1 = \frac{\langle w_3, v_1 \rangle}{\langle v_1, v_1 \rangle}
+\end{equation}
+$c_2$ can be calculated in a similar way. Therefore, 
+
+\begin{equation}
+    v_3 = w_3 - c_2v_2 - c_1v_1
+\end{equation}
+
+\begin{theorem}
+    (\underline{Gram-Schmidt}): Let $V$ be any inner product space, and let $\{w_1, \dots, w_n\}$ be a linearly independent set. 
+    Then define $v_1 = w_1$ and for $v_k > 1$, 
+    \begin{equation}
+        v_k = w_k - \sum_{j=1}^{k-1}\frac{\langle w_k, v_j \rangle }{\langle v_j, v_j \rangle}v_j 
+    \end{equation}
+    Then we claim
+    \begin{enumerate}
+        \item $span(v_1,\dots,v_n) = span(w_1, \dots, w_n)$
+        \item $\{v_1,\dots,v_n\}$ is an orthogonal set 
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Induct on $n$, base case is $n=1$. This is trivial. For the inductive step, we consider this to be true for some $n$, and we now consider $n+1$. Given 
+    $\{w_1,\dots,w_{n+1}\}$, then $\{v_1,\dots,v_n,v_{n+1}\}$. Then $v_{n+1} = w_{n+1} - c_1v_1 - \dots$. By IH, 
+    \begin{equation}
+        span(v_1,\dots,v_n) = span(w_1,\dots,w_n)
+    \end{equation}
+    But 
+    \begin{equation}
+        v_{n+1} \in span(w_{n+1}, v_1,\dots,v_n)
+    \end{equation}
+    \begin{equation}
+        = span(w_1,\dots,w_{n+1})
+    \end{equation}
+    So 
+    \begin{equation}
+        span({v_i}) \subseteq span({w_i})
+    \end{equation}
+    To prove the opposite direction, we perform 
+    \begin{equation}
+        v_{n+1} = w_{n+1} - c_1v_1 - \dots
+    \end{equation}
+    \begin{equation}
+        \implies v_{n+1} + c_1v_1 + \dots = w_{n+1}
+    \end{equation}
+    This implies that 
+    \begin{equation}
+        span(v_1,\dots,v_{n+1}) = w_{n+1}
+    \end{equation}
+    Since $span(v_1,\dots,v_n) = span(w_1,\dots,w_n)$, we have that 
+    \begin{equation}
+        span(v_1,\dots,v_{n+1}) = span(w_1,\dots,w_{n+1})
+    \end{equation}
+\end{proof}
+
+We now prove 2, 
+
+\begin{proof}
+    Induct on $n$, the base case $n=1$ is vacuous (mindless, useless). For the inductive step, suppose it's true for $n$, and consider $n+1$. We must prove that 
+    \begin{equation}
+        v_{n+1} = w_{n+1} - \sum_{j=1}^{n}\frac{\langle w_{n+1}, v_j \rangle }{\langle v_j, v_j \rangle}v_j
+    \end{equation}
+    is orthogonal to $v_1, \dots, v_n$. (Note: $\{v_1,\dots,v_j\}$ are linearly independent, thus $\langle v_j, v_j \rangle \neq 0$). Fix $i \in \{1,\dots, n\}$ and calculate 
+    \begin{equation}
+        \langle v_{n+1}, v_i \rangle  = \langle w_{n+1}, v_i \rangle - \sum_{j=1}^{n}\frac{\langle w_{n+1}, v_j \rangle}{\langle v_j, v_j \rangle}\langle v_j, v_i \rangle 
+    \end{equation}
+    Considering $\langle v_j, v_i \rangle$, this evaluates to $0 \iff i \neq j$. 
+    \begin{equation}
+        = \langle w_{n+1}, v_j \rangle - \frac{\langle w_{n+1}, v_j\rangle }{\langle v_j, v_j \rangle}\langle v_j,v_j \rangle
+    \end{equation}
+    \begin{equation}
+        = 0
+    \end{equation}
+    By induction, this proves the theorem. 
+\end{proof}
+
+\begin{corollary}
+    Every finite dimensional inner product space has an orthonormal basis. 
+\end{corollary}
+
+\begin{proof}
+    Let $V$ be some finite dimensional inner product space. Let $\{w_1,\dots,w_n\}$ be a basis for $V$. Applying Gram-Schmidt gives a new orthogonal set $\{v_1, \dots, v_n\}$ with the same span. 
+    So $\{v_1, \dots, v_n\}$ is an orthogonal basis, and $\{u_1,\dots,u_n\} = \left\{\frac{v_1}{||v_1||}, \dots\right\}$ is an orthonormal basis. 
+\end{proof}
+
+\begin{definition}
+    Let $V$ be an inner product space and $S$ some nonempty subset. Then the \underline{orthogonal compliment} of $S$ is 
+    \begin{equation}
+        S^{\perp} = \{x \in V, \langle x,y \rangle = 0 \text{ for all } y \in S\}
+    \end{equation}
+    Note:
+    \begin{enumerate}
+        \item $S^{\perp}$ is a subspace of $V$. 
+        \item $S^{\perp}$ is $span(S)^{\perp}$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Suppose $V$ is a $n-$dimensional inner product space, and $W$ is a subspace. Then 
+    \begin{enumerate}
+        \item Any orthonormal basis $\{v_1, \dots, v_k\}$ for $W$ can be extended to an orthonormal basis for $V$. 
+        \item If we extend, the new vectors $\{v_{k+1}, \dots, v_n\}$ is a basis for $W^{\perp}$. 
+        \item $\dim(W) + \dim(W^{\perp}) = \dim(V)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Extend $\{v_1, \dots, v_k\}$ to some basis $\{v_1, \dots, v_k, w_{k+1}, \dots, w_{n}\}$ of $V$. We can turn this into an orthonormal using Gram-Schmidt + normalize the vectors. 
+\end{proof}
+
+We prove $3$, 
+
+\begin{proof}
+    $\dim(W) = k$, $\dim(W^{\perp}) = n-k$, thus $\dim(W) + \dim(W^{\perp}) = n \iff \dim(V)$.  
+\end{proof}
+
+\end{document}

@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+The Algebra of $\mathbb{Z}$:
+\begin{enumerate}
+    \item $(x+y) + z = x + (y+z)$
+    \item $x + y = y + x$
+    \item $x + 0 = x$ for some $0 \in \mathbb{Z}$
+    \item $x + (-x) = 0$ for some $-x \in \mathbb{Z}$
+\end{enumerate}
+
+This is an abelian group. We then introduce the multiplication rules
+
+\begin{enumerate}
+    \item $(xy)z = x(yz)$
+    \item $xy = yx$
+    \item $x \cdot 1 = 1 \cdot x = x$
+    \item $x(y+z) = xy + xz$
+\end{enumerate}
+
+These proporties form a communative ring, but NOT a field because there is no multiplicative inverse. Recall, equivalence relations are
+\begin{enumerate}
+    \item Reflexive
+    \item Symmetric
+    \item Transitive
+\end{enumerate}
+
+The statement $ad = bc$ is an equivalence relation. Where $d, c \neq 0$. In the rational numbers $\mathbb{Q}$, we have a new property that 
+\begin{enumerate}
+    \item $x x^{-1} =1$ for some $x^{-1} \in \mathbb{Q}$
+\end{enumerate}
+
+Now our set of numbers is a field. Note that 
+\begin{equation}
+    \mathbb{Q} = \left[\mathbb{Z} \times (\mathbb{Z} \ 0)\right] / \mathbb{\sim}
+\end{equation}
+
+Where $\sim$ is the equivalence relation as above. This creates a coordinate system with $(p,q)$ where $p$ is the top part of the fraction and etc. But $\mathbb{Q}$ has a lot of "holes", that 
+we can't use analysis on it. Example: we claim that there is no rational solution for $c^2 = 2$. 
+
+\begin{proof}
+    We assume that $x = \frac{p}{q}$ and $x^2 = 2$. Then 
+    \begin{equation}
+        \frac{p^2}{q^2} = 2
+    \end{equation}
+    \begin{equation}
+        p^2 = 2q^2
+    \end{equation}
+    Thus the right hand side is even. Therefore, $p^2$ is even. Now that $p$ is even. Thus $p = 2k$. Then 
+    \begin{equation}
+        4k^2 = 2q^2
+    \end{equation}
+    \begin{equation}
+        q^2 = 2k^2
+    \end{equation}
+    Therefore, $q^2$ is even, which implies that $q$ is also even. Therefore, there is no rational solution to $x^2 = 2$. 
+\end{proof}
+
+\begin{theorem}
+    Let $x_1 < x_2$ be in $\mathbb{Q}$, then there are infinitely many irrational numbers between $x_1$ and $x_2$. 
+\end{theorem}
+
+\begin{lemma}
+    Let $x_1 < x_2$ be in $\mathbb{Q}$. Then 
+    \begin{equation}
+        x_1 + \frac{x_2 - x_1}{n} \in \mathbb{Q}
+    \end{equation}
+    Is rational. Thus, there are infinitely many rational numbers between $x_1$ and $x_2$. 
+\end{lemma}
+\begin{lemma}
+    Given $x_1, x_2 \in \mathbb{Q}$, and $x_1 < x_2$. Then
+    \begin{equation}
+        x_1 + \frac{x_2 - x_1}{\sqrt{2}}
+    \end{equation}
+    is not rational. 
+\end{lemma}
+
+\begin{proof}
+    Assume that 
+    \begin{equation}
+        x_1 + \frac{x_2 - x_1}{\sqrt{2}} = \frac{p}{q}
+    \end{equation}
+    Then we simplfy down to 
+    \begin{equation}
+        \sqrt{2} = \frac{x_2 - x_1}{\frac{p}{q} - x_1} \in \mathbb{Q}
+    \end{equation}
+    and $\frac{p}{q} \neq x_1$. This is a contradiction. 
+\end{proof}
+Then between 2 rational numbers, there is always at least on irrational number. 
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 25}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 25}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+We define generalized coordinates 
+\begin{equation}
+    \{q_i\} = \{q_1, \dots\}
+\end{equation}
+A generalized velocity:
+\begin{equation}
+    \dot{q_i} = \frac{d}{dt}q_i
+\end{equation}
+Note, $\{q_i\}$ is a list of potential paths. We introduce an action as a functional 
+\begin{equation}
+    S[\vec{q}(t)] = \int_{t_1}^{t_2}dtL(q_i(t), \dot{q}_i(t), t)
+\end{equation}
+\end{document}

@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 1}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 1}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Review: Simple Harmonic Oscillator}
+
+For a particle moving with potential $V(x)$, then 
+\begin{equation}
+    L = T - U = \frac{1}{2}mv^2 - V(x)
+\end{equation}
+Then
+\begin{equation}
+    \frac{d}{dt}\frac{\partial L}{\partial \dot{x}} = \frac{\partial L}{\partial x}
+\end{equation}
+\begin{equation}
+    \implies m\ddot{x} = -V'(x) = F(x)
+\end{equation}
+To find the equilibrium points, we have 
+\begin{equation}
+    \ddot{x} = 0 \implies V'(x) = 0
+\end{equation}
+For a stable equilibrium, you need
+\begin{equation}
+    \frac{\partial F}{\partial x} \leq 0 \text{ retrieving force }
+\end{equation}
+
+\subsection*{Double Well potential}
+
+Picture a graph with 2 stable equilibrium. We look at small deviations at the stable equilibrium. Define
+\begin{equation}
+    y(t) = x(t) - x_{eq}
+\end{equation}
+\begin{equation}
+    L = \frac{1}{2}m\dot{x}^2 - V(x)
+\end{equation}
+\begin{equation}
+    L(y) = \frac{1}{2}m\dot{y}^2 - V(x_{eq} + y)
+\end{equation}
+Then 
+\begin{equation}
+    V(x_{eq} + y) \approx V(x_{eq}) + \frac{\partial V}{\partial x}y + \frac{1}{2}\frac{\partial^2 V}{\partial^2 x}y^2
+\end{equation}
+The 2nd term drops out, so then 
+\begin{equation}
+    L(y) = \frac{1}{2}m\dot{x}^2 - V(x_{eq}) - \frac{1}{2}ky^2
+\end{equation}
+
+We find Euler Lagrange for y:
+
+\begin{equation}
+    \frac{d}{dt}(\frac{\partial L}{\partial \dot{y}}) - \frac{\partial L}{\partial y} = 0
+\end{equation}
+\begin{equation}
+    \implies m\ddot{y} + ky = 0
+\end{equation}
+Let our ansatz be 
+\begin{equation}
+    y(t) = ae^{i\omega t}
+\end{equation}
+then
+\begin{equation}
+    \left[k - m\omega^2\right]ae^{i\omega t} = 0
+\end{equation}
+General non-trival solution:
+\begin{equation}
+    y(t) = a_{+}e^{i\omega t} + a_{-}e^{-i\omega t}
+\end{equation}
+
+\subsection*{Forced Motion of S.H.O.}
+
+\subsubsection*{Harmonic forcing}
+
+\begin{equation}
+    m\ddot{y} + ky = F(t)
+\end{equation}
+
+If $F(t) = f_0e_{i\omega t}$, 
+
+\begin{equation}
+    (-m\omega^2 + k)y_0e^{i\omega_d t} = f_0e_{i\omega t} 
+\end{equation}
+
+Then 
+\begin{equation}
+    y_0 = \frac{f_0}{m}\frac{1}{\omega_0^2 - \omega_d^2}
+\end{equation}
+
+\subsubsection*{Impulsive Forcing}
+
+\begin{equation}
+    f(t) = I_0\delta(t)
+\end{equation}
+Assume $y = \dot{y} = 0$ at $t = 0$, then the change in momentum is
+\begin{equation}
+    \Delta P = \int f(t) dt = I_0
+\end{equation}
+Initial conditions:
+\begin{equation}
+    y(t = 0^{+}) = 0
+\end{equation}
+\begin{equation}
+    y(t=0^{+}) = \frac{\Delta P}{m} = \frac{I_0}{m}
+\end{equation}
+We use these initial conditions to solve the SHO to get:
+\begin{equation}
+    y(t) = \frac{I_0}{m\omega_0}\sin(\omega_0 t)\Theta(t)
+\end{equation}
+Where $\Theta(t)$ is the heavyside function. 
+\begin{equation}
+    y(t) \iff I_0G(t)
+\end{equation}
+Where $G(t)$ is the impulse response to the system. 
+
+\subsubsection*{Arbitrary Forcing}
+
+\begin{equation}
+    m\ddot{y} + ky = f(t)
+\end{equation}
+
+Solution is
+\begin{equation}
+    y(t) = \int_{-\infty}^{t}f(\tau)G(t-\tau)d\tau
+\end{equation}
+
+\subsubsection*{SHO Generalization}
+\begin{enumerate}
+    \item Non-linearity
+    \item Damping
+    \item Next: Multiple Coupled Oscillators
+\end{enumerate}
+
+\end{document}

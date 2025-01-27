@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Coupled Oscillators (2 degrees of freedom)}
+
+Imagine 2 masses $m_A$ and $m_B$, with 3 springs, one spring $k_1$ connecting $m_A$ to the wall, $k_2$ connecting $m_A$ and $m_B$, and $k_3$ connecting $m_B$ to the wall.
+We have that $x_1$ and $x_2$ describe the motion for $m_A$ and $m_B$ respectively. How to we find the equations of motion? Then 
+\begin{equation}
+    KE = \frac{1}{2}m_1x_1^2 + \frac{1}{2}m_2x_2^2
+\end{equation} 
+\begin{equation}
+    PE = \frac{1}{2}k_1x_1^2 + \frac{1}{2}k_3x_2^2 + \frac{1}{2}k_2(x_1-x_2)^2
+\end{equation}
+
+We find E.L equations for this problem:
+
+\begin{equation}
+    m_1\ddot{x_1} = -k_1x_1 + k_2(x_2 - x_1)
+\end{equation}
+\begin{equation}
+    m_2\ddot{x_2} = -k_3x_2 - k_2(x_2 - x_1)
+\end{equation}
+
+We write this in matrix form:
+
+\begin{equation}
+    \begin{pmatrix}
+        m_1 & 0 \\
+        0 & m_2
+    \end{pmatrix}\begin{pmatrix}
+        \ddot{x_1} \\
+        \ddot{x_2}
+    \end{pmatrix} + \begin{pmatrix}
+        k_1 + k_2 & -k_2 \\
+        -k_2 & k_2 + k_3 
+    \end{pmatrix}\begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix} = 0
+\end{equation}
+
+We rewrite this equation as 
+
+\begin{equation}
+    M\ddot{\vec{x}} + K\vec{x} = 0
+\end{equation}
+
+Note that $M$ and $K$ are symmetric matrices, that is $M^{t} = M$ and $K^{t} = K$. Ansatz: normal mode solution. We guess 
+\begin{equation}
+    \vec{x}(t) = \vec{a}e^{i\omega t}
+\end{equation}
+Then 
+\begin{equation}
+    (-M\omega^2 + K)\vec{a}e^{i\omega t} = 0
+\end{equation}
+
+We expand 
+
+\begin{equation}
+    (-M\omega^2 + K)\vec{a} = \begin{pmatrix}
+        k_1 + k_2 - m_1\omega^2 & -k_2 \\
+        -k_2 & k_1 + k_3 -m_2\omega^2
+    \end{pmatrix}\begin{pmatrix}
+        a_1 \\
+        a_2
+    \end{pmatrix} = 0
+\end{equation}
+
+Then 
+
+\begin{equation}
+    (k_1 + k_2 -m_1\omega^2)a_1 - k_2a_2 = 0
+\end{equation}
+\begin{equation}
+    -k_2a_1 + (k_1 + k_3 - m_2\omega^2)a_2 = 0
+\end{equation}
+
+If we brute force solve this, we get $a_1 = a_2 = 0$. To find the non-trivial solution, we demand that 
+\begin{equation}
+    \det(K - M\omega^2) = 0
+\end{equation}
+So that both equations are just multiples of each other. We solve for $\omega$, and then find $\vec{a}$ or eigenvectors. Then the general solutions must be a linear combination of the 
+eigenfrequncies. We demand this determinant condition because then it implies that some of the vectors are linearly dependent, which we can then use to construct a non-trivial vector that finds this linear dependence.  
+
+\section*{Normal Coordinates}
+
+Define new coordinates for describing the motion:
+
+\begin{equation}
+    \zeta_1 = \frac{1}{2}(x_1 + x_2)
+\end{equation}
+\begin{equation}
+    \zeta_2 = \frac{1}{2}(x_1 - x_2)
+\end{equation}
+\begin{equation}
+    \zeta = \frac{1}{2}\begin{pmatrix}
+        1 & 1 \\
+        1 & -1
+    \end{pmatrix}\vec{x}
+\end{equation}
+
+We can write E.O.M of equal springs and equal masses in $\zeta$, 
+\begin{equation}
+    m\ddot{x_1} = -kx_1 + k(x_2 - x_1)
+\end{equation}
+\begin{equation}
+    m\ddot{x_2} = -kx_2 - k(x_2 - x_1)
+\end{equation}
+
+We sum the equations 
+\begin{equation}
+    m(\ddot{x_1} + \ddot{x_2}) = -k(x_1 + x_2)
+\end{equation}
+\begin{equation}
+    \zeta_1 = -\frac{k}{m}\zeta_1
+\end{equation}
+We then subtract the equations and yield 
+\begin{equation}
+    \zeta_2 = -\frac{3k}{m}\zeta_2
+\end{equation}
+
+
+
+\end{document}

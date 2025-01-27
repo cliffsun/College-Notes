@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 435: Lecture 1}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 435: Lecture 1}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Infinite Line of charge}
+
+Suppose a infinite line of charge. How do we calculate the E field at a specific point? We take an Gaussian cylinder around some length
+$L$ around the Line. We obtain that at a distance $s$, we get
+\begin{equation}
+    2\pi E(s)sL = \frac{\lambda \cdot L}{\epsilon_0}
+\end{equation}
+We solve for
+\begin{equation}
+    E(s) = \frac{1}{2\pi\epsilon_0}\frac{\lambda}{s}
+\end{equation}
+
+Solving for potential energy gets 
+
+\begin{equation}
+    \frac{\lambda}{2\pi\epsilon_0}\ln\frac{a}{s}
+\end{equation}
+This is the weakest analytical divergence. We can derive a PDE for the potential energy function:
+\begin{equation}
+    \vec{\nabla} \cdot \vec{E} = \frac{\rho}{\epsilon_0}
+\end{equation}
+Let $E = -\vec{\nabla}V$, then 
+\begin{equation}
+    \nabla^{2}V(r) = -\frac{\rho}{\epsilon}
+\end{equation}
+
+The total work done by moving point charges into each other is 
+
+\begin{equation}
+    U = \frac{1}{2}\sum_{i=1}^{N}\sum_{j\neq i}\frac{1}{4\pi\epsilon_0}\frac{q_iq_j}{|\vec{r_2} - \vec{r_1}|}
+\end{equation}
+The continuous analogue of this is 
+\begin{equation}
+    U = \frac{1}{2}\int_{S}d^{3}rd^3r'\frac{1}{4\pi\epsilon_0}\frac{\rho(r)\rho(r')}{|r-r'|}
+\end{equation}
+
+Let the potential energy function be 
+
+\begin{equation}
+    V(r') =  \frac{1}{4\pi\epsilon_0}\int d^{r}\frac{\rho(r)}{|r - r'|}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    U = \frac{1}{2}\int d^{3}r' \rho(r')V(r')
+\end{equation}
+Since 
+\begin{equation}
+    \rho(r') = -\epsilon_0\nabla^{2}V(r')
+\end{equation}
+Then our integral turns into 
+\begin{equation}
+    U = -\frac{\epsilon_0}{2}\int d^{3}r'V(r')\nabla^{2}V(r')
+\end{equation}
+First evaluating the x partial derivative, then we can generalize:
+\begin{equation}
+    U = -\frac{\epsilon_0}{2}\int d^{r}V(r)\partial_x\left[\partial_x V(r)\right]
+\end{equation}
+We first evaluate:
+\begin{equation}
+    \partial_x\left[V(r)\partial_xV(r)\right] = \partial_xV(r) \cdot \partial_xV(r) + V\partial^{2}_xV
+\end{equation}
+\begin{equation}
+    \partial_x\left[V(r)\partial_xV(r)\right] - \partial_xV(r) \cdot \partial_xV(r) = V\partial^{2}_xV
+\end{equation}
+\begin{equation}
+    \implies -\frac{\epsilon_0}{2}\int d^3r \left[\partial_x(V(r)\partial_x(V(r))) - E_x^2\right]
+\end{equation}
+We generalize this:
+\begin{equation}
+    \implies \frac{\epsilon_0}{2}\int  d^{3}r \left[\vec{\nabla} \cdot \left(V(r)E(r)\right) + \vec{E} \cdot \vec{E}\right]
+\end{equation}
+We note that 
+\begin{equation}
+    \vec{\nabla} \cdot \left(V(r)E(r)\right) = 0
+\end{equation}
+Then 
+\begin{equation}
+    u = \int d^{r}\frac{\epsilon_0}{2}E^{2}
+\end{equation}
+\end{document}

@@ -1,0 +1,219 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 325: Lecture 23}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 325: Lecture 23}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Dynamics in rotating frames}
+
+\begin{equation}
+    F_{\text{true}} = ma_{oa} - F_{\text{Fict}}
+\end{equation}
+
+\begin{equation}
+    \iff ma_{\text{app}} = F_{\text{true}} + F_{\text{Fict}}
+\end{equation}
+
+\begin{equation}
+    \iff ma = F_{\text{true}} - ma_{OO'} - m\omega \times (\omega \times r_{o'a}) - 2m\omega \times v_{\text{app}} - m\dot{\omega} \times r_{ra'}
+\end{equation}
+
+\begin{equation}
+    ma_{oo'} = \text{ elevator force }
+\end{equation}
+
+\begin{equation}
+    2m\omega \times v_{\text{app}} = \text{ coriolis force }
+\end{equation}
+
+\begin{equation}
+    m\dot{\omega} \times r_{o'a} = \text{euler force }
+\end{equation}
+
+\subsection*{Example: Puck on an icy disk}
+
+\begin{itemize}
+    \item Puck launched from perimeter towards $B$
+    \item $x(t=0) = 0$, $\dot{x}(t=0) = 0$. $y(t=0) = -R$, $\dot{y}(t=0) = u$. 
+    \item Find the trajectory of $r$ in the rotating frame. 
+\end{itemize}
+
+\subsubsection*{Calculation}
+
+\begin{enumerate}
+    \item EOM 
+    \begin{itemize}
+        \item $F_{\text{true}} = 0$
+        \item $a_{oo'} = 0$ (doesn't move)
+        \item $\dot{\omega} \times r_{o'a} = 0$, constant $\omega$
+    \end{itemize}
+    \item centrifugal force: 
+    \begin{equation}
+        \omega \times (\omega \times r_{o'a})
+    \end{equation}
+    \begin{equation}
+        \omega = \omega e_z
+    \end{equation}
+    \begin{equation}
+        r_{o'a} = xe_{x} + ye_y
+    \end{equation}
+    \begin{equation}
+        = -\omega^2(xe_x + ye_y)
+    \end{equation}
+    \item Coriolis force 
+    \begin{equation}
+        \omega \times v_{app} = \omega \times (\dot{x}e_{x} + \dot{y}e_y)
+    \end{equation}
+    \begin{equation}
+        = \omega\dot{x}e_y - \omega\dot{y}e_x
+    \end{equation}
+    \item EOM is 
+    \begin{equation}
+        m(\ddot{x}e_x + \ddot{y}e_y) = ma_{app} = m\omega^2(xe_x + ye_y) - 2m\omega(\dot{x}e_y + \dot{y}e_x)
+    \end{equation}
+    Then 
+    \begin{equation}
+        e_x: \ddot{x} = \omega^2 x + 2\omega \dot{y}
+    \end{equation}
+    \begin{equation}
+        e_y: \ddot{y} = \omega^2y - 2\omega \dot{x}
+    \end{equation}
+    Trick: use complex function $\Psi = x(t) + iy(t) \in \mathbb{C}$. Inserting it into the equation yields
+    \begin{equation}
+        \ddot{\Psi} + 2i\omega \dot{\Psi} - \omega^2 \Psi = 0
+    \end{equation}
+    Let ansatz: $\Psi = e^{\lambda t}$, then 
+    \begin{equation}
+        \lambda^2 + 2i\omega\lambda - \omega^2 = 0
+    \end{equation}
+    then 
+    \begin{equation}
+        \lambda = -\frac{2i \omega}{2} \pm \sqrt{-\omega^2 + \omega^2} = -i\omega
+    \end{equation}
+    Thus 
+    \begin{equation}
+        \Psi(t) = Ae^{-\omega t} + Bte^{-i\omega t}
+    \end{equation}
+    Using the initial conditions 
+    \begin{equation}
+        \Psi(t=0) = x(t=0) + iy(t=0) = -iR = A
+    \end{equation}
+    \begin{equation}
+        \dot{\Psi}(t=0) = \dot{x}(t=0) + i\dot{y}(t=0) = iu = -i\omega A + B
+    \end{equation}
+    \begin{equation}
+        B = iu + R\omega 
+    \end{equation}
+    \begin{equation}
+        \Psi(t) = -iRe^{-i\omega t} + (iu + R\omega)te^{-i\omega t}
+    \end{equation}
+    Then 
+    \begin{equation}
+        x(t) = Re(\Psi(t))
+    \end{equation}
+    \begin{equation}
+        y(t) = Im(\Psi(t))
+    \end{equation}
+\end{enumerate}
+
+\section*{Motion on rotating earth}
+
+We define $O$ to be in the middle of Earth, and $O'$ to be on the surface of Earth. Then we also use spherical coordinates. Then 
+\begin{equation}
+    R_{e} = 6400 km
+\end{equation}
+\begin{equation}
+    \omega = \frac{2\pi}{\text{day}}
+\end{equation}
+\begin{equation}
+    v_{lab} = 1600 km/h
+\end{equation}
+\begin{equation}
+    \dot{\omega} = 17m/s \text{ per century } \approx 0
+\end{equation}
+
+\begin{equation}
+    a_{oo'} = \omega \times (\omega \times R)
+\end{equation}
+\begin{equation}
+    = \omega^2 R \cos\theta 
+\end{equation}
+For $\theta = 0$, we have that 
+\begin{equation}
+    \omega^2 R \approx 0.034 << |g|
+\end{equation}
+\begin{equation}
+    \omega \times (\omega \times r_{o'a}) \approx 0
+\end{equation}
+Then 
+\begin{equation}
+    ma_{\text{app}} = F_{\text{true}} - 2m\omega \times v_{\text{app}}
+\end{equation}
+
+\section*{Coriolis Force on Earth}
+
+We define 
+\begin{enumerate}
+    \item $e_x = e = $ east
+    \item $e_y = n = $ north 
+    \item $e_z = u = $ up 
+    \item $\theta = $ latitude
+    \item $p = ncos\theta + u\sin\theta$
+    \item $\omega = Tp$
+\end{enumerate}
+
+Then 
+
+\begin{equation}
+    m\ddot{r} = F_{\text{true}} - 2m\omega \times r
+\end{equation}b
+
+\begin{equation}
+    F_{\text{true}} = -mgu 
+\end{equation}
+
+\begin{equation}
+    = -mgu - 2m|\omega|p \times (-nsin\theta + ucos\theta)
+\end{equation}
+
+\end{document}
