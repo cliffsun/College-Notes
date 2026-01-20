@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486: Lecture \# 19}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486: Lecture \# 19}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Recap: Harmonic Oscillator}
+
+The Hamiltonain is 
+
+\begin{equation}
+    \hat{H} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \frac{1}{2}m\omega^2x^2
+\end{equation}
+
+Introduced a couple of new oscillators:
+
+\begin{equation}
+    a_{\pm} = \frac{1}{\sqrt{2\hbar m \omega }}\left( \mp i\hat{p} + m\omega \hat{x} \right)
+\end{equation}
+
+This means that 
+
+\begin{equation}
+    \hat{H} = (a_{+}a_{-} + \frac{1}{2})\hbar \omega
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    \ket{0}, \ket{1} = a_{+}\ket{0}, \dots
+\end{equation}
+
+The energy difference is always $\hbar \omega$. Note that $a_{+}$ (creation operator) and $a_{-}$ (annihilation operator) are always called ladder operators. Solving 
+
+\begin{align*}
+    \hat{H}\ket{0} &= \underbrace{\frac{\hbar \omega}{2}}_{E_0}\ket{0}
+\end{align*}
+
+This $E_0$ is interpreted as some sort of quantum noise. This is inevitable. Introduce 
+
+\begin{equation}
+    a_{+}a_{-} = \frac{H}{\hbar \omega} - \frac{1}{2} = \hat{n} \text{ (number operator)}
+\end{equation}
+
+This is the number of energy levels there are. Note that 
+
+\begin{equation}
+    \braket{n|\hat{H}}{n} = \frac{1}{2}\hbar \omega + n \bar \omega
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \langle a_{+}a_{-}\rangle = n
+\end{equation}
+
+Since this value is Hermitian, this means that it is measurable. We compute 
+
+\begin{equation}
+    \langle n|a_{+}a_{-}|n \rangle \neq 0
+\end{equation}
+
+Since we are in an orthonormal eigenbasis, and this inner product is $\neq 0$, we can infer that 
+
+\begin{equation}
+    \left( \ket{a_{-}n} \right)^{\dagger} = \left( a_{-}\ket{n} \right)^{\dagger} = \bra{n}(a_{-})^{\dagger} = \bra{n}a_{+}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    a_{-}^{\dagger} = a_{+}
+\end{equation}
+
+\section*{Normalization}
+
+We know that $\langle n|n\rangle =1$. But how do we normalize this? We show that: 
+
+\begin{align*}
+    a_{+}\ket{n}&= c_{n+1}\ket{n+1} \\
+    \langle n | a_{-}a_{+}|n \rangle  &= \bra{n+1}c_{n+1}^* c_{n+1}\ket{n+1} \\
+    &= \langle n | \frac{\hat{H}}{\hbar \omega} + \frac{1}{2}| n \rangle \\
+    &= \langle n | \frac{n\hbar \omega}{\hbar \omega} + \frac{1}{2}| n \rangle \\
+    &= n+1
+\end{align*}
+
+This means that $c_{n+1} = \sqrt{n+1}$. This is nothing but a mathematical necessity. We repeat with $a_{-}$:
+
+\begin{align*}
+    a_{-}\ket{n} &= c_{n-1}\ket{n-1} \\
+    c_{n-1} &= \sqrt{n-1}
+\end{align*}
+
+\subsection*{Brief Summary:}
+
+\begin{enumerate}
+    \item $\ket{0}$ is the ground state 
+    \item $a_{+}$: $a_{+}\ket{n} = \sqrt{n+1}\ket{n+1}$
+    \item $a_{-}$: $a_{-}\ket{n} = \sqrt{n-1}\ket{n-1}$
+    \item $a_{+}^{\dagger} = a_{-}$
+    \item $\hat{n} = a_{+}a_{-}$
+    \item $\frac{\hat{H}}{\hbar \omega} = a_{+}a_{-} + \underbrace{\frac{1}{2}}_{ZPE}$ (ZPE = zero point energy)
+    \item $[a_{-}, a_{+}] = 1$
+\end{enumerate}
+
+S.S in the position basis. The boundary conditions are 
+
+\begin{equation}
+    a_{-}\psi_{0}(x) = \frac{1}{\sqrt{2 \hbar m \omega}}\left( \hbar \frac{\partial}{\partial x} + m\omega x \right)\psi_0(x) = 0
+\end{equation}
+
+This means that 
+
+\begin{equation}
+    \frac{\partial}{\partial x}\psi_0(x) = -\frac{m\omega x}{\hbar}\psi_0(x)
+\end{equation}
+\begin{equation}
+    \implies \psi_0(x) = A \exp\left( -\frac{m\omega x^2}{2 \hbar} \right)
+\end{equation}
+
+The phase space of the position and momentum is aligned. We first normalize. 
+
+\begin{equation}
+    \braket{\psi_0(x)}{\psi_0(x)} \implies A = \left( \frac{m\omega}{\pi\hbar} \right)^{1/4}
+\end{equation}
+
+We find $\psi_1(x)$:
+
+\begin{equation}
+    a_{+}\psi_0 = \sqrt{0+1}\psi_{1}
+\end{equation}
+\begin{equation}
+    \psi_1(x) = \frac{1}{\sqrt{2\hbar m \omega}}\left( -\hbar\frac{\partial}{\partial x} + m\omega x \right)\left( \frac{m \omega}{\pi \hbar} \right)^{1/4}\exp\left( -\frac{m \omega}{2\hbar}x^2 \right)
+\end{equation}
+
+Following an iterative procedure, we obtain 
+
+\begin{equation}
+    \psi_n = \left( \prod_{k=1}^{n}\frac{a_{+}}{\sqrt{k}} \right)\psi_0 = \frac{1}{\sqrt{n!}}a_{+}^{n}\psi_0
+\end{equation}
+\begin{equation}
+    \psi_n(x) = \left( \frac{m\omega}{\pi\hbar} \right)^{1/4}\frac{1}{\sqrt{2^{n}n!}}H_n(x)e^{-x^2/2}
+\end{equation}
+
+\end{document}

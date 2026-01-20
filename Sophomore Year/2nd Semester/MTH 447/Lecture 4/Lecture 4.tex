@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 4}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 4}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+$\mathbb{Q}$ has holes. \underline{Completeness axiom for $\mathbb{R}$}. 
+
+\begin{definition}
+    Let $S$ be a non-empty set of numbers. IF $\exists M \in S$ s.t. for any $x \in S$, if 
+    \begin{equation}
+        x \leq M
+    \end{equation}
+    Then we say that $M$ is the maximum of $S$. Similarly, $\exists m \in S$ s.t.
+    \begin{equation}
+        m \leq x
+    \end{equation}
+    Then $m$ is the minimum of $S$. Note that $m, M$ must be in $S$. 
+\end{definition} 
+
+\begin{definition}
+    Let $S$ be a set of numbers. Then if $\exists M \in \mathbb{R}$ s.t. 
+    \begin{equation}
+        x \leq M
+    \end{equation}
+    For all $x \in S$, we say that $M$ is an \underline{upper bound} for $S$. If $S$ has an upper bound, then we say that $S$ is \underline{bounded above}.
+\end{definition}
+
+\begin{definition}
+    $S$ is \underline{bounded} if bounded above and bounded below. 
+\end{definition}
+
+We want to define a minimum of out of all upper bounds.  
+
+\begin{definition}
+    Let $S$ be bounded above. If there is a least upper bound, then we call this the \underline{supremum} of $S$. 
+\end{definition}
+
+Given $S$ bounded above:
+\begin{equation}
+    U = \{\text{ all upper bounds of $S$ }\}
+\end{equation}
+Then 
+\begin{equation}
+    \sup S = \min U
+\end{equation}
+
+\begin{definition}
+    Let $S$ be bounded below, then if there is a greatest lower bound, then we call that the \underline{infimum} of $S$. Denoted as $\inf S$. 
+\end{definition}
+
+\begin{definition}
+    BIG AXIOM (Completeness axiom of real numbers): If $S$ is a set of real numbers, bounded above. Then $\sup S$ exists and is a real number. 
+\end{definition}
+
+Let's say that $S$ is not bounded above, then we say that $\sup S = +\infty$. 
+\end{document}

@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 6}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 6}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Symmetries} 
+
+\begin{definition}
+    A symmetry is defined as a change of coordinates that leaves the lagrangian unchanged. $\textbf{S}$ is a symmetric matrix if 
+    \begin{equation}
+        \textbf{S}^{T}K\textbf{S} = K
+    \end{equation}
+    \begin{equation}
+        \textbf{S}^{T}M\textbf{S} = M
+    \end{equation}
+    We define a new set of coordinates $\vec{q} = \textbf{S}\vec{p}$, then 
+    \begin{equation}
+        L(q) = L(p)
+    \end{equation}
+\end{definition}
+
+Then
+\begin{equation}
+    PE = \frac{1}{2}q^{T}\textbf{K}q
+\end{equation}
+\begin{equation}
+    = \frac{1}{2}(Sp)^{T}\textbf{K}Sp
+\end{equation}
+\begin{equation}
+    = \frac{1}{2}p\textbf{K}p
+\end{equation}
+
+We have various types of symmetries, namely cyclic and mirror symmetries. 
+
+\begin{theorem}
+    An eigenvector of the system is also an eigenvector of the symmetry matrix. 
+\end{theorem}
+
+Then if 
+
+\begin{equation}
+    \textbf{K}\vec{u} = \omega^2 \textbf{M}\vec{u}
+\end{equation}
+Then 
+\begin{equation}
+    \textbf{S}\vec{u} = \lambda \vec{u}
+\end{equation}
+
+\begin{proof}
+    Given
+    \begin{equation}
+        \textbf{K}\vec{u} = \omega^2 \textbf{M}\vec{u}
+    \end{equation}
+    Multiply by $\textbf{S}^{T}$ and insert $\textbf{S}\textbf{S}^{-1}$:
+    \begin{equation}
+        \textbf{S}^{T}\textbf{K}\textbf{S}\textbf{S}^{-1}\vec{u} = \omega^2 \textbf{S}^{T}\textbf{M}\textbf{S}\textbf{S}^{-1}\vec{u}
+    \end{equation}
+    \begin{equation}
+        \textbf{K}\textbf{S}^{-1}\vec{u} = \omega^2\textbf{M}\textbf{S}^{-1}\vec{u}
+    \end{equation}
+    Therefore, 
+    \begin{equation}
+        S^{-1}u
+    \end{equation}
+    obeys the E.O.M. with same eigenvalue as $\vec{u}$. In other words, the 2 vectors are same up to a constant. Therefore 
+    \begin{equation}
+        \textbf{S}u = \lambda u
+    \end{equation}
+\end{proof}
+
+We look into reflection, mirror, or parity symmetries. When applied twice, they recover the original state. That is $S^{2} = I$. Then 
+\begin{equation}
+    Sx = \lambda x
+\end{equation}
+\begin{equation}
+    S^2 x = \lambda^2 x
+\end{equation}
+Thus
+\begin{equation}
+    \lambda = \pm 1
+\end{equation}
+
+
+\end{document}

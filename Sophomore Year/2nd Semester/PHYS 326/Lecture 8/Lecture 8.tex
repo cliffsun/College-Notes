@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 8}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 8}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Forced motion of many d.o.f system}
+
+Normal coordinates 
+
+\begin{equation}
+    x = \sum_i \eta_i u^{(i)}
+\end{equation}
+
+That is 
+
+\begin{equation}
+    x = \textbf{U}\eta
+\end{equation}
+
+Where $\textbf{U}$ is the modal matrix. Then 
+
+\begin{equation}
+    \textbf{M}\textbf{U}\ddot{\eta} + \textbf{K}\textbf{U}\eta = Q
+\end{equation}
+\begin{equation}
+    \iff \textbf{U}^{T}\textbf{M}\textbf{U}\ddot{\eta} + \textbf{U}^{T}\textbf{K}\textbf{U}\eta = \textbf{U}^{T}Q
+\end{equation}
+
+The solution is 
+
+\begin{equation}
+    \eta_i = \begin{cases}
+        \frac{P_2\sin(\omega_i t)}{\omega_i} & t \geq 0\\
+        0 & t < 0
+    \end{cases}
+\end{equation}
+
+\end{document}

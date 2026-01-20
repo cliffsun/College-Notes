@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 10}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 10}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Let $(x_n)$ be an increasing sequence, then we say it is \underline{increasing} if 
+    \begin{equation}
+        x_{n+1} \geq x_n \; \forall n
+    \end{equation}
+    It is strictly increasing if 
+    \begin{equation}
+        x_{n+1} > x_n \; \forall n
+    \end{equation}
+    Similar definitions for decreasing. Monotone is increasing or decreasing. 
+\end{definition}
+
+\begin{theorem}
+    Bounded + monotone $\implies$ convergent. 
+\end{theorem}
+
+\begin{proof}
+    Suppose $(x_n)$ is increasing and is bounded above.
+    
+    \begin{equation}
+        S = \{x_n | n \in \mathbb{N}\}
+    \end{equation}
+    
+    This set is bounded above. Then $L = \sup S$ exist and is a real number. Claim, $x_n \rightarrow L$. Note, $x_n \leq L$ for all $n$. 
+    Then $\forall \epsilon >0$, there exists $k$ such that 
+    \begin{equation}
+        x_k > L - \epsilon
+    \end{equation}
+    \begin{proof}
+        Suppose not, but that implies that $L - \epsilon$ is the new supremum. Thus, this is a contradiction. 
+    \end{proof}
+    Since $x_n$ is increasing, then 
+    \begin{equation}
+        x_n \geq x_k \geq L - \epsilon
+    \end{equation}
+    Then 
+    \begin{equation}
+        L - \epsilon \leq x_n \leq L \leq L + \epsilon
+    \end{equation}
+\end{proof}
+
+\end{document}

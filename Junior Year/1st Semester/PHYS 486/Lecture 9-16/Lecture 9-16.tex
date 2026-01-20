@@ -1,0 +1,209 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486 Notes}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486 Notes}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture 9: 9/23}
+
+Recap: 
+
+\begin{enumerate}
+    \item $|\psi\rangle = \sum_k c_k |\alpha_k\rangle$ 
+    \item $|\psi \rangle = \int dx \psi(x)|x\rangle$
+    \item Observables $A = A^\dagger$, real eigenvalues
+    \item Commutator (for hermitian operators): 
+    \begin{equation}
+        [\hat{A}, \hat{B}] = AB - BA 
+    \end{equation}
+    If $[A,B] = 0$, then a simulataneous eigenbasis exists. This means that $\exists \;|j\rangle$ such that 
+    \begin{align}
+        A|j\rangle &= \alpha_j |j\rangle \\
+        B|j\rangle &= \beta_j |j\rangle
+    \end{align}
+\end{enumerate}
+
+\subsection*{Finding eigenvalues and eigenvectors}
+
+Let $$A = \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{bmatrix}$$ We then diagonalize this, and find the eigenvalues. In the continuous case, 
+
+$$\hat{p}\psi = p \psi$$
+$$-i\hbar \partial_x \psi = p \psi$$
+$$\psi = A\exp(i\frac{p}{\hbar}x)$$
+
+These eigenvectors are never physical since they cannot be normalizable. Finding eigenstates of energy yields
+$$-\frac{\hbar^2}{2m}\partial^2_x \psi = E\psi $$
+$$(\partial_x - \frac{i \sqrt{2m E}}{\hbar})(\partial_x + \frac{i \sqrt{2m E}}{\hbar})\psi = 0$$
+$$\psi = A\exp(ikx) + B\exp(-ikx)$$
+
+This means that if we perform a perfect measurement of energy. Then, we know that our particle moves left or right, and we do not know which. 
+
+\subsection*{Basis Transformations}
+
+Suppose that we know $\psi$ in some basis $\left(|\alpha_k\rangle \right)$. We want to know it in $|\beta_k\rangle$. We know that 
+
+$$c_k = \langle \alpha_k | \psi \rangle$$
+
+and vice versa. Then 
+
+$$d_n = \langle \beta_n | \sum_k c_k | \alpha_k \rangle $$
+$$1= \sum_k c_k \langle \beta_n | \alpha_k \rangle $$
+
+Therefore, 
+
+$$|\psi\rangle = \sum_{k,n} c_k \langle \beta_n | \alpha_k \rangle |\beta_n\rangle$$
+
+In the continuous case, for example $$\hat{p} |p\rangle = p |p\rangle$$
+
+Then 
+
+$$\int dx \ket{x} \bra{x}\hat{p}\ket{p} = p\int dx \ket{x} \braket{x|p}$$
+
+Note that $$|p\rangle = \ket{x} \bra{x}\ket{p}$$
+
+Then on the right hand side, we expand out the momentum basis as 
+
+$$\int dx dx' \ket{x} \bra{x}\hat{p}\ket{p}  = \int dx \ket{x} \bra{x}\hat{p}\ket{x'} \bra{x'}\ket{p}$$
+
+Note that $\bra{x}\ket{p} = f_p(x)$, then we analyze 
+
+
+\begin{align*}
+    \bra{x}\hat{p}\ket{x'} &= \text{matrix element of p at x,x'}
+\end{align*}
+
+Let $$\bra{x}\hat{p}\ket{x'} = -i\hbar \partial_x \delta(x - x')$$ then we can reobtain the momentum operator. 
+
+Back to the infinite square well. Then  
+
+\begin{enumerate}
+    \item Energy Basis: $\bra{n}\ket{\psi} = c_n$
+    \item Position Basis: $\bra{x}\ket{\psi_n} = \psi_n(x) = \sqrt{\frac{2}{a}}\sin(\dots)$
+    \item Momentum Basis: $\bra{p}\ket{\psi_n} = \psi_n(p)$ 
+\end{enumerate}
+
+Example: Two level system (qubit)
+
+$$H = \hbar \omega \begin{pmatrix}
+    1  & 0 \\
+    0 & -1
+\end{pmatrix} \iff \hbar \omega \sigma_z$$ Note that $\sigma_z$ is a Pauli Matrix operator. 
+
+General state of the qubit is 
+
+$$\alpha|0\rangle + \beta |1 \rangle $$
+
+Consider an operator $$\hbar \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+\end{pmatrix} = \hbar \sigma_x$$
+
+\newpage 
+
+\section*{Lecture 16: 9/25}
+
+Midterm: Up to Lecture 9, Homework 3, and Discussion 3. We discuss the two-level system (TLS). Simple observable:
+
+$$a\sigma_z = a \cdot \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+\end{pmatrix}$$
+
+The eigenvectors $|0\rangle$ and $|1\rangle$. Another observable:
+
+$$\sigma_x = \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+\end{pmatrix} = \ket{0}\bra{1} + \ket{1}\bra{0}$$
+
+\subsection*{Double Well}
+
+Consider an infinite well with a finite wall in its middle. If the particle is on the left side, then it is in $\ket{0}$, and else $\ket{1}$. Suppose we measure this particle with $\sigma_x$. Then, suppose we have a tunneling operator $\hat{T}$ such that: 
+
+$$\hat{T}\ket{0} = \ket{1}$$
+$$\hat{T}\ket{1} = \ket{0}$$
+
+We can compute the matrix elements from here:
+
+$$T = \sigma_x$$
+
+\subsection*{Uncertainty Principle}
+
+The high level: measuring $\hat{A}$ disrupts the possible measurements of the other observable $\hat{B}$. We note that 
+
+$$\sigma_A^2 = \langle (\hat{A} - \langle  \hat{A}\rangle )^2\rangle$$
+
+\begin{align}
+    &= \langle \psi |(\hat{A} -\langle A\rangle)^2 | \psi \rangle \\
+    &= \langle (\hat{A} - \langle A \rangle)\psi | (\hat{A} - \langle A \rangle ) \psi \rangle \\
+    &= \langle f | f\rangle 
+\end{align}
+
+
+For the second operator: 
+
+$$\sigma_B^2 = \langle g | g \rangle $$ with similar definition. From linear algebra, we know that 
+
+$$|\langle f | g \rangle|^2 \leq \langle f|f\rangle \langle g|g\rangle $$
+
+We get that 
+
+$$\sigma_A^2\sigma^2_B \geq |\langle f | g \rangle|^2 $$
+
+For any complex number $z = z' + iz''$, then 
+
+$$|z|^2 \geq z''^2 = [\frac{1}{2i}(z - z^*)]^2$$
+
+$$\sigma_A^2\sigma_B^2 \geq \left(\frac{1}{2i}(\langle f| g\rangle - \langle g|f\rangle)\right)^2$$
+
+Note, 
+
+$$\langle f |g \rangle = \langle \psi | (\hat{A} - \langle A\rangle) (\hat{B} - \langle B \rangle)|\psi\rangle$$
+$$ = \langle \psi|(\hat{A}\hat{B} - \hat{A}\langle B\rangle - \hat{B}\langle A \rangle + \langle A\rangle \langle B\rangle|\psi\rangle $$
+
+\end{document}

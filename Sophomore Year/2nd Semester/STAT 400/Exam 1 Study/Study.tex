@@ -1,0 +1,206 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{STAT 400 Study Guide}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{STAT 400 Study Guide}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    An ordered range of $r$ distinct things is called a permutation. The number of ways to number $r$ objects in $n$ positions is
+    \begin{equation}
+        _nP_r
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The number of methods for partiioning $n$ objects in $r$ groups is 
+    \begin{equation}
+        \begin{pmatrix}
+            n \\
+            n_1 \; n_2 \; \dots
+        \end{pmatrix} = \frac{n!}{n_1! n_2! \dots}
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The number of ways to take $n$ objects out of $r$ total is 
+    \begin{equation}
+        C_{r}^n
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The conditional probability of event $A$ given event $B$ is 
+    \begin{equation}
+        P(A|B) = \frac{P(A \cap B)}{P(B)}
+    \end{equation}
+\end{definition}
+
+Bayes theorem looks into partitions of an event space $S$. For example, a person can drive. The person can also drink. The event space of driving 
+can be divided up by probabilities of drinking. The partitions must be mutually exclusive and encompassing over $S$. Bayes rule states 
+
+\begin{equation}
+    P[A] = \sum_{i=1}^{m}P(B_i \cup A)
+\end{equation}
+
+This is just summing over the event space. Using equation (4), 
+
+\begin{equation}
+    P[A] = \sum_{i=1}^{m}P(B)P(A|B)
+\end{equation}
+
+\begin{definition}
+    Given $Y$ is a random variable, then 
+    \begin{enumerate}
+        \item The domain of $Y$ is the outcome space
+        \item The range of $Y$ is the space
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    The support of $X$ is the domain that doesn't map to $0$. 
+\end{definition}
+
+\begin{definition}
+    A \underline{Bernoulli Experiment} is when an outcome is binary. If a random variable distributes like a Bernoulli distribution, then we say 
+    \begin{equation}
+        X \sim \textit{Bernoulli(p)}
+    \end{equation}
+    It has the following equation 
+    \begin{equation}
+        f(x) = p^{x}(1-p)^{1-x} \; x = \{0,1\}
+    \end{equation}
+    Where $x$ dictates how many times an event of probability $p$ occurred. Note, 
+    \begin{equation}
+        E[X] = p
+    \end{equation}
+    \begin{equation}
+        Var[X] = p(1-p)
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    A \underline{Binomial Distribution} is repeated Bernoulli experiment. That is, we calculate the probability of an event of probability $p$ occurring $r$ out of $n$ tries. Note, 
+    \begin{equation}
+        E[X] = np
+    \end{equation}
+    \begin{equation}
+        Var[X] = np(1-p)
+    \end{equation}
+    We say 
+    \begin{equation}
+        X \sim \textit{Binomial(n,p)}
+    \end{equation}
+    Where $n$ is the \textit{total} number of trials and $p$ is the probability of this event occurring. Implicitly, $x$ is the number of times the event has occurred. 
+\end{definition}
+
+\begin{definition}
+    A \underline{Geometric Distribution} is the number of trials that must occur before the first success occurs. This is analagous to the inverse of the Bernoulli Experiment. We say that 
+    \begin{equation}
+        X \sim \textit{Geom(p)}
+    \end{equation}
+    Note, 
+    \begin{equation}
+        E[X] = \frac{1}{p}
+    \end{equation}
+    \begin{equation}
+        Var[X] = \frac{1-p}{p^2}
+    \end{equation}
+    There are two types of equations, 
+    \begin{equation}
+        f(x) = p(1-p)^{x-1}
+    \end{equation}
+    means a total of $x$ trials. In R studio, $x-1$ would be replaced with $x'$ where $x'$ is the number of failures before the first success is observed. 
+\end{definition}
+
+\begin{definition}
+    A \underline{Negative Binomial Distribution} is a generalization of the Geometric Distribution. That is, the number of trials needed until we observe $r$ successes. Note, the pmf of this distribution is a function 
+    of the number of trials. We say that 
+    \begin{equation}
+        X \sim \textit{NB(r,p)}
+    \end{equation}
+    Where $r$ is the number of successes. Note, 
+    \begin{equation}
+        E[X] = \frac{r}{p}
+    \end{equation}
+    \begin{equation}
+        Var[X] = \frac{r(1-p)}{p^2}
+    \end{equation}
+    Note that there are a number of $x$ trials, with $r-1$ failures distributed over $x-1$ trials. In R studio, we say 
+    \begin{center}
+        dnbinom(x, r, p)
+    \end{center}
+    Where $x$ is the number of failures, and $r$ is the number of successes. Note $x + r$ is the total number of trials. 
+\end{definition}
+
+\begin{definition}
+    In R studio, the prefixes mean 
+    \begin{enumerate}
+        \item d: Calculate pmf (NOT CDF)
+        \item p: Calculate cdf (NOT PMF, this is confusing)
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A \underline{Hypergeometric distribution} describes the number of successes in a sample of size $n$, where the sampling is done without replacement. Note 
+    \begin{equation}
+        E[X] = n\frac{r}{N}
+    \end{equation} 
+    Where $r$ is the maximum number of successes, $n$ is size of the sample, $N$ is the size of the population. Note $x$ is the number of actual observed successes.   
+\end{definition}
+
+\begin{definition}
+    A \underline{Poisson Distribution} is used in scenarios when we count the number of occurrences given a certain rate $\lambda$. Note, 
+    \begin{equation}
+        E[X] = \lambda
+    \end{equation} 
+    \begin{equation}
+        Var[X] = \lambda
+    \end{equation}
+    We say that 
+    \begin{equation}
+        X \sim \textit{Pois($\lambda$)}
+    \end{equation}
+    Where $x$ is the number of occurrences of an event. 
+\end{definition}
+
+\end{document}

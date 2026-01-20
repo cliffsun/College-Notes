@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 435: Lecture 8}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 435: Lecture 8}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+To develop well posed problems of potential energy, we need 
+
+\begin{enumerate}
+    \item Cartesian Coordinates: $V(r)$ inside box and $\partial V$ on box. 
+    \item Spherical Coordinates: $V(r)$ inside and outside of sphere and $\partial V$ on sphere. 
+    \item Cylindrical Coordinates: $V(r)$ inside cylinder. $\partial V$ on cylinder, and if finite surface, on caps. 
+\end{enumerate}
+
+We solve the box problem, finding $V(r)$ on the inside and $\nabla^2 V(r) = 0$ in the inside (no charges). Then guess 
+\begin{equation}
+    V(r) = X(x)Y(y)Z(z)
+\end{equation}
+Then finding the laplacian, we yield 
+
+\begin{equation}
+    \frac{1}{X(x)}\partial^2_x X(x) + \dots = 0 
+\end{equation}
+This implies 
+\begin{equation}
+    \frac{1}{X(x)}\partial^2_x X(x) = a
+\end{equation}
+\begin{equation}
+    \frac{1}{Y(y)}\partial^2_y Y(y) = b
+\end{equation}
+\begin{equation}
+    \frac{1}{Z(z)}\partial^2_z Z(z) = c
+\end{equation}
+
+
+
+\end{document}

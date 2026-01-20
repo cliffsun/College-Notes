@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture \# 12}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture \# 12}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Rigid Body Mechanics}
+
+\begin{definition}
+    A rigid body is a collection of $n$ particles with constant distance between them. That is, the shape does not change. 
+\end{definition}
+
+\begin{definition}
+    The center of mass is defined as 
+    \begin{equation}
+        \vec{R} = \frac{1}{M}\sum_{a=1}^{N}m_a r_a
+    \end{equation}
+    This is the mass weighted with respect to its vector. The continuous limit is 
+    \begin{equation}
+        \vec{R} = \frac{1}{M}\int dm r
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The momentum is 
+    \begin{equation}
+        \sum_{a} m_a \dot{r}_a \iff M\dot{\vec{R}}
+    \end{equation}
+    The external force is 
+    \begin{equation}
+        F_{ext} = M\ddot{\vec{R}}
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The total angular momentum is 
+    \begin{equation}
+        L_O = \sum_{a} \vec{r}_a \times m_a\dot{\vec{r}}_a
+    \end{equation}
+    Total external torque is 
+    \begin{equation}
+        R_O = \sum_{a} \vec{r}_a \times F_{a,\; ext}
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    \begin{equation}
+        \frac{dL_O}{dt} = R_O
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Calculate $dL_O/dt$. 
+    \begin{equation}
+        \frac{dL_O}{dt} = \frac{d}{dt}\left[\sum_{a} \vec{r}_a \times m_a \dot{\vec{r}}_a\right]
+    \end{equation}
+    \begin{equation}
+        = \sum_a \dot{\vec{r}}_a \times m_a \dot{\vec{r}}_a + \sum_a \vec{r}_a \times m_a \ddot{\vec{r}}_a
+    \end{equation}
+    \begin{equation}
+        = \sum_a \vec{r}_a \times \left( F_a^{ext} + F^{int}_a \right)
+    \end{equation}
+    \begin{equation}
+        = \sum_a \vec{r}_a \times F_a^{ext}
+    \end{equation}
+\end{proof}
+
+\begin{theorem}
+    \begin{equation}
+        L_O = \vec{R} \times (M\dot{\vec{R}}) + L^{CM}
+    \end{equation}
+    Where $L^{CM}$ is the angular momentum around the center of mass. 
+\end{theorem}
+
+\begin{proof}
+    Define $\rho = r_a - R$ where $R$ is the location of the center of mass, then calculate torque and note that $R$ has no $a$ subscript.
+\end{proof}
+
+\begin{theorem}
+    \begin{equation}
+        \frac{dL^{CM}}{dt} = \vec{\Gamma}^{CM}
+    \end{equation}
+    The change in the angular momentum around the center of mass is the torque around the center of mass. 
+\end{theorem}
+
+\begin{theorem}
+    \begin{equation}
+        \frac{d}{dt}L_p = \Gamma_p^{\text{actual}} - \vec{r}_{p \rightarrow COM} \times M \vec{a}_p
+    \end{equation}
+\end{theorem}
+
+\begin{definition}
+    The Levi-Civita symbol is 
+    \begin{equation}
+        \epsilon_{ijk} = -1^p
+    \end{equation}
+    Where $p$ is the parity of the permutation of $ijk$. 
+\end{definition}
+
+\end{document}

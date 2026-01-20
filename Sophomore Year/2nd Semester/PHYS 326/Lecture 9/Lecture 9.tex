@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 9}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 9}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Non-linear Dynamics and Chaos}
+
+Linear systems are solvable and intuitive, but are only an approximation. Non-linear systems can be simple, but show complex and unpredictable behavior. 
+
+\subsection*{The Logistic Map}
+
+Define logistic map 
+
+\begin{equation}
+    x_{j+1} = \alpha x_j(1 - x_j)
+\end{equation}
+
+The points of stability is 
+
+\begin{equation}
+    x=0, x = 1 - \frac{1}{\alpha}
+\end{equation}
+
+We search for equilibrium points, stay close to $1 - \frac{1}{\alpha} + \epsilon$, then 
+
+\begin{equation}
+    x_{j+1} = \alpha x_j(1 - x_j)
+\end{equation}
+
+\begin{equation}
+    \iff \alpha(1 - \frac{1}{\alpha} + \epsilon)(1 - 1 + \frac{1}{\alpha} + \epsilon)
+\end{equation}
+
+\begin{equation}
+    \iff 1 - \frac{1}{\alpha} + \epsilon(2 - \alpha) + O(\epsilon^2)
+\end{equation}
+\begin{equation}
+    \iff 1 - \frac{1}{\alpha} + \epsilon'
+\end{equation}
+
+Note 
+
+\begin{equation}
+    \epsilon' < \epsilon \implies \epsilon(2 - \alpha) < \epsilon \iff 1 < \alpha < 3
+\end{equation}
+
+\begin{definition}
+    Chaos is defined as 
+    \begin{enumerate}
+        \item Attractor = fractal 
+        \item Attract is exponentially sensitive to initial conditions. 
+    \end{enumerate}
+\end{definition}
+
+Suppose two populations $x_n$ and $x_n'$, then for sufficiently large $n$, then 
+\begin{equation}
+    |x_n - x'_n| \sim \epsilon e^{\lambda n}
+\end{equation}
+
+Where $\lambda$ is the Lyapunov exponent. 
+
+\end{document}

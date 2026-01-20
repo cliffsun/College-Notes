@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture \# 15}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture \# 15}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Symmetrical Top, Subject to Torque}
+
+In the presence of torque, we work in a fixed lab frame. Write the Lagrangian. Define generalized coordinates: Euler Angles. We define Orientation/Rotation Matrices $Q$. Consider a coordinate 
+system $\hat{i}, \hat{j}, \hat{k}$, then transform to new unit vectors: $\hat{i}', \hat{j}', \hat{k}'$. Then write 
+
+\begin{equation}
+    \hat{i}' = Q_{xx}\hat{i} + Q_{xy}\hat{j} + Q_{xz}\hat{k}
+\end{equation}
+$\hat{j}'$ and $\hat{k}'$ are defined similarly. Note, the elements of $Q$ are just angles, that is 
+
+\begin{equation}
+    \hat{i}' \cdot \hat{j} = \underbrace{|\hat{i}'||\hat{j}|}_{1}\cos\theta_{i'j} = Q_{xy}
+\end{equation}
+
+Write 
+
+\begin{equation}
+    \hat{e}_{i}' = \sum_{j} Q_{ij}\hat{e}_{j}
+\end{equation}
+
+Require that $\hat{e}_{i}'$ be orthonormal basis, then 
+
+\begin{equation}
+    \delta_{ik} = \hat{e}'_{i} \cdot \hat{e}'_{k} = \sum_{j}Q_{ij}\hat{e}_{j}\sum_{m}Q_{km}\hat{e}'_{m}
+\end{equation}
+\begin{equation}
+    \iff \sum_{jm} Q_{ij}Q_{km}\delta_{jm}
+\end{equation}
+\begin{equation}
+    \iff \sum_{j} Q_{ij}Q_{km} \iff \sum_{j} Q_{ij}Q^T_{jk} \implies I = QQ^{T}
+\end{equation}
+
+Note, the eigenvalues of $Q$ is $\lambda = 1$, and $\lambda = e^{\pm i \alpha}$. Where $\alpha$ is the angle of rotation. Consider infinitesimal rotations by small angle $\omega dt$, then 
+
+\begin{equation}
+    Q = Q + \epsilon
+\end{equation}
+Then consider 
+
+\begin{equation}
+    Q^{T}Q = I \iff (I + \epsilon^{T})(I + \epsilon) \implies \epsilon^{T} + \epsilon = 0
+\end{equation}
+This means $\epsilon$ is anti-symmetric. Then consider 
+\begin{equation}
+    Q(t + dt) = (I + \omega dt)Q(t)
+\end{equation}
+Then 
+\begin{equation}
+    \frac{dQ}{dt} = \frac{Q(t + dt) - Q(t)}{dt} = \omega Q
+\end{equation}
+Then 
+\begin{equation}
+    \omega = \frac{dQ}{dt}Q^{T}
+\end{equation}
+\end{document}

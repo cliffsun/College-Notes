@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486: Lecture \# 23}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486: Lecture \# 23}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Solving the radial equation}
+
+Let 
+
+\begin{equation}
+    R = \frac{u}{r}
+\end{equation}
+Then 
+\begin{equation}
+    \frac{dR}{dr} = (r\frac{du}{dr} - u)\frac{1}{r^2}
+\end{equation}
+Then, our radial equation becomes 
+\begin{equation}
+    -\frac{\hbar}{2m}\frac{d^2u}{dr^2} + [V + \frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}]u = E_n
+\end{equation}
+
+As a toy system, we examine the infinite well in 3-D in spherical coordinates. 
+
+\begin{equation}
+    V(r) = \begin{cases}
+        0 & r \leq a \\
+        \infty & r > a
+    \end{cases}
+\end{equation}
+
+Inside the well, 
+
+\begin{equation}
+    \frac{d^2u}{dr^2} = [\frac{l(l+1)}{r^2} - k^2]u
+\end{equation}
+
+For $l=0$, then 
+
+\begin{equation}
+    u(r) = A\sin(kr) + B\cos(kr)
+\end{equation}
+
+Since the WF $= u/r$, then $B=0$. with BC: $\sin(ka) = 0$, then $ka = N\pi$. Thus, 
+
+\begin{equation}
+    E = \frac{N^2\pi^2\hbar^2}{2ma^2}
+\end{equation}
+
+For $l>0$, generally:
+
+\begin{equation}
+    u(r) = Arj_l(kr) + Bru_l(kr)
+\end{equation}
+
+\begin{equation}
+    j_l(x) = (-x)^l(\frac{1}{x}\frac{d}{dx})^l\frac{\sin(x)}{x}
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    R(r) = Aj_l(kr) \land j_l(ka) = 0
+\end{equation}
+
+The wave function is then 
+
+\begin{equation}
+    \psi = A R(r) Y(\phi, \theta)
+\end{equation}
+
+\newpage
+
+\section*{The Hydrogen Atom}
+
+Given a Hydrogen Atom with an immobile proton and an electron that is free to move around. Then 
+
+\begin{equation}
+    V(r) = -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r}
+\end{equation}
+
+Thus, the radial equation is 
+
+\begin{equation}
+    -\frac{\hbar^2}{2m}\frac{d^2u}{dr^2} + \left[ -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r} + \frac{\hbar^2}{2m_e}\frac{l(l+1)}{r^2} \right]u = E_u
+\end{equation}
+
+\end{document}

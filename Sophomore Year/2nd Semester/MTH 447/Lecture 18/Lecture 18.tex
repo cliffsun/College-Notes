@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture \#18}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture \#18}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Functions}
+
+\begin{definition}
+    A \underline{function} is defined as 
+    \begin{equation}
+        \mathbb{R} \rightarrow \mathbb{R}
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    Let $F: A \rightarrow B$. Let $x_0 \in A$. We say that $f(x)$ is \underline{continuous at $x_0$} if for any sequence $(x_n)$, $x_n \in A$ and $\forall n$ and 
+    \begin{equation}
+        \lim_{n\rightarrow \infty}x_n = x_0 \implies \lim_{n\rightarrow \infty} f(x_n) = f(x_0)
+    \end{equation}
+    This definition can be modified to use the $\epsilon - \delta$ definition. 
+\end{definition}
+
+\begin{definition}
+    If $F$ is continuous $\forall x_0 \in S \subseteq A$, then $F$ is \underline{continuous on S}. 
+\end{definition}
+
+\begin{theorem}
+    $f: [a,b] \rightarrow \mathbb{R}$, $f$ is cont. Then 
+    \begin{enumerate}
+        \item $f$ is bounded 
+        \item $f$ attains its maximum \& minimum. That is $\exists x_{max}, x_{min} \in [a,b]$ s.t. $\forall x\in [a,b]$
+        \begin{equation}
+            f_{x_{min}} \leq f(x) \leq f(x_{max})
+        \end{equation}  
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    (1). Let $f$ be continuous, $f: [a,b] \rightarrow \mathbb{R}$. And assume $\{f(x)\}$ is unbounded above. This means for any $n$, $\exists x$ such that $f(x) > n$. Then $\lim f(x_n) = \infty$. But $(x_n)$ is bounded, in particular, between $[a,b]$. Then $x_{n_k}$ is a convergent subsequence. Then $x_{n_k} \rightarrow x_0$. Then $f(x_{n_k}) \rightarrow \infty$. This is a contradiction. This concludes the proof.  
+\end{proof}
+
+\begin{proof}
+    (2). Let $M = \sup(f(x))$. This exists and is finite. Then for all $n$, there exists $y_n$ such that 
+    \begin{equation}
+        M - \frac{1}{n} \leq f(y_n) \leq M
+    \end{equation}
+    Note, $y_{n_k} \rightarrow y_0$. 
+\end{proof}
+
+\end{document}

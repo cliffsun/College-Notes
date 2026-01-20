@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 4}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 4}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Multiple D.O.F: The general case}
+
+Consider a system with a generlized coordinates $q_{\alpha}(t)$ for $\alpha = 1,2,\dots,N$. Then 
+\begin{equation}
+    L = L(q_{\alpha}, \dot{q}_{\alpha})
+\end{equation}
+We want to find the equations of motion for small deviations from equilibrium. At equilibrium, $q_{\alpha} = c$. 
+\begin{equation}
+    \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_{\alpha}}\right) - \frac{\partial L}{\partial q_{\alpha}} = 0
+\end{equation}
+At equilibrium, we have that nothing changes in time, therefore:
+\begin{equation}
+    \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_{\alpha}}\right) \implies \frac{\partial L}{\partial q_{\alpha}} = 0
+\end{equation}
+We study small deviations from equilibrium:
+\begin{equation}
+    q_{\alpha} = \bar{q_{\alpha}} + x_{\alpha}(t)
+\end{equation}
+For $x_{\alpha}$ small and $\bar{q_{\alpha}}$ is the equilibrium point. We plug this into the lagrangian, and we only retain up to the 2nd order:
+\begin{equation}
+    L(x_1, x_2, \dots, \dot{x_1}, \dot{x_2}, \dots) = \frac{1}{2}\sum_{\alpha, \beta = 1}^{N}M_{\alpha\beta}\dot{x}_\alpha\dot{x}_\beta + \frac{1}{2}\sum_{\alpha \beta = 1}^{N}\Gamma_{\alpha \beta}\dot{x}_\alpha x_\beta - \frac{1}{2}\sum_{\alpha, \beta = 1}^{N}K_{\alpha\beta}x_\alpha x_\beta 
+\end{equation}
+In classical physics, $\Gamma$ is usually $0$. Then we plug into E.L. equations:
+\begin{equation}
+    = \sum_\beta \left(\frac{M_{\gamma\beta + M_{\beta\gamma}}}{2}\ddot{x}\right) + \sum_\beta\left(\frac{\Gamma_{\gamma\beta} + \Gamma_{\beta\gamma}}{2}\dot{x}\right) + \sum_{\beta}\left(\frac{K_{\gamma\beta} + K_{\beta\gamma}}{2}x\right)
+\end{equation}
+\begin{equation}
+    -\frac{\partial L}{\partial x_{\gamma}} = -\frac{\partial }{\partial x_{\gamma}}\left[L\right]
+\end{equation}
+Note that $\frac{\partial x_\mu}{\partial x_\nu} = \delta_{\mu\nu}$. See lecture notes for derivation. But the key thing is that
+\begin{equation}
+    M_{\alpha\beta} = \frac{\partial}{\partial x_{\alpha}\partial x_{\beta}}T
+\end{equation}
+Since $\alpha$ and $\beta$ are dummy variables, we have that $M$ must be symmetric. In a similar fashion, $K$ is also symmetric. 
+
+\section*{Cart + Spring + Pendulum}
+
+
+\end{document}

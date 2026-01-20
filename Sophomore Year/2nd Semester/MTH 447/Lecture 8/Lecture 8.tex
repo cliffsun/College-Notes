@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 8}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 8}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}
+    If $x_n \rightarrow L$ and $y_n \rightarrow M$, then $x_n y_n \rightarrow LM$, then 
+    \begin{equation}
+        \lim_{n \rightarrow \infty}(x_n y_n) = (\lim_{n \rightarrow \infty} x_n)(\lim_{n \rightarrow \infty} y_n)
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    \begin{equation}
+        |x_ny_n - LM| 
+    \end{equation}
+    \begin{equation}
+        = |x_ny_n - x_nM + x_nM - LM|
+    \end{equation}
+    \begin{equation}
+        = |x_n(y_n - M) + M(x_n - L)|
+    \end{equation}
+    \begin{equation}
+        \leq |x_n(y_n - M)| + |M(x_n - L)|
+    \end{equation}
+    \begin{equation}
+        = |x_n||(y_n - M)| + |M||x_n - L|
+    \end{equation}
+    Note that $|x_n|$ is bounded, namely $|x_n| < Q$, then $\forall n$
+    \begin{equation}
+        < Q|y_n - M| + |M||x_n - L|
+    \end{equation}
+    Then $\forall \epsilon > 0$, $\exists N_1$ such that 
+    \begin{equation}
+        |x_n - L| < \frac{\epsilon}{2|M|}
+    \end{equation}
+    Similarly for $y_n - L$. then 
+    \begin{equation}
+        |x_ny_n - L| < \epsilon
+    \end{equation}
+\end{proof}
+
+\begin{theorem}
+    Suppose $x_n \rightarrow L$, $y_n \rightarrow L$, and $\exists N$ where $\forall n \in N$, 
+    \begin{equation}
+        x_n \leq z_n \leq y_n
+    \end{equation}
+    then $z_n \rightarrow L$
+\end{theorem}
+
+\begin{proof}
+    We want to prove 
+    \begin{equation}
+        |z_n - L| < \epsilon
+    \end{equation}
+\end{proof}
+
+\begin{theorem}
+    $x_n \rightarrow L$ and $y_n \rightarrow M$, $M \neq 0$, then 
+    \begin{equation}
+        \frac{x_n}{y_n} \rightarrow \frac{L}{M}
+    \end{equation}
+\end{theorem}
+
+\begin{lemma}
+    if $y_n \rightarrow M$, $M \neq 0$, then $\frac{1}{y_n} \rightarrow M$
+\end{lemma}
+
+\begin{proof}
+    \begin{equation}
+        |\frac{1}{y_n} - \frac{1}{M}| < \epsilon
+    \end{equation}
+    \begin{equation}
+        \frac{|M - y_n|}{|y_n M|}
+    \end{equation}
+    \begin{equation}
+        = |y_n - M| \frac{1}{|M|} \frac{1}{|y_n|}
+    \end{equation}
+\end{proof}
+
+\begin{lemma}
+    If $y_n \rightarrow M$, $M \neq 0$, then $\exists N$ such that $\frac{1}{|y_n|}$ is bounded. 
+\end{lemma}
+
+\end{document}

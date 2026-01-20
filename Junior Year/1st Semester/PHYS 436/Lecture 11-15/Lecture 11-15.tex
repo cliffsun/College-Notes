@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 436 Lecture Notes}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 436 Lecture Notes}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture 11: 9/17}
+
+What does a monochromatic E\&M plane wave carry? 
+
+\begin{enumerate}
+    \item Energy Density $u$
+    \item E\&M Wave carries energy, i.e. the enegry current density $S = 1/\mu_0 (E \times B) = \hat{k}cu$
+    \item Momentum
+\end{enumerate}
+
+Note, light intensity is the magnitude of the averaged energy current density. 
+
+\subsection*{Radiation pressure for perfect absorption}
+
+\begin{enumerate}
+    \item Consequence of EM momentum
+    \item For cross section A and length of $c \Delta t$. The average momentum is 
+    \begin{equation}
+        \Delta p = \langle g \rangle (A \cdot c \Delta t) \iff P = |F|/A = \langle g \rangle c
+    \end{equation}
+    Note, $P$ is pressure. 
+\end{enumerate}
+
+\subsection*{E\&M Wave in Isotropic Linear Medium}
+
+Maxwells equations are
+
+\begin{align}
+    \nabla \cdot E &= 0 \\
+    \nabla \cdot B &= 0 \\
+    \nabla \times E &= -\partial_t B \\
+    \nabla \times B &= \mu\epsilon\partial_t E
+\end{align}
+
+Note, $\mu = \mu_0(1 + \chi_m)$ and etc for $\epsilon$. 
+
+\newpage 
+
+\section*{Lecture 12: 9/19}
+
+E\&M wave in a linear media, has that
+
+\begin{equation}
+    \epsilon_0 \rightarrow \epsilon \;\;\; \mu_0 \rightarrow \mu 
+\end{equation}
+
+\section*{Lecture 13: 9/22}
+
+Deriving Fresnel equation for normal incidence:
+\begin{enumerate}
+    \item E, B are parallel to the surface
+    \item The boundary conditions are in the lecture notes. 
+\end{enumerate}
+
+We now study generalized incidence and try to derive the Fresnel Equation for this. The Electric field is 
+
+\begin{align}
+    E_R &= E_{RO} \exp(i(k_R \cdot r - \omega t)) \\
+    B_R &= \hat{k}_R \times \frac{n_1}{c}E_R
+\end{align}
+\begin{align}
+    E_I &= E_{IO} \exp(i(k_I \cdot r - \omega t)) \\
+    B_I &= \hat{k}_I \times \frac{n_1}{c}E_I
+\end{align}
+
+The boundary conditions are 
+
+\begin{align}
+    (D_1 - D_2) \cdot n &= 0 \\
+    (B_1 - B_2) \cdot n&= 0 \\
+    (E_1 - E_2) \times n &= 0 \\
+    (H_1 - H_2)\times n &= 0
+\end{align}
+
+\section*{Lecture 14: 9/24}
+
+Midterm, 1st question chapter 8, 2 questions on chapter 9. 
+
+\newpage 
+
+\section*{Lecture 15: 9/26}
+
+Electric field in conductors. Maxwell's equations become 
+
+\begin{align}
+    \nabla \cdot E &= \rho_f/\epsilon_0 \\
+    \nabla \cdot B &= 0 \\
+    \nabla \times E &= -\partial_t B \\
+    \nabla \times B &= \mu_0 J + \mu_0\epsilon_0\partial_t E
+\end{align}
+
+Assuming thqt $J_f = \sigma E$, we can then assume that the free charge is constant. We prove this:
+
+\begin{align*}
+    \partial_t\rho &= \nabla \cdot J \;\;\ \text{Ohm's Law} \\
+    &= \sigma \nabla \cdot E \;\;\ \text{Gauss's Law} \\
+    &= \sigma \frac{\rho}{\epsilon} \\
+    \rho(t) &= \rho(t=0)\exp\left(-\frac{\sigma}{\epsilon_0}t\right)
+\end{align*}
+
+Note that if $\sigma = 1$, then $1/\epsilon_0 \sim 10^{12}$, which means that the time dependence of the charges can be ignored. Then the modified wave equation becomes:
+
+\begin{align*}
+    \nabla \times (\nabla \times E) &= -\partial_t (\nabla \times B) \\
+    -\nabla^2 E &= -\partial_t (\mu_0\epsilon_0 \partial_t E + \mu_0 \sigma E) \\
+    &= \mu_0\epsilon_0 \partial^2_t E + \mu_0 \sigma \partial_t E 
+\end{align*}
+
+Plugging in $E_0\exp(i(kz - \omega t))$, we obtain
+
+\begin{equation}
+    k^2 = \mu\epsilon \omega^2 + i\mu\sigma\omega 
+\end{equation}
+
+Then our solution becomes 
+
+\begin{equation}
+    \exp(-\kappa z)\exp(i(kz - \omega t))
+\end{equation}
+
+\end{document}

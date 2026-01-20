@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 436: Lecture 16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 436: Lecture 16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{E\&M Waves in Conductors}
+
+Recall that 
+
+\begin{equation}
+    \vec{E} = \hat{x}E_0 \exp(-kz)\cos(kz - \omega t + \delta_E)
+\end{equation}
+\begin{equation}
+    \vec{B} = \hat{y}B_0\exp(-kz)\cos(kz - \omega t + \delta_E + \phi)
+\end{equation}
+
+Reflection inside a conductor is same as a linear medium, with the boundary conditions:
+
+\begin{align*}
+    E^{\parallel}_1 &= E^{\parallel}_2 \\
+    \frac{1}{\mu_1}B^{\parallel}_1 &= \frac{1}{\mu_2}B^{\parallel}_2
+\end{align*}
+
+But the $\tilde{k}$ value changes. 
+
+\end{document}

@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 417: Lecture \# 16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 417: Lecture \# 16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Recall Lagrange's theorem. 
+
+\begin{corollary}
+    If $p$ is prime, then $|G| = p$, then $G$ is cyclic of order of $p$. The only subgroups of $G$ is $\{e\}$ and $G$
+\end{corollary}
+
+\begin{proof}
+    Let $H \leq G$, then $|H|/|G| = p$. So $|H| = 1$ or $p$. 
+\end{proof}
+
+More generally, any finite $G$, $g \in G$, the order of $g$ is defined as
+
+\begin{equation}
+    o(g) = |\langle g \rangle | \bigg| |G|
+\end{equation}
+
+\begin{corollary}
+    Let $n \in \mathbb{N}$, $a \in \mathbb{Z}$. Then 
+    \begin{equation}
+        a^{\varphi(n)} \equiv 1 \; \mod n
+    \end{equation}
+    Recall that 
+    \begin{equation}
+        \varphi(n) = \big|\mathbb{Z}^{\times}_n \big|
+    \end{equation}
+\end{corollary}
+
+\begin{proof}
+    Note that $[a]_n \in \mathbb{Z}^{\times}_n$, so 
+    \begin{equation}
+        o([a]_n) \bigg| \varphi(n)
+    \end{equation}
+    Therefore, 
+    \begin{equation}
+        \varphi(n) = o([a]_n)k \;\; k \in \mathbb{N}
+    \end{equation}
+    However,
+    \begin{equation}
+        [a_n]^{o([a])} = [1] \in \mathbb{Z}_n^{\times}
+    \end{equation}
+    The rest of this proof follows trivially. 
+\end{proof}
+
+Recall, $N \leq G$ is normal if $\forall g \in G$, then $gNg^{-1} = N$. We can check 
+
+\begin{center}
+    $N$ is normal if $G$ $\iff gN = Ng$
+\end{center}
+
+
+
+\end{document}

@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 20}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 20}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Continuous Functions}
+
+\begin{definition}
+    $F: A \rightarrow \mathbb{R}$. $f$ is \underline{continuous} if $\forall x_0 \in A$, $\forall \epsilon > 0$, $\exists \delta > 0$ such that if $|x - x_0| < \delta$ and $x \in A$, then $|f(x) - f(x_0)| < \epsilon$. 
+\end{definition}
+
+\begin{definition}
+    $f$ is \underline{uniformly continous} if $\forall \epsilon >0$, $\exists \delta > 0$ such that if $|x - y| < \delta$ where $x,y \in A$, then $|f(x) - f(y)| < \epsilon$. 
+\end{definition}
+
+\subsection*{Main Properties of Uniform Continuity}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item If $f: [a,b] \rightarrow \mathbb{R}$ and $f$ is continuous, then $f$ is uniformly continuous. (domain is closed bounded interval)
+        \item If $f: A \rightarrow \mathbb{R}$ is uniformly continous and $x_n$ is Cauchy, then $f(x_n)$ is Cauchy. 
+        \item $f: (a,b) \rightarrow \mathbb{R}$, then $f$ is uniformly continous $\iff$ $f$ can be extended to $a$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Proof of (1). Let $f: [a,b] \rightarrow \mathbb{R}$, $f$ is continous but not uniformly continuous. We negate the uniform continuity definition: we obtain $\exists \epsilon > 0$, $\forall \delta > 0$, $\exists x,t$ such that $|x - y| < \epsilon$ and $|f(x) - f(y)| \geq \epsilon$.
+    Then $\forall n \in \mathbb{N}$, $\exists x_n, y_n$ such that 
+    \begin{equation}
+        |x_n - y_n| < \frac{1}{n} \text{ and } |f(x_n) - f(y_n)| \geq \epsilon
+    \end{equation}
+    But $x_n \in [a,b] \implies \exists x_{n_k}$ that converges. Then $x_{n_k} \rightarrow x_0$, and 
+    \begin{equation}
+        |y_{n_k} - x_{n_k}| < \frac{1}{n_{k}} \leq \frac{1}{k} \implies y_{n_k} \rightarrow x_0
+    \end{equation}
+    Then by continuity, 
+    \begin{equation}
+        \lim f(x_{n_k}) = \lim f(y_{n_k}) = f(x_0)
+    \end{equation}
+    Then $|f(x_{n_k}) - f(y_{n_k})| \rightarrow 0$ which contradicts the negated statement. 
+\end{proof}
+
+\begin{proof}
+    Proof of (2). Assume $x_n$ is Cauchy. Then $\forall \epsilon > 0$, $\exists N$ such that $n,m > N$, $|x_n - x_m| < \epsilon$. $f$ is u.c. if $\exists \delta > 0$, $|x - y| < \delta \implies |f(x) - f(y)| < \epsilon$. Let $x_n$ be cauchy, then this implies that $|f(x_n) - f(x_m)| < \epsilon$. Thus, $f(x_n)$ is Cauchy. 
+\end{proof}
+
+\begin{proof}
+    Proof of (3). 
+\end{proof}
+
+\end{document}

@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 417: Lecture 15}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 417: Lecture 15}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{equation}
+    S_{3} = \{e, (12), (13), (23), (123), (132)\}
+\end{equation}
+
+All elements in this set partition $S_3$. 
+
+\begin{definition}
+    Let $H \leq G$ be a subgroup. Let $g \in G$. A subset of the form 
+    \begin{equation}
+        gH = \{gh | h \in H\}
+    \end{equation}
+    is called a left coset of $H$ in $G$. The right coset is defined as 
+    \begin{equation}
+        Hg = \{hg | h \in H\}
+    \end{equation}
+    Note, this is also a function of $g$ where $g$ is a fixed element of $G$. 
+\end{definition}
+
+In general, the left and right cosets are different. 
+
+\begin{proposition}
+    Let $H \leq G$, and $a,b \in G$. The following statements are all equivalent (TFAE):
+    \begin{enumerate}
+        \item $a \in bH$
+        \item $b \in aH$
+        \item $b^{-1}a \in H$
+        \item $a^{-1}b \in H$
+        \item $aH = bH$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Prove that $1 \implies 2$. Suppose $a \in bH$. This means that $a = bh \iff ah^{-1} = b \in aH$. 
+\end{proof}
+
+\begin{proof}
+    Prove that $2 \implies 3$. Suppose $b = ah \iff h^{-1} = b^{-1}a \in H$.
+\end{proof}
+
+\begin{proof}
+    Prove that $3 \implies 4$. Suppose $b^{-1}a = h \iff h^{-1} = a^{-1}b \in H$.
+\end{proof}
+
+\begin{proof}
+    Prove that $4 \implies 5$. Suppose $a^{-1}b  = h$. Then let $a\tilde{h} \in aH$, then $a\tilde{h} = bh^{-1}\tilde{h} \in bH$. A similar exercise for $bH \subseteq aH$.  
+\end{proof}
+
+\begin{proof}
+    Prove that $5 \implies 1$. Suppose $aH = bH$. In particular, $ae \in aH \iff ae \in bH$.  
+\end{proof}
+
+\begin{proposition}
+    $H \leq G$, $a, b\in G$. Then, these are consequences:
+    \begin{enumerate}
+        \item Either $aH = bH$ or $aH \cap bH = \emptyset$
+        \item The function $f: aH \rightarrow bH$ such that $f(x) = ba^{-1}x$. This is a bijection.
+        \item $G = \cup \text{ Left Cosets}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    We prove $3$. Note that left coset $\subseteq G$. Then let $g \in G$, then in particular, $g \in $ some left coset because every left coset has a the element $ge = g$. 
+\end{proof}
+
+\begin{proof}
+    We prove $2$. Assume that $aH \cup bH \neq \emptyset$. Then $\exists x \in aH \cup bH$. Then in particular, $x \in aH$ means that $aH = xH$. Similarly, $bH = xH$. The result is trivial. 
+\end{proof}
+
+\begin{theorem}
+    \underline{Lagrange's Theorem}: Let $G$ be a finite group. Let $H \leq G$. Then the order of $H$ divides the order of $G$ and the quotient is the number of left cosets of $H$ in $G$. 
+\end{theorem}
+
+\begin{definition}
+    For any $H \leq G$, the \# of left cosets of H in G is the \underline{index} of H in G. Denoted $[G:H]$ 
+\end{definition}
+
+Then Lagrange tells us that if $|G| \leq \infty$, then $|G| = |H|[H:G]$
+
+\begin{proof}
+    Suppose $a_1,\dots,a_k$ be representatives of the left cosets of $H$ in $G$. Then 
+    \begin{equation}
+        G = \bigcup_i a_iH \
+    \end{equation}
+    \begin{equation}
+        \implies |G|= \sum_i |a_i H|
+    \end{equation}
+    because they are disjoint.
+    \begin{equation}
+        \sum_i |a_iH| = \sum_i |H|
+    \end{equation}
+    \begin{equation}
+        |G| = k|H|
+    \end{equation}
+    This means that the order of $H$ divides $G$ and the integer is the number of left cosets.
+\end{proof}
+
+\end{document}

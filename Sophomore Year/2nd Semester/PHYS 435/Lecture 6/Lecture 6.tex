@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 435: Lecture 6}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 435: Lecture 6}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Dirichlet Electrostatic boundary problems}
+
+Find solution for $V(\vec{r})$ inside a volume, then you must 
+\begin{enumerate}
+    \item Supply $V(\vec{r})$ on boundary $\partial V$
+    \item Supply $\rho(\vec{r})$ inside $V$
+\end{enumerate}
+Then this a well-posed problem. You may pretend that the boundary is a grounded conductor. We solve $V = 0$ on boundary, then we utilize point-source response functions to solve this problem. We have that 
+the greens function is $G(r,r')$, then 
+\begin{equation}
+    V(r) = \frac{1}{4\pi\epsilon_0}\int_V d^3 r' G(r,r')\rho(r')
+\end{equation}
+In free space without conductors, we have 
+\begin{equation}
+    V(r) = \frac{1}{4\pi\epsilon_0}\int_v d^3r' \frac{\rho(r')}{|r-r'|}
+\end{equation}
+Where 
+\begin{equation}
+    G(r,r')= \frac{1}{|r-r'|}
+\end{equation}
+Today, we solve the problem of the potential energy of a charge placed above a grounded conductor at $(0,0,z_0)$. We first use the delta function in order to solve this problem. In a grounded conductor, 
+we have that the E field is 0 inside the conductor. We can invent an \underline{image solution} to solve this more complicated problem. We consider the system 
+\begin{equation}
+    S = \{(0,0,z_0), (0,0,-z_0)\}
+\end{equation} 
+We construct an integral of the potential energy of this problem:
+\begin{equation}
+    V(r) = \frac{1}{4\pi\epsilon_0}\int_{V}d^3r'\rho(r')\left[\frac{1}{|r-r'|} - \frac{1}{|r-r''|}\right]
+\end{equation}
+We have that 
+\begin{equation}
+    r'' = r' - 2\hat{z}(r'\cdot \hat{z})
+\end{equation}
+\begin{equation}
+    V(r) = \frac{1}{4\pi\epsilon_0}\int_{V}d^3r'\rho(r')\left[\frac{1}{|r-r'|} - \frac{1}{|r-r' - 2\hat{z}(r'\cdot \hat{z})|}\right]
+    \implies 
+\end{equation}
+
+Then 
+
+\begin{equation}
+    V(r) = \frac{1}{4\pi\epsilon_0}\int_V d^3r'\rho(r'\left[\frac{1}{\sqrt{(x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2}} - \frac{1}{\sqrt{(x-x_0)^2 + (y-y_0)^2 + (z+z_0)^2}}\right])
+\end{equation}
+
+Note, by constructing this symmetrical system, based purely on symmetry, we have that the boundary condition at the $x-y$ plane has a zero potential different. Then, by the well-posed problem theorem, we have that this problem can be applicable to 
+our original solution. This solution pretends as if for every particle that exists outside the conductor, there must be an anti-particle that exists inside the conductor. To solve for the surface charge density on the conductor we solve the problem of 
+\begin{equation}
+    E(x,y,0) = \frac{\sigma(x,y)}{\epsilon_0} = -\nabla V(r)
+\end{equation}
+Note that 
+\begin{equation}
+    \frac{\partial }{\partial x}V(r) = \frac{\partial}{\partial y}V(r) = 0
+\end{equation}
+Since 
+\begin{equation}
+    \partial V = 0
+\end{equation}
+Therefore, 
+\begin{equation}
+    E(x,y,0) = \frac{\sigma(x,y)}{\epsilon_0} = -\frac{\partial }{\partial z} V(r)
+\end{equation}
+
+\end{document}

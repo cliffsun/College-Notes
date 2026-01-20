@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 17}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 17}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    A repeating decimal is a sequence such that $\exists n,p$ with 
+    \begin{equation}
+        d_{n + kp} = d_n \;\; \forall k \in \mathbb{N}
+    \end{equation}
+\end{definition}
+
+Consider two finite sequences $d = (d_1,d_2,\dots, d_n)$ and $e = (e_1,e_2,\dots,e_p)$, then 
+\begin{equation}
+    0.d_1d_2\dots d_ne_1\dots e_pe_1\dots e_p\dots
+\end{equation}
+
+\begin{theorem}
+    Consider the fraction $a/b = k$, and $a,b \in \mathbb{Z}$. Assume we have that two non negative integers $n_1,n_2$ such that 
+    \begin{equation}
+        a10^{n_1}(\mod b) = a10^{n_2} (\mod b)
+    \end{equation}
+    Then the decimal sequence starting at $n_1$ equals the decimal sequence starting at $n_2$. 
+\end{theorem}
+
+\end{document}

@@ -1,0 +1,153 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture \# 12}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture \# 12}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Given a sequence $(x_n)$, a sequence is called \underline{Cauchy} if 
+    \begin{equation}
+        \forall \epsilon >0, \exists N \text{ s.t. } n,m > N \implies |x_n - x_m| < \epsilon
+    \end{equation}
+    That is, $x_n$ get close to each other. 
+\end{definition}
+
+\begin{theorem}
+    Convergent $\implies$ Cauchy 
+\end{theorem}
+
+\begin{proof}
+    Let $\lim x_n = L$, then 
+    \begin{center}
+        $\forall \epsilon >0$, $\exists N$ such that $|x_n - L| < \epsilon$
+    \end{center}
+    Pick $n,m > N$, then 
+    \begin{equation}
+        |x_n - x_m| = |x_n - L + L - x_m| \leq |x_n - L| + |x_m - L| < \epsilon
+    \end{equation}
+\end{proof}
+
+\begin{theorem}
+    Cauchy $\implies$ bounded
+\end{theorem}
+
+\begin{proof}
+    Pick $\epsilon = 1$, then
+    \begin{center}
+        $\exists N$ such that $n,m > N$, $|x_n - x_m| < 1$
+    \end{center}
+    Then 
+    \begin{center}
+        $\forall n > N \implies |x_n - x_{N+1}| < 1$
+    \end{center}
+    Then 
+    \begin{equation}
+        |x_n| \leq |x_{N+1}| + 1
+    \end{equation}
+    For all $n > N$. Then choose $M = \max(|x_1|, |x_2|, \dots)$, then 
+    \begin{equation}
+        |x_n| \leq M 
+    \end{equation}
+    For all $n$. 
+\end{proof}
+
+\begin{theorem}
+    If $x_n$ is a sequence of real numbers, and $x_n$ is Cauchy. Then $x_n$ converges. 
+\end{theorem}
+
+\begin{proof}
+    $\forall \epsilon >0$, $\exists \tilde{N}$ such that $n,m > \tilde{N}$, then $|x_n - x_m| < \epsilon$. Then choose $m = \tilde{N} + 1$, then 
+    \begin{equation}
+        |x_n - x_{\tilde{N} + 1}| < \epsilon \;\; \forall n > \tilde{N}
+    \end{equation}
+    Then 
+    \begin{equation}
+        x_n \leq x_{\tilde{N} + 1} + \epsilon
+    \end{equation}
+    and 
+    \begin{equation}
+        x_n \geq x_{\tilde{N} + 1} - \epsilon
+    \end{equation}
+    Then 
+    \begin{equation}
+        \lim \sup x_{n} = \lim_{\tilde{N} \rightarrow \infty} \sup_{k > \tilde{N}} \{x_k\}
+    \end{equation}
+    \begin{equation}
+        = \lim_{\tilde{N} \rightarrow \infty} b_{\tilde{N}}
+    \end{equation}
+    Namely, 
+    \begin{equation}
+        b_{\tilde{N}} \leq x_{\tilde{N} + 1} + \epsilon
+    \end{equation}
+    Then 
+    \begin{equation}
+        \lim \sup x_{n} \leq b_{\tilde{N}} \leq x_{\tilde{N} + 1}
+    \end{equation}
+    Because $\lim \sup$ is a decreasing function. See lecture notes for completion of proof. 
+\end{proof}
+
+\section*{Subsequences}
+
+Let $\left( x_n \right)$ be a sequence. Choose a sequence of natural numbers 
+\begin{equation}
+    1 \leq n_1, n_2, \dots
+\end{equation}
+Where $n_k < n_{k+1}$, then we define a new subsequence 
+\begin{equation}
+    y_n = x_{n_k}
+\end{equation}
+
+\begin{definition}
+    Let $(x_n)$ be a sequence. Let $P(x)$ be a boolean that is true or false for all $x$. Then a subsequenc of $(x_n)$ satisfying $P$ is 
+    \begin{equation}
+        n_1 = \min_{k}\{P(x_{k}) \text{ true }\}
+    \end{equation}
+    \begin{equation}
+        n_2 = \min_{k > n_1}\{P(x_k) \text{ true }\}
+    \end{equation}
+    \begin{equation}
+        n_3 = \min_{k > n_2}\{P(x_k)\}
+    \end{equation}
+\end{definition}
+
+\end{document}

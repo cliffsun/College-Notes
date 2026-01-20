@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture \# 16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture \# 16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Ratio and Root Tests}
+
+Suppose $a_n$ is a sequence. Define
+
+\begin{equation}
+    r_n = \bigg|\frac{a_{n+1}}{a_n}\bigg|
+\end{equation}
+And 
+\begin{equation}
+    \rho_n = |a_n|^{\frac{1}{n}}
+\end{equation}
+
+\begin{theorem}
+    Consider $\sum a_n$
+    \begin{enumerate}
+        \item If $\lim \sup r_n < 1$, then series absolutely converges
+        \item If $\lim \inf r_n > 1$, then series diverges 
+        \item If $\lim \inf r_n \leq 1 \leq \lim \sup r_n$, then we can't say anything about the series
+        \item If $\lim \sup \rho_n < 1$, then series absolutely converges 
+        \item If $\lim \sup \rho_n > 1$, then series diverges. 
+        \item If $\lim \sup \rho_n = 1$, then we can't anything about the series.  
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Proof of (4). Assume $\lim \sup \rho_n < 1$. Then $\lim \sup \rho_n = \alpha$. Thus, $\forall \epsilon > 0$, $\exists N$ such that $n > N \implies$
+    \begin{equation}
+        \alpha  - \epsilon \leq \sup_{k>n}\rho_k \leq \alpha + \epsilon
+    \end{equation} 
+    That is 
+    \begin{equation}
+        \rho_k \leq \alpha + \epsilon
+    \end{equation}
+    \begin{equation}
+        \iff |a_k|^{\frac{1}{k}} \leq \alpha + \epsilon
+    \end{equation}
+    \begin{equation}
+        |a_k| \leq (\alpha + \epsilon)^k
+    \end{equation}
+    That is 
+    \begin{equation}
+        \sum_{k=N+1}^{\infty}|a_k| \leq \sum_{k=N+1}^{\infty}(\alpha + \epsilon)^k
+    \end{equation}
+    This absolutely converges if $|\alpha + \epsilon| < 1$. 
+\end{proof}
+
+\begin{proof}
+    Proof of (5). If $\lim \sup \rho_n = \alpha > 1$. Then there exists a subsequence that converges to $\alpha > 1$. There exists infinitely many $n$ such that 
+    \begin{equation}
+        |a_n| > 1
+    \end{equation}
+    Thus this shows that $\sum a_n$ diverges. 
+\end{proof}
+
+\begin{proof}
+    Proof of (1), if $\lim \sup r_n < 1$ $\iff$ $\lim \sup \rho_n < 1 \implies$ convergence. 
+\end{proof}
+
+\begin{proof}
+    Same argument for (2).
+\end{proof}
+
+\subsection*{Alternating Series Test}
+\begin{theorem}
+    Assume $a_n$ is a non-negative sequence and $a_n \rightarrow 0$. Consider
+    \begin{equation}
+        \sum_{n=1}^{\infty}(-1)^{n}a_n
+    \end{equation}
+    or 
+    \begin{equation}
+        \sum_{n=1}^{\infty}(-1)^{n+1}a_n
+    \end{equation}  
+    Both series converge.
+\end{theorem}
+
+
+\end{document}

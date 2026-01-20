@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486: Lecture \# 31}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486: Lecture \# 31}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exchange Force}
+
+For distinguishable particles, the wave function is 
+
+\begin{equation}
+    \Psi = \psi_a(r_1)\psi_b(r_2)
+\end{equation}
+
+But for indistinguishable particles, the wave function is 
+
+\begin{equation}
+    \Psi_{\pm} = A(\psi_a(r_1)\psi_b(r_2) \pm \psi_a(r_2)\psi_b(r_1))
+\end{equation}
+
+Where $+$ is a boson and $-$ is a fermion. We compute
+
+\begin{equation}
+    \langle (x_1 - x_2)^2 \rangle = \langle x_1\rangle ^2 + \langle x_2\rangle ^2  + \langle x_1x_2\rangle 
+\end{equation}
+
+For a boson, this is 
+
+\begin{equation}
+    \langle (\Delta x)^2 \rangle - 2|\langle x \rangle_{ab}|^2
+\end{equation}
+
+For a fermion, this is 
+
+\begin{equation}
+    \langle (\Delta x)^2 \rangle + 2|\langle x \rangle_{ab}|^2
+\end{equation}
+
+Where 
+
+\begin{equation}
+    |\langle x \rangle_{ab}| = \int x \psi_a \psi_b^* dx
+\end{equation}
+
+Note that this term only appears if there is an overlap between $\psi_a$ and $\psi_b$. Therefore, for a boson, the particles are a bit closer than distinguishable particles and vice versa for fermions. 
+
+\end{document}

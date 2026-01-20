@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 417: Lecture \# 17}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 417: Lecture \# 17}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Can we give the set of left cosets of $H$ in $G$
+
+\begin{equation}
+    G/H = \{aH | a \in H\}
+\end{equation}
+
+a group structure with respect to the operation in $G$. We proceed with the equivalence class. For $a \in X$, the equivalence class $\sim$
+
+\begin{equation}
+    [a] = \{b \in X | b \sim a\}
+\end{equation}
+
+\begin{proposition}
+    Suppose $\sim$ be an equivalence relation on $X$. Then, for $x,y \in X$, then 
+    \begin{equation}
+        x \sim y \iff [x] = [y]
+    \end{equation}
+    This is proving the equivalence class from the ground up.
+\end{proposition}
+
+\begin{corollary}
+    Let $\sim$ be an equivalence relation on $X$. Then for $x,y \in X$, either $[x] = [y]$ or $[x] \cap [y] = \emptyset$. 
+\end{corollary}
+
+\begin{proof}
+    If $[x] \cap [y] \neq \emptyset$, then $z \in [x] \cap [y]$. If $z \in [x]$, then $z \sim x \sim y$. Therefore, $[x] = [y]$. 
+\end{proof}
+
+\begin{theorem}
+    Let $N$ be a normal subgroup relative to $G$. Then there exists a unique group structure on the set of cosets $G/N$
+    which means the quotient function:
+    \begin{equation}
+        \pi: X \rightarrow X/\sim = \{[x]\}
+    \end{equation}  
+    Into a group homomorphism. 
+\end{theorem}
+
+\end{document}

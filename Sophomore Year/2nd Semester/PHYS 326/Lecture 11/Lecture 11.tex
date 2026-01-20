@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 11}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 11}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Non-linear dynamics - Continued}
+
+\subsection*{Driven Damped Pendulum}
+
+\begin{equation}
+    mL^2\ddot{\theta} = -bc^2\dot{\theta} - mgL\sin\theta + LF(t)
+\end{equation}
+
+Choose harmonic forcing $F(t) = F_0\cos(\omega t)$. The phase space is $\{\theta, \dot{\theta}, \phi = \omega t\}$. 
+
+\begin{definition}
+    \underline{Poincare sections} are defined as the following:
+    \begin{enumerate}
+        \item Wait for transients to decay 
+        \item Plot Phase-Plane positions $(\theta, \dot{\theta})$ at 1 cycle intervals. 
+    \end{enumerate}
+    You plot \textbf{points} every $\frac{n2\pi}{\omega}$.
+\end{definition}
+
+\begin{definition}
+    Chaos is 
+    \begin{enumerate}
+        \item Divergence from initial conditions
+        \item The attractor is a fractal, ("strange attractor")
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A \underline{fractal} is an object that is 
+    \begin{enumerate}
+        \item Self-similar (same features at all scales)
+        \item Its dimension is a non integer. 
+    \end{enumerate}
+\end{definition}
+
+Whats the dimension of a fractal? 
+
+\begin{definition}
+    The dimension is defined by how mass scales with linear size.
+\end{definition}
+
+For example, for a square. If you split the square in fourths, etc. How does the mass increase?
+For $r$ sections, it follows that the mass would increase by $r^2$. Thus the dimension 
+\begin{equation}
+    \dim = \frac{\ln(r^2)}{\ln(r)} = 2
+\end{equation}
+
+For the Koch curve, for $r=3$, the mass is $m=4$. Then 
+\begin{equation}
+    \dim =\frac{\ln(m)}{\ln(r)} = 1.26
+\end{equation}
+
+\end{document}

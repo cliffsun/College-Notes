@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 5}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 5}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Orthogonality of Eigenmodes}
+
+\begin{definition}
+    The inner product in 
+    \begin{enumerate}
+        \item Cartesian Coordinates: $\{a,b,c, \dots\} \cdot \{x,y,z,\dots\} = ax + by + cz + \dots$
+        \item In vector notation
+        \begin{equation}
+            \vec{v} \cdot \vec{u} = \vec{v}^{T}\vec{u} = \vec{u}^{T}\vec{v}
+        \end{equation}
+    \end{enumerate}
+    We define the \underline{generalized inner product} as 
+    \begin{equation}
+        \vec{v}\cdot \vec{u} = \vec{v}^{T}\textbf{M}\vec{u} = \vec{u} \cdot \vec{v}
+    \end{equation}
+    \textbf{Example:}
+    \begin{equation}
+        \vec{v} \cdot \vec{v} = \vec{v}^{T}\textbf{M}\vec{v} = 2T \geq 0
+    \end{equation}
+\end{definition}
+
+\begin{center}
+    \textbf{Claim:} Different eigenmodes $\vec{u}$ are orthogonal. 
+\end{center}
+
+That is 
+\begin{equation}
+    \vec{u}^{1} \cdot \vec{u}^{2} = \vec{u}^{1} \textbf{M} \vec{u}^{2} = 0
+\end{equation}
+
+\begin{proof}
+    We have that 
+    \begin{equation}
+        K\vec{u}^{1} = \omega^2 M\vec{u}^{1}
+    \end{equation}
+    \begin{equation}
+        K\vec{u}^{2} = \omega^2 M\vec{u}^{2}
+    \end{equation}
+    We multiply the top part by $\vec{u}_{2}^{T}$ and the bottom part with $\vec{u}_{1}^{T}$:
+    \begin{equation}
+        \vec{u}_{2}^{T}K\vec{u}^{1} = \omega^2 \vec{u}_{2}^{T}M\vec{u}^{1}
+    \end{equation}
+    \begin{equation}
+        \vec{u}_{1}^{T}K\vec{u}^{2} = \omega^2 \vec{u}_{1}^{T}M\vec{u}^{2}
+    \end{equation}
+    We take the transpose of equation 8 and minus it from equation 7 to yield 
+    \begin{equation}
+            0 = (\omega_{2}^2 - \omega_{1}^2)u_{2}^{T}M\vec{u}_{1}
+    \end{equation}
+\end{proof}
+
+Normalizing eigenmodes:
+
+\begin{equation}
+    \vec{u} = \frac{\vec{u}}{(\vec{u}^{T}M\vec{u})^{\frac{1}{2}}}
+\end{equation}
+
+After normalization
+
+\begin{equation}
+    \vec{u}_{i}^{T}M\vec{u}_{j} = \delta_{ij}
+\end{equation}
+
+\section*{General Initial conditions problem}
+
+The general solution is 
+
+\begin{equation}
+    \vec{x}(t) = \sum A_{s}\vec{u}^{s}\cos\left(\omega_s t\right) + \sum B_{s}\vec{u}^{s}\sin\left(\omega_s t\right)
+\end{equation}
+
+$A_s$ and $B_s$ are determined by initial conditions. Define 
+\begin{equation}
+    \vec{x}_0 = \vec{x}(t=0) = \sum_S A_S \vec{u}^{S}
+\end{equation}
+\begin{equation}
+    \vec{v}_0 = \vec{v}(t=0) = \sum_S B_S \omega_S \vec{u}^{S}
+\end{equation}
+
+Then 
+\begin{equation}
+    \vec{u}_r^{T}\textbf{M}\vec{x}_0 \sum_S A_S \vec{u}_r^{T}\textbf{M}\vec{u}^{S} = A_S \delta_{rS} = A_r
+\end{equation}
+\begin{equation}
+    \vec{u}_r^{T}\textbf{M}\vec{v}_0 = \sum_S B_S \omega_S \vec{u}_r^{T}\textbf{M}\vec{u}^{S} = B_S\omega_S\delta_{rS} = B_r\omega_r
+\end{equation}
+Thus 
+\begin{equation}
+    A_r = \vec{u}_{r}^{T}\textbf{M}\vec{x}_0
+\end{equation}
+\begin{equation}
+    B_r = \frac{\vec{u}_r^{T}\textbf{M}\vec{v}_0}{\omega_r}
+\end{equation}
+
+\section*{The Modal Matrix}
+
+\begin{definition}
+    Define 
+    \begin{equation}
+        \cup_{\alpha R} = u^{R}_{\alpha}
+    \end{equation}
+    Where $R$ dictates which mode we are at, and $\alpha$ shows which coordinate we are in. This is a matrix of all the modes. 
+\end{definition}
+
+We have that 
+\begin{equation}
+    \textbf{U}^{T}\textbf{M}\textbf{U} = I \implies \textbf{U}^{-1} = \textbf{U}^{T}
+\end{equation}
+
+\end{document}

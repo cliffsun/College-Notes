@@ -1,0 +1,183 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 3}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{2 pendula connected by spring}
+
+Assume 2 pendula connected by a spring of constant $k$. Each spring has a length $L$ and mass $m$. $\theta_i$ describes the $i$-th pendulum. We describe 
+its equation of motion using torque. On the first mass, we have 
+
+\begin{equation}
+    \tau_{g} = mgL\sin\theta_1
+\end{equation}
+\begin{equation}
+    \tau_k = (k\Delta x)L\sin\left(\frac{\pi}{2} - \theta_i\right)
+\end{equation}
+
+Using small angle approximation, we have 
+
+\begin{equation}
+    \tau_{g} = mgL\theta_1
+\end{equation}
+\begin{equation}
+    \tau_{k} = kL^{2}(\theta_1 - \theta_2)
+\end{equation}
+
+We use
+
+\begin{equation}
+    I\ddot{\theta} = \sum \tau
+\end{equation}
+\begin{equation}
+    \iff mL^2\ddot{\theta_1} - mgL\theta_1 - kL^2(\theta_1 - \theta_2) = 0
+\end{equation}
+
+Matrix form: 
+
+\begin{equation}
+    \begin{pmatrix}
+        mL^2 & 0 \\
+        0 & mL^2
+    \end{pmatrix}\begin{pmatrix}
+        \ddot{\theta_1} \\
+        \ddot{\theta_2}
+    \end{pmatrix}
+    + \begin{pmatrix}
+        mgL + kL^2 & -kL^2 \\
+        -kL^2 & mgL + kL^2
+    \end{pmatrix}\begin{pmatrix}
+        \theta_1 \\
+        \theta_2
+    \end{pmatrix} = \begin{pmatrix}
+        0 \\
+        0
+    \end{pmatrix}
+\end{equation}
+
+Let $m=g=L=1$, then define 
+\begin{equation}
+    \epsilon = \frac{kL}{mg} \iff k = \epsilon\frac{mg}{L}
+\end{equation}
+Then 
+\begin{equation}
+    M = \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    K = \begin{pmatrix}
+        1 + \epsilon & -\epsilon \\
+        -\epsilon & 1 + \epsilon
+    \end{pmatrix}
+\end{equation}
+
+Then we have that when $\omega^2 = 1$, then $a_1 = a_2$. And when $\omega^2 = 1 + 2\epsilon$, then $a_1 = -a_2$. These motions originate from the initial placement of the pendulum. 
+
+\subsection*{Weak Coupling}
+
+We assume weak coupling, that is 
+\begin{equation}
+    \epsilon = \frac{kL}{mg} << 1
+\end{equation}
+Then $\omega_1  = 1$ and $\omega_2 = \sqrt{1 + 2\epsilon} \approx 1 + \epsilon$. With initial conditions, $\theta_1 = 1$, $\dot{\theta_1} = 0$, $\theta_2 = 0$, $\dot{\theta_2} = 0$, then we obtain 
+\begin{equation}
+    \begin{pmatrix}
+        1 \\ 
+        0
+    \end{pmatrix} = A_1\begin{pmatrix}
+        1 \\
+        1
+    \end{pmatrix} + A_2\begin{pmatrix}
+        1 \\
+        -1
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \begin{pmatrix}
+        0 \\
+        0
+    \end{pmatrix} = (1 + 2\epsilon)\left(B_1\begin{pmatrix}
+        1 \\
+        1
+    \end{pmatrix} + B_2\begin{pmatrix}
+        1 \\
+        -1
+    \end{pmatrix}\right)
+\end{equation}
+THen $A_1 = A_2 = \frac{1}{2}$ and $B_1 = B_2 = 0$. Then
+
+\begin{equation}
+    \theta_1 = \frac{1}{2}\left[\cos(t) + \cos\left(1 + \epsilon\right)t\right]
+\end{equation}
+\begin{equation}
+    \theta_2 = \frac{1}{2}\left[\cos(t) - \cos\left(1 + \epsilon\right)t\right] 
+\end{equation}
+
+We convert them:
+
+\begin{equation}
+    \theta_1(t) = \cos(\left(1 + \frac{\epsilon}{2}\right)t)\cos(\frac{\epsilon}{2}t)
+\end{equation}
+\begin{equation}
+    \theta_2(t) = \sin(\left(1 + \frac{\epsilon}{2}\right)t)\sin(\frac{\epsilon}{2}t)
+\end{equation}
+
+\section*{3 degrees of freedom}
+
+Assume 3 masses all connected together by strings of length L. Assume that the strings don't stretch and that there is constant tension. Assume that the 
+masses are connected to a pole with springs of constant $k_i$. Then for the first mass, we have 
+\begin{equation}
+    m\ddot{x}_1 = T\sin\theta_2 - T\sin\theta_1 
+\end{equation}
+We have
+\begin{equation}
+    \sin\theta_2 \approx \frac{x_2 - x_1}{L}
+\end{equation}
+\begin{equation}
+    \sin\theta_1 \approx \frac{x_1}{L}
+\end{equation}
+
+\end{document}

@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture \#16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture \#16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Euler Angles}
+
+\textbf{Euler Angles describe any type of orientation for any object.} Specify 3 principle axis of the body, called $(\hat{e}_1, \hat{e}_2, \hat{e}_3)$. Use lab frame $(\hat{x}, \hat{y}, \hat{z})$. Assume that both coordinate systems are initially aligned. 
+\begin{enumerate}
+    \item Then rotate away from the lab frame by angle $\phi$ around $\hat{z}$. 
+    \item Rotation by angle $\theta$ around $\hat{e}_2$. Then $(\hat{e}_1, \hat{e}_2, \hat{e}_3) \rightarrow (\hat{e}'_1, \hat{e}'_2, \hat{e}'_3)$
+    \item Rotation by angle $\Psi$ around $\hat{e}'_3$. Then $(\hat{e}'_1, \hat{e}'_2, \hat{e}'_3) \rightarrow (\hat{e}''_1, \hat{e}''_2, \hat{e}''_3)$
+\end{enumerate}
+
+\subsection*{Interpretation}
+
+\begin{enumerate}
+    \item $\phi = $ precession around lab vertical 
+    \item $\theta = $ nutation away from lab vertical 
+    \item $\Psi = $ spin around body axis
+\end{enumerate}
+
+Write $Q$ matrix corresponding to this "Euler Procedure". 
+
+\begin{equation}
+    Q = Q_3 Q_2 Q_1
+\end{equation}
+
+\[= \begin{bmatrix}
+    \cos\Psi & \sin\Psi & 0 \\
+    -\sin \Psi & \cos\Psi & 0 \\
+    0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+    \cos\theta & 0 & -\sin\theta \\
+    0 & 1 & 0 \\
+    \sin\theta & 0 & \cos\theta
+\end{bmatrix}
+\begin{bmatrix}
+    \cos\phi & \sin\phi & 0 \\
+    -\sin\phi & \cos\phi & 0 \\
+    0 & 0 & 1
+\end{bmatrix}\]
+
+Express $\vec{\omega}$ vector (instantaneous vector) in terms of Euler Angles. 
+
+\begin{equation}
+    \vec{\omega} = \dot{\phi} \hat{e}_3 + \dot{\theta}\hat{e}'_2 + \dot{\Psi}\hat{e}''_3
+\end{equation}
+
+Will convert this vector into the double prime coordinate system. Note 
+
+\begin{equation}
+    \hat{e}_2'' = Q_3 \hat{e}'_2 \iff \hat{e}'_2 = Q_{3}^T \hat{e}''_2 
+\end{equation}
+and 
+\begin{equation}
+    \hat{e}'_3 = Q_2\underbrace{Q_1}_{I}\hat{e}_3 \iff \hat{e}_3 = Q_{2}^T \hat{e}_3' = Q_{3}^TQ_{2}^T\hat{e}_3''
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \vec{\omega} = (\dot{\theta}\sin\Psi - \dot{\phi}\sin\theta\cos\Psi)\hat{e}''_1 + (\dot{\phi}\sin\theta\sin\Psi + \dot{\theta}\cos\Psi)\hat{e}''_2 + (\dot{\Psi} + \dot{\phi}\cos\theta)\hat{e}''_3
+\end{equation}
+
+
+
+\end{document}

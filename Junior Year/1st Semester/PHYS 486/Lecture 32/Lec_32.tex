@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486: Lecture \# 32}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486: Lecture \# 32}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Entanglement}
+
+Consider 
+
+\begin{equation}
+    \ket{\psi} = \frac{1}{\sqrt{2}}\left( \ket{00} + \ket{11} \right)
+\end{equation}
+versus
+\begin{equation}
+    \ket{\psi} = \ket{00}, \;\; \ket{\psi} = \ket{11}
+\end{equation}
+
+Consider alice and bob, both of which can measure Bob: $Q = \pm 1$, $R = \pm 1$ and Alice: $S =\pm 1$, $T = \pm 1$. Build a quantity:
+
+\begin{equation}
+    Q \cdot S + R \cdot S + R \cdot T - Q \cdot T = \pm 2
+\end{equation}
+
+Now study 
+
+\begin{equation}
+    E(Q \cdot S + R \cdot S + R \cdot T - Q \cdot T) = \sum_{qrst}p(q,r,s,t)(qs + rs + rt - qt)
+\end{equation}
+
+We note several things
+
+\begin{equation}
+    E(A_1 + A_2) = E(A_1) + E(A_2) \;\; \text{realism}
+\end{equation}
+
+\begin{equation}
+    E(A_1(B_1 + B_2)) = E(A_1B_1) + E(A_1B_2) \;\; \text{locality}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    E(QS) + E(RS) + E(RT) - E(QT) \leq 2\sum_{qrst}p(q,r,s,t)
+\end{equation}
+
+\end{document}

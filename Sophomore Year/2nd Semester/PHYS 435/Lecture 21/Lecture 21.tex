@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 435: Lecture \# 21}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 435: Lecture \# 21}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+Define 
+
+\begin{equation}
+    \vec{B} = \vec{\nabla} \times \vec{A}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \vec{\nabla} \times B = -\mu_0 \vec{J}
+\end{equation}
+When choosing the Coulomb gauge, we obtain:
+\begin{equation}
+    \implies \nabla^2 A = \mu_0 \vec{J}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    A = \frac{\mu_0}{4\pi}\int d^3 r' \frac{\vec{J}(r)}{|r - r'|}
+\end{equation}
+
+
+
+\end{document}

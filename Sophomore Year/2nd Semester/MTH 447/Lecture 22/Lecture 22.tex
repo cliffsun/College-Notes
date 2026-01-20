@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture \# 22}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture \# 22}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Power Series}
+
+\begin{definition}
+    Let $a_n$ be a sequence. Then 
+    \begin{equation}
+        \sum_{n=0}^\infty a_n x^n
+    \end{equation}
+    is called a \underline{Power Series} with coefficients $a_n$. 
+\end{definition}
+
+\begin{theorem}
+    Let $\sum_{n=0}^{\infty}a_nx^n$. Define 
+    \begin{equation}
+        \beta = \lim \sup |a_n|^{\frac{1}{n}}
+    \end{equation}
+    Let $R = 1/\beta$, then for $|x| < R$, then 
+    \begin{equation}
+        \sum a_nx^n \text{ converges absolutely }
+    \end{equation}
+    For all $|x| > R$, then 
+    \begin{equation}
+        \sum a_nx^n \text{ diverges }
+    \end{equation}
+    For $x = R, -R$, we don't know. 
+\end{theorem}
+
+\begin{proof}
+    $\lim \sup |a_n x^n|^{1/n} = \lim \sup |a_n|^{1/n}|x|$.
+    \[ \rightarrow |x| \beta\]
+    If $\beta$ is finite, then if $x > 1/\beta$, then it diverges. If $x < 1/\beta$, then it converges. 
+\end{proof}
+
+\end{document}

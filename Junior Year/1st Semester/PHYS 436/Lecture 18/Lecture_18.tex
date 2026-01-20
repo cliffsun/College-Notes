@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 436: Lecture \# 18}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 436: Lecture \# 18}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Rectangular wave guide}
+
+\begin{definition}
+    Wave guide restricts the transmission of energy to one direction. 
+\end{definition}
+
+Allows only frequencies of 
+
+\begin{equation}
+    \omega = c\sqrt{k^2 + (m\pi/a)^2 + (n/pi/b)^2}
+\end{equation}
+
+\section*{General Wave Guide}
+
+\begin{align}
+    E(r,t) &= E(r_{\perp})\exp(i(kz- \omega t)) \\
+    B(r,t) &= B(r_{\perp})\exp(i(kz- \omega t)) \\
+\end{align}
+
+\end{document}

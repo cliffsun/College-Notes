@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 14}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 14}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}
+    Assume $z_k \in \Lambda$, $z_k \in \mathbb{R}$, $\lim_{k\rightarrow \infty} = z_0$, then $z_0 \in \Lambda$.
+\end{theorem}
+
+\begin{definition}
+    Let $C \subseteq \mathbb{R}$. We say that $C$ is sequentially closed if whenever $x_n \in C$, $x_n \rightarrow x_0 \implies x_0 \in C$. 
+\end{definition}
+
+\begin{proof}
+    $z_k \rightarrow z_0$. For all $\epsilon > 0$, $\exists N$ s.t. if $n > N$, 
+    \begin{equation}
+        |z_0 - z_k| < \epsilon
+    \end{equation}
+    $\exists \delta > 0$ s.t. 
+    \begin{equation}
+        (z_k - \delta, z_k + \delta) \subseteq (z_0 - \epsilon, z_0 + \epsilon)
+    \end{equation}
+\end{proof}
+
+\subsubsection*{4 different characterizations of lim sup}
+\begin{enumerate}
+    \item $\lim_{n\rightarrow \infty} \sup_{k > n} \{x_k\}$
+    \item $M = \lim \sup x_n$ and for any $\epsilon > 0$, $\{n \in \mathbb{N} : |x_n - M| < \epsilon\}$ is infinite. 
+    \item Upper Fuzzy Bounds (see homework)
+    \item If $M = \lim\sup x_n$, then 
+    \begin{enumerate}
+        \item $\exists$ subseq $x_{n_k} \rightarrow M$
+        \item $\nexists$ subseteq $x_{n_{k}} \rightarrow \hat{M}$ for any $\hat{M} > M$
+    \end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Fun Facts about lim sup}
+
+\begin{enumerate}
+    \item If $x_n \rightarrow L$, then $\lim \sup (x_n + y_n) = L + \lim \sup (y_n)$
+    \item If $x_n \rightarrow L$ and $L > 0$, then $\lim \sup (x_n y_n) = L\lim\sup (y_n)$
+    \item Let $x_n$ be a sequence. THen $x_n \neq 0$ for all $n$. Then 
+    \begin{equation}
+        \lim \inf \bigg|\frac{x_{n+1}}{x_n} \bigg| \leq \lim \inf \big|x_n\big|^{\frac{1}{n}} \leq \lim \sup \big| x_n \big| ^{\frac{1}{n}} \leq \lim \sup \bigg| \frac{x_{n+1}}{x_n}\bigg|
+    \end{equation}
+\end{enumerate}
+
+\end{document}

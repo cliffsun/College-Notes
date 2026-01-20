@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 9}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 9}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Non-convergent Sequences}
+
+\begin{definition}
+    The sequence $(x_n)$ \underline{diverges to $\infty$} if $\forall M \in \mathbb{N}$, $\exists N$ such that 
+    \begin{equation}
+        n > N \implies x_n > M
+    \end{equation}
+\end{definition}
+
+Equivalently, let $(x_n)$ be a sequence. For any $M$, define 
+
+\begin{equation}
+    S_M = \{n \in \mathbb{N} \big| x_n \leq M\}
+\end{equation}
+
+But $x_n \rightarrow \infty \iff \forall M \in \mathbb{R}$, $S_m$ is finite. 
+
+\begin{theorem}
+    If $x_n \rightarrow \infty$, and $y_n \geq x_n$, for all $n$, then $y_n \rightarrow \infty$. 
+\end{theorem}
+
+\begin{definition}
+        We say that $x_n \rightarrow -\infty$, if $\forall M \in \mathbb{R}$, $\exists N$ such that 
+        \begin{equation}
+            n > N \implies x_n < M
+        \end{equation}
+\end{definition}
+
+\begin{theorem}
+    Limit theorems for infinity. 
+    \begin{enumerate}
+        \item If $x_n \rightarrow \infty$, and $y_n \rightarrow L$, then $x_n + y_n \rightarrow \infty$. 
+        \item If $x_n \rightarrow \infty$, and $y_n \rightarrow \infty$, then $x_n + y_n \rightarrow \infty$
+        \item If $x_n \rightarrow \infty$ and $y_n \rightarrow L$, then $x_ny_n \rightarrow \infty$
+        \item If $x_n \rightarrow \infty$ and $y_n \rightarrow \infty$, then $x_ny_n \rightarrow \infty$
+        \item $x_n > 0$, $x_n \rightarrow \infty \iff \frac{1}{x_n} \rightarrow 0$.h
+    \end{enumerate}
+\end{theorem}
+
+\end{document}

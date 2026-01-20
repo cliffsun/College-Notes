@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486: Lecture \# 17}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486: Lecture \# 17}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Basic Rules}
+
+\begin{enumerate}
+    \item physical state $\ket{\psi}$ in Hilbert Space. Must be normalizable 
+    \item Observables with real eigenvalues $\hat{A}\ket{\alpha_n} = a_n\ket{\alpha_n}$
+    \item Born's rule: $Pr(a_n) = |\braket{\alpha_n}{\psi}|^2$
+    \item Expectation values: $\hat{A} = \braket{\psi}{\hat{A}\psi}$
+    \item Stationary states: $\hat{H}\psi = E\psi$
+    \item Time evolution of the stationary states: $\psi_n \rightarrow \psi_n\exp(-iE_n/\hbar t)$
+\end{enumerate}
+
+\subsection*{Typical Problems (cont. and dis. basis)}
+
+\begin{enumerate}
+    \item Validity of states, is it normalized, real eigenvalues of observables
+    \item Bases: inner product, write states in eigenbasis of some operator
+    \item Basis transformation operator:
+    \begin{equation}
+        \sum_k \ket{k}\bra{k}
+    \end{equation}
+    \item Probabilities for measurement outcomes. Statistics for measurement outcome.
+    \begin{equation}
+        \langle A \rangle, \;\sigma_A^2
+    \end{equation}
+\end{enumerate}
+
+\section*{Wave mechanics}
+
+Continuous basis $\ket{x}$, $\ket{p}$. (1-dimensional)
+
+\begin{enumerate}
+    \item SWE: $H = \frac{p^2}{2m} + V(x) \iff -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \hat{V}(x)$
+    \item Inner product: $\braket{\psi}{\varphi} = \int dx \psi^*(x)\varphi(x)$
+    \item Actual problem: choose $V(x)$. Need $\psi,\psi'$ continuous. If $V \rightarrow \infty$, then only $\psi$ needs to be continuous. 
+\end{enumerate}
+
+\subsection*{Typical Tasks}
+
+\begin{enumerate}
+    \item Given some potential, find s.s. and energies. 
+    \item Find $\langle x \rangle$, $\langle p \rangle$, $\sigma_x$, $\sigma_p$. Given some $\psi(x)$. 
+    \item Probabilities for "range" of outcomes. 
+\end{enumerate}
+
+\section*{Specific problems}
+
+\begin{enumerate}
+    \item Free Particle, $V=0$. The wave function must be continuous. SS. Plane waves are not physical. BUT, good basis. 
+        \item Consequence: No such thing as a completely still standing of a free particle. 
+    \item Infinite square well: Only has bound states (states that are trapped in this well) $\ket{k}$ and $E_k \propto k^2$
+    \item Finite square well: Both $\psi$ and $\psi'$ need to be continuous.  
+\end{enumerate}
+
+\end{document}

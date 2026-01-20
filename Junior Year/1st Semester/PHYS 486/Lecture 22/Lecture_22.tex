@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486: Lecture \# 22}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486: Lecture \# 22}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Hydrogen Atom}
+
+Connect $\hat{L}$ to the angular equation. Recall that the angular equation is 
+
+\begin{equation}
+    \frac{1}{Y}\left\{ \frac{1}{\sin\theta}\frac{\partial}{\partial\theta}\left( \sin\theta\frac{\partial Y}{\partial \theta} \right) + \frac{1}{\sin^2\theta}\frac{\partial^2 Y}{\partial \phi^2} \right\} = l(l+1)
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    \vec{L} = -i\hbar\left( r \times \nabla \right)
+\end{equation}
+
+Where $\nabla$ is the gradient operator in spherical coordinates. Although, we cannot solve everything in spherical coordinates since we care about $L_z$. With $r = r\hat{r} + \dots$, we have that 
+
+\begin{equation}
+    L = -i\hbar\left( r(\hat{r} \times \hat{r})\partial_r  + (\hat{r} \times \hat{\theta})\partial_\theta + (\hat{r} \times \hat{\phi})\frac{1}{\sin\theta}\partial_\phi\right)
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    \hat{r} \times \hat{\theta} = \hat{\phi}, \; \hat{r} \times \hat{\phi} = -\hat{\theta}
+\end{equation}
+
+In cartesian coordinates, we have 
+
+\begin{equation}
+    \hat{\theta} = \cos\theta\cos\phi \hat{i} + \cos\theta\sin\phi\hat{j} + \sin\theta\hat{k}
+\end{equation}
+\begin{equation}
+    \hat{\phi} = -\sin\phi\hat{i} + \cos\phi\hat{j}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    L_x = -i\hbar\left( -\sin\phi\partial_\theta - \cos\phi\cot\theta\partial_\phi \right)
+\end{equation}
+\begin{equation}
+    L_y = -i\hbar(\cos\phi\partial_\theta - \sin\phi\cot\theta\partial_\phi)
+\end{equation}
+\begin{equation}
+    L_z = -i\hbar \partial_{\phi}
+\end{equation}
+
+Defining the ladder operators, we have that 
+
+\begin{equation}
+    L_\pm = L_x \pm iL_y = \pm\hbar\exp(\pm i \phi)\left( \partial_\theta \pm i\cot\theta\partial_{\phi} \right) 
+\end{equation}
+\begin{equation}
+    L^2 = L_{+}L_{-} + L_z^2 - \hbar L_z
+\end{equation}
+\begin{equation}
+    \implies -\hbar^2\left[ \frac{1}{\sin\theta}\frac{\partial}{\partial\theta}\left( \sin\theta\partial_\theta \right) + \frac{1}{\sin^2\theta}\partial^2_{\phi} \right]
+\end{equation}
+
+Thus, our angular equation can be computed as 
+
+\begin{equation}
+    \hbar^2 l(l+1)Y = L^2 Y
+\end{equation}
+
+This is the eigenvalue equation for $Y$. To solve for $Y(\theta, \phi)$. Let $Y = \Omega(\theta)\Lambda(\phi)$, then we get 
+
+\begin{align}
+    \frac{1}{\Omega}\left[ \sin\theta \frac{d}{d\theta}\left( \sin\theta \frac{d\Omega}{d\theta} + l(l+1)\sin^2\theta\right) \right] + \underbrace{\frac{1}{\Lambda}\frac{d^2}{d\phi^2}\Lambda}_{=-m^2} =0 
+\end{align}
+
+Then we solve 
+
+\begin{equation}
+    d^2_{\phi}\Lambda = -m^2 \Lambda \implies \Lambda(\phi) = \exp(im\phi)
+\end{equation}
+
+These are the eigenfunctions of $L_z$. We have to demand that $\Lambda(\phi) = \Lambda(\phi + 2\pi)$, then we get that $m$ must be an integer. In principle, A.M allows $l$ = integer or integer + 1/2. However, orbital A.M. can only be an integer. 
+
+We next solve the $\theta$ equation. Note that this solutions are the Legendre Functions, thus,
+
+\begin{equation}
+    \Omega\left( \theta \right) = A p^{m}_{l}(\cos\theta)
+\end{equation}
+Such that 
+\begin{equation}
+    P^{m}_{l}(x) = (-1)^{m}(1 - x^2)^{m/2}\frac{d}{dx}^{m}P_l(x)
+\end{equation}
+Where $P_l$ is the l-th legendre polynomial:
+\begin{equation}
+    P_l = \frac{1}{2^{l}l!}\left( \frac{d}{dx} \right)^{l}(x^2-1)^{l}
+\end{equation}
+With normalization, etc., we get that 
+
+\begin{equation}
+    Y_{l}^{m}\left( \theta, \phi \right) = \sqrt{\frac{(2l+1)(l-m)!}{4\pi(l+m)!}}\exp(im\phi)P^{m}_{l}(\cos\theta)
+\end{equation}
+These are called "spherical harmonics". As well,
+\begin{equation}
+    \langle Y^{m}_{l} | Y^{m'}_{l'}\rangle = \delta_{ll'}\delta_{mm'}
+\end{equation}
+
+\subsection*{Summary}
+
+$V = V(r)$ (central potential) leads to
+\begin{equation}
+    L^2Y(\theta, \phi) = \hbar^2 l (l+1)Y(\theta, \phi)
+\end{equation}
+\begin{equation}
+    L_zY = \hbar m Y
+\end{equation}
+
+\end{document}

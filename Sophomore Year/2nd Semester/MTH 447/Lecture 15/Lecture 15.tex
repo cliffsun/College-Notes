@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture \# 15}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture \# 15}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Series}
+
+Given a sequence $(a_n)$, then 
+
+\begin{equation}
+    s_n = \sum_{k=1}^{n}a_{k}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \lim_{n\rightarrow \infty}s_n = \;?
+\end{equation}
+
+If $s_n$ is increasing 
+
+\begin{equation}
+    s_{n+1} - s_n = a_{n+1} \geq 0
+\end{equation}
+
+If this sum is bounded, then $s_n \rightarrow S$. If unbounded, then $\rightarrow \infty$. 
+
+\begin{equation}
+    \sum_{n=0}^{\infty}ar^n = \frac{a}{1 - r}
+\end{equation}
+
+\begin{definition}
+    We say that the sum $\sum_{n=1}^{\infty}a_n$ satisfies the Cauchy criterion if $\forall \epsilon > 0$, there exists $N$ s.t. if $n,m > N$, then 
+    \begin{equation}
+        \bigg| \sum_{k=m+1}^{n}a_k \bigg| < \epsilon
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    $\sum a_n$ convergs $\iff$ it satisfies the Cauchy Criterion. 
+\end{theorem}
+
+\begin{proof}
+    \begin{equation}
+        S_n = \sum_{k=1}^{n}a_n
+    \end{equation}
+    Then 
+    \begin{equation}
+        S_n - S_m = \bigg|\sum_{k=m+1}^{n}a_k\bigg| < \epsilon \text{ (because this sum converges)}
+    \end{equation}
+    This is saying that a sequence of partials sums is cauchy. 
+\end{proof}
+
+\begin{corollary}
+    If $\sum a_n$ converges, then $a_n \rightarrow 0$
+\end{corollary}
+
+\begin{proof}
+    This follows from the Cauchy Criterion. Choose $n = m+1$, then 
+    \begin{equation}
+        \big| a_{m+1} \big| < \epsilon
+    \end{equation}
+\end{proof}
+
+What about the converse? This is false. 
+
+\begin{theorem}
+    If $a_n \geq 0$ and $\sum_{n=1}^{\infty}a_n$ converges, and if $|b_n| \leq a_n$, then $\sum b_n$ converges. 
+\end{theorem}
+
+\begin{theorem}
+    If $a_n \leq b_n$ and $\sum a_n = \infty$, then $\sum b_n = \infty$. 
+\end{theorem}
+
+\begin{proof}
+    \begin{equation}
+        \bigg|\sum_{k= m+1}^{n}b_k\bigg| \leq \sum_{k=m+1}^{n}|b_n| \leq \sum_{k=m+1}^{n}a_k
+    \end{equation}
+    If $a_n$ satifies the Cauchy Criterion, then so does $b_n$. Thus, $b_n$ converges. 
+\end{proof}
+
+\begin{definition}
+    We say that a series $\sum a_k$ is \underline{absolutely convergent} if 
+    \begin{equation}
+        \sum_{k=1}^{\infty}|a_n| \text{ is convergent}
+    \end{equation}
+\end{definition}
+
+\begin{corollary}
+    If $\sum a_k$ is absolutely convergent, then this sum converges. 
+\end{corollary}
+
+\end{document}

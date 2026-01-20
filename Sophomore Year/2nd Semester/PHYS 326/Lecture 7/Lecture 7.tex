@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 7}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 7}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Symmetries}
+
+\subsection*{Crystal Lattice}
+
+Infinite number of degrees of freedom. All masses $m$ and spring constants $k$. Consider the spatial coordinates $q_{n}$ where $q_{n}$ is the middle one. Each 
+mass represents a single atom, springs are the forces between neighboring atoms. Then 
+\begin{equation}
+    L = \frac{m}{2}\left(\dots + \dot{q}^2_{n-2} + \dots \right) - \frac{k}{2}\left(\dots + (q_{n-2} - q_{n-1})^2 + (q_{n-1} - q)^{2} + \dots\right)
+\end{equation}
+
+Thus 
+\begin{equation}
+    m\ddot{q}_{n} + k(2q_{n} - q_{n+1} - q_{n-1}) = 0 \text{ for each $n$ }
+\end{equation}
+
+Seek solution, let 
+
+\begin{equation}
+    \bar{q}(t) = \bar{u}e^{i\omega t} 
+\end{equation}
+
+Solve 
+
+\begin{equation}
+    \left[\textbf{K} - \omega^2\textbf{M}\right]\bar{u} = 0
+\end{equation}
+
+Using parity symmetry. Move left or right and reproduce the exact same system. Let 
+
+\begin{equation}
+    \bar{u} = \begin{bmatrix}
+        \dots \\
+        \dots \\
+        1 \\ 
+        a\\
+        b \\
+        c \\
+        \dots
+    \end{bmatrix}
+\end{equation}
+
+Apply a symmetry matrix: 
+
+\begin{equation}
+    \textbf{S}\bar{u} = \begin{bmatrix}
+        \dots \\
+        \dots \\
+        \dots \\ 
+        1\\
+        a \\
+        b \\
+        \dots
+    \end{bmatrix} = \lambda \bar{u}
+\end{equation}
+
+Thus 
+\begin{equation}
+    1 = \lambda a \iff a = \frac{1}{\lambda}
+\end{equation}
+\begin{equation}
+    a = \lambda b \iff b = \frac{1}{\lambda^2}
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    \bar{u} = \begin{bmatrix}
+        \dots \\
+        1 \\
+        \frac{1}{\lambda} \\
+        \frac{1}{\lambda^2} \\
+        \dots
+    \end{bmatrix}
+\end{equation}
+
+For infinite system, $|\lambda| = 1$, otherwise $\bar{u}$ is not physical. If $\lambda = 1$, then all atoms are moving together, or $\omega = 0$. If $\lambda = 1$, then 
+\begin{equation}
+    u_{n+1} = u_{n}
+\end{equation} 
+
+Generally, $\lambda = e^{-i \phi}$. Thus 
+
+\begin{equation}
+    q_{n} = e^{i(\omega t - n \phi)}
+\end{equation}
+
+We find the frequencies:
+
+\begin{equation}
+    m\ddot{q}_{n} + k(2q_{n} - q_{n-1} -q_{n+1}) = 0
+\end{equation}
+Then 
+\begin{equation}
+    -m\omega^2 + k(-e^{i\phi} - e^{i \phi} ) = 0
+\end{equation}
+\begin{equation}
+    \omega^2 = \frac{2k}{m}(1 - \cos\phi)
+\end{equation}
+
+\end{document}

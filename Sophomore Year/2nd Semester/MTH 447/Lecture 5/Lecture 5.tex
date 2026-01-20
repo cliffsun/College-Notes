@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 447: Lecture 5}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 447: Lecture 5}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    A sequences with entries in $S$ is a function 
+    \begin{equation}
+        f: \mathbb{N} \rightarrow \mathbb{S}
+    \end{equation}
+    With
+    \begin{equation}
+        (x_1, x_2, x_3, \cdot, x_n)
+    \end{equation}
+\end{definition} 
+
+\begin{definition}
+    A sequence $(x_n)$ converges to $L$ or has a limit $L$ if 
+    \begin{equation}
+        \forall \epsilon > 0, \exists N \in \mathbb{N}
+    \end{equation}
+    Such that if
+    \begin{equation}
+        n > N, |x_n - L| < \epsilon
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    If $x_n \rightarrow L$ and $x_n \rightarrow M$, then 
+    \begin{equation}
+        L = M
+    \end{equation}
+    That is limits are unique. 
+\end{theorem}
+
+\begin{proof}
+    Let $\epsilon = \frac{|L - M|}{2}$. Then assume $\epsilon > 0$ and $L \neq M$. Then $x_n \rightarrow L$, $\exists N_1 \in \mathbb{N}$ such that $n > N_1$
+    \begin{equation}
+        |x_n - L| < \epsilon
+    \end{equation}
+    Since $x_n \rightarrow M$, $\exists N_2$ such that $n > N_2$ $\implies |x_n - M| < \epsilon$. Let $N = \max(N_1, N_2)$, then 
+    \begin{equation}
+        n > N \implies |x_n - L| < \epsilon \land |x_n - M| < \epsilon
+    \end{equation}
+    Then 
+    \begin{equation}
+        |L-M|
+    \end{equation}
+    \begin{equation}
+        \iff |L - x_n + x_n - M|
+    \end{equation}
+    \begin{equation}
+        \iff |(L - x_n) + (x_n - M)|
+    \end{equation}
+    \begin{equation}
+        \leq |x_n - L| + |x_n - M|
+    \end{equation}
+    \begin{equation}
+        < 2\epsilon
+    \end{equation}
+    \begin{equation}
+        \iff |L - M|
+    \end{equation}
+    This is a contradiction, this concludes the proof. 
+\end{proof}
+
+\begin{definition}
+    Let $A$ be a finite set, 
+    \begin{equation}
+        A^{n} = \text{ all strings of length n from A }
+    \end{equation}
+    \begin{equation}
+        \tilde{A}^{n} = \cup_{k=1}^{n}A^{k}
+    \end{equation}
+    \begin{equation}
+        A^{\infty} = \text{ all finite strings from A }
+    \end{equation}
+    \begin{equation}
+        \iff \cup_{k=1}^{\infty}A_{n}
+    \end{equation}
+    \begin{equation}
+        A^{*} = \text{ all infinite strings from A }
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    We say a set $S$ is countable if 
+    \begin{enumerate}
+        \item it is finite
+        \item $S$ is infinite and its cardinality is $\aleph_0$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item $A^{n}$ and $\tilde{A}^{n}$ are finite sets
+        \item $A^{\infty}$ is countable 
+        \item $A^{*}$ is not countable 
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Suppose we have a list $(x_1,x_2,\dots)$ that contains all elements of $A^{*}$. 
+\end{proof}
+\end{document}

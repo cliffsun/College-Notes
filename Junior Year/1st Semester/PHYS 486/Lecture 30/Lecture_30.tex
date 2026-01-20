@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486: Lecture \# 30}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486: Lecture \# 30}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Bosons and Fermions}
+
+Given a wave function 
+
+\begin{equation}
+    \psi(r_1, r_2)  = \psi_a(r_1)\psi_b(r_2)
+\end{equation}
+
+This is a 2-electron system, and not 2x 1 electron systems. Then we can distinguish between the electrons because the wave function can be distinguished. In particular,
+we can also distinguish them if they are in fully separate potentials. But if we cannot separate the wave function, then one cannot be a sure that measuring a particle in location $r_1$ is particle a or particle b. Therefore, 
+
+\begin{equation}
+    \psi_{\pm}(r_1,r_2) = A \cdot (\psi_a(r_1)\psi_b(r_2) \pm \psi_b(r_1)\psi_a(r_2))
+\end{equation}
+
+Note that $+$ corresponds Bosons and $-$ corresponds to Fermions. Then a particle exchange 
+
+\begin{equation}
+    \psi_+(r_1, r_2) = \psi_+(r_2, r_1)
+\end{equation}
+
+Is obeyed with Bosons. With fermions, 
+
+\begin{equation}
+    \psi_{-}(r_1, r_2) = -\psi_{-}(r_2,r_1)
+\end{equation}
+
+Let two particles in the same s.s., then $\psi_a = \psi_b$. Then 
+
+\begin{equation}
+    \psi_+ = 2A\psi_a(r_1)\psi_a(r_2)
+\end{equation}
+\begin{equation}
+    \psi_{-} = 0
+\end{equation}
+This is the Pauli exclusion principle. This means that Fermions cannot be in the same quantum state, because the wave function is not normalizable and therefore cannot be physical. 
+
+\subsection*{Including Spin:}
+
+\begin{equation}
+    \psi = \psi(r)\chi
+\end{equation}
+
+For two electrons, or other Fermions, 
+
+\begin{equation}
+    \psi(r_1,r_2)\chi(1,2) = \psi(r_2,r_1)\chi(2,1)
+\end{equation}
+
+For a singlet: 
+
+\begin{equation}
+    \chi_{-} = \frac{1}{\sqrt{2}}\left( \ket{\uparrow \downarrow} - \ket{\downarrow \uparrow} \right) = -\frac{1}{\sqrt{2}}\left( \ket{\downarrow \uparrow} - \ket{\uparrow \downarrow} \right) 
+\end{equation}
+
+
+
+\end{document}

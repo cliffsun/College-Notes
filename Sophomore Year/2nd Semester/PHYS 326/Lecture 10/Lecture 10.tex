@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture 10}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture 10}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Non-linear Dynamics}
+
+Consider dynamics using 
+
+\begin{equation}
+    \frac{d\bar{x}}{dt} = \bar{F}(x)
+\end{equation}
+
+Where $\bar{x}$ is the set of coordinates in $n$-dimensional "phase space" (or "state space"). Sufficient to determine the future state. 
+
+\subsection*{Example: Non-linear pendulum}
+
+Study 
+
+\begin{equation}
+    \ddot{\theta} + \omega_r^2 \sin\theta = 0
+\end{equation}
+
+No approximation. Denote $x = \theta$ and $y = \dot{\theta}$. Then $\bar{x} = \{x, y\} \iff \{\theta, \dot{\theta}\}$. Then 
+
+\begin{equation}
+    \frac{dx}{dt} = y
+\end{equation}
+\begin{equation}
+    \frac{dy}{dt} = -\omega_0^2 \sin x
+\end{equation}
+
+Let $\omega_0 = 1$, then 
+
+\begin{equation}
+    \frac{dx}{dt} = y
+\end{equation}
+\begin{equation}
+    \frac{dy}{dt} = \sin x
+\end{equation}
+
+To find fixed points, $y=0$ and $x = n\pi$. 
+
+\subsection*{Van Der Pol Oscillator}
+
+\begin{equation}
+    \frac{d^2y}{dt^2} + E(y^2 - 1)\frac{dy}{dt} + y = 0
+\end{equation}
+
+Map to phase plane, define $v = \frac{dy}{dt}$, then 
+
+\begin{equation}
+    \dot{y} = v
+\end{equation}
+\begin{equation}
+    \dot{v} = -y - E(y^2 - 1)v
+\end{equation}
+
+Then $\bar{x} = \{y, v\}$. At small $y$, then the ODE turns into
+\begin{equation}
+    \frac{d^2y}{dt^2} - E\frac{dy}{dt} + y = 0
+\end{equation}
+Which means the voltage grows. At large $y$, then the ODE turns into 
+
+\begin{equation}
+    \frac{d^2y}{dt^2} + Ey^2\frac{dy}{dt} + y = 0
+\end{equation}
+
+Which means the voltage shrinks. This ODE exhibits a cool behavior that all initial conditions converge to the same limit cycle. 
+
+\subsection*{Numerical Solutions to Differential Equations}
+
+Simple Harmonic Oscillator. Note, 
+
+\begin{equation}
+    \frac{dx}{dt} = v
+\end{equation}
+\begin{equation}
+    \frac{dv}{dt} = -\frac{k}{m}x
+\end{equation}
+
+Use taylor expansion to approximate. 
+
+\subsection*{Runge-Kutta Method}
+
+Let 
+
+\begin{equation}
+    \dot{x} = f(x)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    x_{n+1} = x_n + \frac{1}{6}\left( k_1 + 2k_2 + 3k_3 + k_4 \right)
+\end{equation}
+
+Where
+
+\begin{equation}
+    k_1 = f(x_n)\Delta t, k_2 = f(x_n + \frac{1}{2}k_1)\Delta t, \dots
+\end{equation}
+
+\end{document}

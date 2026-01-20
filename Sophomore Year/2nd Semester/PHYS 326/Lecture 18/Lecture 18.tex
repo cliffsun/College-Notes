@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture \# 18}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture \# 18}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Hamiltonian Mechanics}
+
+Begin with $L(q_i, \dot{q}_i; t) = T - U$ for $i = 1,\dots,n$. Then use Euler Lagrangian equations to study mechanics. Define generalized momentum
+\begin{equation}
+    p_i = \frac{\partial L}{\partial \dot{q}_i}
+\end{equation}  
+
+Hamilton aims to describe the state of the system in the phase space ($q_i$, $p_i$). Define the Hamiltonain:
+
+\begin{equation}
+    H = \sum_{i=1}^n p_i \dot{q}_i - L \iff \text{ Jacobi Function, Legendre Transformation}
+\end{equation}
+
+Next, find the equations of motion in terms of $p_i, q_i$. 
+
+\begin{equation}
+    H(\vec{q}, \vec{p}, t) = \sum_i p_i\dot{q}_i(\vec{q}, \vec{p}; t) - L(\vec{q}, \dot{\vec{q}}(\vec{q}, \vec{p}; t); t)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \frac{\partial H}{\partial p_j} = \dot{q}_j + \sum_i p_i \frac{\partial \dot{q}_i}{\partial p_j} - \sum_i \frac{\partial L}{\partial \dot{q}_i}\frac{\partial \dot{q}_i}{\partial p_j} = \dot{q}_j
+\end{equation}
+
+This is because $p_i = \partial L/\partial \dot{q}_i$. Similarly 
+
+\begin{equation}
+    \frac{\partial H}{\partial q_j} = \sum_i p_i \frac{\partial \dot{q}_i}{\partial q_j} - \frac{\partial L}{\partial q_j} - \sum_i \frac{\partial L}{\partial \dot{q}_i}\frac{\partial \dot{q}_i}{\partial q_i} = -\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i} \right) = -\dot{p}_j
+\end{equation}
+
+\subsection*{Conservation Laws}
+
+If $H$ does not depend explicitly on $t$, then $H$ is a constant of motion. 
+
+\begin{proof}
+    \[\frac{dH}{dt} = \sum_{i} \underbrace{\frac{\partial H}{\partial q_i}}_{=-\dot{p}_i}\dot{q}_i + \sum_i \underbrace{\frac{\partial H}{\partial p_i}}_{=\dot{q}_i}\dot{p}_i + \underbrace{\frac{\partial H}{\partial t}}_{=0} = 0\]
+\end{proof}
+
+If a coordinate $q$ does not appear in $H$, then its conjugate momentum is conserved. 
+
+\begin{proof}
+    \[\dot{p}_{q} = -\frac{\partial H}{\partial q} = 0\]
+\end{proof}
+
+\subsubsection*{Poisson Brackets}
+
+\begin{definition}
+    $\{A,B\}$ is defined as 
+    \[\{A,B\} = \sum_i \left[ \frac{\partial A}{\partial q_i}\frac{\partial B}{\partial p_i} - \frac{\partial B}{\partial q_i}\frac{\partial A}{\partial p_i} \right]\]
+\end{definition}
+
+\end{document}

@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 326: Lecture \# 14}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 326: Lecture \# 14}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Rigid Body Motion (cont'd)}
+
+\subsection*{Principal Axis of Inertia}
+
+Recall, 
+
+\begin{equation}
+    \vec{L} = I\vec{\omega} \neq L \nparallel \omega
+\end{equation}
+
+But, it's always possible to define $3$ orthogonal directions in which $I$ is diagonal. These $3$ orthogonal axis are called the "3 principal axis of inertia". That is 
+
+\begin{equation}
+    I = \begin{bmatrix}
+        I_{xx} & 0 & 0 \\
+        0 & I_{yy} & 0 \\
+        0 & 0 & I_{zz}
+    \end{bmatrix}
+\end{equation}
+
+\subsection*{Parallel Axis Theorem}
+
+For each $m_a$, we have that 
+
+\begin{equation}
+    x_a = x_{cm} + x'_a
+\end{equation}
+\begin{equation}
+    y_a = y_{cm} + y'_a
+\end{equation}
+\begin{equation}
+    z_a = z_{cm} + z'_a
+\end{equation}
+
+Then 
+
+\begin{equation}
+    I_{zz} = \sum_a m_a(x_a^2 + y_a^2)
+\end{equation}
+\begin{equation}
+    = \sum_a m_a ((x_{cm} + x_a')^2 + (y_{cm} + y'_a)^2)
+\end{equation}
+\begin{equation}
+    = \sum_a m_a (x_{cm}^2 + y_{cm}^2) + \underbrace{2\sum_a m_a (x'_a x_cm + y'_a y_cm)}_{0} + \underbrace{\sum_a m_a ((x'_a)^{2} + (y'_a)^{2})}_{I_{zz}}
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    I_{zz}^O = M(x_{CM}^2 + y_{CM}^2) + I_{zz}^{CM}
+\end{equation}
+\begin{equation}
+    I_{xx}^{O} = M(z_{CM}^2 + y_{CM}^2) + I_{xx}^{CM}
+\end{equation}
+\begin{equation}
+    I_{yy}^{O} = \dots
+\end{equation}
+
+\subsection*{Rigid Body Motion: Torque-Free}
+
+\begin{equation}
+    \Gamma_{o}(t) = \frac{dL_O}{dt} = \frac{d}{dt}\left(I_O \omega\right)
+\end{equation}
+Note, "O" is a fixed point. Let's work in a coordinate system where $I_O$ is diagonal. However, we are now working in a rotating coordinate system. Then 
+
+\begin{equation}
+    \vec{v} = \sum v_i \hat{e}_i(t)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \frac{dv}{dt} = \sum \frac{dv_i}{dt}\hat{e}(t) + \omega \times v
+\end{equation}
+
+Then, choose that $I_{CM}$ is diagonal, but 
+
+\begin{equation}
+    \Gamma(t) = \frac{d}{dt}\left( I \omega\right) = I \frac{d\omega}{dt} + \omega \times (I\omega) = 0
+\end{equation}
+\end{document}

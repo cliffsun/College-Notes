@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 436: Lecture \# 35}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 436: Lecture \# 35}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lorentz Transformation of E\&M Potentials}
+
+The retarded E\&M potential forms a relativisitic 4-potential, 
+
+\begin{equation}
+    A^{\mu} = \begin{pmatrix}
+        V/c \\
+        \textbf{A}
+    \end{pmatrix}
+\end{equation}
+
+There, they also follow the same Lorentz Transformations. Moreover, since 
+
+\begin{equation}
+    \square^{2}V/c = -\mu_0 \rho c = -\frac{\rho}{\epsilon_0 c}
+\end{equation}
+\begin{equation}
+    \square^{2}A = -\mu_0 J
+\end{equation}
+
+It follows that 
+
+\begin{equation}
+    J^\mu  = \begin{pmatrix}
+        \rho c \\
+        \textbf{J}
+    \end{pmatrix} = A^\mu
+\end{equation}
+
+The Lorenz gauge can therefore be written as 
+
+\begin{equation}
+    \nabla \cdot A + \frac{1}{c^2}\partial_t V = \partial_\mu A^\mu =0 
+\end{equation}
+
+
+\end{document}

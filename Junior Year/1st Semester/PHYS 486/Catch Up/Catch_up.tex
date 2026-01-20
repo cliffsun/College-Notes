@@ -1,0 +1,479 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 486: Catch-up Edition}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 486: Catch-up Edition}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Angular Momentum}
+
+Angular momentum is defined as 
+
+\begin{equation}
+    L = \hat{r} \times \hat{p} = -i\hbar\left( \hat{r} \times \vec{\nabla} \right)
+\end{equation}
+
+This produces 
+
+\begin{equation}
+    L_x = yp_z - zp_y, \dots
+\end{equation}
+
+As well,
+
+\begin{equation}
+    [L_i, L_j] = i\hbar \epsilon_{ijk}L_k
+\end{equation}
+
+\subsection*{Ladder Operators}
+
+Let $L_{\pm} = L_x \pm iL_y$, then if $\psi$ is an eigenfunction of $L^2$ and $L_z$, then $L_{\pm}\psi$ is also an eigenfunction.
+
+In particular, suppose 
+
+\begin{equation}
+    L^2\psi = \lambda \psi \;\; L_z \psi = \mu \psi
+\end{equation}
+
+Then,
+
+\begin{equation}
+    L^{2}(L_{\pm}\psi) = \lambda (L_{\pm})\psi
+\end{equation}
+\begin{equation}
+    L_zL_{\pm}\psi = (\mu \pm \hbar)(L_{\pm}\psi)
+\end{equation}
+
+Note that because $L_z$ and $L_{\pm}$ don't commute, then $L_{\pm}$ directly affects the measurement of $L_z$. 
+
+We can also compute what $\lambda$ is by taking inspiration from the quantum simple harmonic oscillator. In particular, 
+
+\begin{equation}
+    L_{\pm}L_{\mp} = L^2 - L_z^2 \pm \hbar L_z
+\end{equation}
+
+One can rearrange this equation in terms of $L^2$, and given the boundary conditions, 
+
+\begin{equation}
+    L_z\psi_{t} = \hbar l \psi_{t} \implies \mu_{\max} = \hbar l
+\end{equation}
+\begin{equation}
+    L_{z}\psi_{b} = \hbar \overline{l}\psi_{b} \implies \mu_{min} = \hbar \overline{l}
+\end{equation}
+
+Then we obtain that 
+
+\begin{equation}
+    L^2 \psi_t = \hbar^2l(l+1)\psi_{t} \land L^2 \psi_b = \hbar^2\overline{l}(\overline{l} - 1)
+\end{equation}
+
+This means that $\overline{l} = -l$ and the boundaries of $\mu$ range from 
+
+\begin{equation}
+    \mu = -\hbar l, -\hbar(l + 1), \dots, \hbar l
+\end{equation}
+
+Then in total, 
+
+\begin{equation}
+    L^2\psi^{m}_{l} = \hbar^2 l(l+1)\psi^{m}_{l} \land L_z\psi^{m}_l = \hbar m \psi^{m}_{l}
+\end{equation}
+
+The reason why this wave function is indexed by both $m$ and $l$ is because the $l$ terms represents the upper bound on the $L_z$ eigenvalue and do not change. However, $m$ does change 
+and therefore needs to be indexed by a different number. In total, there are $2l + 1$ values of $m$. This means that $l$ can either be $n$ or $n + 1/2$ for an integer $n$. 
+
+\subsection*{The Spherical Equation Solution}
+
+To solve the spherical equation, we use the notion that 
+
+\begin{equation}
+    L^2 Y = \hbar^2 l(l+1)Y
+\end{equation}
+
+solving for $L^2$, we obtain 
+
+\begin{equation}
+    L^2 = -\hbar^2\left[ \frac{1}{\sin\theta}\frac{\partial}{\partial \theta}\left( \sin\theta \frac{\partial}{\partial\theta} \right) + \frac{1}{\sin\theta}\frac{\partial^2}{\partial\phi^2}\right]
+\end{equation}
+
+Letting
+\begin{equation}
+    Y = \Omega(\theta)\Lambda(\phi)
+\end{equation}
+
+We obtain 
+
+\begin{equation}
+    \frac{1}{\Lambda}\frac{d^2 \Lambda}{d \Lambda^2} = -m^2 \implies \Lambda(\phi) = e^{im \phi}
+\end{equation}
+
+But noting that $\Lambda(\phi) = \Lambda(\phi + 2\pi)$, we get that $m$ must be an integer. However, $l$ is an integer or integer $+ 1/2$. In general, the total angular momentum allows for integer or integer $+ 1/2$. But 
+the orbital angular momentum is only integer. 
+
+The theta equation is a bit more complicated, but 
+
+\begin{equation}
+    \Omega(\theta) = A P^{m}_{l}(\cos\theta)
+\end{equation}
+
+Where $P^{m}_{l}$ is the associated Legendre function. Therefore,
+
+\begin{equation}
+    Y^{m}_{l} = A e^{im\phi}P^{m}_{l}(\cos\theta)
+\end{equation}
+
+Where 
+
+\begin{equation}
+    A = \sqrt{\frac{(2l+1)(l-m)!}{4\pi(l+m)!}}
+\end{equation}
+
+Moreover, 
+
+\begin{equation}
+    \braket{Y^m_l}{Y^{m'}_{l'}} = \delta_{ll'}\delta_{mm'}
+\end{equation}
+
+\section*{The Radial Equation solution}
+
+The radial equation is 
+
+\begin{equation}
+    \left\{ \frac{1}{R}\frac{d}{dR}\left( r^2 \frac{dR}{dr} \right) - \frac{2mr^2}{\hbar}[V(r) - E] \right\} = l(l+1)
+\end{equation}
+
+Letting $R = u/r$, then we can simplify this formula to be 
+
+\begin{equation}
+    -\frac{\hbar^2}{2m}\frac{d^2u}{dr^2} + \left[ V + \frac{\hbar^2}{2m}\frac{l(l+1)}{r^2} \right]u = E_n
+\end{equation}
+
+Where $E_n$ is some energy indexed by $n$. For the case of the infinite well, where 
+
+\begin{equation}
+    V(r) = \begin{cases}
+        0 & r \leq a \\
+        \infty & r > a
+    \end{cases}
+\end{equation}
+
+Then inside the well, we obtain
+
+\begin{equation}
+    \frac{d^2u}{dr^2} = \left[ \frac{l(l+1)}{r^2} - k^2 \right]u
+\end{equation}
+
+With the boundary condition of $u(a) = 0$. Then 
+
+\begin{equation}
+    u(r) = A \sin(kr) + B\cos(kr) \implies B=0
+\end{equation}
+
+In general, 
+
+\begin{equation}
+    u(r) = A r j_l(kr) + Bru_l(kr) \implies B =0
+\end{equation}
+
+
+Where $j_l$ are the spherical bessel functions and $u_l$ are the spherical Neumann functions. 
+
+Therefore, 
+
+\begin{equation}
+    Y_{nlm} = A_{nl}j_l(\beta_{NL}\frac{r}{a})Y^{m}_{l}(\theta, \phi)
+\end{equation}
+
+Where $k = \beta_{NL}/a$. 
+
+\section*{Hydrogen Atom}
+
+For the case of the Hydrogen Atom, 
+
+\begin{equation}
+    V(r) = -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r}
+\end{equation}
+
+Then the radial equation becomes 
+
+\begin{equation}
+    -\frac{\hbar^2}{2m}\frac{d^2u}{dr^2} + \left[ -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r} + \frac{\hbar^2}{2m_e}\frac{l(l+1)}{r^2} \right]u = E_n
+\end{equation}
+
+Defining $\rho = kr$ and $\rho_0 = \frac{m_e e^2}{2\pi \epsilon_0 \hbar^2 k}$ where $k = \frac{\sqrt{-2m_e E}}{\hbar}$, then 
+
+\begin{equation}
+    \frac{d^2u}{d\rho^2} = \left[ 1 - \frac{\rho_0}{\rho} + \frac{l(l+1)}{\rho^2} \right]u
+\end{equation}
+
+We can guess an ansatz by studying the asympotes of this equation. In particular, if $\rho \rightarrow \infty$, then 
+
+\begin{equation}
+    u(\rho) \sim A e^{-\rho}
+\end{equation}
+
+Similarly, for $\rho \rightarrow 0$, then 
+
+\begin{equation}
+    u(\rho) \sim C \rho^{l+1}
+\end{equation}
+
+Therefore, we guess that 
+
+\begin{equation}
+    u(\rho) = \rho^{l+1}e^{-\rho}v(\rho)
+\end{equation}
+
+Plugging this into the radial equation where $v(\rho) = \sum_i c_i \rho^i$, we obtain 
+
+\begin{equation}
+    c_{j+1}= \left[ \frac{2(j + l + 1) - \rho_0}{(j +1)(j + 2l + 2)} \right]c_{j}
+\end{equation}
+
+For large $j$, we have that 
+
+\begin{equation}
+    c_j \overset{\sim}{=} \frac{2j}{j!}c_0 \implies c_0 e^{2\rho}
+\end{equation}
+
+But this makes the wavefunction diverge for large $\rho$, therefore the series must end. this means that $\exists N$ such that $c_{N-1} \neq 0$ but $c_N = 0$. In this case, 
+
+\begin{equation}
+    2(N+l) - \rho_0 = 0 \implies \rho_0 = 2n
+\end{equation}
+
+Then in particular, the series must terminate at $n - l - 1$ from the recursion formula. Note, that $\rho = k r$ with 
+
+\begin{equation}
+    \rho_0 = \frac{m_e e^2}{2\pi \epsilon_0 \hbar^2 k}
+\end{equation}
+
+But since $\rho_0 = 2n$, we have that 
+
+\begin{equation}
+    k = \frac{m_ee^2}{4\pi \epsilon_0 \hbar^2 n}
+\end{equation}
+
+Defining 
+
+\begin{equation}
+    \frac{1}{a} = \frac{m_ee^2}{4\pi \epsilon_0 \hbar^2}
+\end{equation}
+
+We have that 
+
+\begin{equation}
+    \rho = \frac{r}{an}
+\end{equation}
+
+Now, suppose $n=1$, $l=0$, and $m=0$, then 
+
+\begin{equation}
+    R(r) = \frac{c_0}{a}e^{-r/a}
+\end{equation}
+
+and 
+
+\begin{equation}
+    Y^{0}_{0} = \frac{1}{\sqrt{4\pi}}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \psi_{100} = \frac{c_0}{\sqrt{4\pi}a}e^{-r/a}
+\end{equation} 
+
+It can be computed that $c_0 = \frac{2}{sqrt{a}}$. 
+
+\section*{Spin}
+
+We call a particle to be a Boson if its spin is $s=1$, and a particle is a fermion of its spin is $s=1/2$. 
+
+We define 
+
+\begin{equation}
+    \vec{S} = \begin{pmatrix}
+        S_x \\
+        S_y \\
+        S_z 
+    \end{pmatrix}
+\end{equation}
+
+And 
+
+\begin{equation}
+    [S_i, S_j] = i\hbar \epsilon_{ijk}S_k
+\end{equation}
+
+Let the wave function be $\ket{s,m}$, then 
+
+\begin{equation}
+    S^2\ket{s,m} = \hbar^2s(s+1)\ket{s,m}
+\end{equation}
+\begin{equation}
+    S_z\ket{s,m} = \hbar m \ket{s,m}
+\end{equation}
+\begin{equation}
+    S_{\pm}\ket{s,m} = \hbar \sqrt{s(s+1) - m(m\pm 1)}\ket{s,m\pm 1}
+\end{equation}
+
+The eigenstates of $S_z$ are 
+
+\begin{equation}
+    \ket{0} = \chi_{+} = \ket{\frac{1}{2}, \frac{1}{2}} = \ket{\uparrow}
+\end{equation}
+\begin{equation}
+    \ket{1} = \chi_{-} = \ket{\frac{1}{2}, -\frac{1}{2}} = \ket{\downarrow}
+\end{equation}
+
+In general, $\chi = \alpha \chi_{+} + \beta \chi_{-}$. We can also find that given 
+
+\begin{equation}
+    S^2\chi_{\pm} = \frac{3}{4}\hbar^2 \chi_{\pm} \implies S^2 = \frac{3}{4}\hbar^2\begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    S_{z} = \frac{\hbar}{2}\begin{pmatrix}
+         1& 0 \\
+         0 & -1
+    \end{pmatrix}
+\end{equation}
+
+As well, 
+
+\begin{equation}
+    S_{+} \chi_{-} = \hbar \chi_{+} \land S_{+}\chi_{+} = 0
+\end{equation}
+
+And vice versa. we can also compute that 
+
+\begin{equation}
+    S_x = \frac{\hbar}{2}\sigma_x = \frac{\hbar}{2}\begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    S_y = \frac{\hbar}{2}\sigma_y = \frac{\hbar}{2}\begin{pmatrix}
+        0 & i \\
+        -i & 0
+    \end{pmatrix}
+\end{equation}
+
+And 
+
+\begin{equation}
+    S = \frac{\hbar}{2}\begin{pmatrix}
+        \sigma_x \\
+        \sigma_y \\
+        \sigma_z
+    \end{pmatrix}
+\end{equation}
+
+In general, we can use spin to solve for the time evolution of $S_x$ in an external magnetic field. Suppose $B = B_0 \hat{z}$, then 
+
+\begin{equation}
+    H = -\mu \cdot B \implies -\gamma B_0 \hat{z} \cdot S \implies \frac{\gamma B_0\hbar}{2}\sigma_z
+\end{equation}
+
+This is the energy operator of the entire system. Computing $\langle \chi | H | \chi \rangle$ will get the average energy of the spin state $\ket{\chi}$. We let $E_{+} = -\frac{\gamma B_0 \hbar}{2}$ and $E_{-} = \frac{\gamma B_0 \hbar}{2}$
+ At time $t=0$, the arbitrary spin can be described as a bloch sphere, 
+
+\begin{equation}
+    \ket{\chi} = \cos\frac{\theta}{2}\ket{0} + \sin\frac{\theta}{2}e^{i\phi}\ket{1}
+\end{equation}
+
+And according to the shrodinger wave equation, we have that 
+
+\begin{equation}
+    \ket{\chi}(t) =\cos\frac{\theta}{2}\ket{0}e^{-iE_{+}t/\hbar} + \sin\frac{\theta}{2}e^{i\phi}\ket{1}e^{-iE_{-}t/\hbar}
+\end{equation}
+
+Where $\ket{0} = \chi_{+}$ and $\ket{1} = \chi_{-}$. Then we can compute 
+
+\begin{equation}
+    \langle S_x \rangle = \langle \chi(t) | S_x | \chi(t)\rangle = \frac{\hbar}{2}\sin\theta \cos\left( \gamma B_0 t \right)
+\end{equation}
+
+\textbf{Note:} all these calculations were done for a spin-1/2 particle, or a fermion. 
+
+\section*{Stern-Gerlach Experiment}
+
+Assume that 
+
+\begin{equation}
+    \chi = \frac{1}{\sqrt{2}}(\ket{\uparrow} + \ket{\downarrow})
+\end{equation}
+
+Generally, 
+
+\begin{equation}
+    \ket{\pm} = \frac{1}{\sqrt{2}}(\ket{\uparrow} \pm \ket{\downarrow})
+\end{equation} 
+
+We define a composite state 
+
+\begin{equation}
+    \ket{s_1,s_2,m_1,m_2} = \ket{s_1,m_1} \otimes \ket{s_2, m_2}
+\end{equation}
+
+then we define $S_{x,y,z}^{j}$ and $(S^{2})^{j}$ where the operator only acts on the $j$-th composite state. An example:
+
+\begin{equation}
+    (S^{2})^{1}\ket{s_1, s_2, m_1, m_2} = s_1(s_1 +1)\hbar^2\ket{s_1, s_2, m_1, m_2}
+\end{equation}
+
+Defining the total angular momentum $S = S^1 + S^2$, we try to measure $S_z$
+
+\begin{equation}
+    S_z\ket{s_1, s_2, m_1, m_2} = \hbar(m_1 + m_2)\ket{s_1, s_2, m_1, m_2}
+\end{equation}
+
+Where $m=m_1 + m_2$. We will observe some degeneracy if $m_1$ and $m_2$ are anti-symmetric, or are $\pm 1/2$ and $\mp 1/2$. 
+
+\end{document}
