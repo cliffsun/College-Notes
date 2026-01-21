@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 1}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 1}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+
+Todo for Friday:
+\begin{itemize}
+    \item Visit Canvas and read materials
+    \item Send prof emails
+    \item Read notation (pg.7) and skim pg.1-6 (R mcOwen, PDEs, 2nd edition)
+\end{itemize}
+
+\section*{PDEs terminology - Examples}
+
+\begin{enumerate}
+    \item Laplace's equation - $\triangle u = 0$ where $\triangle = \partial_{x_1}^2 + \dots + \partial_{x_n}^2 = \nabla^2 $
+\end{enumerate}
+
+We say that $u$ is harmonic.
+
+\begin{enumerate}
+    \item Say $n=1$, then $\partial_x^2 u = 0 \iff u(x) = ax + b$.
+    \item If $n=2$, then $\partial_{x}^2u + \partial_{y}^2u = 0$ [$\impliedby u(x,y) = ax + by + c$]
+\end{enumerate} 
+
+We call $\triangle u = 0$ a 2nd order PDE, and also a linear function of $u$ and its derivatives. But we do not require a PDE to be linear with respect to the $x_{i}$'s. Example:
+
+\begin{equation}
+    x_2^2 u_{x_1,x_1,x_1} - \sin(x_1) = 0
+\end{equation}
+
+This a 3rd order PDE. 
+
+\subsection*{Semi-linear Poisson Equation}
+
+\begin{equation}
+    \triangle u = u^5
+\end{equation}
+
+This equation is non-linear, but we call it \underline{semi-linear} because its derivatives are linear, but not $u$. Another example is 
+
+\begin{equation}
+    tu_t + u_x = u^2
+\end{equation}
+
+\subsection*{Inviscid Burger's Equation}
+
+Inviscid means no viscosity. We consider 
+
+\begin{equation}
+    u_t + uu_x = 0
+\end{equation}
+
+Not semi-linear, but its highest order derivatives occur linearly with coefficients $x,t$. 
+
+\subsection*{Eikonal Equation}
+
+\begin{equation}
+    u_x^2 + u_y^2 = 1
+\end{equation}
+
+This is \underline{fully non-linear} because its highest order derivatives is non-linear. In this class, we will focus one
+
+\begin{center}
+    linear $\rightarrow$ semi-linear $\rightarrow$ quasi-linear $\rightarrow$ fully non-linear
+\end{center}
+
+\section*{Notation (pg.7)}
+
+\begin{enumerate}
+    \item $\mathbb{Z}$ - integers 
+    \item $\mathbb{N} = \{1,2,3,\dots\}$
+    \item $(x,y) \in \mathbb{R}$
+    \item $\Omega$ is the domain
+    \item Closure of $\Omega$ = $\Omega \cup \partial\Omega$ (locations of which $\Omega$ reach-ish)
+    \item $C(\Omega)$ = collection of continuous functions (does not have to be bounded)
+    \item $C^1(\Omega)$ = continuous functions whos first derivatives are continuous.
+    \item $C^k(\Omega)$, defined similarly
+    \item $C^{\infty}(\Omega)$
+    \item $C^1(\bar{\Omega}) = \{f \in C^1(\Omega): f_{x_1,\dots,x_n} \text{ can be extended continuously to $\bar{\Omega}$}\}$ 
+    \item The support of a function $\text{supp}(f) = \{x: f(x) \neq 0\}$, then take the closure. Note that the support of a function is away from the boundary of $\Omega$
+    \item $C^1_{0}(\Omega) = \{f \in C^1(\Omega); \text{supp}(f) \subset \Omega\}$ (doesn't include $\partial\Omega$, i.e. functions that must equal $0$ near $\partial\Omega$)
+\end{enumerate}
+
+\subsection*{Examples}
+
+\begin{enumerate}
+    \item With mathematica: 
+    \begin{equation}
+        u(x,t) = \frac{1}{t^{1/3}}\left( 1 - \frac{x^2}{12t^{2/3}} \right)
+    \end{equation}
+    This solves the \underline{porous medium equation}, e.g. $u_t = (u^2)_{xx}$ (similar to the heat equation). When $t > 0$ and $|x| < \sqrt{12}t^{1/3}$ 
+    \item Sketch $U(x,t)$ as a function of $x$ at $t=1$ and $t=8$
+    \item Show that the area under the graph is the same for each $t$ (conserved fluid?)
+\end{enumerate}
+
+\end{document}
