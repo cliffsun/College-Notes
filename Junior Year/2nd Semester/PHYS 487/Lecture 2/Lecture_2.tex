@@ -1,0 +1,225 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Symmetries; invariance under transformations
+    \item transformations in space
+    \item generators
+    \item translational invariance
+\end{itemize}
+
+\section*{What is a symmetry?}
+
+A symmetry exists if applying a transformation to an object will not change anything observable of the object. There exists discrete symmetries (flipping, rotating by $\pi/2$) and continuous
+symmetries (circle). 
+
+\section*{Describing transformations}
+
+Suppose 
+
+\begin{equation}
+    A\ket{\psi} = \ket{\psi'}
+\end{equation}
+
+Where $A$ is some operator that acts on the wave function. If $A$ acts on a symmetry of the wave function, then its expectation value shouldn't change. That is 
+
+\begin{equation}
+        \langle O \rangle = \langle \psi | O | \psi \rangle = \langle \psi | A^{\dagger} O A | \psi \rangle 
+\end{equation}
+
+If this is true, then we say that $\langle O \rangle$ is unchanged under the transformation of $A$. This formalism is equivalent to a relative transformation, either transforming $\ket{\psi}$ or $\hat{O}$. Eitherway, they are equivalent. 
+We call a transformation of the wavefunction an \underline{"active transformation"} and the transformation of the observable as a \underline{"passive transformation"}. 
+
+\section*{Symmetries + Hamiltonian}
+
+A wavefunction is translationally invariant if its Hamiltonian is also translationally invariant. 
+
+\begin{center}
+    Invariance: $A^{\dagger}HA = H' = H$
+\end{center}
+
+We first define "unitarity", that is $A^{\dagger}A = AA^{\dagger} = \mathbb{I}$. That is $A^{\dagger} = A^{-1}$. 
+\begin{align*}
+    A^{\dagger}HA &= H \\
+    AA^{\dagger}HA &= AH \text{ (assume $A$ is unitary)}\\
+    HA &= AH \\
+    [\hat{H}, \hat{A}] &= 0
+\end{align*}
+
+This proof is saying what (by default $A$ is unitary), that if $\hat{H}$ is invariant under $A$, then $[\hat{H}, \hat{A}] = 0$.
+
+A unitary is reversible and energy conserving. They also preserve inner product: 
+
+\begin{equation}
+    \langle \psi | A^{\dagger}A | \psi \rangle = \braket{\psi}{\psi}
+\end{equation}
+
+\section*{Transformations in space}
+
+\begin{enumerate}
+    \item Translation
+    \begin{equation}
+        \hat{T}(a)\psi(x) = \psi'(x) = \psi(x-a)
+    \end{equation}
+    \item Rotation
+    \begin{equation}
+        R_z(\varphi)\psi(r,\theta,\phi) = \psi(r,\theta,\phi - \varphi)
+    \end{equation}
+    \item Parity: reflection about the origin
+    \begin{equation}
+        \hat{\Pi}\psi(r) = \psi(-r)
+    \end{equation}
+\end{enumerate}
+
+\section*{Translation operator}
+
+\begin{equation}
+    T(a)\psi(x) = \psi(x-a)
+\end{equation}
+
+Maybe momentum? Recall, momentum: $\hat{p} = -i\hbar \partial_x$. Let's try to taylor expand $T\psi$ by expanding $\psi(x-a)$. Recall that a taylor expansion about $a$ is 
+
+\begin{equation}
+    f(x) \approx \sum_{n}\frac{f'(a)}{n!}(x-a)^n
+\end{equation}
+
+Then let $h = x-a$, then we obtain 
+
+\begin{equation}
+    f(a + h) \approx \sum_n \frac{f'(a)}{n!}(h)^n
+\end{equation}
+
+Note that $a$ can be $x$. 
+
+\begin{align*}
+    &\sum_{n=0}^{\infty}\frac{1}{n!}\frac{d^n}{dx^n}\psi(x) ((-a)^{n}) \\
+    &= \sum_n \frac{1}{n!}\left( -\frac{ia}{\hbar}\hat{p} \right)^n \psi \\
+    &= T(a) = \exp\left( -\frac{ia}{\hbar}\hat{p} \right)
+\end{align*}
+
+We then call $\hat{p}$ a generator.
+
+\subsection*{Properties}
+
+\begin{enumerate}
+    \item Unitarity: $T^{-1}(a) = T(-a) = T(a)^{\dagger}$
+    \begin{center}
+        if $\hat{Q}$ is hermitian, then $u = \exp(iQ)$ is unitary.
+    \end{center}
+    \item Action on $\hat{x}$
+    \begin{align}
+        T^{\dagger}(a)\hat{x}T(a) &= \hat{x} + a = \hat{x}' \\
+        \hat{x}'\psi(x) &= T^{\dagger}(a)\hat{x}T(a)\psi(x)\\
+        &= T(-a)x\psi(x-a) \\
+        &= (x+a)\psi(x) \text{ (assuming that $\psi$ is invariant under $T$)}
+    \end{align}
+\end{enumerate}
+
+In general, $T^{\dagger}Q(x,p)T = Q(x + a, p)$. Note, in more dimensions, stepping $\Delta x_i$ in any dimension wouldn't change the observable of the object. 
+If $[A,B] = 0$, then $\exp(A+B) =\exp(A)\exp(B)$. But if $[A,B] \neq 0$, then there is a \underline{geometric phase} acquired when stepping $\Delta x_i$. 
+
+\section*{Translational Symmetry}
+
+\begin{enumerate}
+    \item Continuous: free particle
+    \item Periodic (and infinite)
+\end{enumerate}
+
+Consider a infinitely periodic potential with a period. Then consider 
+
+\begin{align}
+    H' &= T^{\dagger}(a)HT(a) = T^{\dagger}(a)\left( \frac{p^2}{2m} + V(x) \right)T(a)\\
+    &= \frac{p^2}{2m} + T^{\dagger}(a)V(x)T(a) = \frac{p^2}{2m}V(x+a)
+\end{align}
+
+\section*{Bloch's Theorem}
+
+Know: $[\hat{H}, \hat{T}] = 0$. And assume, 
+
+\begin{equation}
+    H\psi(x) = E\psi(x)
+\end{equation}
+
+Then because $H$ and $T$ commute, they share a simulatenous set of eigenvalues. Therefore, assume 
+
+\begin{equation}
+    T(a)\psi(x) = \lambda\psi(x)\;\; \lambda \in \mathbb{C}
+\end{equation}
+
+But since $T$ preserves the inner product, 
+
+\begin{equation}
+    \langle \psi | T^{\dagger}T | \psi \rangle = \braket{\psi}{\psi}
+\end{equation}
+\begin{equation}
+    \lambda^{2} = \braket{\psi}{\psi} \implies \lambda = \exp(i\phi)\;\; \phi \in \mathbb{R}
+\end{equation}
+
+Let $\phi = qa$, then 
+
+\begin{equation}
+    \psi(x-a) = e^{-iqa}\psi(x)
+\end{equation}
+
+We can call $\hbar q$ the "crystal momentum". Then let $\psi(x) = e^{iqx}u(x)$ 
+
+\begin{equation}
+    e^{-iqa}e^{iqx}u(x) = e^{iq(x-a)}u(x)
+\end{equation}
+Then shift by $a$
+\begin{equation}
+    \psi(x) = e^{iqx}u(x+a)
+\end{equation}
+Thus, we obtain 
+\begin{equation}
+    e^{iqx}u(x) = e^{iqx}u(x+a)
+\end{equation}
+
+This means that $u$ is periodic in $a$. 
+
+\end{document}

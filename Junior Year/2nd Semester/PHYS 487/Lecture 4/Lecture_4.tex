@@ -1,0 +1,257 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 4}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 4}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Recap}
+\begin{itemize}
+    \item Spatial operations: $T(a)$, $\Pi$, $R_{n}(\varphi)$
+    \item Consequences of symmetry
+    \begin{enumerate}
+        \item $T$ implies conservation of $p$ or $q$
+        \item $\Pi$
+        \item $R$ implies conservation of $L$
+    \end{enumerate}
+\end{itemize}
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item symmetry $\iff$ degeneracy
+    \item Time evolution as transformation
+\end{enumerate}
+
+\section*{Degeneracy}
+
+We've seen this before in the spectrum of the hydrogen atom. We aim to show that these degeneracies are due to symmetries. 
+
+We first postulate that 
+
+\begin{equation}
+    [H, Q] = 0 \implies \text{ can have degeneracy, or multiple SS with the same E.}
+\end{equation}
+
+Then if $\ket{\psi_n}$ is an S.S., then $\ket{\psi_n'} = Q\ket{\psi_n}$ is too. WE then compute 
+
+\begin{align*}
+    H\ket{\psi_n'} &= H(Q\ket{\psi_n}) \\
+    &= QH \ket{\psi_n} \\
+    &= QE_n \ket{\psi_n} \\
+    &= E_n \ket{\psi_n'}
+\end{align*}
+
+If $Q \neq I$, then $\ket{\psi_n'}$ can be a new state with the same energy as $\ket{\psi_n}$, therefore, we have degeneracy. Next, we consider the QHO. Here, 
+
+\begin{equation}
+    [H, \Pi] = 0
+\end{equation}
+
+Since the potential well of the QHO is parity symmetric. Then 
+
+\begin{equation}
+    \Pi\ket{\psi_n} = \pm \ket{\psi_n}
+\end{equation}
+
+But this not a new state, since this $\pm$ is really just a phase factor of $e^{i\pi}$ corresponding to $-1$ and etc. Such phase factors are not physical. This is an example of which a symmetric hamiltonian is not degenerate. 
+
+Here, we propose a way of finding if degeneracy occurs. Namely, degeneracy must exist if 
+
+\begin{equation}
+    [H,A] = 0 = [H,B] \text{ but } [A,B] \neq 0
+\end{equation}
+
+This means that one dimensional Hamiltonians cannot have degeneracy.
+
+Let $H\ket{\psi} = E\ket{\psi}$ and $A\ket{\psi} = a_n\ket{\psi}$. Then $B\ket{\psi}$ is also a S.S. of $H$. 
+
+\begin{center}
+    Multiple, non-commuting operators will produce degeneracy
+\end{center}
+
+\subsection*{Example: Angular momentum}
+
+Let $V=V(r)$, then consider SS: $\ket{\psi_{nlm}}$ with $H\ket{\psi_{nlm}} = E_n\ket{\psi_{nlm}}$. 
+Then we know that 
+
+\begin{equation}
+    [H,L_i] \rightarrow [H, L_{\pm}]
+\end{equation}
+
+But $[L_i, L_j] \neq 0$ for $i \neq j$. Consider 
+
+\begin{align*}
+    [H,L_{\pm}]\ket{\psi_{nlm}} &= 0\\
+    HL_{\pm}\ket{\psi_{nlm}} &= L_{\pm}H\ket{\psi_{nlm}} \\
+    H\ket{\psi_{nlm\pm1}} = E_n \ket{\psi_{nlm\pm1}}
+\end{align*}
+
+Here, this means that we have degeneracy. 
+
+\subsection*{Symmetry in the 1/r potential}
+
+We consider the vector 
+
+\begin{equation}
+    \vec{M} = \frac{p \times L - L \times p}{2m} + V(r)r
+\end{equation}
+
+\begin{equation}
+    [H, M_i] \neq 0 \;\; \text{ but } [L_i, M_j] \neq 0
+\end{equation}
+
+\section*{Time as a transformation}
+
+Recall SWE: 
+
+\begin{equation}
+    i\hbar \partial_t \psi = \left( -i\hbar\partial_x \right)^2\frac{1}{2m}\psi
+\end{equation}
+
+Looking for $u$ (time translation operator; "unitary evolution") such that 
+
+\begin{equation}
+    u(t)\psi(x,0) = \psi(x,t) 
+\end{equation}
+
+Here, 
+
+\begin{equation}
+    u(t)\ket{\psi(0)} = \ket{\psi(t)} = \sum_k \frac{1}{k!}\frac{d^k}{dt^k}\ket{\psi(t)}t^k
+\end{equation}
+
+Insert Hamiltonian, then we get 
+
+\begin{equation}
+    u(t) = \exp\left( -\frac{it}{\hbar}\hat{H} \right)
+\end{equation}
+
+This is called the time translation operator. Note, we assume that the Hamiltonian is constant with respect to time. We validate this result:
+
+\begin{align*}
+    \ket{\psi(t)} &= u(t)\ket{\psi(0)} \\
+    &= u(t)\sum_n c_n \ket{\psi_n} \\
+    &= \sum_n c_n e^{-iHt/\hbar}\ket{\psi_n} \\
+    &= \sum_n c_n e^{-iE_n t /\hbar}\ket{\psi_n}
+\end{align*}
+
+Example: spin and magnetic field. We have a Hamiltonian $H = \hbar\gamma B_0 S_z = (\hbar/2) \omega_L \sigma_z$. Then $$T = \frac{1}{2}\frac{2\pi}{\omega_L}$$
+
+Then we can construct 
+
+\begin{equation}
+    u(T) = \exp\left( -\frac{i}{\hbar}T\frac{\hbar}{2}\omega_L\sigma_z \right) = \exp(-i\frac{\pi}{2}\sigma_z)
+\end{equation}
+
+Because $\sigma_z$ is diagonal, then 
+
+\begin{equation}
+    u(T) = \begin{pmatrix}
+        e^{-i\pi/2} & 0 \\
+        0 & e^{i\pi/2}
+    \end{pmatrix} \equiv \begin{pmatrix}
+        1 & 0 \\
+        0 & e^{i\pi}
+    \end{pmatrix} \equiv \sigma_z
+\end{equation}
+
+\section*{Heisenberg Picture}
+
+\begin{equation}
+    \hat{O}_{H}(t) = u^{\dagger}(t)\hat{O}u(t)
+\end{equation}
+Schr\"odinger:
+\begin{equation}
+    \ket{\psi(t)} = u(t)\ket{\psi(0)}
+\end{equation}
+
+\begin{equation}
+    \langle O(t)\rangle = \langle \psi | \underbrace{u^{\dagger}Ou }_{O_H(t)}| \psi \rangle 
+\end{equation}
+
+\section*{Spin-1/2}
+
+\begin{equation}
+    H = \frac{\hbar \omega_L}{2}\sigma_z 
+\end{equation}
+\begin{equation}
+    \ket{\psi} =\frac{1}{\sqrt{2}}\left( \ket{\uparrow} + \ket{\downarrow} \right)
+\end{equation}
+
+\begin{equation}
+    u(t) = \begin{pmatrix}
+        1 & 0 \\
+        0 & \exp(i\omega_Lt/2)
+    \end{pmatrix}
+\end{equation}
+
+In dirac notation:
+
+\begin{equation}
+    u(t) = \ket{\uparrow}\bra{\uparrow} + e^{i\omega_L t}\ket{\downarrow}\bra{\downarrow}
+\end{equation}
+\begin{equation}
+    u^{\dagger}(t) = \ket{\uparrow}\bra{\uparrow} + e^{-i\omega_L t}\ket{\downarrow}\bra{\downarrow}
+\end{equation}
+\begin{equation}
+    \sigma_x = \ket{\uparrow}\bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}
+\end{equation}
+
+How do we find $\hbar/2\langle \sigma_x(t)\rangle$? We calculate 
+
+\begin{equation}
+    \sigma_x^{H} = u^{\dagger}\sigma_xu = \ket{\uparrow}\bra{\downarrow}e^{-i\omega_L t} + e^{i\omega_L t}\ket{\downarrow}\bra{\uparrow}
+\end{equation}
+
+We also calculate 
+
+\begin{equation}
+    \langle \sigma_x \rangle = \langle \psi | \sigma_x^{H} | \psi \rangle 
+\end{equation}
+\begin{equation}
+    = \frac{\hbar}{2}\frac{1}{2}\left( e^{-i\omega_L t} + e^{i\omega_L t} \right) = \frac{\hbar}{2}\cos(\omega_L t)
+\end{equation}
+
+Note, this was done as a "passive transformation". 
+
+\end{document}

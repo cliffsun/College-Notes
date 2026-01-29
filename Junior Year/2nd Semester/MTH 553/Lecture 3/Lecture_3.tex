@@ -1,0 +1,205 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 3}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Last time}
+
+Studied quasilinear equations 
+
+\begin{equation}
+    a(x,y,u)u_x + b(x,y,u)u_y = c(x,y,u)
+\end{equation}
+
+Such that 
+
+\begin{align*}
+    dx/dt &= a(x,y,u) \\
+    dy/dt &= b(x,y,u) \\
+    dz/dt &= c(x,y,u)
+\end{align*}
+
+If we define $u(x,y) = z(t)$, then 
+
+\begin{equation}
+    c = dz/dt = u_x a(x,y,u) + u_y b(x,y,u)
+\end{equation}
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item semi-linear example ($u$ does not appear in the coefficients)
+\end{enumerate}
+
+\begin{equation}
+    xu_x + u_y = u^2
+\end{equation}
+\begin{equation}
+    u(x,0) = k(x)\;\; \text{initial condition is on the $x$ axis}
+\end{equation}
+
+We first parameterize $\Gamma$, 
+
+\begin{align*}
+    \Gamma: \begin{cases}
+        x = s \\
+        y = 0 \\
+        z = k(s)
+    \end{cases}
+\end{align*}
+
+We also have to check that 
+
+\begin{equation}
+    <f', g'> \nparallel <a,b> \;\in \Gamma
+\end{equation}
+
+Here, $f'$ is the derivative of $x$ and $g'$ is the derivative of $y$. Therefore, 
+
+\begin{equation}
+    <1,0> \nparallel <x,1> = <s,1>
+\end{equation}
+
+This is true. Next, we solve the characteristic system:
+
+\begin{align*}
+    dx/dt &= x \\
+    dy/dt &= 1 \\
+    dz/dt &= z^2
+\end{align*}
+
+We can first solve $$y = t + c_2(s)$$ Note, $c_2(s)$ is the constant of coefficient, but can depend on where you start on the initial curve. Then we solve 
+
+$$x=c_1(s)e^t$$
+
+Then we can solve 
+
+$$z = \frac{1}{c_3(s) - t}$$
+
+We then apply the initial condition that $c_2(s) = 0$, $c_1(s) = s$, and $c_3(s) = k(s)$. Therefore, we get 
+
+\begin{align*}
+    x &= se^t \\
+    y &= t \\
+    z &= \frac{1}{1/k(s) - t} = \frac{k(s)}{1 - tk(s)}
+\end{align*}
+
+Here,
+
+\begin{equation}
+    u(x,y) = z = \frac{k(s)}{1-tk(s)}
+\end{equation}
+
+We want to solve for $s,t$ in terms of $x,y$. Here, 
+
+\begin{equation}
+    y=t
+\end{equation}
+\begin{equation}
+    s = xe^{-y}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    u(x,y) = \frac{k(xe^{-y})}{1-yk(xe^{-y})}
+\end{equation}
+
+We need this denominator to be $\neq 0$, therefore, the solution exists when 
+
+\begin{equation}
+    yk(xe^{-y}) \neq 1
+\end{equation}
+
+This curve does contain the initial condition. Moreover, if $k$ is bounded ($|k(x)| \leq A \;\; \forall x$), then the domain contains strip around axis (what does this mean??).
+
+\section*{General practical difficulties}
+
+\begin{enumerate}
+    \item Can ODEs (of characteristic equations) be solved explicitly?
+    \item Can $s,t$ be found in terms of $x,y$? 
+    \item On what domain in the x-y plane is the solution defined? 
+\end{enumerate}
+
+\section*{Example: Inviscid burger's equation}
+
+\begin{equation}
+    uu_x + u_y = 0
+\end{equation}
+\begin{equation}
+    u(x,0) = k(x)
+\end{equation}
+
+Interpretation: stream of particles with constant velocity where $u(x,y)$ is the velocity of particle at location $x$, time $y$. In other words, for all $x,y$, then given $\tau$
+
+\begin{equation}
+    u(x + \tau u(x,y), y + \tau) = u(x,y)
+\end{equation}
+
+Where $\tau$ has units of time. 
+
+Differentiate w.r.t $\tau$ and let $\tau = 0$, then we get $uu_x + u_y = 0$. Solve 
+
+\begin{align*}
+    dx/dt &= z \\
+    dy/dt &= 1\\
+    dz/dt &= 0
+\end{align*}
+
+Note that 
+
+\begin{equation}
+    dy/dx = \frac{1}{z}
+\end{equation}
+
+In the homework, if $k'(x) \geq 0$, then the particles speeds go up. In particular, then $k(x)$ increasing and $1/k(x)$ is decreasing. The slope of the characteristic decreases from left to right. We have 
+
+\begin{equation}
+    u(x_0) = k(x_0)
+\end{equation}
+
+Then the slope of the characteristic is $1/k(x_0)$ (FIGURE THIS OUT). These projected characteristics give a global solution. But what if $k'(x) \ngeq 0$, say $k(x_1) > k(x_2)$ for some $x_1 < x_2$. 
+Then, some of the characteristic curves will intersect. What do you do? Should $u$ at this intersection point be equal to $k(x_1)$ or $k(x_2)$? These particles are colliding, and we see shock formation. 
+
+\end{document}

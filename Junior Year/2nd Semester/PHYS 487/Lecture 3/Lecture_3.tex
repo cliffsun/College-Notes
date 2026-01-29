@@ -1,0 +1,243 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 3}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Recap}
+\begin{enumerate}
+    \item Symmetry: suppose $\hat{A}$ is a transformation that leaves $\hat{H}$ unchanged, then $[A,H] = 0$
+    \item $\langle O\rangle = \langle \psi | O | \psi \rangle = \langle \psi | A O A | \psi \rangle$. (interpret as active or passive transformation)
+    \item Translation in space: 
+    \begin{equation}
+        T(a)\psi(x) = \psi(x-a)
+    \end{equation}
+    Here, 
+    \begin{equation}
+        T(a) = \exp(-ia\hat{p}/\hbar)
+    \end{equation}
+    Where $T(a)$ is unitary, or in other words, $T^{-1} = T^{\dagger}$. You can also consider a passive transformation:
+    \begin{equation}
+        T^{\dagger}(a)\hat{x}T(a) = \hat{x} + a
+    \end{equation}
+    \item Bloch's theorem: SS: $\psi(x)\exp(iqx)u(x)$ where $u(x)$ is periodic in $a$. 
+\end{enumerate}
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Symmetries
+\end{itemize}
+
+\section*{Conservation of Momentum}
+
+We expect momentum to be conserved if there is a constant potential. In other words, $[H, T(a)] = 0$ for all $a$. We consider an infinitesimal translation $a = \delta$. Then 
+\begin{equation}
+    T(\delta) = e^{-i\delta \hat{p}/\hbar} \approx 1 - i\frac{\delta}{\hbar}\hat{p} \implies [\hat{H}, \hat{p}] = 0
+\end{equation}
+\begin{equation}
+    \frac{d}{dt}\langle p \rangle = \frac{i}{\hbar}\langle [H, p]\rangle = 0
+\end{equation}
+Generally: symmetry implies conserved quantities. Say $\hat{O}$ with $$\ket{\psi(t)} = \sum_k c_k(t)\ket{\varphi_k}$$ with $$\hat{O}\ket{\varphi_k} = \lambda_k \ket{\varphi_k}$$
+
+Say $[O,H] = 0$, then $\partial_t \langle O \rangle = 0$ (Ehrenfest theorem). Then cofficients 
+
+\begin{equation}
+    P(\lambda_k) = |\braket{\varphi_k}{\psi(t)}|^2
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \ket{\psi} = \sum_m a_m \exp(-iE_mt/\hbar)\ket{\psi_m}
+\end{equation}
+\begin{equation}
+    P(\lambda_k) = |\sum_m a_m \exp(-iE_mt/\hbar) \braket{\varphi_k}{\psi_m}|^2
+\end{equation}
+
+Then, because $\varphi_k$ and $\psi_m$ have the same eigenbasis, then let $\varphi_k = \psi_m$, then we get 
+\begin{equation}
+    = |\sum_m a_m \exp(-iE_mt/\hbar) \braket{\varphi_k}{\varphi_m}|^2 = |a_k|^2
+\end{equation}
+
+\section*{Parity}
+
+Parity is defined as: 
+
+\begin{equation}
+    \hat{\Pi}\psi(x) = \psi(-x)
+\end{equation}
+
+\begin{enumerate}
+    \item $\hat{\Pi}$ is an observable. Therefore, it is Hermitian and unitary. 
+    \item Eigenvalues of $\hat{\Pi}$ are $\pm 1$.
+    \item In inversion-symmetric potentials: $V(x) = V(-x)$. Then $[H, \Pi] = 0$. 
+    \item For the case of inversion-symmetric potentials, $\hat{\Pi}\psi_n(x) = \psi_n(-x) = \pm \psi(x)$ 
+    \item Operator transformations: $Q' = \Pi^{\dagger}Q\Pi$. Consider 
+    \begin{equation}
+        \Pi^{\dagger}\hat{x}\Pi = -\hat{x}
+    \end{equation}
+    \begin{equation}
+        \Pi^{\dagger}\hat{p}\Pi = -\hat{p}
+    \end{equation}
+    In general, $Q'(x,p) = Q(-x,-p)$. 
+\end{enumerate}
+
+\section*{Selection Rule}
+
+Recall: $\langle i | Q | j \rangle = 0$. Selection rule: Matrix elements must be equal to $0$ due to a symmetry. (assume $i$ and $k$ are orthogonal)
+
+Consider the electric dipole $\vec{p}_e = q \cdot \vec{r}$. We can apply this parity study to Hydrogen-like atoms, since their potentials are centro-symmetric or parity symmetric. Then consider 
+
+\begin{equation}
+    \langle n'l'm' | \hat{p}_e | nlm \rangle = -\langle n'l'm' | \hat{\Pi}^{\dagger}\hat{p}_e \hat{\Pi}| nlm \rangle
+\end{equation}
+
+If this matrix element is not zero, then a transition can occur. The magnitude of this matrix element shows how "hard" it is to enforce a transition from $\ket{nlm}$ to $\ket{n'l'm'}$.
+
+\subsection*{Meaning of n,l,m}
+
+\begin{equation}
+    \text{SS: } \psi_{nlm}(r,\theta,\phi) = R_{nl}(r)Y^{m}_{l}(\theta, \phi)
+\end{equation}
+
+Important: $l$ is the only one changed by parity. 
+
+\begin{equation}
+    \hat{\Pi}\psi_{nlm}(r,\theta,\phi) = (-1)^{l}\psi_{nlm}(r,\theta, \phi)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \langle n'l'm' | \hat{p}_e | nlm \rangle = -\langle n'l'm' | (-1)^{l'}p_e(-1)^{l}| nlm\rangle 
+\end{equation}
+\begin{equation}
+    = (-1)^{l + l' + 1}\langle n'l'm' | p_e | nlm \rangle 
+\end{equation}
+
+If $l + l'$ is even, then this matrix element must be $0$. (Laporte's Rule). Generally, 
+\begin{equation}
+    \langle \psi_f | \hat{\mu} | \psi_i \rangle = 0 \;\; \text{ if $\psi_f\mu \psi_i$ is odd}
+\end{equation}
+
+Where $\mu$ is the transition moment operator.
+
+\section*{Rotational Symmetry}
+
+\begin{enumerate}
+    \item Generator is probably angular momentum
+    \item If rotational symmetry is conserved, then so is angular momentum probably
+\end{enumerate}
+
+Generating rotations: we can start at the $z$ axis. 
+
+\begin{equation}
+    R_z(\varphi)\psi(r,\theta, \phi) =\psi'(r,\theta, \phi) = \psi(r,\theta, \phi - \varphi)
+\end{equation}
+
+Expect:
+
+\begin{equation}
+    R_z(\varphi) = e^{-i\varphi\hat{L_z}/\hbar}
+\end{equation}
+
+Where $L_z = xp_y - yp_x$. We can study this formula infinitesimally: $\hat{x} \rightarrow \delta y$ and $y \rightarrow y + \delta x$ (remember, rotation around $z$ axis). Then 
+
+\begin{equation}
+    R_z(\delta) \sim 1 - \frac{i\delta}{\hbar}L_z
+\end{equation}
+
+Sanity check:
+\begin{equation}
+    R_z^{\dagger}\hat{x}R_z = x + \frac{i\delta}{\hbar}[L_z, x] = x - \delta y
+\end{equation}
+Similarly:
+\begin{equation}
+    R_z^{\dagger}\hat{y}R_z = y + \delta x
+\end{equation}
+
+Going to finite: 
+
+\begin{equation}
+    R_z(\varphi + \delta) = R_z(\varphi)R_z(\delta) = R_z(\delta)R_z(\varphi)
+\end{equation}
+
+Then we get 
+
+\begin{equation}
+    R_z(\varphi + \delta) - R_z(\varphi) = R_z(\varphi)R_z(\delta) - R_z(\varphi)
+\end{equation}
+\begin{equation}
+    = R_z(\varphi)\left( -\frac{i\delta}{\hbar}L_z \right)
+\end{equation}
+Write as a differential equation:
+\begin{equation}
+    \frac{\partial R}{\partial \varphi} = -\frac{i}{\hbar}RL_z
+\end{equation}
+
+\section*{Rotational Symmetries}
+
+Analogous to translational symmetry with momentum conservation, this means that 
+
+\begin{equation}
+    [\hat{H}, \hat{L}] = 0
+\end{equation}
+Also 
+\begin{equation}
+    \frac{d}{dt}\langle L \rangle = \frac{i}{\hbar} \langle [\hat{H}, \hat{L}] \rangle  = 0
+\end{equation}
+
+This means that we have a common basis between $\hat{H}$, $\hat{L^2}$, and $\hat{L}_z$. 
+
+\begin{equation}
+    H\psi_{nlm} = E_n \psi_{nlm}
+\end{equation}
+\begin{equation}
+    L_z \psi_{nlm} = m\hbar \psi_{nlm}
+\end{equation}
+\begin{equation}
+    L^2 \psi_{nlm} = l(l+1)\hbar^2\psi_{nlm}
+\end{equation}
+
+\end{document}

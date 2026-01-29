@@ -1,0 +1,212 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 4}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 4}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Last time}
+\begin{itemize}
+    \item Inviscid Burger's Equation
+    \begin{align}
+        uu_x + u_y &= 0 \\
+        u(x,0) &= k(x) 
+    \end{align}
+\end{itemize}
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Method of general solutions
+\end{enumerate}
+
+\section*{Method of general solutions}
+
+\textbf{Objective:} Find two expressions of $x,y$ that are constant along each characteristic. Consider an arbitrary function 
+of these two expressions. Find $\Gamma$ to determine the solution function. 
+
+\subsection*{Example}
+\begin{align}
+    uu_x + yu_y &= x \\
+    u(x,1) &= 2x
+\end{align}
+
+Here, the characteristic system is 
+
+\begin{align}
+    dx/dt &= z \\
+    dy/dt &= y \\
+    dz/dt &= x
+\end{align}
+
+Here, we can find 
+
+\begin{equation}
+    \frac{dz}{dx} = \frac{x}{z} \iff zdz = xdx \iff \frac{1}{2}z^2 = \frac{1}{x^2} + C_1(s)
+\end{equation}
+
+Here, we can then define a constant function (dependent on where on $\Gamma$ you start on) 
+
+\begin{equation}
+    \phi(x,y,z) = z^2 - x^2
+\end{equation}
+
+Lets try adding $(5) + (7)$, then we obtain 
+
+\begin{equation}
+    \frac{d(x+z)}{dt} = (x+z)
+\end{equation}
+
+Then consider 
+
+\begin{equation}
+    \frac{d(x+z)}{dy} = \frac{x+z}{y} \iff \frac{dy}{y} = \frac{d(x+z)}{x+z}
+\end{equation}
+\begin{equation}
+    \iff x+z = C_2(s)y
+\end{equation}
+
+We can then define another constant function (dependent on starting point on $\Gamma$) as 
+
+\begin{equation}
+    \psi(x,y,z) = \frac{x + z}{y}
+\end{equation}
+
+Then a general solution is 
+
+\begin{equation}
+    F(u^2 - x^2, \frac{x+u}{y}) = 0
+\end{equation}
+
+Where $F$ depicts a relationship between these values that originates on $\Gamma$.
+
+We can determine $F$ from $\Gamma$, that is $u(x,1) = 2x$. Let $u=2x$, then we obtain 
+
+\begin{equation}
+    F(3x^2, 3x) = 0
+\end{equation}
+
+Satisfied by $F(a,b) = a - 1/3b^2$, therefore, we obtain 
+
+\begin{equation}
+    u-x^2 - \frac{1}{3}\left( \frac{x+u}{y} \right)^2 = 0
+\end{equation}
+
+Solving for $u$, we obtain 
+
+\begin{equation}
+    u = \frac{x \pm 3xy^2}{3y^2-1}
+\end{equation}
+
+To satisfy the initial condition, we choose $+$. Therefore, the final solution is 
+
+\begin{equation}
+    u = \frac{x + 3xy^2}{3y^2 - 1}
+\end{equation}
+
+The solution exists for $y > 1/\sqrt{3}$ and $\forall x$. \textbf{NOTE:} There is no uniqueness theory (yet) for non-linear equations.
+
+\section*{Weak Solutions}
+
+\subsection*{Jump condition}
+
+This determines where "the shock goes". Given some smooth function $G(z)$, then define 
+
+\begin{equation}
+    G(u)_x + u_y = 0
+\end{equation}
+
+Similarly, 
+
+\begin{equation}
+    G'(u)u_x + u_y = 0
+\end{equation}
+
+
+For the conservation law, consider
+
+\begin{equation}
+    G(z) = \frac{1}{2}z^2 \implies G'(z) = z
+\end{equation}
+
+Then this is the burger's equation. We call $u$ a \underline{weak solution} of (19) if it satisifies the x-integrated version of (19). That is, $u$ satisfies:
+
+\begin{equation}
+    G(u(b,y)) - G(u(a,y)) + \frac{d}{dy}\int_{a}^{b}u(x,y)dx = 0
+\end{equation}
+
+for all $a<b$ and all $y$. But what's so cool about this? 
+
+\begin{center}
+    You can have discontinuities w.r.t $x$
+\end{center}
+
+If $u$ is a smooth solution that satisfies (19), then it satisfies (22), by using the fundamental theorem of Calculus. But the converse is false, because $u$ can have discontinuities and still be a weak solution.
+
+\subsection*{Example}
+
+Specifically, suppose $x= \xi(y)$ as our shock curve, which defines where this discontinuity occur. Let $u=u_l(y)$ be to the left of the shock curve and $u=u_r(y)$ be similarly defined for the right. 
+Now, suppose $u(x,y)$ jumps across a $C^1$-smooth curve $x=\xi(y)$. But everywhere else, $u$ is a smooth solution. Then suppose $u$ solves the conservation law to the left and right of $x = \xi(y)$. Then, we plug this equation into $(22)$. 
+
+\begin{equation}
+    G(u(b,y)) - G(u(a,y)) + \frac{d}{dy}\left[ \int_{a}^{\xi(y)}u_l(x,y)dx + \int_{\xi(y)}^{b}u_r(x,y)dx \right] 
+\end{equation}
+
+$\forall a,b$ with $a<\xi(y)<b$ for all $y$. Need not check intervals of $[a,b]$ that don't contain $\xi(y)$. 
+
+\begin{equation}
+    \iff 0 = G(u(b,y)) - G(u(a,y)) + \int_{a}^{\xi(y)}u_y(x,y)dx + \int_{\xi(y)}^{b}u_y(x,y)dx + \xi'(y)u_l - \xi'(y)u_r
+\end{equation}
+
+By fundamental theorem of Calculus and chain rule. Where $$u_l = \lim_{x\rightarrow \xi-}u$$ and $u_r$ defined similarly. Moreover, $u_y = -G(u)_x$
+
+\begin{equation}
+    \iff 0 = -G(u_l) + G(u_r) + \xi'(y)\left( u_l - u_r \right)
+\end{equation}
+
+By evaluating the integrals. Then we obtain 
+
+\begin{equation}
+    \xi'(y) = \frac{G(u_l) - G(u_r)}{u_l - u_r}
+\end{equation}
+
+\end{document}
