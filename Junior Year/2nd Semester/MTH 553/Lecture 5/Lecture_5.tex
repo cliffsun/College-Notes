@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 5}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 5}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Shock waves
+\end{itemize}
+
+Recap, the jump condition is 
+
+\begin{equation}
+    \xi'(y) = \frac{G(u_l) - G(u_r)}{u_l - u_r}
+\end{equation}
+
+\section*{Burger's Example}
+
+Consider:
+
+\begin{align*}
+    G(u) &= \frac{1}{2}u^2 \\
+    \left( \frac{1}{2}u^2 \right)_x + u_y &= 0 \\
+    uu_x + u_y &= 0
+\end{align*}
+
+Consider $u_r = 0$ and $u_l = 1/2$. There is an intersection between $u_l$ and $u_r$. Clearly, there will not be a smooth solution, so we will look for a weak solution with a 
+shock $x = \xi(y)$ with $\xi(0) = 0$ (why?). This is because the shocks start infinitesimally close to $x=0$. 
+
+\begin{equation}
+    \xi'(y) = \frac{G(2) - G(0)}{2} = 1
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \xi(y) = y
+\end{equation}
+
+NOTE: we are finding $\xi(y)$. This is a weak solution with a shock. The jump condition singles out a meaningful solution when characteristics cross. For Burger's, we have that 
+
+\begin{equation}
+    \frac{G(u_l) - G(u_r)}{u_l - u_r} = \frac{1}{2}(u_l + u_r) = \text{ average of left and right particle velocities}
+\end{equation}
+
+Numerically, this shock curve represents a physical path of where the particles collide, and the velocity of the particles along this $\xi(y)$ can be found. 
+
+\section*{Burger's Example (again)}
+
+Now, $u_l = -2$. So now, the characteristic paths leave some sort of gap on the x-y plane. We call this gap region $W$. Here, characteristics give us no information in $W$. 
+
+\subsection*{Solution 1: Try a new shock}
+
+Let $u_l = -2$ and $u_r = 0$, then 
+
+\begin{equation}
+    x'(y) = \xi'(y) = -1
+\end{equation}
+
+With $\xi(0) = 0$, then we get $x = \xi(y) = -y$. This shock is non-physical since particles are being created at the shock.
+
+\subsection*{Solution 2}
+
+Look for a solution in $W$ of the form 
+
+\begin{equation}
+    u(x,y) = v\left( \frac{x}{y} \right)
+\end{equation}
+
+Note, $v$ is a function of $x/y$ because $x/y$ is constant along each characteristic for this specific PDE. Substituting into Burger's equation, we obtain 
+
+\begin{align}
+    0 &= uu_x + u_y \\
+    &= v(x/y)v'(x/y)/y + v'(x/y)(-x/y^2)\\
+    &= v(x/y)/y + (-x/y^2)\\
+    v(x/y) &= x/y 
+\end{align}
+
+So we try this solution:
+
+\begin{equation}
+    u(x,y) = \begin{cases}
+        0 & x > 0 \\
+        x/y & (x,y) \in W \\
+        -2 & y < -x/2 \\
+    \end{cases}
+\end{equation}
+
+We call this type of solution a "fan" or rarefaction wave. 
+
+\section*{Entropy Condition}
+
+Assume $u$ is a weak solution of
+
+\begin{equation}
+    G(u)_x + u_y = 0
+\end{equation}
+
+This is the conservation law. Also, $u$ satisfies the jump condition 
+
+\begin{equation}
+    \xi'(y) = \frac{G(u_l) - G(u_r)}{u_l - u_r}
+\end{equation}
+
+along the shock curve $x = \xi(y)$. 
+
+\begin{definition}
+    We say that $u$ satisfies the \underline{entropy condition} if $G'(u_l) > \xi'(y) > G'(u_r)$ 
+    everywhere on the shock. 
+\end{definition}
+
+\subsection*{Meaning}
+
+Characteristics are straight lines of the form $x = G'(u)y + \text{constant}$. So entropy condition means that characteristics can meet at a shock, but \underline{cannot} form from one. 
+
+\begin{center}
+    The entropy condition rules out non-physical shocks (like solution 1)
+\end{center}
+
+\end{document}
