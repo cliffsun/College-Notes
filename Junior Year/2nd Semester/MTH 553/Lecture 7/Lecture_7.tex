@@ -1,0 +1,199 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 7}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{Generic Title}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Uniqueness of entropy solution
+\end{itemize}
+
+\begin{theorem}
+    If $G$ is uniformly convex or uniformly concave, then there exists at most one weak solution 
+    of the IVP (initial value problem)
+    \begin{align*}
+        G(u)_x + u_y &= 0 \\
+        u(x,0) &= k(x)
+    \end{align*}
+    that satisfies the entropy condition. In particular, the entropy condition singles out a physically meaningful solution. 
+\end{theorem}
+
+\section*{Example - Riemann's problem}
+
+Assume that $G$ is uniformly convex, and $u_l$ and $u_r$ are real numbers. Consider 
+
+\begin{align*}
+    G(u)_x + u_y &= 0 \\
+    u(x,0) &= \begin{cases}
+        u_l & x < 0 \\
+        u_r & x > 0
+    \end{cases}
+\end{align*}
+
+Then the unique entropy solution is 
+
+\subsection*{Case 1}
+
+If $u_l > u_r$ (shock curve, not a fan), then 
+
+\begin{equation}
+    u(x,y) = \begin{cases}
+        u_l & x < \sigma y \\
+        u_r & x > \sigma y
+    \end{cases}
+\end{equation}
+
+Where 
+
+\begin{equation}
+    \sigma = \frac{G(u_l) - G(u_r)}{u_l - u_r}
+\end{equation}
+
+\subsection*{Case 2}
+
+If $u_l < u_r$, then this is a fan. Then 
+
+\begin{equation}
+    u(x,t) = \begin{cases}
+        u_l & x < G'(u_l)y\\
+        G'^{-1}\left( \frac{x}{y } \right) &  G'(u_l)y < x < G'(u_r)y\\
+        u_r & x > G'(u_r)y
+    \end{cases}
+\end{equation}
+
+\begin{proof}
+    We now prove each limiting case. For part 1, we check the entropy condition, which states 
+    \begin{equation}
+        G'(u_l) > \xi'(y) > G'(u_r)
+    \end{equation}
+    This is true for general uniformly convex function. For part 2, we check $u$ is continuous at the fan boundary $x=G'(u_l)y$, 
+    $u(x,y) = G'^{-1}(x/y) = G'^{-1}(G(u_l)) = u_l$. Note, $u$ is a smooth solution in the fan and outside of the fan since 
+    $u(x,y) = v(x/y)$ where $v = G'^{-1}$. Check
+    \begin{align*}
+        G(u)_x + u_y \\
+        &= G'(v(x/y))v'(x/y)/y  + v'(x/y)(-x/y^2) \\
+        &= 0
+    \end{align*}
+    Since $G'(v(x/y)) = x/y$. We don't have to worry about the entropy condition since this is not a shock. 
+\end{proof}
+
+\section*{Example}
+
+Burger's equation 
+
+\begin{equation}
+    \left( \frac{1}{2}u^2 \right)_x + u_y = 0
+\end{equation}
+
+Consider 
+
+\begin{equation}
+    u = \begin{cases}
+        0 & x < -1\\
+        -1 & -1 < x < 0 \\
+        1 & 0 < x < 1 \\
+        0 & x > 1
+    \end{cases}
+\end{equation}
+
+This is symmetrical, so only consider $x > 0$. For $x > 0$, $0 < y \leq 2$, we have a shock on 
+
+\begin{equation}
+    x = 1 + \frac{1}{2}y
+\end{equation}
+
+We also get a fan $|x| < y$, with 
+
+\begin{equation}
+    u = G'^{-1}(x/y) = \frac{x}{y}
+\end{equation}
+
+But at $y=2$, the shock hits the fan. So then what is the shock curve? 
+
+\begin{equation}
+    \xi'(y) = \frac{1}{2}(u_l + u_r) =\frac{x}{2y} = \frac{dx}{dy}
+\end{equation}
+
+Solving this ODE yields 
+
+\begin{equation}
+    \frac{dx}{x} = \frac{dy}{2y}
+\end{equation}
+
+\begin{equation}
+     x = C\sqrt{y}
+\end{equation}
+
+Where at $y=2$, $x=2$, so then 
+
+\begin{equation}
+    2 = C\sqrt{2} \implies C = \sqrt{2}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \xi(y) = \sqrt{2y}
+\end{equation}
+
+Now, we brief fully non-linear PDEs. 
+
+\section*{Not examinable fully non-linear equations}
+
+\begin{equation}
+    F(x,y,u, u_x, u_y) = 0
+\end{equation}
+
+Associated characteristic ODE system 
+
+\begin{align*}
+    dx/dt &= F_p(x,y,z,p,q) \\
+    dy/dt &= F_q \\
+    du/dt &= pF_p + qF_q \\
+    dp/dt &= -F_x - pF_z \\
+    dq/dt &= -F_y - qF_q 
+\end{align*}
+
+\end{document}

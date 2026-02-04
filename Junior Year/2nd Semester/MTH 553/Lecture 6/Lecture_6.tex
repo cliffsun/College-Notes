@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 6}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 6}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Traffic Flow
+\end{itemize}
+
+\section*{Traffic Flow}
+
+Let $\rho(x)$ be the density of cars on the highway per unit length and $q(r,t)$ is the rightward flux of the cars per unit time. The conservation 
+of cars between $a,b$ is 
+
+\begin{equation}
+    q(b,t) - q(a,t) = -\frac{d}{dt}\int_{a}^{b}\rho(x,t)dx
+\end{equation}
+
+Assume that the traffic speed is a function of $\rho$. Therefore, the flux is density times speed and therefore, a function of density. 
+
+That is, $q(x,t) = G(\rho(x,t))$. Then the conservation law states that $\rho$ is a weak solution of 
+
+\begin{equation}
+    G(\rho)_x + \rho_t = 0
+\end{equation}
+
+The above is a conservation law. 
+
+\subsection*{Example}
+
+Assumption: Traffic speed is $c$ (constant), a reasonable assumption for low density. Then 
+
+\begin{equation}
+    G(\rho) = c\rho
+\end{equation}
+
+We then get the \underline{transport equation}. 
+
+\begin{equation}
+    c\rho_x + \rho_t = 0
+\end{equation}
+
+The solutions are $x=ct+x_0$. So the initial density just gets translated along with the traffic. 
+
+\subsection*{Example}
+
+Under heavier traffic conditions, assume traffic speed is $$c\left( 1 - \frac{\rho}{\rho_{\max}} \right)$$ i.e. the speed decreases linearly with respect to density. Flux is density times speed. Therefore, 
+
+\begin{equation}
+    q = c\rho\left( 1 - \frac{\rho}{\rho_{\max}} \right)
+\end{equation}
+
+This is a concave function. 
+
+\subsection*{Example}
+
+Traffic flow after a red light turns green. Therefore, 
+
+\begin{equation}
+    \rho(x,0) = \begin{cases}
+        \rho_{\max} & x < 0 \\
+        0 & x > 0
+    \end{cases}
+\end{equation}
+
+Characteristic: $x = G'(\rho)t + x_0$. Solution: 
+
+\begin{equation}
+    G'(\rho) = c\left( 1- \frac{2\rho}{\rho_{\max}} \right)
+\end{equation}
+
+Then $G'(\rho_{\max}) = -c$ and $G'(0) = c$. In the fan, we try some function $\rho = v(x/t)$, note that $x/t$ is constant out of the origin. 
+Substituting into the conservation equation yields 
+
+\begin{equation}
+    c\left( 1 - \frac{2\rho}{\rho_{\max}} \right)v'(x/t)/t + v'(x/t)(-x/t^2) = 0
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    G'(\rho) = c\left( 1-\frac{\rho}{\rho_{\max}} \right) = \frac{x}{t}
+\end{equation}
+
+We then get 
+
+\begin{equation}
+    \rho =\frac{\rho_{\max}}{2}\left( 1 - \frac{x}{ct} \right)
+\end{equation}
+
+\subsection*{Interpretation}
+
+The first car in the line travels at speed $c$. But any car at $x_0 = -ct_0$ must wait until time $t_0$ in order to move. What path does it follow? 
+
+\textbf{Note:} the characteristics are NOT the trajectory of the vehicles, but are rather the lines of constant density. 
+
+\begin{definition}
+    $G$ is uniformly convex if $G'' \geq a > 0$ for some constant $a$. Similar definition for concave $G'' \leq b < 0$ for $b$ is a constant.  
+\end{definition}
+
+If $G$ is uniformly convex, then $G'$ is strictly increasing. Then $u_l > u_r$. Vice versa for $G$ uniformly concave. 
+
+\end{document}

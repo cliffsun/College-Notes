@@ -1,0 +1,262 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 5}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 5}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Free electron gas and band structure
+\end{itemize}
+
+\section*{The free electron gas}
+
+Imagine some box of matter, and filling it with electrons. With dimensions $L_x,L_y,\& \; L_z$. 3D infinite well. Independent, non-interacting electrons. 
+
+\begin{equation}
+    V(x,y,z) = \begin{cases}
+        0 & \text{inside} \\
+        \infty & \text{outside}
+    \end{cases}
+\end{equation}
+
+This is a good model for a metal. We first start with 
+
+\begin{equation}
+    -\frac{\hbar^2}{2m}\nabla^2 \psi = E \psi
+\end{equation}
+
+\begin{equation}
+    \psi(x,y,z) = X(x)Y(y)Z(z)
+\end{equation}
+
+Then, we get 
+
+\begin{equation}
+    E = E_x + E_y + E_z
+\end{equation}
+
+Define wavenumbers: $k_i = \sqrt{2mE_i}/\hbar$. Boundary conditions:
+
+\begin{equation}
+    k_iL_i = n_i\pi
+\end{equation}
+
+Therefore, the wavefunction is 
+
+\begin{equation}
+    \psi_{n_x,n_y,n_z}n = \sqrt{\frac{8}{L_xL_yL_z}}\sin\left( n_x\pi/L_x x\right)\dots
+\end{equation}
+
+With energies:
+
+\begin{equation}
+    E_{n_x,n_y,n_z} = \frac{\hbar^2\pi^2}{2m}\left( \frac{n_x^2}{L_x^2} + \frac{n_y^2}{L_y^2} + \frac{n_z^2}{L_z^2} \right) = \frac{\hbar^2k^2}{2m}
+\end{equation}
+
+Find the highest energy (fermi energy): Note that $|E| \sim |k|^2$. Consider a coordinate system with axis $k_x,k_y,k_z$. Then the distance between each $k$ vector is $\pi/L_i$. Therefore, the volume
+per state is 
+
+\begin{equation}
+    V \sim \frac{\pi^3}{L_zL_yL_z}
+\end{equation}
+
+Here, we find 
+
+\begin{equation}
+    \frac{1}{8}\left( \frac{4}{3}\pi k_f^3 \right) = \frac{N_e}{2}\frac{pi^3}{V}
+\end{equation}
+
+Then, we get 
+
+\begin{equation}
+    k_F = (3\rho \pi^2)^{1/3}
+\end{equation}
+
+With 
+
+\begin{equation}
+    E_f = \frac{\hbar^2}{2m}\left( 3\rho \pi^2\right)^{2/3}
+\end{equation}
+
+Physically, the energy levels depend on the magnitude of $k$, which can be interpreted as a sphere in $k$ space, where all the surface has the same $k$ and therefore the same energy. Since
+we have a finite number of electrons, we find the maximal energy of the system. Here, using this volume approximation, we find that the maximal volume of the vector in $k$ space of just one eight of the vector is $N_e/2 \times \pi^3/V$. Doing some algebra, where $1/8$ represents just 1/8 of the volume, we can find $k$.  
+
+\section*{Electron Shell}
+
+Consider a shell in $k$ space. But how many states are in between $[k_i, k_i + dk]$. Consider a shell 
+
+\begin{equation}
+    V_{shell} = \frac{1}{8}\left( 4\pi k^2 \right)dk
+\end{equation}
+
+Then, the number of energy states in this shell is (dividing this shell by the volume differential) 
+
+\begin{equation}
+    dN = \frac{\frac{1}{2}\pi k^2}{\pi^3/V} dk
+\end{equation}
+
+Then, accounting for the pauli exclusion principle
+
+\begin{equation}
+    dN = \frac{Vk^2}{\pi^2} dk
+\end{equation}
+
+Then 
+
+\begin{equation}
+    dE = \frac{\hbar^2k^2}{2m}dN
+\end{equation}
+
+It follows that 
+
+\begin{equation}
+    dE = \frac{\hbar^2k^2}{2m}\frac{V}{\pi^2}k^2 dk 
+\end{equation}
+
+We can then integrate this in $k$ space:
+
+\begin{equation}
+    \int_{E_f}^{0}dE = \int_{0}^{k_f}dk \frac{\hbar^2k^2}{2m}\frac{V}{\pi^2}k^2
+\end{equation}
+
+\begin{equation}
+    = \frac{\hbar^2(3\pi^2N_e)^{5/3}}{10\pi^2 m}V^{-2/3}
+\end{equation}
+
+Note, although the electrons are discrete with $k$, if $N_e \rightarrow \infty$, then we can approximate this with an integral.    
+
+Consider 
+
+\begin{equation}
+    dE = -\frac{2}{3}\hbar^2\frac{(2\pi^2N_e)^{5/3}}{10\pi^2m}V^{-5/3}dV = -\frac{2}{3}E_{tot}\frac{dV}{V}
+\end{equation}
+
+Thermodynamics connection: $dW = PdV$, here $P = (2/3)E_{tot}/V$, this means that particles tend to stay escape (pressure pushes out).  
+
+\section*{Simple model of a crystal}
+
+Dirac comb
+
+\begin{equation}
+    V(x) = \alpha \sum_{j=0}^{N}\delta(x - ja)
+\end{equation}
+
+Then, we use Bloch's theorem which states that the wavefunction should be 
+
+\begin{equation}
+    \psi(x) = \exp(iqx)u(x)
+\end{equation}
+and
+\begin{equation}
+    \psi(x-a) = \exp(-iqa)\psi(x)
+\end{equation}
+
+If we do a cyclical boundary condition, 
+
+\begin{equation}
+    \psi(x) = \exp(iNqa)\psi(x)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    q = \frac{2\pi n}{Na}
+\end{equation}
+
+In $(0,a)$,
+\begin{equation}
+    \frac{\hbar^2}{2m}\psi'' = E\psi'' \iff \psi'' = -k^2\psi
+\end{equation} 
+
+Then 
+
+\begin{equation}
+    \psi(x) = A\sin(kx) + B\cos(kx)
+\end{equation}
+
+And using bloch's theorem, from $(-a,0)$
+
+\begin{equation}
+    \psi(x) = \exp(-iqa)(A\sin(kx) + B\cos(kx))
+\end{equation}
+
+Boundary condition at $x=0$: $\psi$ is continuous but not necessarily $\psi'$. Then, the boundary condition states that the constant $B$ must be:
+
+\begin{equation}
+    B = \exp(-iqa)(A\sin(kx) + B\cos(ka)) = \psi(0)
+\end{equation}
+
+\begin{equation}
+    -\frac{\hbar^2}{2m}\int_{-\epsilon}^{\epsilon}\psi''(x)dx + \int_{-\epsilon}^{\epsilon}V(x)\psi(x)dx =  E\int_{-\epsilon}^{\epsilon}\psi(x)dx
+\end{equation}
+
+Take the limit as $\epsilon \rightarrow 0$ 
+
+\begin{equation}
+    -\frac{\hbar^2}{2m}\Delta \psi' + \psi(0) = 0
+\end{equation}
+
+Then given $\psi'_R(0)$ and $\psi'_L(0)$, we get that $\psi'(0)$ is 
+
+\begin{equation}
+    KA - \exp(-iqa)k(A\cos(ka) -  B\sin(ka)) = \frac{2m\alpha}{\hbar^2}B
+\end{equation}
+
+Then, we can obtain 
+
+\begin{equation}
+    \cos(qa) = \cos\left( ka\right) + \frac{m\alpha}{\hbar^2 k} \sin(ka)
+\end{equation}
+
+Note that because of the LHS, we have that 
+
+
+\begin{equation}
+    |\cos\left( ka\right) + \frac{m\alpha}{\hbar^2 k} \sin(ka)| \leq 1
+\end{equation}
+
+This forms bands on the $\psi, ka$ space.   
+
+\end{document}
