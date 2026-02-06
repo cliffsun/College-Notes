@@ -1,0 +1,205 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 8}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 8}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Wave equation
+\end{itemize}
+
+\section*{One dimensional wave equation}
+
+\begin{equation}
+    u_{tt} - c^2u_{xx} = 0
+\end{equation}
+
+Here, $u$ is the displacement of the string and $c$ is the speed of the wave. \textbf{But why should we expect this equation?}
+
+\subsubsection*{Plausibility}
+
+We consider a concave parabola with a $u_{xx} < 0$. Here, we expect the tension in the string to pull the string down. Here, this tension is a force, which means an acceleration, or $u_{tt}$. 
+Therefore, if $u_{xx} < 0$, then $u_{tt} < 0$ since it would be pulling it down. Therefore, we naturally arrive at the wave equation, where the concavity of the wave is proportional to its acceleration.
+
+\begin{equation}
+    c^2u_{xx} = u_{tt}
+\end{equation}
+
+This wave equation is called the \underline{homogenous wave equation}, or HWE. 
+
+\subsection*{Solution on $\mathbb{R}$}
+
+Change variables, let $\mu = x + ct$ and $\eta = x - ct$. That is 
+
+\begin{align*}
+    x &= \frac{\mu + \eta}{2} \\
+    t &= \frac{\mu - \eta}{2c}
+\end{align*}
+
+Then, the wave equation in these new coordinates becomes
+
+\begin{equation}
+    u_{\mu \eta} = 0
+\end{equation}
+
+We check: by the chain rule, we have that 
+
+\begin{align*}
+    u_{\mu} &= u_x x_\mu +u_y y_\mu\\
+    &= \frac{1}{2}u_{x} + \frac{1}{2c}u_{t}
+\end{align*}
+
+Similar for $u_{\eta}$. Therefore, 
+
+\begin{equation}
+    u_{\mu\eta} = \frac{1}{4c^2}\left( c^2 u_{xx} - u_{tt} \right)
+\end{equation}
+
+Hence, 
+
+\begin{equation}
+    u = f(\mu) + g(\eta) \iff f(x + ct) + g(x-ct)
+\end{equation}
+
+These are traveling waves. That is 
+
+\begin{center}
+    $u = $ left-moving wave of shape f $+$ right-moving wave of shape g 
+\end{center}
+
+\subsection*{IVP for HWE}
+
+This is the famous d'Alembert solution. Consider a wave equation with initial conditions 
+
+\begin{align*}
+    u_{tt} - c^2u_{xx} &= 0 \\
+    u(x,0) &= g(x) \\\
+    u_t(x,0) &= h(x)
+\end{align*}
+
+Using equation $5$, we have that 
+
+\begin{equation}
+    g(x) = u(x,0) = F(x) + G(x)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    h(x) = u_t(x,0) = c\left( F'(x) - G'(x) \right)
+\end{equation}
+
+Integrating both sides yields 
+
+\begin{equation}
+    \frac{1}{c}\int_{0}^x h(\xi)d\xi + C = F(x) - G(x)
+\end{equation}
+
+If we add and subtract these equations, we obtain 
+
+\begin{equation}
+    F(x) = \frac{1}{2}g(x) + \frac{1}{2c}\int_{0}^x h(\xi)d\xi + \frac{C}{2}
+\end{equation}
+\begin{equation}
+    G(x) = \frac{1}{2}g(x) - \frac{1}{2c}\int_{0}^x h(\xi)d\xi - \frac{C}{2}
+\end{equation}
+
+Then this means that 
+
+\begin{equation}
+    u(x,t) = \frac{1}{2}\left[ g(x+ct) + g(x-ct) \right] + \frac{1}{2c}\int_{x-ct}^{x+ct}h(\xi)d\xi 
+\end{equation}
+
+So this solution is like the left and right moving "responses" to the initial condition. 
+
+\begin{proposition}
+    \underline{Well-posedness}
+    \begin{enumerate}
+        \item Existence, does a solutione exist? If $g \in C^{k}(\mathbb{R})$, $h \in C^{k-1}(\mathbb{R})$, for some $k \geq 2$, 
+        then use equation (5) gives a $C^{k}$ solution of (11). 
+        \item Uniqueness, d'Alembert (11) is unique $C^{k}$ smooth solution. 
+        \item Continuous dependence. $u$ depends continuously on the data, with respect to the max-norm. This means that if $||g_1 - g_2||_{\infty} \leq \epsilon$, and $||h_1 - h_2||_{\infty} \leq \epsilon$, then 
+        $||u_1(\dot, t) - u_2(\dot, t)||_{\infty} \leq (1 + t)\epsilon$. Here $||g||_{\infty}$ is $\max_{x\in \mathbb{R}}|g(x)|$.
+    \end{enumerate} 
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Check if $u$ is $C^{k}$ smooth (has $k$ derivatives) by using fundamental theorem of Calculus. 
+        \item If $u$ and $v$ solve $(4)$, then consider $w = u - v$
+        \begin{align*}
+            w_{tt} - c^2w_{xx} &= 0 \\
+            w(x,0) &= 0 \\
+            w_t(x,0)&= 0
+        \end{align*} 
+        Which implies that $w$ is the zero function which means that $u = v$. 
+        \item homework 3, bruh.  
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Consider a triangle and as cone with slope $x = \pm t$. Domain of dependence, for $u$ is $[x-ct, x+ct]$ for the triangle. And for the cone, the range of influence (points that the wavefunction 
+    can later influence) has speed of $\pm c$ at vertex $\xi$.
+\end{definition}
+
+\section*{IVP for NHWE on $\mathbb{R}$}
+
+Now, we now consider the non-homoegenous wave equation: 
+
+\begin{align*}
+    u_{tt} - c^2u_{xx} &= f(x,t)\\
+    u(x,0) &= g(x) \\
+    u_t(x,0) &= h(x)
+\end{align*}
+
+Decompose $u = w + z$ where $w$ is the homogenous solution and $z$ is the non-homoegenous solution. Note 
+
+\begin{align*}
+    z_{tt} - c^2z_{xx} &= f(x,t) \\
+    z(x,0) &= 0 \\
+    z_t(x,0) &= 0
+\end{align*}
+
+\end{document}
