@@ -1,0 +1,207 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 9}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 9}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Non homogenous wave equationm (NHWE)
+\end{itemize}
+
+\section*{Duhamel's Principle}
+
+Here, we solve the NHWE with homogenous initial conditions. Assume $f \in C^{1}(\mathbb{R} \times [0,\infty))$ where $x \in \mathbb{R}$ and $t \in [0,\infty)$.
+Let $Z(x,t;s)$ solve the problem (for each $s \in [0,t)$)
+
+\begin{align*}
+    Z_{tt} - c^2 Z_{xx} &= 0\\
+    Z(x,0;s) &= 0\\
+    Z_t(x,0;s) &= f(x,s)
+\end{align*}
+
+Here, $s$ is a fixed time. Therefore, $f(x,s)$ is the initial velocity, is the original driving force related to the NHWE. Then let 
+
+\begin{align*}
+    z(x,t) = \int_{0}^{t}Z(x,t-s;s)ds 
+\end{align*}
+
+Here, this is the sum of responses of impulses at time $s \in [0,t]$. Here, this is a general initial condition where we can set of which $f$ we can use as the initial condition. Here, the 
+$;s$ encodes which initial condition we are choosing. We claim that $z$ solves our NHWE. 
+
+\begin{proof}
+    We can solve for $Z$ with d'Alembert. Here, 
+    \begin{equation}
+        Z(x,t;s) = \frac{1}{2c}\int_{x-ct}^{x+ct}f(\xi,s)d\xi
+    \end{equation}
+    Then, we use the fundamental theorem of Calculus:
+    \begin{align*}
+        z_t &= \int_{0}^tZ_t(x,t-s;s)ds + \underbrace{Z(x,t-t;t)}_{=0}\\
+        z_{tt} &= \int_{0}^{t}Z_{tt}(x,t-s;s)ds + \underbrace{Z_t(x,t-t;t)}_{=f(x,t)}\\
+        &= c^2z_{xx}(x,t) + f(x,t)
+    \end{align*}
+    This line was because 
+    \begin{equation}
+        Z_{tt} = c^2Z_{xx} \implies z_{tt} = c^2z_{xx}
+    \end{equation}
+    And we now check the initial conditions, clearly 
+    \begin{equation}
+        z(x,0;s) = 0
+    \end{equation}
+    \begin{equation}
+        z_t(x,0;s) = 0
+    \end{equation}
+\end{proof}
+
+\section*{IBVP for NHWE on an interval}
+
+\begin{align*}
+    u_{tt} - c^2u_{xx} &= f(x,t)\\
+    u(x,0) &= g_1(x) \\
+    u_t(x,0) &= h_1(x)\\
+\end{align*}
+
+Here, the boundary conditions are 
+
+\begin{align*}
+    a u(0,t) - bu_x(0,t) &= \alpha(t) \\
+    c^{*}u(l,t) + du_x(l,t) &= \beta(t)
+\end{align*}
+
+Where $a,b,c^*, d$ are all constants with 
+
+\begin{align*}
+    |a| + |b| &> 0 \\
+    |c^*| + |d| &> 0
+\end{align*}
+
+Step 1, we reduce to homogenous boundary conditions. Find any function $B(x,t)$ that satisfies the boundary conditions. E.g.
+
+\begin{equation}
+    B(x,t) = \frac{(x-L)^2}{aL^2 + 2bL}\alpha(t) + \frac{x^2}{c^*L^2 + 2dL}\beta(t)    
+\end{equation}
+
+Decompose this problem, $u = v + B$ where $B$ solves boundary conditions and $v$ solves the problem. Then $v = u - B$, where 
+
+\begin{align*}
+    v_{tt} - c^2 v_{xx} &= f_2(x,t) = f_1(x,t) - B_{tt} + c^2 B_{xx}
+\end{align*}
+
+With initial conditions 
+
+\begin{align*}
+    v(x,0) &= g_2(x) = g_1(x) - B(x,0)\\
+    v_t(x,0) &= h_2(x) = h_1(x) - B_t(x,0)
+\end{align*}
+
+And boundary conditions 
+
+\begin{align*}
+    av(0,t) - bv_x(0,t) &= 0\\
+    c^*v(L,t) + dv_x(L,t) &= 0
+\end{align*}
+
+Step 2, decompose $v = w + z$ where $w$ satisfies the non homogenous initial conditions and $z$ satisfies the non homogenous wave equation. Then 
+
+
+\textbf{System 2a}
+\begin{align*}
+    z_{tt} - c^2z_{xx} &= f_2(x,t)\\
+    z(x,0) &= 0\\
+    z_t(x,0) &= 0
+\end{align*}
+
+With boundary conditions 
+
+\begin{align*}
+   az(0,t) - bz_x(0,t) &= 0\\
+    c^*z(L,t) + dz_x(L,t) &= 0 
+\end{align*} 
+
+Moreover, we can find the governing equations of $w$:
+
+\textbf{System 2b}
+
+\begin{align*}
+    w_{tt} - c^2w_{xx} &= 0\\
+    z(x,0) &= g_2\\
+    z_t(x,0) &= h_2
+\end{align*}
+
+With boundary conditions 
+
+\begin{align*}
+   az(0,t) - bz_x(0,t) &= 0\\
+    c^*z(L,t) + dz_x(L,t) &= 0 
+\end{align*} 
+
+Step 3a: Solve (2a) using (2b). For all $s \leq 0$. That is, find $Z(x,t;s)$ 
+
+\begin{align*}
+    Z_{tt} - c^2Z_{xx} &= 0\\
+    Z(x,0;s) &= 0 \\
+    Z_t(x,0;s) &= f_2(x,s)
+\end{align*}
+
+Along with boundary conditions 
+
+\begin{align*}
+    aZ(0,t;s) - bZ_x(0,t;s) &= 0 \\
+    c^*Z(L,t;s) + dZ_x(L,t;s) &= 0 
+\end{align*}
+
+\begin{proof}
+    Find $Z$ by using solution for (2b). 
+\end{proof}
+
+Step 3b: solve (3b) by Fourier Series. Decompose one more time to reduce to have either the initial condition with $g_2 = 0$ or initial condition with $h_2 = 0$.
+First assume $g_2 = 0$. Let 
+
+\begin{equation}
+    w(x,t) = \sum_{n=0}^{\infty}\left[a_n\sin(\lambda_n x) + b_n\cos(\lambda_n x)\right]\sin(\lambda_n ct)
+\end{equation}
+
+Ignore convergence issues. lmao 
+
+\end{document}
