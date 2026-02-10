@@ -1,0 +1,225 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYs 487: Lecture \# 7}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYs 487: Lecture \# 7}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Time independent perturbation theory (non degenerate)
+\end{itemize}
+
+\section*{Non degenerate time independent perturbation theory}
+
+Consider a Hamiltonian
+
+\begin{equation}
+    H = H^{(s)} + H'
+\end{equation}
+
+Where $H^{(s)}$ is the standard Hamiltonian of an infinite square well and $H'$ is a perturbation to that Hamiltonian.
+
+\subsection*{Approach for PT}
+
+\begin{enumerate}
+    \item We know: $H^{(0)}\ket{\psi^{(0)}_n} = E_n \ket{\psi^{(0)}_n}$ with $\braket{\psi_{n}^{(0)}}{\psi_{m}^{(0)}} = \delta_{nm}$
+    \item But we want $H\ket{\psi_{n}} = E_n\ket{\psi_n}$ (solutions to the perturbed Hamiltonian $H$)
+\end{enumerate} 
+
+Write: $H = H^{(0)} + \lambda H$ where $\lambda$ is a tuning parameter. We will use it to keep track of the orders of PT. We write $\ket{\psi_n}$ as a power series:
+
+\begin{equation}
+    \ket{\psi_n} = \ket{\psi_n^{(0)}} + \lambda \ket{\psi_{n}^{(1)}} + \lambda^2\ket{\psi_n^{(2)}} + \dots
+\end{equation}
+
+Same for the energies
+
+\begin{equation}
+    E_n = E_n^{(0)} + \lambda E_{n}^{(1)} + \dots
+\end{equation}
+
+We plug this ansatz into bullet point (2), and we obtain 
+
+\begin{equation}
+    \left( H^{(0)} + \lambda H' \right)\left[ \ket{\psi_n^{(0)}} + \lambda\ket{\psi_n^{(1)}} + \dots\right] = \left( E_{n}^{(0)} + \lambda E_{n}^{(1)} + \dots \right)\left[ \ket{\psi_n^{(0)}} + \lambda\ket{\psi_n^{(1)}} + \dots\right]
+\end{equation}
+
+We can collect like powers of $\lambda$. Equations by order:
+
+\begin{equation}
+    \lambda^{0} = H^{(0)}\ket{\psi_{n}^{(0)}} = E_{n}^{(0)}\ket{\psi_n^{(0)}}
+\end{equation}
+
+\begin{equation}
+    \lambda^1  = H^{(0)}\ket{\psi_{n}^{(1)}} + H'\ket{\psi_{n}^{0}} = E_n^{(0)}\ket{\psi_{n}^{1}} + E_{n}^{(1)}\ket{\psi_{n}^{(0)}}
+\end{equation}
+
+\begin{equation}
+    \lambda^2  = H^{(0)}\ket{\psi_{n}^{(2)}} + H'\ket{\psi_{n}^{1}} = E_n^{(0)}\ket{\psi_{n}^{2}} + E_n^{(1)}\ket{\psi_{n}^{1}} +  E_{n}^{(2)}\ket{\psi_{n}^{(0)}}
+\end{equation}
+
+First order correction in $E$, $E_{n}^{(1)}$, multiply by $\lambda^1$ equation with $\bra{\psi_{n}^{(0)}}$:
+
+\begin{equation}
+    \langle \psi_{n}^{(0)} | H^{(0)} | \psi_n^{(1)} \rangle + \langle \psi_{n}^{(0)} | H' | \psi_n^{(0)} \rangle = E_{n}^{(0)}\braket{\psi_n^{(0)}}{\psi_{n}^{(1)}} + E_{n}^{(1)}\braket{\psi_{n}^{(0)}}{\psi_{n}^{(0)}}
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    \langle \psi_{n}^{(0)} | H^{(0)} | \psi_n^{(1)} \rangle = E_{n}^{(0)}\braket{\psi_n^{(0)}}{\psi_{n}^{(1)}}
+\end{equation}
+
+Therefore, we get a simple expression for the first order correction to the energy:
+
+\begin{equation}
+    E_{n}^{(1)} = \langle \psi_{n}^{(0)} | H' | \psi_n^{(0)} \rangle
+\end{equation}
+
+Now, we consider the first order correction to the state. We rewrite the $\lambda^1$ equation: 
+
+\begin{equation}
+    (H^{(0)}- E_{n}^{(0)})\ket{\psi_{n}^{1}} = -(H' - E_n^{(1)})\ket{\psi_{n}^{(0)}}
+\end{equation}
+
+We can write 
+
+\begin{equation}
+    \ket{\psi_n^{(0)}} = \sum_{m\neq n}c_{nm}\ket{\psi_{m}^{(0)}}
+\end{equation}
+
+Here, we want to ignore the current state because we want more interesting corrections. 
+
+\begin{equation}
+    \sum_{m \neq n}\left( E_{m}^{(0)} - E_{n}^{(0)} \right)c_{nm}\ket{\psi_{m}^{(0)}} = -(H' - E_{n}^{(1)})\ket{\psi_{n}^{(0)}}
+\end{equation}
+
+Multiply both sides by $\bra{\psi_k^{(0)}}$, and we obtain 
+
+\begin{equation}
+    \sum_{m\neq n}(E_m^{(0)} - E_n^{(0)})c_{nm}\braket{\psi_k^{(0)}}{\psi_m^{(0)}} = \langle \psi_{k}^{(0)} | H' | \psi_{n}^{0} \rangle + E_{n}^{(1)}\langle \psi_{k}^{(0)} | \psi_n^{(0)}\rangle 
+\end{equation}
+
+Here, if $k = n$, then it just reduces to the first order energy correction. For $k \neq n$: 
+
+\begin{equation}
+    \left( E_k^{(0)} - E_n^{(0)} \right)c_{nk} = -\langle \psi_{k}^{(0)} | H' | \psi_{n}^{(0)} \rangle  
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \ket{\psi_{n}^{(1)}} = \sum_{m\neq n}\frac{\langle \psi_{m}^{(0)} | H' | \psi_{n}^{(0)} \rangle}{E_{n}^{(0)} - E_{m}^{(0)} }\ket{\psi_{m}^{(0)}}
+\end{equation}
+
+\subsection*{Second order}
+
+\begin{enumerate}
+    \item $\lambda^2$ equation, multiply by $\bra{\psi_{n}^{(0)}}$
+\end{enumerate}
+
+Then we get 
+
+\begin{align*}
+    E_{n}^{(2)} &= \langle \psi_n^{(0)} | H' | \psi_{n}^{(1)}\rangle \\
+    &= \sum_{m\neq n}\frac{| \langle \psi_{m}^{(0)}|H'|\psi_{n}^{(0)}\rangle |^2}{E_{n}^{(0)} - E_{m}^{(0)}}
+\end{align*}
+
+\subsection*{Example 0}
+
+Infinite square well; then just move the bottom of the well down. This is a diagonal perturbation with $V_0$, therefore 
+
+\begin{equation}
+    H = \frac{p^2}{2m} + V_0
+\end{equation}
+
+\begin{equation}
+    \psi_n^{(0)}(x) = \sqrt{\frac{2}{a}}\sin\left( \frac{n\pi x}{a} \right)
+\end{equation}
+\begin{equation}
+    E_n^{(1)} = \langle \psi_n^{(0)} | V_0 | \psi_{n}^{(0)}\rangle = V_0
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \psi_{n}^{(1)} = \sum_{m\neq n}\frac{\langle \psi_m^{(0)} | V_0 | \psi_{n}^{(0)}\rangle}{E_{n}^{(0)} - E_m^{(0)}}\ket{\psi_m^{(0)}} = 0
+\end{equation}
+
+\subsection*{Example 1}
+
+So now, let's consider a well with only half its floor raised up by $V_0$ with length $a/2$. Here, 
+
+\begin{align*}
+    E_{n}^{(1)} &= \int_{0}^{a/2}\psi_{n}^{(0)}V_0\psi_{n}^{(0)} \\
+    &= 2\frac{V_0}{a}\int_{0}^{a/2}\sin^{2}\left( \frac{n\pi x}{a} \right)\\
+    &= \frac{2V_0}{a}\left( \frac{a}{4} \right)\\
+    &= \frac{V_0}{2}
+\end{align*}
+
+Here, we consider 
+
+\begin{align*}
+    \psi_{1}^{(1)}(x) &= \sum_{m \neq n}\frac{\langle \psi_{m}^{(0)}|H' |\psi_{1}^{(0)}\rangle}{(E_1^{(0)} - E_{m}^{(0)})}\psi_{m}^{(0)}(x)\\
+    &= \frac{2V_0 m\cos\left( \frac{m\pi}{2} \right)}{\pi(1-m^2)}
+\end{align*}
+
+Also, 
+
+\begin{equation}
+    E_1^{(0)} - E_m^{(0)} = \frac{\pi^2\hbar^2}{2(\text{mass})a^2}(1 - m^2)
+\end{equation}
+
+\subsection*{Example 2}
+
+Consider $H' = \alpha\delta(x - a/2)$ in an infinite square well. Here, the odd functions will probably not be affected since they are $0$ at $a/2$. But
+the even functions are likely to see this change. Energy corrections 
+
+\begin{align*}
+    E_n^{(1)} &= \langle \psi_{n}^{(0)} | H' | \psi_n^{(0)}\rangle \\
+    &= \frac{2\alpha}{a}\int_{0}^a \sin^2\left( \frac{n\pi x}{a} \right)\delta(x-a/2)dx \\
+    &= \frac{2\alpha}{a}\sin^2(\frac{n\pi}{2})
+\end{align*}
+
+\end{document}
