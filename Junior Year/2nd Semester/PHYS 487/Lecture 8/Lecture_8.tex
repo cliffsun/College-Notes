@@ -1,0 +1,213 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 8}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 8}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Degenerate perturbation theory
+\end{itemize}
+
+\section*{Lecture recap}
+
+We expanded the wavefunction and energies in a power series
+
+\begin{align*}
+    \ket{\psi_n} &= \sum_{i=0} \lambda^{i}\ket{\psi_{n}^{(i)}} \\
+    E_n &= \sum_{i=0} \lambda^{i}E_{n}^{(i)}
+\end{align*}
+
+Then we found that 
+
+\begin{equation}
+    E_{n}^{(1)} = \langle \psi_{n}^{(0)} | H' | \psi_{n}^{(0)}\rangle
+\end{equation}
+\begin{equation}
+    \ket{\psi_{n}^{(1)}} = \sum_{m \neq n}\frac{\langle \psi_{m}^{(0)} | H' | \psi_{n}^{(0)}\rangle }{E_{n}^{(0)} - E_{m}^{(0)}}
+\end{equation}
+
+But now, what do we do if there is a degeneracy? 
+
+\section*{Degenerate perturbation theory}
+
+\begin{equation}
+    \ket{\psi_{n}^{(1)}} = \sum_{m\neq n}\frac{\langle \psi_{m}^{(0)} | H' | \psi_{n}^{(0)}\rangle }{E_{n}^{(0)} - E_{m}^{(0)}}
+\end{equation}
+
+But what if $E_{m}^{(0)} = E_{n}^{(0)}$. Q: can we guarantee $\langle \psi_{m}^{(0)} | H' | \psi_{n}^{(0)} \rangle = 0$? 
+
+\subsection*{Example: Two-fold degeneracy}
+
+Let there be two eigenstates $\ket{\psi_{a}}$ and $\ket{\psi_b}$. And given
+
+\begin{align*}
+    H^{(0)}\ket{\psi_i^{(0)}} &= E^{(0)}\ket{\psi_i^{(0)}} \\
+    \braket{\psi_i}{\psi_k} &= \delta_{ik}
+\end{align*}
+
+Moreover, any $\alpha \ket{\psi_{a}^{(0)}} + \beta \ket{\psi_{b}^{(0)}} \equiv \ket{\psi^{(0)}}$. With the following:
+
+\begin{equation}
+    H^{(0)}\ket{\psi^{(0)}} = E^{(0)}\ket{\psi^{(0)}}
+\end{equation}
+
+We note that $\ket{\psi_a}$ and $\ket{\psi_b}$ are degenerate. And combining them into $\ket{\psi}$ also yields the same energy. Because you get a constant $E^{(0)}$ out in front of them. 
+
+Idea: Find eigenstates of $H'$; $H = H^{(0)} + \lambda H'$, and $\lim_{\lambda \rightarrow 0}H$ is good states. 
+
+\subsection*{Example}
+
+\begin{equation}
+    H^{(0)} = \frac{p^2}{2m} + \frac{1}{2}m\omega^2\left( x^2 + y^2 \right)
+\end{equation}
+
+Consider the first excited state:
+
+\begin{equation}
+    \ket{\psi_{a}} = \psi_0(x)\psi_1(y) = \sqrt{\frac{2}{\pi}}\frac{m\omega}{\hbar}ye^{-\frac{m\omega}{2\hbar}\left( x^2+y^2 \right)} \equiv \ket{0_x, 1_y}
+\end{equation}
+
+and
+
+\begin{equation}
+    \ket{\psi_{b}} = \psi_1(x)\psi_0(y) = \sqrt{\frac{2}{\pi}}\frac{m\omega}{\hbar}ye^{-\frac{m\omega}{2\hbar}\left( x^2+y^2 \right)} \equiv \ket{1_x, 0_y}
+\end{equation}
+
+Consider a perturbation $H' = \epsilon m\omega^2xy$. Then if $x,y$ are the same sign, then $\langle H' \rangle > 0$. But if $x,y$ are different signs, then $\langle H' \rangle < 0$. Here, the perturbation then corrects (or "lifts") the degeneracy of the system. 
+
+Next, introduce 
+
+\begin{equation}
+    x' = \frac{x + y}{\sqrt{2}}, \;\; y' = \frac{x - y}{\sqrt{2}}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    H = \frac{p^2}{2m} + \frac{m}{2}\left( 1 + \epsilon \right)\omega^2 x'^2 + \frac{m}{2}\left( 1 - \epsilon \right)\omega^2 y'^2
+\end{equation}
+
+This is just two uncoupled harmonic oscillators. Then we get 
+
+\begin{equation}
+    \psi_{mn} = \psi_m^{+}(x')\psi_{n}^{-}(y') \;\; \omega_{\pm} = \sqrt{1 \pm \epsilon}\omega
+\end{equation}
+\begin{equation}
+    E_{mn} = \left( m + \frac{1}{2} \right)\hbar \omega_{+} + \left( n + \frac{1}{2} \right)\hbar \omega_{-}
+\end{equation}
+
+Then as $\epsilon \rightarrow 0$,
+
+\begin{equation}
+    \psi_{01} = \psi_0\left( \frac{x + y}{\sqrt{2}} \right)\psi_1\left( \frac{x-y}{\sqrt{2}} \right) = \frac{-\psi_a^{(0)} + \psi_{b}^{(0)}}{\sqrt{2}}
+\end{equation}
+
+\section*{Recipe for finding the good states}
+
+We first start with the $\lambda^n$ equations. Next, we guess some states $\ket{\psi_a}$ and $\ket{\psi_b}$ that are degenerate in order to find "good" states such that 
+
+\begin{equation}
+    \ket{\psi^{(0)}} = \alpha \ket{\psi^{(0)}_a} + \beta\ket{\psi_b^{(0)}}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    H^{(0)}\ket{\psi^{(0)}} + \lambda(H'\ket{\psi^{(0)}} + H^{(0)}\ket{\psi^{(1)}}) = E^{(0)}\ket{\psi^{(0)}} + \lambda\left( E^{(1)}\ket{\psi^{(0)}} + E^{(0)}\ket{\psi^{(1)}} \right)
+\end{equation}
+
+For $\lambda^1$ equation, we have that 
+
+\begin{equation}
+    H'\ket{\psi^{(0)}} + H^{(0)}\ket{\psi^{(1)}} = E^{(1)}\ket{\psi^{(0)}} + E^{(0)}\ket{\psi^{(1)}}
+\end{equation}
+
+Multiply both sides by $\bra{\psi_a^{(0)}}$:
+
+\begin{equation}
+    \langle \psi_{a}^{(0)} | H^{(0)} | \psi^{(1)}\rangle + \langle \psi_{a}^{(0)} | H' | \psi^{(0)} \rangle = E^{(0)}\langle \psi_{a}^{(0)} | \psi^{(1)} \rangle + E^{(1)} \langle \psi_a^{(0)} | \psi^{(0)}\rangle
+\end{equation}
+
+With $\alpha\ket{\psi_a^{(0)}} + \beta\ket{\psi_b^{(0)}} = \ket{\psi^{(0)}}$ and $\braket{\psi_a^{(0)}}{\psi_{b}^{(0)}} = 0$. Then, we get 
+
+\begin{equation}
+    \alpha\langle \psi_a^{(0)} | H' | \psi_{a}^{(0)} \rangle + \beta \langle \psi_a^{(0)} | H' | \psi_b^{(0)} \rangle = \alpha E^{(1)}
+\end{equation}
+
+Repeat with $\bra{\psi_b^{(0)}}$, then we get 
+
+\begin{equation}
+    \begin{pmatrix}
+        w_{aa} & w_{ab} \\
+        w_{ba} & w_{bb}
+    \end{pmatrix}\begin{pmatrix}
+        \alpha \\
+        \beta
+    \end{pmatrix} = E^{(1)}\begin{pmatrix}
+        \alpha \\
+        \beta
+    \end{pmatrix}
+\end{equation}
+
+So then the eigenvalues of $W$ are the energy corrections. And the eigenvectors are the "good" $\alpha$ and $\beta$. So then, we have solutions 
+
+\begin{equation}
+    E_{\pm}^{(1)} = \frac{1}{2}\left[ w_{aa} + w_{bb} \pm \sqrt{(w_{aa} - w_{bb})^2 + 4|w_{ab}|^2} \right]
+\end{equation}
+
+\begin{theorem}
+    If $A$ is hermitian and $[A,H^{(0)}] = 0 = [A, H']$. If $A\ket{\psi_a^{(0)}} =\mu\ket{\psi_a^{(0)}}$, $A\ket{\psi_b^{(0)}} = \gamma\ket{\psi_b^{(0)}}$ and $\mu \neq \gamma$. 
+    Then $\ket{\psi_a}$ and $\ket{\psi_b}$ are the good states for perturbation theory. 
+\end{theorem}
+
+\section*{Example}
+
+Here, $H^{(0)}$ is rotationally symmetric and $H'$ is a discrete rotational symmetry. Then we cannot use the previous theorem where $\mu \neq \gamma$. Then, 
+
+\section*{Big takeaway}
+ 
+We study how degenerate states evolve with perturbation. So $\ket{\psi^{(0)}}$ really is a function of $\lambda$, so it changes to remain an "approximate" eigenstate of $H = H^{(0)} + \lambda H'$. 
+
+\end{document}

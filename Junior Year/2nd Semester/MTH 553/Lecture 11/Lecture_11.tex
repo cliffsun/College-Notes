@@ -1,0 +1,188 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 11}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 11}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Reflection Method
+\end{itemize}
+
+\section*{Reflection Method}
+
+Similar to the parallelogram method. Let $g,h$ be defined for $[0,L]$ 
+
+\subsection*{Dirichlet Boundary Conditions}
+
+Extend $g,h$ by odd reflection over $[-L,L]$ with period $2L$ and extend periodically over $\mathbb{R}$. Solve with d'Alembert's formula. Here, imagine a picture where $h \equiv 0$ and $g_2$ is a rectangular pulse. 
+Now, imagine performing an odd reflection on $g$ so now there is an inverted rectangular pulse over the $y$ axis. Now, imagine that there is a period of $2L$.    
+
+You can imagine that as $t$ progresses, the rectangular pulses cancel out at $x=0$. So now, to the observer, it looks like the square has been reflected upside down. 
+
+\subsection*{Neumann Boundary Conditions}
+
+Now, let's do an even extension over $[-L,L]$ and extend periodically. Then, the square is reflected the same way up, but reflected over the $y$ axis. (like a parity transformation)
+
+\textbf{Note:} for physical intuition of the BCs, look at Farlow handout on Canvas (week 4). 
+
+\section*{Adjoints and weak solutions}
+
+\begin{theorem}
+    Divergence theorem: 
+    \begin{equation}
+        \int_{\Omega}\nabla \cdot \vec{F} dx = \int_{\partial\Omega}\vec{F} \cdot \vec{v}dS
+    \end{equation}
+    Where $\vec{v}$ is a normal vector to $\partial \Omega$. This is a version of the fundamental theorem of Calculus but in three dimensions.
+\end{theorem}
+
+Next, we apply the div theorem to derive a generalized integration by parts formula with $u,r \in C^1(\overline{\Omega})$ and $\vec{F} = \langle 0,\dots, uv, \dots, 0\rangle$. So 
+
+\begin{equation}
+    \nabla \cdot \vec{F} = \partial_{x_n}\left( uv \right) = (\partial_{x_n}u)v + u(\partial_{x_n}v)
+\end{equation}
+
+Next, we have that 
+
+\begin{equation}
+    F \cdot v = uv v_k
+\end{equation}
+
+Therefore, we can derive an integration by parts formula
+
+\begin{equation}
+    \int_{\Omega}\frac{\partial u}{\partial x_k}v dx = -\int_{\Omega}u\frac{\partial v}{\partial x_k}dx + \int_{\partial\Omega}uv v_k dS
+\end{equation}
+
+If $v = 0$ on $\partial \Omega$, then we have that 
+
+\begin{equation}
+    \int_{\Omega}\frac{\partial u}{\partial x_k} v dx = -\int_{\Omega}u\frac{\partial v}{\partial x_k}dx
+\end{equation}
+
+Repeating, then we get 
+
+\begin{equation}
+    \int_{\Omega}(D^{\alpha}u)v dx = (-1)^{|\alpha|}\int_{\Omega}u (D^{\alpha}v)dx
+\end{equation}
+
+For all $u \in C^{|\alpha|}(\Omega)$ and for all $v \in C_{0}^{|\alpha|}(\Omega)$ where $v$ is zero for some neighborhood around the boundary. Here, $\alpha = (\alpha_1, \alpha_2, \dots)$ and $\alpha_i \in \mathbb{Z}^{+} \geq 0$. 
+
+Where $\alpha_i$ determines the number of times that you take the partial derivative with respect to $x_i$. In other words, 
+
+\begin{equation}
+    D^{\alpha} \equiv \Pi^{n}\left( \partial_{x_i} \right)^{\alpha_i}
+\end{equation}
+
+And 
+
+\begin{equation}
+    |\alpha| = \alpha_1 + \dots + \alpha_n
+\end{equation}
+
+is the order of the multi-index $\alpha$. As an example,
+
+\begin{equation}
+    u_{x_1,x_2} = D^{(1,1)}u
+\end{equation}
+
+Where $\alpha = (1,1)$. Then 
+
+\begin{equation}
+    \sum_{\alpha : |\alpha| = 2} a_{\alpha}D^{\alpha}u = a_{2,0}u_{x_1,x_1} + a_{1,1}u_{x_1,x_2} + a_{0,2}u_{x_2,x_2}
+\end{equation}
+
+Is a linear combination of all partial derivatives. Consequence, let $m \leq 1$, then 
+
+\begin{equation}
+    Lu = \sum_{\alpha : |\alpha| \leq m} a_{\alpha}(x)D^{\alpha}u
+\end{equation}
+
+Where $m$ denotes the maximum number of partial derivatives you have to take in any direction. Then 
+
+\begin{equation}
+    \int_{\Omega}(Lu)v dx = \int_{\Omega}u(L'v)dx
+\end{equation}
+
+Where $L'$ is the adjoint operator such that 
+
+\begin{equation}
+    L' v = \sum_{|\alpha| \leq m}(-1)^{|\alpha|}D^{\alpha}(a_\alpha(x)v)
+\end{equation}
+
+Proof, use the integration by parts formuala, but let $v = a_{\alpha}v$. Note that $v \in c^{m}_{0}(\Omega)$ where $v$ vanishes near $\partial \Omega$. 
+
+\subsection*{Examples}
+
+\begin{enumerate}
+    \item $Lu = u_{x_1,x_1} \implies L'v = v_{x_1,x_1}$. Here, $L = L'$, so it is "formally self-adjoint".  
+    \item $\nabla^2 u = u_{x_1,x_1} + u_{x_2,x_2}$. It is clear that $\nabla^2 = \nabla'^2$
+    \item $Lu = u_{x_1}$, then $L'v = v_{x_1}$. So $L \neq L'$. (because $(-1)^{|\alpha|} = -1$ since $\alpha = (1,0)$)
+\end{enumerate}
+ 
+\begin{definition}
+    Let $f \in L'(\Omega)$ be an integrable function. (integral of $f$ is finite over $\Omega$). Then we call $u$ a \underline{classical solution} of $Lu = f$ if 
+    \begin{equation}
+        u \in C^{m}(\Omega) \text{ and } Lu = f
+    \end{equation}
+    Call $u$ a \underline{weak} solution of $Lu = f$ if 
+    \begin{equation}
+        u \in L^{1}(\Omega) \text{ and } \int_{\Omega}u(L'v) = \int_{\Omega}fv dx
+    \end{equation}
+    for all $v \in C^{m}_{0}(\Omega)$. 
+\end{definition}
+
+\textbf{Property:} Classical $\implies$ weak. i.e. if $Lu = f$ classically then $Lu = f$ weakly. 
+
+\begin{proof}
+    Substitute $Lu = f$ and use the integration by parts theorem. 
+\end{proof}
+
+\textbf{Property (2):} Weak + smooth function $\implies$ classical solution. i.e. if $u$ is a weak solution and is also differentiable enough times, then it is also a classical solution. 
+
+\begin{proof}
+    Use integration by parts and also rearrange terms. 
+\end{proof}
+
+\end{document}

@@ -1,0 +1,194 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 10}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 10}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Continue working on non-homogenous wave equation with arbitrary boundary conditions
+\end{itemize}
+
+Recall that we reduced the wave equation to 
+
+\begin{align*}
+    w_{tt} - c^2w_{xx} &= 0\\
+    w(x,0) &= g_2(x) \\
+    w_t(x,0) &= h_2(x) \\
+    aw(0,t) - bw_x(0,t) &= 0 \\
+    c^*w(L,t) + dw_x(L,t) &= 0 
+\end{align*}
+
+Assume $g_2 = 0$ which corresponds to zero initial displacement, then 
+
+\begin{equation}
+    w(x,t) = \sum_n \left( a_n\sin(\lambda_n x) + b_n\cos(\lambda_n x) \right) \cdot \sin(\lambda_n ct)
+\end{equation}
+
+Note that given the $w$ above, we can verify that: 
+
+\begin{equation}
+    w_{tt} = c^2w_{xx}
+\end{equation}
+
+The, we can indeed check that: 
+
+\begin{equation}
+    w(x,0) = 0
+\end{equation}
+
+So now, the question is what $\lambda_n$ do we choose? We can determine $\lambda_n$ from the boundary conditions. 
+First, assume that $b=d=0$, then define 
+
+\begin{equation}
+    \phi_n(x) = a_n\sin(\lambda_n x) + b_n\cos(\lambda_n x)
+\end{equation}
+
+Then we have the dirichlet boundary conditions:
+
+\begin{align*}
+    \phi_n(0) &= 0 \\
+    \phi_n(L) &= 0
+\end{align*}
+
+The first boundary condition requires that $b_n = 0$, and the second one requires $\sin(\lambda_n L) = 0$, therefore,
+
+\begin{equation}
+    \lambda_n = \frac{n\pi}{L}
+\end{equation}
+
+Then, we have that
+
+\begin{equation}
+    w(x,t) = \sum_{n=1}^{\infty} a_n\sin\left( \frac{n\pi x}{L} \right)\sin\left( \frac{n\pi ct}{L} \right)
+\end{equation}
+
+If $a = c^* = 0$, then we get the neumann boundary conditions, 
+
+\begin{align*}
+    \partial_x \phi_n (0) &= 0 \\
+    \partial_x \phi_n(L) &= 0
+\end{align*}
+
+Then $a_n = 0$ and we obtain that $\sin\left( \lambda_n L \right) = 0$ and 
+
+\begin{equation}
+    \lambda_n = \frac{n\pi}{L}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    w(x,t) = \sum_{n=0}^{\infty}b_n\cos\left( \frac{n\pi x}{L} \right)\sin\left( \frac{n\pi ct}{L} \right)
+\end{equation}
+
+Now, we go back to the Dirichlet example, we can determine $a_n$ using the initial conditions. Here, $g_2 \equiv 0$, $\lambda = n\pi/L$, and $b_n = 0$ with 
+
+\begin{equation}
+    w(x,t) = \sum_n a_n\sin(\lambda_n x)\sin(\lambda_n ct)
+\end{equation}
+
+Then we impose IC, 
+
+\begin{equation}
+    h_2(x) = w_t(x,0) = \sum_n \left( \lambda_n ca_n \right)\sin(\lambda_n x)
+\end{equation}
+
+To find $a_n$, we multiply by $\sin(\lambda_m x)$ and integrate (i.e. take $L^2$ inner product with the basis elements). Then we obtain,
+
+\begin{equation}
+    \int_{0}^{L}h_2(x)\sin\left( \lambda_m x \right)dx = \sum_{n=0}^{\infty}\left( \lambda_n ca_n \right)\int_{0}^{L}\sin\left( \lambda_n x \right)\sin\left( \lambda_m x \right)dx
+\end{equation}
+
+But 
+
+\begin{equation}
+    \int_{0}^{L}\sin\left( \lambda_n x \right)\sin\left( \lambda_m x \right)dx = \frac{L}{2}\delta_{nm}
+\end{equation}
+
+Therefore, we obtain 
+
+\begin{equation}
+    \int_{0}^{L}h_2(x)\sin\left( \lambda_m x \right)dx = \lambda_m c a_m \frac{L}{2}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    a_m = \frac{2}{m\pi c}\int_{0}^{L}h_2(x)\sin\left( \lambda_m x \right)dx
+\end{equation}
+
+\section*{Step 3b - solve 2b by characteristics}
+
+Recall that 
+
+\begin{equation}
+    w(x,t) = F(x+ct) + G(x-ct)
+\end{equation}
+
+On a characteristic parallelogram on the x,t plane with points A,B,C,D, here, $B$ connects to $A$ and $C$ connects to $D$ with the slope $x-ct = d$ where $d$ is a constant. Similarly, $B$ connects to $C$ and $A$ connects to $D$ with a slope of $x + ct = e$ where $e$
+is a constant. Then consider the wave equation at point $A$ and $C$, we calculate 
+
+\begin{align*}
+    w(A) + w(C) &= F(A) + G(A) + F(C) + F(D) \\
+    &= F(D) + G(B) + F(B) + G(D) \\
+    &= W(B) + W(D)
+\end{align*}
+
+Therefore, 
+
+\begin{equation}
+    w(A) + w(C) = w(B) + w(D)
+\end{equation}
+
+Find $w$ in triangle $R_1$ (which extends back to the initial condition) using D'Alembert on interval $[0,L]$. Then assume there is a point $A$ that we don't know, then we can pick 3 other points
+that form a parallelogram on the x,t plane. Then, we obtain 
+
+\begin{equation}
+    w(A) = w(B) + w(D) - w(C)
+\end{equation}
+
+Where $B$ rests on the boundary, then $w(B) = 0$.
+
+\end{document}
