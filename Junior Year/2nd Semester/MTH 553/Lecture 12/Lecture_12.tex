@@ -1,0 +1,165 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 12}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 12}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Continution of $L$
+\end{itemize}
+
+From last time:
+
+\begin{enumerate}
+    \item $Lu = f$ classicaly, then $Lu = f$ weakly
+    \item $Lu = f$ weakly and $u$ is smooth, then $Lu = f$ classically
+    \item Uniqueness theorem 
+\end{enumerate}
+
+\begin{proof}
+    Proof of (2). For all $v \in C^{m}_{0}(\Omega)$, then consider 
+    \begin{equation}
+        \int_{\Omega}(Lu - f)v dx = 0
+    \end{equation}
+    Hence $Lu = f$ pointwise, and also smoothly. 
+\end{proof}
+
+\begin{proof}
+    Proof of (3). $Lu = f_1$  and $Lu = f_2$, then $f_1 = f_2$.
+\end{proof}
+
+\begin{proof}
+    Proof of (4) If $Lu = f$ weakly in $\tilde{\Omega}$ for any $\tilde{\Omega} \in \Omega$. If $v \in C^{m}_{0}(\Omega) \implies v \in C^{m}_{0}(\tilde{\Omega})$.  
+\end{proof}
+
+\begin{definition}
+    We call $f$ the \underline{weak derivative} of $u$ (for a function $u$ on $\Omega = [a,b]$) if $u' = f$ weakly. I.e. 
+    \begin{equation}
+        \int_{a}^{b}(Lu - f)vdx  = 0
+    \end{equation}
+    With $L = d/dx$ and $L' = -d/dx$. In other words, 
+    \begin{equation}
+        -\int_{a}^{b}uv' dx = \int_{a}^{b}fv dx
+    \end{equation}
+\end{definition}
+
+\subsection*{Example}
+
+We claim that below is the weak derivative of $|x|$. 
+
+\begin{equation}
+    \frac{d}{dx}\left( |x| \right) = \begin{cases}
+        1 & x < 0 \\
+        -1 & x > 0
+    \end{cases}
+\end{equation}
+
+\begin{proof}
+    $\forall v \in C_0^{1}(a,b)$. Then 
+    \begin{align*}
+        -\int_{-\infty}^{\infty}uv' dx &= \int_{-\infty}^{0}xv'(x)dx - \int_{0}^{\infty}xv'(x)dx \\
+        &= -\int_{-\infty}^{0}v(x)dx + \int_{0}^{\infty}v(x)dx \;\; \text{boundary terms during IBP vanish $x=0$ at $x=0$ and $v(0)$ at $x=\pm \infty$}\\
+        &= \int_{-\infty}^{\infty}fv dx
+    \end{align*}
+\end{proof}
+
+Therefore, $|x|$ is not classically differentiable, but it is weakly differentiable. 
+
+\section*{Transmission Conditions}
+
+Suppose $Lu = f$ weakly. what can we say about potential jumps in $u$ or its derivatives across a curve $\gamma$? 
+I.e. we seek an analogue of the jump condition for shocks. 
+
+\subsection*{Example}
+
+Suppose $u_{xy} = 0$ weakly in $\mathbb{R}^2$. And $\gamma = \{\text{y - axis}\}$. And suppose $u_{xy} = 0$ classically in $\Omega_1$ and $\Omega_2$. Then, $\forall v \in C_0^{2}(\mathbb{R}^2)$: 
+\begin{align*}
+    0 &= \int_{-\infty}^\infty\int_{-\infty}^\infty uv_{xy}dydx
+\end{align*}
+Since $u_{xy} = 0$ weakly. Then we integrate by parts twice. 
+\begin{align*}
+    0 &= \int_{-\infty}^\infty\int_{-\infty}^\infty uv_{xy}dydx\\
+    &= \int_{0}^{\infty}\int_{-\infty}^\infty uv_{xy}dydx + \int_{-\infty}^{0} \int_{-\infty}^\infty uv_{xy}dydx \\
+    &= -\int_{0}^{\infty}\int_{-\infty}^\infty u_yv_{x}dydx - \int_{-\infty}^{0} \int_{-\infty}^\infty u_yv_{x}dydx \\
+    &= -\int_{-\infty}^{\infty} \int_{0}^{\infty}u_y v_x dxdy - \int_{-\infty}^{\infty} \int_{-\infty}^{0}u_y v_x dxdy \\
+    &= \int_{-\infty}^\infty u_y(0+,y)v(0,y)dy - \int_{-\infty}^\infty u_y(0-,y)v(0,y)dy \\
+    &= \int_{-\infty}^{\infty}\frac{d}{dy}\left[ u(0+,y) - u(0-,y) \right]v(0,y)dy
+\end{align*}
+
+If this is valid for all $v$, then this integrand must be $0$. i.e. 
+
+\begin{equation}
+    u(0+,y) - u(0-,y) = \mathrm{const.}
+\end{equation}
+
+Along the $y$ axis. I.e. the jump across the $y$ axis must be the same for any value on the y axis!  
+
+This is an example of the \underline{transmission condition}. 
+
+\subsection*{Transmission condition for the wave equation}
+
+If $u_{\mu\eta} = 0$ weakly, if $u$ is a smooth solution except for constant jumps along vertical or horizontal lines (in the $\mu,\eta$ coordinate system.)
+ 
+Then reverting to the $x,y$ coordinate plane, $u$ becomes a weak solution of 
+
+\begin{equation}
+    u_{tt} - c^2u_{xx} = 0
+\end{equation}
+
+If it is a smooth function except for constant jumps along the characeristics $x\pm ct$. This means that a traveling square wave is a \underline{weak solution}. 
+
+\subsection*{General method}
+
+Given $\Omega$ and a curve $\gamma$ that slices through $\Omega$. Then find the transmission condition by 
+
+\begin{enumerate}
+    \item Writing the definition of the weak solution
+    \item Split integrals into $\Omega_1$ and $\Omega_2$
+    \item Integrate by parts using divergence theorem (retain boundary terms)
+    \item Use $Lu = f$ classically on $\Omega_1$ and $\Omega_2$ and cancel out
+    \item Stare at what remains (bruh)
+\end{enumerate}
+
+\end{document}
