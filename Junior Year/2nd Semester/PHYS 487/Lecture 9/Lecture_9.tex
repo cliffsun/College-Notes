@@ -1,0 +1,304 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 9}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 9}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item Hydrogen Fine structure
+\end{itemize}
+
+\section*{Hydrogen Fine Structure}
+
+The Hamiltonian of hydrogen is 
+
+\begin{equation}
+    H = -\frac{\hbar^2}{2m}\nabla^2 - \frac{e^2}{4\pi\epsilon_0}\frac{1}{r}
+\end{equation}
+
+Here, we define the \underline{fine structure}. Relativistic correction and the spin orbit coupling (magnetic field generated from electron orbiting nucleus interacts with nucleus). Next, we 
+will define the \underline{Lamb shift}. There, we take the electric field $E$ and turn it into an operator $\hat{E} \propto (a + a^{\dagger})$. (from QED) 
+Finally, we will look into the \underline{hyper-fine structure}. This arises from the direct magnetic moment coupling.
+
+\section*{Relativistic correction}
+
+The kinetic energy is 
+
+\begin{equation}
+    T = \frac{1}{2}mv^2 = \frac{p^2}{2m} = -\frac{\hbar^2}{2m}\nabla^2
+\end{equation}
+
+Relativistically, 
+
+\begin{equation}
+    T = \frac{mc^2}{\sqrt{1 - (v/c)^2}} - mc^2
+\end{equation}
+
+Then, assume circular orbit. Then, this balancing force must be true:
+
+\begin{equation}
+    \frac{m_e v_n^2}{r_n} = \frac{1}{4\pi \epsilon_0}\frac{a^2}{r^2}
+\end{equation}
+
+Note that $v_n$ is the velocity in the n-th orbit, and $r_n$ similar. Quantization: $m_ev_nr_n = n\hbar$. This is the angular momentum. Then, 
+
+\begin{equation}
+    v_n = \frac{1}{4\pi \epsilon_0}\frac{e^2}{\hbar}\frac{1}{n}
+\end{equation}
+\begin{equation}
+    r_n = an^2 = 4\pi \epsilon_0 \frac{\hbar^2}{m_ee^2}n^2
+\end{equation}
+
+For $a=1$, then $v_1 \sim 2\times10^{6}$ m/s, no relativistic correction yet. Kinetic energy is $\sim 10$ eV. And $mc^2 \sim 0.5$ MeV.
+
+The relativistic momentum is: 
+
+\begin{equation}
+    p = \frac{mv}{\sqrt{1 - \left( v/c \right)^2}}
+\end{equation}
+
+Now, we know: 
+
+\begin{equation}
+    p^2c^2 + m^2c^2 = \frac{m^2v^2c^2 + m^2c^4\left[ 1 - (v/c)^2 \right]}{1 - (v/c)^2} = \left( T + mc^2 \right)^2
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    T = \sqrt{p^2c^2 + m^2c^4} - mc^2
+\end{equation}
+
+This is kinetic energy as a function of momentum. Then, 
+
+\begin{equation}
+    T = mc^2 \left[ \sqrt{1 - \left( \frac{p}{mc} \right)^2} - 1 \right] = mc^2\left[ 1 + \frac{1}{2}\left( \frac{p}{mc} \right)^2 - \frac{1}{8}\left( \frac{p}{mc} \right)^4 + \dots - 1\right]
+\end{equation}
+\begin{equation}
+= \frac{p^2}{2m} \underbrace{- \frac{p^4}{8m^3c^2}}_{=H'_r} + \dots
+\end{equation}
+
+Now, we begin perturbation theory. Now, we know that 
+
+\begin{equation}
+    E_n^{(1)} = \langle \psi_n | H' | \psi_n \rangle 
+\end{equation}
+
+Then, we calculate 
+
+\begin{align*}
+    E_r^{(1)} &= \langle H' \rangle = -\frac{1}{8m^3c^2}\langle \psi | p^4 | \psi \rangle \\
+\end{align*}
+
+To calcuate this, we turn towards the SWE for unperturbed states. That is, 
+
+\begin{equation}
+    p^2 \ket{\psi} = 2m(E - V)\ket{\psi}
+\end{equation}
+
+We can take the Hermitian conjugate of everything and multiple this function from the left, then we get 
+
+\begin{align*}
+    E_r^{(1)} &= -\frac{1}{2mc^2}\langle (E - V)^2\rangle \\
+    &= -\frac{1}{2mc^2} \left[ E^2 - 2E\langle V \rangle + \langle V^2 \rangle \right] \;\; \text{now, let $V$ be coulomb potential}\\
+    &= -\frac{1}{2mc^2}\left[ E_n^2 + 2E_n\left( \frac{e^2}{4\pi \epsilon_0} \right)\langle \frac{1}{r}\rangle + \left( \frac{e^2}{4\pi \epsilon_0} \right)^2\langle \frac{1}{r^2} \rangle \right] \\
+    \langle \frac{1}{r}\rangle &= \frac{1}{n^2a} \\
+    \langle \frac{1}{r^2}\rangle &= \frac{1}{\left( e + 1/2 \right)n^3a^2}\\
+    E_r^{(1)} &= -\frac{\left( E_n \right)^2}{2mc^2}\left[ \frac{4n}{l + 1/2} - 3\right]
+\end{align*}
+
+With $\ket{\psi_{nlm}}$. Here, we consider a correction on the order of 
+
+\begin{equation}
+    E_n \times \frac{E_n}{2mc^2}
+\end{equation}
+
+Consider $E_n/2mc^2$, $E_n$ is on the order of 10s of eV and the denominator is on the order of 1 MeV. Therefore, the correction is on the order of $E_n \times \mathcal{O}(10^{-5})$.
+Here, there are degeneracies lifted with respect to $l$. But the degeneracy with respect to the $z$ project has \underline{not} been lifted yet.
+
+\section*{Spin-orbit coupling}
+
+Sucn an effect can lift the degeneracy of the $z$ projection. From the point of view of the electron, the nucleus is orbiting around it with some distance $r$. 
+Now, the nucleus generates a magnetic moment which interacts with that of the electron. We know that we will always have an interaction with the magnetic moment and the magentic field:
+
+\begin{equation}
+    \hat{H} = -\mu \cdot B
+\end{equation}
+
+Where $\mu$ is the magnetic moment of the electron. And $B$ is the field from the orbiting proton (from the perspective of the electron). From Biot-savart, 
+
+\begin{equation}
+    B = \frac{\mu_0 I}{2 r}
+\end{equation}
+
+Where, $I = e/T$ (pretty primitive, but a surprisingly good estimate) and $T$ is the period in time. We know the orbital angular momemtum of the electron as 
+
+\begin{equation}
+    L = rmv = \frac{2\pi mr^2}{T}
+\end{equation}
+
+With $v = 2\pi r/T$. Therefore, 
+
+\begin{equation}
+    B = \frac{1}{4\pi \epsilon_0}\frac{e}{mc^2 r^3}L
+\end{equation}
+
+So then, we now try to find $\mu$. Toy model: consider a ring charge that rotates. Then 
+
+\begin{equation}
+    \mu = \frac{q}{T} \times \pi r^2
+\end{equation}
+
+So then, the angular momentum is 
+
+\begin{equation}
+    S = \frac{2\pi}{T} \times mr^2
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \frac{\mu}{S} = \frac{q}{2m}
+\end{equation}
+
+Then, we get that 
+
+\begin{equation}
+    \mu = \frac{q}{2m}\vec{S}
+\end{equation}
+
+If you do this relativistically, then you get 
+
+\begin{equation}
+    \mu_e = -\frac{e}{m}S
+\end{equation}
+
+The above equation is the correct result. The correction of the classical picture is related to the g-factor = $2.002\dots$. Then,
+our Hamiltonian is 
+
+\begin{equation}
+    H = \left( \frac{e^2}{4\pi \epsilon_0} \right)\frac{1}{m^2c^2r^3} \vec{S} \cdot \vec{L}
+\end{equation}
+
+This is the spin orbit coupling. But we are in an accelerating frame, so we correct this. (this is a grad E\&M problem...) Now, we add the factor from the "Thomas precession" $=2$. Therefore, 
+
+\begin{equation}
+    H = \left( \frac{e^2}{8\pi \epsilon_0} \right)\frac{1}{m^2c^2r^3} S \cdot L = H'_{SO}
+\end{equation}
+
+This is the perturbation to the spin orbit coupling Hamiltonian. Consequences: we have that 
+
+\begin{equation}
+    [H^{(0)}, L] = 0
+\end{equation}
+
+and
+\begin{equation}
+    [H^{(0)}, S] = 0
+\end{equation}
+
+due to spherical symmetry. But: 
+
+\begin{equation}
+    [L\cdot S, L] = i\hbar (L \times S)
+\end{equation}
+
+Similarly, 
+
+\begin{equation}
+    [L\cdot S, S] = i\hbar \left( S \times L \right)
+\end{equation}
+
+So now, some symmetries are probably broken, and therefore degeneracies are probably being lifted right now. Now, we are looking for $\hat{A}$ such that 
+
+\begin{equation}
+    [H^{(0)}, A] = 0 = [H', A]
+\end{equation}
+
+Turns out 
+
+\begin{equation}
+    [H'_{SO}, L^2] = 0 = [H'_{SO}, S^2] = [H'_{SO}, J]
+\end{equation}
+
+Where, $J = L + S$ with eigenstates $\ket{j, m_j}$. So, we want $\langle H'_{SO} \rangle$ and need $\langle L \cdot S \rangle$ in terms of the good eigenstates (diagonalize $L \cdot S$). So then 
+
+\begin{equation}
+    J^2 = \left( L + S \right) \cdot (L + S) = L^2 + S^2 + 2L \cdot S 
+\end{equation}
+
+So then 
+
+\begin{equation}
+    L \cdot S = \frac{1}{2}\left( J^2 - L^2 - S^2 \right)
+\end{equation}
+
+These are all conserved quantum numbers! So then, the eigenvalues are:
+
+\begin{equation}
+    \frac{\hbar^2}{2}\left\{ j(j+1) - l(l+1) - s(s+1) \right\}
+\end{equation}
+
+Note that $s=1/2$. Morever, $\langle 1/r^2 \rangle$. Therefore, we are able to write down the spin orbit correction. So then, 
+
+\begin{equation}
+    E^{(1)}_{SO} = \langle H'_{SO} \rangle = \frac{(E_n)^2}{mc^2}\left\{ \frac{n(j(j+1) - l(l+1) - 3/4)}{l(l+1/2)(l+1)} \right\}
+\end{equation}
+
+But if spin is conserved, then $j = l \pm 1/2$ and combine the relativistic correction:
+ 
+\begin{equation}
+    E_{nj} = -\frac{13.6\mathrm{eV}}{n^2}\left( 1 + \frac{\alpha^2}{n^2}\left( \frac{n}{j+1/2} - \frac{3}{4}\right) \right)
+\end{equation}
+
+Now, all the degeneracies have been broken. Here, 
+
+\begin{equation}
+    \alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c} \sim \frac{1}{137}
+\end{equation}
+
+This is the fine structure constant. 
+
+\end{document}

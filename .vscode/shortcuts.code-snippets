@@ -14,5 +14,13 @@
 	"Isomorphisms": {
 		"prefix": "isom",
 		"body": "\\overset{\\sim}{=}"
+	}, 
+	"langle" : {
+		"prefix": "@la",
+		"body" : "\\langle"
+	}, 
+	"rangle" : {
+		"prefix": "@ra",
+		"body" : "\\rangle"
 	}
 }
