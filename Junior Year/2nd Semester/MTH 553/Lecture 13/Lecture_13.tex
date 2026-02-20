@@ -1,0 +1,188 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 13}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 13}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{itemize}
+    \item HWE in $\mathbb{R}^2$ and $\mathbb{R}^3$
+\end{itemize}
+
+\section*{HWE on $\mathbb{R}^2$ and $\mathbb{R}^3$}
+
+Consider $h \in C(\mathbb{R}^n)$ for $n \leq 2$. Then define 
+
+\begin{equation}
+    M_h(x,r) = \int_{S^{n-1}}h(x + r\xi)\frac{d\xi}{\omega_n}
+\end{equation}
+
+Where $d\xi$ is a surface area element in $S^{n-1}$ and $\omega_n = |S^{n-1}|$ is the area of $S^{n-1}$. We note that $\xi \in S^{n-1}$ is a unit sphere and is a unit vector. Moreover, 
+$M_h$ is the mean of the  average value of the $h$ over a sphere of radius $|r|$. For $n=2$, we have that $\omega_2$ is $2\pi$. Then 
+
+\begin{equation}
+    M_h(x,r) = \frac{1}{2\pi}\int_{0}^{2\pi}h(x + r\xi)d\theta
+\end{equation}
+
+Where $\xi = (\cos\theta, \sin\theta)$. For $n=3$, then $\omega_3 = 4\pi$. 
+
+\subsection*{Observe}
+
+\begin{enumerate}
+    \item $M(h,-r) = M(h,r)$
+    \item If $h \in C^{k}$, then $M_h \in C^k$. 
+\end{enumerate}
+
+\begin{lemma}
+    (Darboux) For $h \in C^2$ and $r \neq 0$, then 
+    \begin{equation}
+        \left( \partial_r^2 + \frac{n-1}{r}\partial_r \right)M_h = M_{\nabla^2 h}(x,r)
+    \end{equation}
+    In other words, the laplacian of the mean is the mean of the laplacian. 
+\end{lemma}
+
+\begin{proof}
+    When $n=2$. Consider $e^{i\theta}$ on the unit circle. For $r > 0$: LHS:
+    \begin{equation}
+        \frac{1}{2\pi}\int_{0}^{2\pi}(g_{rr} + \frac{1}{r}g(-r))d\theta
+    \end{equation}
+    Note that $g(re^{i\theta}) = h(x + re^{i\theta})$. We just took $r$ derivatives. 
+    \begin{equation}
+        = \frac{1}{2\pi}\int_{0}^{2\pi}(g_{rr} + \frac{1}{r}g_r + \frac{1}{r^2}g_{\theta\theta})d\theta
+    \end{equation}
+    Since $g$ is periodic and therefore a closed integral is zero. But this is the Laplacian of $g$ 
+    \begin{equation}
+        \int_{0}^{2\pi}\nabla^2 g(r e^{i\theta}) \frac{d\theta}{2\pi}
+    \end{equation}
+    \begin{equation}
+        \iff \int_{0}^{2\pi}\nabla^2 h(x + r e^{i\theta}) \frac{d\theta}{2\pi}
+    \end{equation}
+    \begin{equation}
+        = M_{\nabla^2 h}(x,r)
+    \end{equation}
+\end{proof}
+
+\begin{proof}
+    When $n \geq 2$. Then LHS is 
+    \begin{equation}
+        = \left( \partial_r + \frac{n-1}{r} \right)\int_{\partial S^n} g_r \frac{d\xi}{\omega_n}
+    \end{equation}
+    Here, the boundary of the ball in $S^n$ is the sphere in $S^{n-1}$. Then integrate over a sphere of radius $r$ (NOT 1)
+    \begin{equation}
+        = \left( \partial_r + \frac{n-1}{r} \right)\int_{\partial B^n(r)} \nabla g(y) \cdot \vec{v}\frac{dS(y)}{r^{n-1}}
+    \end{equation}
+    Then, do a change of variables $y = r\xi$ and $dS(y) = r^{n-1}d\xi$, $\vec{v}$ is the outward normal vector on $\partial B^n(r)$ at $r\xi$. Note that $\nabla g(y) \cdot v = g_r$. Now, we use the divergence theorem
+    \begin{equation}
+        \frac{1}{\omega_n}\left( \partial_r + \frac{n-1}{r}\right) \left[\frac{1}{r^{n-1}}\int_{B^n(r)}\nabla \cdot \nabla g(y) dy\right]
+    \end{equation}
+    \begin{equation}
+        = \frac{1}{\omega_n}\left( \partial_r + \frac{n-1}{r}\right) \left[\frac{1}{r^{n-1}}\int_{B^n(r)}\nabla^2g(y) \right]
+    \end{equation}
+    In spherical coordinates, this is the same as:
+    \begin{equation}
+        = \frac{1}{\omega_{n}}\left( \partial_r + \frac{n-1}{r}\right)\left[\frac{1}{r^{n-1}}\int_{0}^r \int_{S^{n-1}}\nabla^2 g(\rho,\xi)d\xi\rho^{n-1}d\rho\right]
+    \end{equation}
+    Next, by integrating in spherical coordinates, firstly the following equation is true:
+    \begin{equation}
+        \left( \partial_r + \frac{n-1}{r} \right)\frac{1}{r^{n-1}} = 0
+    \end{equation}
+    Next, 
+    \begin{equation}
+        \frac{1}{\omega_n}\frac{1}{r^{n-1}}\int_{S^{n-1}}\nabla^2 g(r,\xi)d\xi r^{n-1}
+    \end{equation}
+    \begin{equation}
+        = \frac{1}{\omega_n}\int_{S^{n-1}}\nabla^2 g(r,\xi)d\xi = M_{\nabla^2 h}(x,r)
+    \end{equation}
+\end{proof}
+
+\section*{Homogenous wave equation in $\mathbb{R}^3$}
+
+\begin{align*}
+    u_{tt} - c^2 \nabla^2 u &= 0\\
+    u(x,0) &= g(x) \in C^{3}\\
+    u_t(x,0) &= h(x) \in C^{3}
+\end{align*}
+
+For $x \in \mathbb{R}^3$. 
+
+\subsection*{Kirchoff's Formula}
+
+$u \in C^{2}\left( \mathbb{R}^3 \times [0,\infty) \right)$. Solves HWE in $\mathbb{R}^3$ if 
+\begin{equation}
+    u(x,t) = \partial_t \left( t\int_{S^2} g(x + ct\xi) \frac{d\xi}{4\pi}\right) + t\int_{S^2} h(x + ct\xi)\frac{d\xi}{4\pi}
+\end{equation}
+
+The first term is the displacement response. The second term is the response to the initial impulse. 
+
+\begin{proof}
+    $(\implies)$ For all fixed $x$, $rM_u(x,r)$ satisfies the 1-d wave equation as a function of $r$ and $t$. 
+    \begin{proof}
+        For $r \neq 0$, we have that $\partial_t^2\left( rM_u(x,r) \right) = rM_{u_{tt}}(x,r)$
+    \end{proof}
+    \begin{equation}
+        = c^2 rM_{\nabla^2 u}(x,r)
+    \end{equation}
+    \begin{equation}
+        = c^2 r\left( \partial_r^2 + \frac{2}{r}\partial_r \right) M_u(x,r) 
+    \end{equation}
+    by the wave equation and Darboux. Here, we assumed that $u$ satisfied the wave equation. 
+    \begin{equation}
+        = c^2 \partial_r^2 \left( rM_u(x,r) \right)
+    \end{equation}
+    By the product rule. Now, by d'Alembert, 
+    \begin{equation}
+        rM_u(x,r) = \frac{1}{2}\left( (r + ct)M_g(x, r + ct) + (r-ct)M_g(x, r - ct) \right) + \frac{1}{2c}\int_{r-ct}^{r + ct}\rho M_h(x,\rho)d\rho
+    \end{equation}
+    \begin{equation}
+        = \frac{1}{2}\left\{ (ct + r)M_g(x, ct + r) + -(ct - r)M_g(x, ct - r) \right\} + \frac{1}{2c}\int_{ct - r}^{ct + r}\rho M_h(x,\rho)d\rho
+    \end{equation}
+    Here, since by oddness, $$\int_{r - ct}^{ct - r}\rho M_h(x,\rho)d\rho = 0$$
+    Now, fix $t$ and divide by $r$ and let $r \rightarrow 0$. Therefore, $M_u \rightarrow u$ and $ct \pm r \rightarrow ct$. Therefore, we get:
+    \begin{equation}
+        u(x,r) = \partial_\tau \left( \tau M_g(x,\tau) \right)\bigg|_{\tau = ct} + \frac{1}{c} \cdot ct M_h(x, ct)
+    \end{equation}
+    Then, use Kirchoff's. 
+\end{proof}
+
+\end{document}

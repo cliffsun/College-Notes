@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 14}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 14}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Last time}
+
+From last time, for the wave equation in three dimensions, we claim that the Kirchhoff formula solves 
+
+\begin{equation}
+    u(x,t) = \partial_t \left( t\int_{S^2} g(x + ct\xi)\frac{d\xi}{4\pi}\right) + t\int_{S^2}h(x + ct\xi)\frac{d\xi}{4\pi}
+\end{equation}
+
+Remarks:
+
+\begin{enumerate}
+    \item It involves the derivatives of $g$ as well as $g$. (unlike d'Alembert)
+    \item Domain of dependence for $(x,t)$ is the sphere with center $x$ and radius $ct$. This means that as time progresses, more and more parts of $S^2$ influence $x$. This lives in the $x$ space. 
+    \item Range of influence for $\tilde{x}$ is a surface of a cone $$|x - \tilde{x}| = ct$$, which is a union of spheres with radius $ct$. This lives in the x-t plane.
+    \item Waves have finite propagation speed $c$
+    \item Signals are sharp in 3-dim since the range of influence is a 2 dimension surface at each time.   
+\end{enumerate}
+
+\section*{HWE in 2 dimensions}
+
+$u \in C^2(\mathbb{R}^2 \times [0,\infty))$ solves 
+
+\begin{align*}
+    u_{tt} &= c^2\nabla^2 u \\
+    u(x,0) &= g(x_1,x_2) \\
+    u_t(x,0) &= h(x_1,x_2)
+\end{align*}
+
+iff 
+
+\begin{equation}
+    u(x,t) = \frac{1}{4\pi}\frac{\partial}{\partial t}\left( 2t\int_{B^2}g(x + cty)\frac{dy}{\sqrt{1 - |y|^2}} \right) + \frac{1}{4\pi}2t\int_{B^2}h(x + cty)\frac{dy}{\sqrt{1 - |y|^2}}
+\end{equation}
+
+Where $B^2$ is the unit disk in $\mathbb{R}^2$. 
+
+\begin{proof}
+    Use Kirchhoff's formula. $u$ solves HWE in three dimensions, just not depending on $x_3$. Then take 
+    \begin{equation}
+        U(x_1,x_2,x_3,t) = u(x_1,x_2,t)
+    \end{equation}
+    \begin{equation}
+        G(x_1,x_2,x_3) = g(x_1,x_2)
+    \end{equation}
+    \begin{equation}
+        H(x_1,x_2,x_3) = h(x_1,x_2)
+    \end{equation}
+    Where $U$ satisfies the wave equation in three dimensions. Now, apply Kirchhoff. In the upper hemisphere of $S^2$, consider a point on the disk $B^2$. Now, projecting that onto 
+    $S^2$ corresponds to a unit vector $\xi = (y_1,y_2, \sqrt{1 - |y|^2})$. Then $d\xi$ is the area of the graph of $z = \sqrt{1 - |y|^2}$. Then 
+    \begin{equation}
+        d\xi = \sqrt{1 + \left( \frac{\partial z}{\partial y_1} \right)^2 + \left( \frac{\partial z}{\partial y_2} \right)^2}
+    \end{equation} 
+    \begin{equation}
+        = \frac{dy}{\sqrt{1 - |y|^2}}
+    \end{equation}
+    Here, this is the 3d projected area element of our 2d problem. Also, then 
+    \begin{equation}
+        x + ct \xi = (x_1 + ct y_1, x_2 + ct y_2, x_3 + ct\sqrt{1 - |y|^2})
+    \end{equation}
+    Finally, the sphere has two hemispheres so we collect a factor of $2$ (upper and lower are identical by symmetry). Therefore, we obtain equation (2).
+\end{proof}
+
+\subsection*{Remarks}
+
+\begin{enumerate}
+    \item This is called Hadamard's method of descent for solving 2-d WE using Kirchhoff's formula
+    \item Domain of dependence for $(x,t)$ is a disk $B^2(x,ct)$ (disk centered at $x$ with radius $ct$). What points of $x$ influenced this point? 
+    \item Range of influence, solid cone going positively. Namely
+    \begin{equation}
+        | x- \tilde{x}| \leq ct
+    \end{equation}
+    This is a union of disks with radius of $ct$. Note, this is because in the domain of dependence in 2-d is a circle, but in 3-d is the boundary of a ball (also called sphere)
+    \item Propagation speed $c$
+    \item No sharp signals (meaning signals live every in $B^2$), but they do decay in time. 
+\end{enumerate}
+
+\section*{HWE in $\mathbb{R}^n$, $n \geq 4$}
+
+If $n$ is even, WE behaves like 3-d with sharp signals. If $n$ is odd, then WE behaves like 2-d with non-sharp signals. This is called Huygen's principle. 
+
+\subsection*{NHWE in $\mathbb{R}^n$}
+
+APply Duhamel to handle the forcing term. Use Kirchhoff, Hadamard as appropriate depending on dimensionality to compute $Z(x,t-s;s)$. 
+
+\section*{Next time - Conservation of Energy}
+
+\textbf{Example: n=1} $u_{tt} = c^2u_{xx}$. Assume $u(x,t)$ has compact support for each $t$. Then multiply the WE by $u_t$ and integrate with respect to $x$.
+
+\begin{align*}
+    0 &= \int_{-\infty}^{\infty}u_t(u_{tt} - c^2u_{xx})dx \\
+    &= \int_{-\infty}^{\infty}\left( u_t u_{tt} + c^2 u_xu_{xt} \right) dx \text{ by parts} \\
+    &= \frac{d}{dt}\frac{1}{2}\int_{-\infty}^{\infty}\left( u_t^2 + c^2 u_{x}^2 \right)dx
+\end{align*}
+
+This is the conservation of energy. 
+
+\end{document}
