@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 18}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 18}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Conclusion (from last time)}
+
+\begin{enumerate}
+    \item On $\mathbb{R}^n$, solve wave equation with D'Alembert, Kirchhof, Hadamard, Duhamel
+    \item On bounded domain $\Omega$, use eigenfunctions
+\end{enumerate}
+
+\section*{Heat Equation}
+
+$u(x,t)$ is the temperature at $x$, time $t$. Let there be a domain $D$ on $\mathbb{R}^n$. Then the conservation of heat states that 
+
+\begin{equation}
+    \frac{d}{dt}\left( \text{heat in $D$} \right) = -\text{(heat flux outward through $D$)}
+\end{equation}
+
+Assume that heat is a constant times temperature. Then, flux is -(const)$\nabla u$. Then 
+
+\begin{align*}
+    \frac{d}{dt}\int_{D}u dx &= -\int_{\partial D}\left( -k \nabla u \right) \cdot v  dS \\
+    \int_D u_t dx &= k \int_{D} \left( \triangle u \right)dS \\
+    \int_D \left( u_t - k\triangle u \right)dS &= 0
+\end{align*}
+
+Therefore, $u_t - k\triangle u =0$ at every point. This is the heat equation:
+
+\begin{equation}
+    u_t - k\triangle u = 0
+\end{equation}
+
+This is also known as the diffusion equation. Here, there is only one $t$ derivative, therefore, try $u$ as an exponential. 
+
+\subsection*{Heat equation on a bounded domain}
+
+Let $k=1$, then we obtain 
+
+\begin{equation}
+    u_t = \triangle u
+\end{equation}
+
+On a bounded domain, we require boundary conditions and initial conditions. Here, there is only one $t$ derivative, so maybe only need one initial condition? Maybe only $u(x,0) = g(x)$ with boundary conditions $u(x,t) = h(x,t) \in \partial \Omega$ and $t> 0$. 
+For simplicity, take $h \equiv 0$ and $u = 0$ on the boundary. 
+
+\subsection*{Existence by eigenfunctions}
+
+We claim that 
+
+\begin{equation}
+    u(x,t) = \sum_k e^{-\lambda_k t}a_k\phi_k(x)
+\end{equation}
+
+Where $$a_k = \braket{g}{\phi_k}_{L^2(\Omega)} = \int_\Omega g(y)\phi_k(y)dy$$
+
+\begin{proof}
+    Ignoring convergence:
+    \begin{align*}
+        u_t &= \sum_k \left( -\lambda_k \right)e^{-\lambda_k t}a_k \phi_k(x) \\
+        &= \sum_k e^{-\lambda_k t}a_k \triangle \phi_k \\
+        &= \triangle u
+    \end{align*}
+    This is because $\triangle \phi_k = -\lambda_k \phi_k$. 
+\end{proof}
+
+For initial conditions, let $t=0$, then
+
+\begin{align*}
+    u(x,0) &= \sum_k a_k \phi_k(x) \\
+    &= g(x)
+\end{align*}
+
+We note several things:
+\begin{enumerate}
+    \item These calculations can be justified when $g \in C^2(\Omega)$ with $g=0$ on $\partial \Omega$.
+    \item $e^{-\lambda_k t}$ decays rapidly as $t \rightarrow \infty$. So $u(x,t)$ is dominated by the lower $\lambda_k$ values. So we expect that 
+    \begin{equation}
+        u(x,t) \approx e^{-\lambda_kt}a_1\phi_1(x)
+    \end{equation}
+    For sufficiently large $t$. This is because the higher frequency components damp faster. 
+    \item Solution 
+    \begin{align*}
+        u(x,t) &= \int_\Omega\left( \sum_k e^{-\lambda_k t}\phi_k(x)\phi_k(y) \right)g(y)dy \\
+        &= \int_\Omega K(x,y,t)g(y)dy
+    \end{align*}
+    Where $K(x,y,t) = \sum_k e^{-\lambda_k t}\phi_k(x)\phi_k(y)$. This is also called the Dirichlet heat kernel for $\Omega$. 
+\end{enumerate}
+
+Here, $K(x,y,t)$ is the temperature at $x$ at time $t$ due to the unit heat source at $y$ released at time $0$. Take $g(y) = \delta_a(y)$. Then get $u(x,t) = K(x,a,t)$. 
+
+\subsection*{Maximum principle and uniqueness}
+
+Let $T > 0$, then $\Omega \subset \mathbb{R}^n$ and cylinder $\Omega_t = \Omega \times (0,T)$. This is also a parabolic boundary. Then let $$\Gamma = \{(x,t) \in \partial \Omega_T: t = 0 \lor x \in \partial \Omega\}$$
+
+\begin{definition}
+    $C^{2,1}\left( \overline{\Omega_T} \right)$  = $\{u(x,t) \text{ on } \Omega_T: u,u_t \text{ and } u_{x_i,x_j} \forall i,j \text{ are continuous}\}$
+\end{definition}
+
+\subsection*{Weak maximum principle}
+
+Let $u \in C^{2,1}\left( \overline{\Omega_T} \right)$, then $u_t \leq \triangle u$. $u$ attains its maximum on the parabolic boundary. 
+So that $$u(x,t) \leq \max_{\left( \tilde{x}, \tilde{t} \right) \in \Gamma}u(\tilde{x}, \tilde{t})$$ 
+
+\end{document}

@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 17}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 17}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Heat equation
+\end{enumerate}
+
+\section*{Eigenvalues of Laplacian}
+
+Consider some bounded domain $\Omega$ in $\mathbb{R}^n$. Then 
+
+\begin{align*}
+    -\triangle u &= \lambda u \text{ in $\Omega$} \\
+    u &= 0 \text{ on $\partial\Omega$}
+\end{align*}
+
+Here, $\lambda$ is the eigenvalue of the Laplacian for Dirichlet BC. And $u$ is the eigenfunction with $u \neq 0$. 
+
+Goal: generalize fourier series to higher dimension on non-rectangular domains. 
+
+\subsection*{Eigenfacts}
+
+\begin{enumerate}
+    \item $0 < \lambda_1 < \lambda_2 \leq \lambda_3 \leq \lambda_4 \leq \dots \rightarrow \infty$ with corresponding eigenfunctions $\phi_i$ such that $\{\phi_i\}$ are an orthonormal basis of $L^2(\Omega)$. 
+    \begin{equation}
+        \langle \phi_i, \phi_j \rangle = 0 \iff i \neq j
+    \end{equation}
+    and for all $f \in L^2(\Omega)$, we have that $$f = \sum_{j=1}^{\infty}a_j \phi_j$$ converging in $L^2$ with $a_j = \langle f, \phi_j \rangle_{L^2}$
+    \item Positivity of fundamental mode (first eigenfunction) $\phi_1(x) > 0$ for all $\forall x \in \Omega$. (think of just one mode (parabola)) This means that $\phi_j$ must change sign for $j > 1$. 
+    \item Pointwise convergence if $\partial \Omega$ is piecewise smooth, $f \in C^2\left( \overline{\Omega} \right)$ and if $f = 0$ on $\partial \Omega$, then $f = \sum_j a_j \phi_j$ converges pointwise. 
+    In fact, uniformly and absolutely.
+\end{enumerate}
+
+\subsection*{Example $\Omega = (0, \pi) \subset \mathbb{R}^1$}
+
+Here, 
+
+\begin{equation}
+    \phi_j(x) = \sqrt{\frac{2}{\pi}}\sin(jx)
+\end{equation}
+
+\subsection*{Example, rectangle in $R^2$ with lengths $a$ and $b$}
+
+Eigenfunctions, $$\phi_{mn}(x,y) = a_{mn}\sin\left( \frac{m\pi x}{a} \right)\sin\left( \frac{n\pi x}{b} \right)$$
+
+For $m,n \geq 1$. Indeed, $\phi_{mn}(x,y)$ is a eigenfunction of $\triangle$ with eigenvalues of 
+
+\begin{equation}
+    \lambda_{mn} = \left( \frac{m\pi}{a} \right)^2 + \left( \frac{n\pi}{a} \right)^2
+\end{equation}
+
+Take a square for example, then consider $a=b$. Therefore, the ordering of smallest to largest eigenvalue is 
+
+\begin{enumerate}
+    \item $\lambda_1 = \lambda_{11}$
+    \item $\lambda_2 = \lambda_{21}$
+    \item $\lambda_3 = \lambda_{12} = \lambda_{21}$
+\end{enumerate}
+
+There is a degeneracy. Other examples include balls, equilateral triangles, etc.
+
+\subsection*{Applications}
+
+Solving Poisson equation by eigenfunctions. Consider 
+
+\begin{align*}
+    \triangle u &= f \\
+    u&= 0 \text{ on $\partial \Omega$}
+\end{align*}
+
+Now, write 
+
+\begin{equation}
+    f = \sum_k a_k \phi_k
+\end{equation}
+
+Then 
+
+\begin{equation}
+    u = \sum_k \left( -\frac{a_k}{\lambda_k} \right)\phi_k
+\end{equation}
+
+For the proof, take $\triangle$ on both sides and note that $-\triangle \phi_k = \lambda_k \phi_k$. Now, we can solve the wave equation using eigenfunctions. 
+
+\subsection*{Wave equation with eigenfunctions}
+
+\begin{align*}
+    u_{tt} &= \triangle u \\
+    u &= 0 
+\end{align*}
+
+Here, we seek a separated solution. Let 
+
+\begin{equation}
+    u(x,t) = \sum_k u_k(t)\phi_k(x)
+\end{equation}
+
+Then plug it into the wave equation:
+
+\begin{equation}
+    \sum_k u_k''(t)\phi_k(x) = \sum_k u_k(t)(-\lambda_k \phi_k(x))
+\end{equation}
+
+Then. we require that 
+
+\begin{equation}
+    u_k''(t) = \lambda_k u_k(t)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    u_k(t) = A_k\cos(\sqrt{\lambda_k}t) + B_k \sin(\sqrt{\lambda_k}t)
+\end{equation}
+
+If $u(x,0) = g(x)$, then 
+
+\begin{equation}
+    \sum_k A_k \phi_k(x) = g(x)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    A_k = \langle g, \phi_k \rangle_{L^2}
+\end{equation}
+
+Here, consider the term $\cos(\sqrt{\lambda_k} t)\phi_k(x)$. Then this is a standing wave with a mode shape $\phi_k(x)$ with a frequency of $$\frac{\sqrt{\lambda_k}}{2\pi}$$
+
+\end{document}

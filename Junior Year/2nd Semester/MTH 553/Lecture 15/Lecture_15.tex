@@ -1,0 +1,170 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 15}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 15}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Conservation of energy}
+
+The conservation of energy states that (in one dimension)
+
+\begin{equation}
+    0 = \frac{d}{dt}\frac{1}{2}\int_{-\infty}^{\infty}(u_t^2 + c^2 u_x^2)dx
+\end{equation}
+
+Here, 
+
+\begin{equation}
+    \frac{1}{2}\int_{\Omega}u_t^2 dx 
+\end{equation}
+
+Is the kinetic energy. Moreover, 
+
+\begin{equation}
+    \frac{1}{2}c^2 \int_{\Omega}u_x^2 dx 
+\end{equation}
+
+Is the potential enegry due to a stretching of the displacement force. Now, let's do higher dimensions.
+
+\subsection*{Higher dimensions}
+
+\begin{equation}
+    u_{tt} = c^2 \nabla^2 u
+\end{equation}
+
+\textbf{Should learn this calculation.} Initial data is assumed to be compactly supported. Define energy 
+
+\begin{equation}
+    \epsilon(t) =  \frac{1}{2}\int_{\mathbb{R}^n}\left( u_t^2 + c^2|\nabla u |^2 \right)dx
+\end{equation}
+
+This is also simply just kinetic plus potential. Here, the claim is that the total energy is conserved. 
+
+\begin{proof}
+    First expand:
+    \begin{equation}
+        \epsilon'(t) = \int (u_t u_{tt} + c^2(\nabla u \cdot \nabla u_t) )dx
+    \end{equation}
+    Then, by the wave equation:
+    \begin{equation}
+        = c^2\int (u_t \nabla^2 u + \nabla u \cdot \nabla u_t)dx
+    \end{equation}
+    But this is merely just the product rule:
+    \begin{equation}
+        = c^2 \int \nabla \cdot \left(u_t \nabla u \right)dx
+    \end{equation}
+    Then, use the divergence theorem:
+    \begin{equation}
+        = 0 
+    \end{equation}
+    Since $u$ has compact support and therefore the boundary terms vanish at $\pm \infty$ go away. Therefore, energy is conserved. 
+\end{proof}
+
+\subsection*{Consequences}
+
+\textbf{Uniqueness: }if $u_1$ and $u_2$ are solutions with data $g,h$, then $w = u_1 - u_2$ has zero initial data. Therefore,
+\begin{equation}
+    \epsilon_w(t) = \epsilon_w(0) = 0
+\end{equation}
+
+Therefore, $w_t = 0 \implies w = 0 \implies u_1 = u_2$.
+
+\textbf{Continuous dependence: } Let $u_1$ have initial data $g_1,h_1$, $u_2$ similar and therefore $w$ with $g_1 - g_2$ and $h_1 - h_2$. Then 
+
+\begin{equation}
+    \epsilon_w(t) = \epsilon_w(0)
+\end{equation}
+
+So then
+
+\begin{align*}
+    &\int\left( w_t^2 + c^2|\nabla w|^2 \right)dx \\
+    &= \int\left( (h_1 - h_2)^2 + c^2|\nabla (g_1 - g_2)|^2 \right)dx
+\end{align*}
+
+So then if $h_1 \approx h_2$ and $g_1 \approx g_2$. Then $w \approx 0$ and therefore $u_1 \approx u_2$. This is on the homework (probably just bounds). Here, the point here is that 
+we can just use energy methods to yield results of which previously explicit formulas were needed. 
+
+\subsection*{Domain of dependence by energy method}
+
+Now, suppose a point $(x_0, t_0)$. With a domain of dependence in $\mathbb{R}^n$ centered in $x_0$. 
+
+\begin{theorem}
+    If $u$ is zero and $u_t$ is zero in $B(x_0, ct_0)$ (ball in $\mathbb{R}^n$ centered in $x_0$ with radius $ct$), then $u \equiv 0$ inside 
+    the cone $C$. 
+\end{theorem}
+
+Given a ball $B(x_0, ct)$, then move the ball "up" in time to yield $B(x_0, c(t_0-t))$ where $u_t = 0$. Initial disturbances outside of $B(x_0,ct_0)$ cannot affect $u(x_0,t_0)$. So the wave travels at 
+most speed $c$.
+
+\begin{proof}
+    Define a local energy (local with respect to slices of the cone $C$)
+    \begin{equation}
+        e(t) = \frac{1}{2}\int_{B(x_0, c(t_0 - t))}\left( u_t^2 + c^2 |\nabla u|^2 \right)dx \geq 0
+    \end{equation}
+    We prove that the local energy is \underline{dissipated} ($e'(t) \leq 0$). Indeed,
+    \begin{align*}
+        e'(t) &= \int_{B(x_0, c(t_0 - t))}\left[ u_t u_{tt} + c^2 \nabla u \cdot \nabla u_t \right]dx \\
+        &=\int_{B(x_0, c(t_0 - t))}\left[ u_t \nabla \cdot \nabla u + c^2 \nabla u \cdot \nabla u_t \right]dx  + \frac{1}{2}\int_{\partial B(x_0, c(t_0 - t))}\left[ u_t^2 + c^2 |\nabla u|^2 \right]dS \cdot \frac{d}{dt}(c(t_0 -t))\\
+    \end{align*}
+    The last line is by the fundamental theorem of Calculus since 
+    \begin{align*}
+        &\frac{d}{dr}\int_{B^n(r)}f(x)dx \\
+        &= \frac{d}{dr}\int_0^r \int_{S^{n-1}}f(\rho \xi)d\xi \rho^{n-1}d\rho \\
+        &= \int_{S^{n-1}}f(r\xi)d\xi r^{n-1} \text{ by FTC} \\
+        &= \int_{S^{n-1}(r)}fdS
+    \end{align*}
+    \begin{align*}
+        e'(t) &= c^2 \int_{B(x_0, c(t_0 - t))}\left[ \nabla \cdot (u_t \nabla u) \right]dx - \frac{c}{2}\int_{\partial B}\left[ u_t^2 + c^2 |\nabla u|^2 \right]dS\\
+        &= c\int_{\partial B}\left[ cu_t \nabla u \cdot \vec{v} - \frac{1}{2}u_t^2 - \frac{c^2}{2}|\nabla u|^2 \right]dS
+    \end{align*}
+    Note that this is less than or equal to $0$ since 
+    \begin{equation}
+        |cu_t\nabla u \cdot v| \leq |u_t| c|\nabla u| \leq \frac{1}{2}u_t^2 + \frac{1}{2}c^2 |\nabla u|^2 
+    \end{equation}
+    Since $2ab \leq a^2 + b^2$. But if $e(t) \leq e(0) = 0$, then $e(t) = 0$ which then implies that $u_t = 0$ and therefore $u = 0$. 
+\end{proof}
+
+\end{document}

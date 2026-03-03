@@ -1,0 +1,173 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Energy method continued
+\end{enumerate}
+
+\section*{Lower order terms}
+
+Take $c=1$. We consider \underline{Dispersion} (waves don't all travel at the same speed). 
+
+\subsection*{Dispersion}
+
+Add a zero order term to the HWE: 
+
+\begin{equation}
+    u_{tt} - u_{xx} + \lambda u = 0
+\end{equation}
+
+Where $\lambda \geq 0$ is a constant. This means that 
+
+\begin{equation}
+    u_{tt} = u_{xx} - \lambda u
+\end{equation}
+
+Where $\lambda u$ opposes the acceleration, i.e. a restoring force. Let $k \in \mathbb{R}$ and $\omega > 0$. Try $u(x,t) = e^{i(kx - \omega t)}$. 
+Here, $k$ is the spatial frequency and $\omega$ is the temporal frequency. Plugging this into equation (2) and obtain 
+
+\begin{equation}
+    \omega = \sqrt{k^2 + \lambda} 
+\end{equation}
+
+This is called the dispersion relation, where the temporal frequency depends on the spatial frequency. Note that $u$ is a left 
+or right moving wave with velocity $$c(k) = \omega/k = \frac{\sqrt{k^2 + \lambda}}{k}$$
+
+\begin{enumerate}
+    \item $\lambda = 0$, and $c(k) = 1$. Therefore, all waves travel at the same speed
+    \item $\lambda > 0$, then $c(k)$ changes with $k$ and therefore not all waves travel at the same speed. Therefore, this PDE is called dispersive. 
+\end{enumerate}
+
+\subsection*{Example}
+
+Assume $\lambda > 0$. Suppose initial condition, then use Fourier transform to write down an equation. Assume the following initial condition:
+
+\begin{equation}
+    u(x,0) = \int_{-\infty}^{\infty}A(k)e^{ikx}dk
+\end{equation}
+
+Solution, 
+
+\begin{equation}
+    u(x,t) = \int_{-\infty}^{\infty}A(k)e^{i(kx - \omega(k) t)}dk
+\end{equation}
+
+Observe, even if $u(x,0)$ has compact support. Then, the solution $u(x,t)$ will not since the low frequency components of the initial 
+data travel arbitrarily fast. This is because $c(k) \rightarrow \infty$ as $k \rightarrow 0$. 
+
+\subsection*{Schr\"odinger equation}
+
+\begin{equation}
+    u_t = iu_{xx}
+\end{equation}
+
+Where $u(x)$ is complex valued. 
+
+\begin{proof}
+    Let $u= e^{i(kx-\omega t)}$. And we obtain 
+    \begin{equation}
+        \omega = k^2
+    \end{equation}
+    And therefore, velocity is $\omega/k = k$. 
+\end{proof}
+
+\textbf{Remark:} Dispersive equations can still conserve quantities. For instance, equation (1) has the energy 
+
+\begin{equation}
+    \epsilon(t) = \frac{1}{2}\int_{-\infty}^{\infty}\left( u_t^2 + u_x^2 + \lambda u^2 \right)dx
+\end{equation}
+
+Check that $\epsilon'(t) = 0$ assuming boundary terms vanish (compact support). Schr\"odinger conserves the $L^2$ norm. In other words, 
+
+\begin{equation}
+    \frac{d}{dt}\left( \int_{\mathbb{R}}|u|^2 dx \right) = 0
+\end{equation}
+
+This represents the total probability of finding the particle.
+
+\subsection*{Dissipation}
+
+We call an equation \underline{dissipative} if the energy decreases with time. As an example, consider the equation
+
+\begin{equation}
+    u_{tt} + \alpha u_t - u_{xx} = 0
+\end{equation}
+
+This $\alpha u_t$ term is a friction term. How does this affect the energy? Take the usual energy:
+
+\begin{equation}
+    \epsilon(t) = \frac{1}{2}\int_{-\infty}^{\infty}\left( u_t^2 + u_x^2 \right)dx
+\end{equation}
+
+Then, 
+
+\begin{align*}
+    \epsilon'(t) &= \int \left( u_t u_{tt} + u_x u_{xt} \right) \\
+    &= \int \nabla \cdot (u_t u_x) - \alpha \int u_t^2 < 0
+\end{align*}
+
+Such a result has the effect of controlling $u_t$ and $u_x$. We can also reduce the lower order terms in general, suppose 
+
+\begin{equation}
+    u_{tt} - c^u_{xx} + \alpha u_t + \beta u_x + \gamma u =0
+\end{equation}
+
+Then let 
+
+\begin{equation}
+    v(x,t) = e^{(\alpha t - \beta c^{-2}x)/2}u(x,t)
+\end{equation}
+
+Then the PDE transforms into 
+
+\begin{equation}
+    v_{tt} - c^2 v_{xx} + \left( -\frac{\alpha^2}{4} + \frac{\beta^2}{4c^2} + \gamma \right) v = 0
+\end{equation}
+
+\end{document}

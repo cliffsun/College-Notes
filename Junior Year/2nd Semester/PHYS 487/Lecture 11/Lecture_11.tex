@@ -1,0 +1,200 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 11}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 11}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Zeeman effect and hyperfine interaction
+\end{enumerate}
+
+\section*{Last time}
+
+Previously, we looked at the fine (detailed) structure of Hydrogen. 
+
+\begin{enumerate}
+    \item Relativisitic $E_r' \propto \langle p^4 \rangle$
+    \item Spin orbit coupling $H'_{SO} \propto \vec{S} \cdot \vec{L}$
+\end{enumerate}
+
+We also looked at the total angular momentum $J = S + L$. Conserved quantities then $J^2, J_z, S^2, L^2$. But not $S_z$ and $L_z$. So then, 
+we should look at the good eigenstates of this Hamiltonian, $\ket{nljm_j}$. Then, adding angular momentum $J = J_1 + J_2$ yields a better basiis $\ket{jm_j j_1j_2}$. Then to transform 
+between different eigenstates using Clebsch-Gordon coefficients. Moreover, recall the "good states". Then we can find them using (1) the W-matrix or (2) if $[A,H^{(0)}] = [A,H'] = 0$, and $A$ has a non-degenerate spectrum, then the eigenstates of $A$ are good states. 
+
+\section*{The Zeeman effect}
+
+Consider an electron with spin orbiting a proton (ignore spin of proton). Then apply a magnetic field $B$ to the system. Then, the Hamiltonian of the system is 
+
+\begin{equation}
+    H = \gamma \hat{S} \cdot \hat{B}
+\end{equation}
+
+Recall from $E\&M$ that the force is 
+
+\begin{equation}
+    F = q\left( E + v \times B \right)
+\end{equation}
+
+And this produces a classical Hamiltonian of the form: 
+
+\begin{equation}
+    H = \frac{1}{2m}\left( p - q A \right)^2 + q\varphi
+\end{equation}
+
+Where $E = -\nabla \varphi - \partial_t A$ and $B = \nabla \times A$. Then, then quantum Hamiltonian is 
+
+\begin{equation}
+    H = \frac{1}{2m}\left( -i\hbar \nabla  - qA \right)^2 + q\varphi
+\end{equation}
+
+Now, we write this in terms of $B$ where $B$ is static and uniform in space. Then choose 
+
+\begin{equation}
+    A = -\frac{1}{2}\vec{r} \times \vec{B}
+\end{equation}
+
+Here, $\nabla \times A = B$. Then 
+
+\begin{align*}
+    \hat{H} &= \frac{1}{2m}\left( p - qA \right)^2 + q\varphi - \gamma S \cdot B \\
+    &= \frac{p^2}{2m} - \frac{q}{2m}\left( p \cdot A + A \cdot p \right) + \frac{q^2}{2m}A^2 + q\varphi - \gamma S \cdot B
+\end{align*}
+
+Moreover, $$A^2 = \frac{1}{4}\left( r^2 B^2 - \left( r \cdot B \right)^2 \right)$$
+
+Next, use a test function $f(r)$, then 
+
+\begin{equation}
+    p\cdot (Af) + A \cdot pf = (B_0 \cdot L) f
+\end{equation}
+
+Then the total Hamiltonian is 
+
+\begin{equation}
+    H = \frac{p^2}{2m} + q\varphi - B\left( \frac{q}{2m} L + \frac{q}{m}S \right) + \frac{q^2}{8m}[r^2 B^2 - (r \cdot B)^2]
+\end{equation}
+
+Then the Zeeman Hamiltonian is (ignoring orders of two and above):
+
+\begin{equation}
+    H = B\left( \frac{q}{2m} L + \frac{q}{m}S \right)
+\end{equation}
+
+This is how the electron interacts with the Magnetic field. Recall from the spin orbit coupling that there is a internal magnetic field 
+
+\begin{equation}
+    B_{int} = \frac{1}{4\pi \epsilon_0}\frac{e^2}{mc^2 r^2}L
+\end{equation}
+
+And $L \sim \hbar$ and $r \sim a$. Then 
+
+\begin{equation}
+    B_{int} \approx 12~T
+\end{equation}
+
+Therefore, $|B| \ll 10~T$. Now, find the energy shifts due to the the Zeeman effect. Then 
+
+\begin{equation}
+    H^{(0)} = H_{Bohr} + H_{FS}'
+\end{equation}
+
+Then, the perturbation to $H^{(0)}$ is the Zeeman Hamiltonian $H_z$. Then, the states are $\ket{nljm_j}$ (from spin orbit coupling) and $E_{nj}$ come from the lifting of the degeneracy due to S-O coupling. 
+
+Then consider a magnetic field in the z direction. Here, $H_z$ commutes with $J_z$, therefore, $\ket{nljm_j}$ are good eigenstates. Then consider the first order correction, 
+
+\begin{equation}
+    E_z^{(1)} = \langle nljm_j | H_z | nljm_j \rangle = \frac{e}{2m}B_{ext}\hat{z}\langle \underbrace{L + 2S }_{J + S}\rangle
+\end{equation}
+
+Now, we work to find $\langle S \rangle$. Firstly, $J$ is conserved and therefore constant. Moreover, $L^2, S^2$. Here, therefore, $J = S + L$ is constant where $S$ and $L$ are constant lengths and therefore are precessing around $J$. Then consider 
+
+\begin{equation}
+    \langle S \rangle = S \cdot \hat{J} \cdot \hat{J} =  S \cdot \frac{J \cdot J}{|J|^2} = \frac{(S \cdot J)}{|J|^2}\cdot J
+\end{equation}
+
+Then, this is equivalent to  
+
+\begin{equation}
+    S\cdot J = \frac{1}{2}\left( J^2 + S^2 - L^2 \right) \implies \frac{\hbar^2}{2}\left[ j(j+1) + s(s+1) - l(l+1) \right]
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \langle L + 2S \rangle = \langle \left( 1 + \frac{S \cdot J}{J^2}J \right)\rangle = \left[ 1 + \frac{j(j+1) - l(l+1) + s(s+1)}{2j(j+1)} \right] \langle J \rangle 
+\end{equation}
+
+The constant is also called $g_j$ as the lande' g factor. Therefore, 
+
+\begin{equation}
+    E_z = \frac{e\hbar}{2m}g_j B_{ext} \cdot m_j
+\end{equation}
+
+Then $e\hbar/(2m)$ is $\mu_B$ around $5.8 \times 10^{-5}$eV/T. If a strong or intermediate magnetic field was applied instead, then 
+
+\begin{enumerate}
+    \item For strong fields, $B_{ext} \gg B_{int}$, then $H^{(0)} = H_{Bohr} + H_z$ and $H' = H_{FS}$. Then the basis of this problem would be $\ket{nlm_lm_s}$.
+    \item For intermediate fields, $B_{ext} \sim 10~T$, then this a bit complicated. lmao 
+\end{enumerate}
+
+\section*{Hyperfine splitting}
+
+The idea: the proton spin and the electron spin interact with each other, therefore, the energy levels will be affected by this. Then there is an effect magnetic field applied on the electron, and 
+therefore we observe a Zeeman like effect. Here, the constant $\mu_p$ is 
+
+\begin{equation}
+    \frac{g_{p}e}{2m_p} \sim 5.6 
+\end{equation}
+
+From classical $E\&M$ we have that 
+
+\begin{equation}
+    B = \frac{\mu_0}{4\pi r^3}\left[ 3(\mu \cdot r)\hat{r} - \mu\right] + \frac{2\mu_0}{3}\mu \delta^3(r)
+\end{equation}
+
+Plugging this back into the Zeeman Hamiltonian and use perturbation theory. Then $H_{HF} \propto S_p \cdot S_e$. Then $S = S_p + S_e$.  
+
+\end{document}
