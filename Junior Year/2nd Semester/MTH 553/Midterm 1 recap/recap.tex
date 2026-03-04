@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Midterm \# 1 Recap}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Midterm \# 1 Recap}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Wave equation}
+
+Homogenous wave equation on an interval with 
+\begin{enumerate}
+    \item Dirichlet boundary conditions (Fourier Series with sin)
+    \item Neumann boundary conditions (Fourier Series with cos)
+\end{enumerate}
+
+How does a wave reflect with 
+\begin{enumerate}
+    \item Dirichlet BC 
+    \item Neumann BC
+\end{enumerate}
+
+\section*{Weak derivatives and weak solutions}
+
+Transmission condition: jump must remain constant along the discontinuity. For a wave equation, the jump must remain constant on the characteristics ($x \pm ct$). 
+
+\section*{Higher dimension wave equation}
+
+Spherical mean is the average of the function over a sphere of radius $r$, called $M_h(x,r)$ is the average at point $x$ with radius $r$. Then, used Darboux to prove that $$\triangle M_h = M_{\triangle h}$$
+
+Then, $M_h(x,r)/r$ satisified the wave equation for one dimension where $x$ is fixed. Then Kirchhof showed that the domain of dependence and the range of influence was the 
+surface of the cone which implies sharp signals in three dimensions.
+
+For 2 dimension, get the Hadamard formula by dimension reduction. Then the domain of dependence and the range of influence are \textbf{solid} cones, therefore, there are non sharp signals. In n dimensions, 
+we also had \textbf{energy methods}. That is 
+
+\begin{equation}
+    0 = \frac{1}{2}\frac{d}{dt}\int_{\mathbb{R}}\left( u_t^2 + c^2 |\nabla u|^2 \right)dx
+\end{equation}
+
+Prove that energy is conserved. Dispersion $\omega(k)$, plug in the plane wave 
+
+\begin{equation}
+    e^{i(kx - \omega t)}
+\end{equation}
+
+Moreover, dissipation means that the energy is decreasing. 
+
+\section*{First order equations}
+
+Method of characteristics. 
+
+\begin{equation}
+    au_x + bu_y = c
+\end{equation}
+
+Special cases: (1) burger's equation and (2) traffic flow.
+
+\begin{equation}
+    uu_x + u_y = 0, \text{ Burger's equation}
+\end{equation}
+
+Here, $G(u) = u^2/2$. 
+
+\begin{equation}
+    G(\rho)_x + \rho_y = 0, \text{ Traffic equation}
+\end{equation}
+
+Where 
+
+\begin{equation}
+    G(\rho) = c\left( 1- \frac{\rho}{\rho_{\max}} \right)
+\end{equation}
+
+All examples of conservation laws. The characteristics are all straight lines, that is 
+
+\begin{equation}
+    x = G'(u)y + x_0
+\end{equation}
+
+Problems, shocks can occur and also fans. For shocks, we care about 
+
+\begin{enumerate}
+    \item $\xi'(y)$
+    \item Entropy condition
+\end{enumerate}
+
+For a fan, the formula 
+
+\begin{equation}
+    G'^{-1}(x/y)
+\end{equation}
+
+describes the fan from the origin by Riemann's problem. Also figure out the bounds! 
+
+\section*{ODE methods}
+
+\begin{enumerate}
+    \item Separable
+    \item 1st order linear
+\end{enumerate}
+
+\end{document}
