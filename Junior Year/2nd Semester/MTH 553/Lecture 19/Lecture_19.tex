@@ -1,0 +1,239 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 19}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 19}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item More heat equation
+\end{enumerate}
+
+\section*{Last time}
+\begin{enumerate}
+    \item Heat kernel $K(x,y,t)$ such that 
+    \begin{equation}
+        u(x,t) = \int_{\mathbb{R}^n} K(x,y,t) f(y) dy
+    \end{equation}
+    \item Maximum principle 
+    \begin{equation}
+        u(x,t) \leq \max_{(\tilde{x}, \tilde{t}) \in \Gamma} u(\tilde{x}, \tilde{t})
+    \end{equation}
+\end{enumerate}
+
+\section*{Maximum Principle}
+
+We now prove the Maximum principle for the heat equation.
+
+\begin{proof}
+    Assume that $u_t < \triangle u$ in $\Omega_T \cup \text{ top}$. At a maximum point in either $\Omega_T$ or the top $\Omega \times \{T\}$. Then at that maximum point, then $u_t \leq 0$ by the first
+    derivative test and $\triangle u \leq 0$ by the 2nd derivative test. This contradicts $u_t < \triangle u$. Therefore, the maximum can only be on the bottom or sides. 
+\end{proof}
+
+Next, 
+
+\begin{proof}
+    Suppose that $u_t \leq \triangle u$ in $\Omega_T$. Then let $\epsilon > 0$, define $v = u - \epsilon t$ and $v_t = u_t - \epsilon \leq \triangle u - \epsilon = \triangle v  - \epsilon$. Therefore, 
+    \begin{equation}
+        v_t < \triangle v
+    \end{equation}
+    in $\Omega_T \cup \{\text{top}\}$. So therefore, 
+    \begin{equation}
+        v(x,t) \leq \max_{\Gamma}v \leq \max_{\Gamma}u
+    \end{equation}
+    Then $\epsilon \rightarrow 0$, then $v(x,t) \rightarrow u(x,t)$. 
+\end{proof}
+
+This proof was simply just abusing the inequality $u_t \leq u_{xx}$ and proving an inequality. 
+
+\section*{Uniqueness forwards in time}
+
+If $u,v \in C^{2,1}(\overline{\Omega_T})$, both then 
+
+\begin{align*}
+    w_t &= \triangle w \\
+    w(x,0) &= g(x) \\
+    w(x,t) &= h(x)
+\end{align*}
+
+Then $u \equiv v$. 
+
+\begin{proof}
+    Let $z = u - r$, so then $z_t = \triangle z$ on $\Omega_T$ and $z=0$ on $\Gamma$ by IC, BC. Therefore, 
+    \begin{equation}
+        z \leq 0 \quad \text{in} \Omega_T
+    \end{equation}
+    Similarly, for $-z$. Therefore, $z \equiv 0$. 
+\end{proof}
+
+\section*{Heat equation in $\mathbb{R}^n$}
+
+\begin{align*}
+    u_t &= \triangle u \\
+    u(x,0) &= g(x)
+\end{align*}
+
+Tool, use the Fourier transform. Then, the Schwartz class 
+
+\begin{equation}
+    S = \{v \in C^{\infty}(\mathbb{R}^n): |x|^k|D^{\alpha}v(x)| \text{ in bounded on $\mathbb{R}^n$ for all $k \geq 0$}\}
+\end{equation}
+
+In particular, $C^{\infty}_{0} \subset S$. These are also functions that decay fast. Also, $e^{-|x|^2}$. Note, if $v \in S$, then 
+
+\begin{enumerate}
+    \item All derivatives of a Schwartz function are Schwartz functions. 
+    \item $pv \in S$ if $p$ is a polynomial. 
+    \item $|v(x)| \leq (\text{const.}/(1 + |x|)^{n+1})$, $v \in L^1(\mathbb{R}^n)$ and $v(x) \rightarrow 0$ as $x \rightarrow \infty$. 
+\end{enumerate}
+
+\begin{definition}
+    For a integrable function $g \in L^1$, define its Fourier transform $\hat{g}$ by 
+    \begin{equation}
+        \hat{g}(\xi) = \frac{1}{\left( 2\pi \right)^{n/2}}\int_{\mathbb{R}^n}e^{-ix \cdot \xi} g(x) dx
+    \end{equation}
+    For $\xi \in \mathbb{R}^n$. 
+\end{definition}
+
+Then if $g(x) \in S$, then 
+
+\begin{equation}
+    \partial_{\xi_j}g(\xi) = \frac{1}{(2\pi)^{n/2}}\int_{\mathbb{R}^n}e^{-i x \cdot \xi}(-i x_j) g(x)dx
+\end{equation}
+
+This is justified by the "dominated convergence theorem". Then, $-ix_j g(x) \in L^1$. But we also showed that this is the same as 
+
+\begin{equation}
+    -i x_j \hat{g}(\xi)
+\end{equation}
+
+Repeating yields that 
+
+\begin{equation}
+    (D_{\xi})^{\beta}\hat{g}(\xi) = (-ix)^{\beta}\hat{g}(\xi)
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    x^{\beta} = x^{\beta_1}x^{\beta_2}\dots
+\end{equation}
+
+Hence, $\hat{g} \in C_{0}^{\infty}(\mathbb{R}^n)$, or is smooth. Next, what if we do the following:
+
+\begin{equation}
+    \hat{\left( \frac{\partial g}{\partial x_i} \right)}(\xi) = \frac{1}{\left( 2\pi \right)^{n/2}}\int_{\mathbb{R}^n}e^{-ix \cdot \xi}\frac{\partial g}{\partial x_i}(x)dx
+\end{equation}
+
+THen we obtain 
+
+\begin{equation}
+    \frac{1}{(2\pi)^{n/2}}\int_{\mathbb{R}^n} = (i \xi_j)e^{-ix \cdot \xi}g(x)dx
+\end{equation}
+
+The boundary terms go away because $g$ is a Schwartz function. Therefore, we obtain 
+
+\begin{equation}
+    i\xi_j\hat{g}(x)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    D_x^{\alpha}\left( g \right)(\xi) = \left( -i\xi \right)^{\alpha}\hat{g}(x)
+\end{equation}
+
+So the Fourier transform assigns differentiation towards multiplication by polynomials. 
+
+\begin{lemma}
+    $$g \in L^1 \implies \hat{g} \in L^{\infty}$$
+    That is $\hat{g}$ is bounded. Therefore, 
+    $$g \in S \implies \hat{g} \in S$$
+
+    That is $\hat{g}$ is smooth and rapidly decaying. 
+\end{lemma}
+
+\begin{proof}
+    $g \in L^1$ and $$|\hat{g}(\xi)| \leq \int_{\mathbb{R}^n}\left( |g(x)| \right)dx < \infty$$ This is independent of $\xi$.
+    This also means that $\hat{g} \in L^{\infty}$
+\end{proof}
+
+\begin{proof}
+    Next, suppose $g \in S$, then for all $\alpha, \beta$, we have that 
+    \begin{equation}
+        D_{x}^{\alpha}\left( (-ix)^{\beta}g(x) \right) \in S \subset L^1
+    \end{equation}
+    Therefore, $\hat{g}$ is also a Schwartz function. 
+\end{proof}
+
+With
+
+\begin{equation}
+    D^{\alpha}_{X}\left( (ix)^{\beta}g(x) \right)^{\hat{}}(\xi) = (i\xi)^{\alpha}\left[ (-ix)^{\beta}g \right]^{\hat{}}(\xi)
+\end{equation}
+\begin{equation}
+    = (i\xi)^{\alpha}D^{\beta}_{\xi}g(\xi)
+\end{equation}
+
+But the first statement is bounded, therefore, the last thing is also bounded. This is the condition that 
+
+\begin{equation}
+    |\xi^{\alpha}| |D^{\beta}_{\xi}g|
+\end{equation}
+
+is also bounded, therefore $g \in S$. 
+
+\begin{definition}
+    For $g \in L^1$, then define its inverse Fourier transform 
+    \begin{equation}
+        g^{\text{upside down hat}} = \frac{1}{(2\pi)^{n/2}}\int_{\mathbb{R}^n}e^{i x \cdot \xi}g(x)dx
+    \end{equation}
+    Note the plus sign change. This is the same as 
+    \begin{equation}
+        \hat{g}(-\xi)
+    \end{equation}
+\end{definition}
+
+\end{document}
