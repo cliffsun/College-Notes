@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 20}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 20}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Fourier inversion
+    \item Solving heat equation with Fourier transform
+\end{enumerate}
+
+For $g \in S$ (remember that $S$ is the Schwartz function). Then $\check{\hat{g}} = g$. Remark, Fourier transform and inversion also hold for $g \in L^2(\mathbb{R}^n)$. The Fourier transform is an 
+\underline{$L^2$-isometry} 
+
+\begin{equation}
+    ||g||_{L^2} = ||\hat{g}||_{L^2}
+\end{equation}
+
+
+\section*{Heat kernel on $\mathbb{R}^n$ by Fourier transform}
+
+Formally, $u_t = \triangle u$ and therefore 
+
+\begin{equation}
+    \hat{(u_t)} = \hat{\triangle u}
+\end{equation}
+
+\begin{align*}
+    \implies \partial_t \hat{u}(\xi, t) &= \sum_{j=1}^n \left( \hat{\partial^2_x u} \right) \\
+    &= \sum (i\xi_j)^{2}\hat{u}(\xi,t) \\
+    &= i|\xi|^2 \hat{u}
+\end{align*}
+
+This is simply an ODE with respect to the $t$ coordinate. The solution is then 
+
+\begin{equation}
+    \hat{u}(\xi,t) = C(\xi)e^{-|\xi|^2 t}
+\end{equation}
+
+We can also use the initial condition that $u(x,0) = g(x)$. Then when $t=0$, we obtain that 
+
+\begin{equation}
+    \hat{u}(\xi,0) = \hat{g}(\xi)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \hat{u}(\xi,t) = \hat{g}(\xi)e^{-|\xi|^2 t}
+\end{equation}
+
+Now, 
+
+\begin{align*}
+    u(x,t) &= \left[\hat{g}(\xi)e^{-|\xi|^2 t}\right]\check{} \\
+    &= \frac{1}{(2\pi)^{n/2}}\int_{\mathbb{R}^n}e^{i \xi \cdot x}\hat{g}(\xi)e^{-|\xi|^2 t}d\xi\\
+    &= \int_{\mathbb{R}^n}\left[ \frac{1}{(2\pi)^n} \int_{\mathbb{R}^n}e^{i(x-y) \dot \xi - |\xi|^2 t}d\xi \right]g(y)dy
+\end{align*}
+
+This last line was determined by the definition of $\hat{g}(x)$ using a dummy variable $y$. So the goal now is to evaluate this integral kernel. 
+
+\subsection*{n=1}
+
+Then this integral is  
+
+\begin{align*}
+    &\frac{1}{2\pi}\int_{\mathbb{R}}e^{i(x-y)\xi - \xi^2 t}d\xi \\
+    &= \frac{e^{-(x-y)^2/4t}}{2\pi}\int_{\mathbb{R}^n}e^{-\left[ \xi - i\frac{(x-y)}{2t} \right]^2t}d\xi\\
+    &= \frac{e^{-\left( x-y \right)^2/4t}}{2\pi}\int_{\gamma} e^{-z^2 t}dz
+\end{align*}
+
+Where $\gamma$ is a contour on the complex plane. Then, from complex analysis, we use Cauchy's theorem, and then we obtain the following integral:
+
+\begin{align*}
+    \frac{e^{-\left( x-y \right)^2/4t}}{2\pi}\int_{\gamma} e^{-z^2 t}dz &= \frac{e^{-\left( x-y \right)^2/4t}}{2\pi}\int_{\mathbb{R}^n} e^{-z^2 t}dz \\
+    &= \frac{e^{-\left( x-y \right)^2/4t}}{2\pi}\frac{\sqrt{\pi}}{\sqrt{t}}
+\end{align*}
+
+Therefore, the heat kernel in 1-d is 
+
+\begin{equation}
+    \frac{1}{\sqrt{4\pi t}}e^{-(x-y)^2/4t}
+\end{equation}
+
+
+For $n \geq 1$, we can split up the integrals and splitting the exponential, getting 
+
+\begin{equation}
+    \frac{1}{(4\pi t)^{n/2}}e^{-|x-y|^2/4t} = K(x,y,t)
+\end{equation}
+
+This is the heat kernel. Now, what does this suggest? This implies a solution formula for the initial value problem. If $g(x)$ is bounded and continuous, then:
+
+\begin{align*}
+    u(x,t) &= \int_{\mathbb{R}^n}K(x,y,t)g(y)dy \\
+    &= \frac{1}{(4\pi t)^{n/2}}\int_{\mathbb{R}^n}e^{-|x-y|^2/4t} g(y)dy
+\end{align*}
+
+Where $K(x,y,t)$ is defined as above. In fact, this is a bounded and $C^{\infty}$ smooth solution of 
+
+\begin{equation}
+    u_t = \triangle u \quad x \in \mathbb{R}^n, t > 0
+\end{equation}
+
+A few remarks:
+
+\begin{enumerate}
+    \item There exists an analogous heat kernel formula for bounded domains in Section 5.1 using eigenfunctions. 
+    \item If $g$ is bounded but is only known to be continuous at point $\tilde{x}$, then the solution $u$ is continuous at $\tilde{x}$ (not for all $x$)
+    \item Infinite propagation speed for heat equation. Suppose $g \geq 0$ with compact support and $g> 0$ somewhere. Then the heat equation states that $u(x,t)> 0$ is positive for all $x$ and $t$, regardless of 
+    how small $t$ may be. Clearly \underline{non-physical phenomenon}. 
+    \item Instanenous smoothing, i.e. $u(x,t)$ is $C^{\infty}$-smooth $\forall t > 0$ even though $g(x)$ is bounded (doesn't have to be continuous!) 
+\end{enumerate}
+
+\end{document}
