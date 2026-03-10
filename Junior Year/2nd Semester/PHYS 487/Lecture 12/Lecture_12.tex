@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 12}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 12}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Variational principle
+\end{enumerate}
+
+\section*{The variational principle}
+
+Goal: find ground state energies of a given Hamiltonian. That is, we cannot reliably find the ground state energy and/or wavefunction for $H$. Example, Helium with 2 protons and 2 electrons. 
+
+\begin{equation}
+    \hat{H} = \left[-\frac{\hbar^2}{2m}\nabla_1^2 - \frac{1}{4\pi \epsilon_0}\frac{2e^2}{r_1}\right] + \left[-\frac{\hbar^2}{2m}\nabla_2^2 - \frac{1}{4\pi \epsilon_0}\frac{2e^2}{r_2}\right] + \frac{1}{4\pi \epsilon_0}\frac{e^2}{|r_1 - r_2|}
+\end{equation}
+
+Last term is the electron to electron interaction, call it $V_{ee}$. No known analytical solution. We can guess solutions. Ignoring $V_{ee}$, then the ground state is $8(-13.6)$eV = $-109$eV. But the experiment is $-78.975$eV. So, the perturbation 
+is rather large, so we need some approximation. 
+
+\subsection*{Starting point}
+
+\begin{equation}
+    \langle \psi | H | \psi \rangle \geq E_{GS}
+\end{equation}
+
+\begin{proof}
+    Expand $\psi$ in terms of basis states. Then in particular, the ground state basis state is the lowest energy. Therefore, we arrive that this bound. 
+\end{proof}
+
+Then, just keep guessing wavefunctions and optimizing them until we converge to the lowest energy level. Then, we can parameterize the wave function $\ket{\psi(\{x_i\})}$ and minimize $\langle H \rangle$. Now, consider the Harmonic oscillator with a ground state energy of $\hbar \omega/2$. So, then how would this variational principle work? 
+
+\begin{enumerate}
+    \item Pick trial wavefunction $\ket{\psi_i}$ as a Gaussian. 
+    \begin{equation}
+        \psi(x) = Ae^{-bx^2}
+    \end{equation}
+    Want to normalize the wavefunction 
+    \begin{equation}
+        1 = \langle \psi | \psi \rangle = |A|^2 \sqrt{\frac{\pi}{2b}} \implies A = \left( \frac{2b}{\pi} \right)^{1/4}
+    \end{equation}
+    \item Find $$\langle H \rangle = \left( \frac{2b}{\pi} \right)^{1/2}\left[ -\frac{\hbar^2}{2m} \int dx e^{-bx^2} \frac{d^2}{dx^2}e^{-bx^2} + \frac{1}{2}m\omega^2 \int dx x^2 e^{-2bx^2} \right]$$
+    We can find the solution to these integrals using integration by parts. We obtain that 
+    \begin{equation}
+        \langle T \rangle = \frac{\hbar^2 b}{2m}
+    \end{equation}
+    \begin{equation}
+        \langle V \rangle = \frac{m \omega^2}{8b}
+    \end{equation}
+    Therefore, 
+    \begin{equation}
+        \langle H \rangle = \langle T \rangle + \langle V \rangle
+    \end{equation}
+    \item Minimization of 
+    \begin{equation}
+        \frac{\partial}{\partial b} \langle H \rangle = 0 \implies b = \frac{m \omega}{2\hbar}
+    \end{equation}
+\end{enumerate}
+
+\section*{Back to Helium}
+
+Pick a trial wavefunction. Here, $\psi_{100}$ is the ground state energy of the hydrogen atom.
+
+\begin{equation}
+    \psi_0(r_1, r_2) = \psi_{100}(r_1)\psi_{100}(r_2) = \frac{8}{\pi a^3}e^{-2(r_1 + r_2)/a}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    H\psi_0 = (8E_1 + V_{ee})\psi_0
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \langle H \rangle = 8E_1 + \langle V_{ee} \rangle
+\end{equation}
+
+Then, we have that evaluate $\langle V_{ee} \rangle$. 
+
+\begin{equation}
+    \langle V_{ee} \rangle = \left( \frac{e^2}{4\pi \epsilon_0} \right)\left( \frac{8}{\pi a^3} \right)^2 \int \frac{e^{-4(r_1 + r_2)/a}}{|r_1 - r_2|} \text{ (lecture slides got cut off...)}
+\end{equation}
+
+Then, choose an arbitrary $r_2$ and $r_1$, then calculate $$|r_1 - r_2| = \sqrt{r_1^2 + r_2^2 - 2r_1r_2 \cos\theta}$$
+
+So then, fixing $r_2$, we obtain the following integral for just $r_2$:
+
+\begin{equation}
+    \langle V_{ee} \rangle = \left( \frac{e^2}{4\pi \epsilon_0} \right)\left( \frac{8}{\pi a^3} \right)^2 \int \frac{e^{-4(r_2)/a}}{\sqrt{r_1^2 + r_2^2 - 2r_1r_2 \cos\theta}}r_2^2 \sin\theta_2 dr_2 d\theta_2 d\phi
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \int_0^{\pi}d\theta_2 [\dots] = \frac{\sqrt{r_1^2 + r_2^2 - 2r_1r_2}}{r_1r_2}\bigg|_0^{\pi}
+\end{equation}
+
+Then, the full integral is 
+
+\begin{equation}
+    = 4\pi \left( \frac{1}{r_1}\int_{0}^{r_1}e^{-4r_2/a} r_2^2dr_2 + \int_{r_1}^{\infty}e^{-4r_2/a}r_2dr_2\right)
+\end{equation}
+
+\begin{equation}
+    = \frac{\pi a^3}{8r_1}\left[ 1 - \left( 1 - \frac{2r_1}{a} e^{-4r_1/a}\right) \right]
+\end{equation}
+
+Then, with more IBP for $r_1$, then we obtain that 
+
+\begin{equation}
+    \langle V_{ee} \rangle = -\frac{5}{2}E_1 \approx 34 eV
+\end{equation}
+
+Recall that the energy of the ground state (ignoring electron interactions) $\approx$ -109eV. So now, we get that $\langle H \rangle = -75$eV. Note, here the chosen wavefunction ignored electron to electron interactions. Now, we can choose another trial wavefunction 
+
+\begin{equation}
+    \psi_0(r_1, r_2) = \frac{z^3}{\pi a^3}e^{-z(r_1 + r_2)/a}
+\end{equation}
+
+Where $z$ is the effective charge. Then our effective Hamiltonian is 
+
+\begin{equation}
+    H = -\frac{\hbar^2}{2m}\left( \nabla_1^2 + \nabla_2^2 \right) - \frac{e^2}{4\pi \epsilon_0}\left( \frac{z}{r_1} + \frac{z}{r_2} \right) + \frac{e^2}{4\pi \epsilon_0}\left( \frac{z - 2}{r_1} + \frac{z - 2}{r_1} + \frac{1}{|r_1 - r_2|} \right)
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \langle H \rangle = 2z^2 E_1 + 2(z - 2)\frac{e^2}{4\pi \epsilon_0}\langle 1/r \rangle + \langle V_{ee} \rangle 
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \langle V_{ee} \rangle = -\frac{5z}{4}E_1
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \langle H \rangle = \left[-2z^2 + \left( \frac{27}{4} \right)z\right]E_1
+\end{equation}
+
+Minimizing this function with respect to $z$ yields 
+
+\begin{equation}
+    z \approx 1.7
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \langle H \rangle \approx -77.5 \text{eV}
+\end{equation}
+
+This is $2\%$ off the experimental value. Chemical accuracy is $\sim 4 $kJ/mol. Converting $1.5$eV into kJ/mol is $160$kJ. So our result is pretty bad.  
+
+\end{document}
