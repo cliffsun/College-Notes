@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 21}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 21}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Extension from last time, heat kernel stuff
+\end{enumerate}
+
+\section*{Proof of some parts of Theorem from last time}
+
+\begin{enumerate}
+    \item True when $g \equiv 1$, then $u \equiv 1$. 
+    \begin{proof}
+        \begin{align*}
+            \int_{\mathbb{R}^n}K(x,y,t)dy &= \int_{\mathbb{R}^n}\frac{1}{(4\pi t)^{n/2}}e^{-|x-y|^2/4t}dy \\
+            &= \prod_{j=1}^{n}\frac{1}{(4\pi t)^{/2}}\int_{-\infty}^{\infty}e^{-(x_j - y_j)^2/4t}dy_j \\
+            &= \prod_{j=1}^{n}\frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty}e^{-s_j^2}ds_j \\
+            &= 1
+        \end{align*}
+    \end{proof}
+    \item $u$ is bounded since $|u(x,t)| \leq ||g||_{\infty}$
+    \item $u \in C^{\infty}(\mathbb{R}^n \times (0, \infty))$ by differentiating through the integral with respect to $x$ and $t$. This is true regardless if $g$ is smooth or not. 
+    \item The heat kernel satisfies the heat equation. That is $K_t = \triangle K$. Therefore, $u_t = \triangle u$ by differentiating through the integral.
+    \item Check initial condition, show that $u(x,t) \rightarrow g(\tilde{x})$ as $x \rightarrow \tilde{x}$ and $t \rightarrow 0$. 
+    \item Uniqueness is guaranteed in bounded solution. 
+\end{enumerate}
+
+\subsection*{Remarks}
+
+\begin{enumerate}
+    \item $K(x,y,t)$ is the temperature of $x$ at time $t$ due to unit of heat released at $y$ at time $0$. 
+    \item If $g(y) = \delta(y - \tilde{y})$, then graphically, you can see the heat spreading out from $\tilde{y}$. 
+\end{enumerate}
+
+\section*{Non-homogenous heat equation}
+
+\begin{align*}
+    u_t &= \triangle u + f(x,t)\\
+    u(x,0) &= 0
+\end{align*}
+
+Duhamel also worked for the heat equation. Let $U(x,t;s)$ solve 
+
+\begin{align*}
+    U_t &= \triangle U \\
+    U(x,0;s) &= f(x,s)
+\end{align*}
+
+Then, solve for $U$ using the heat kernel. Then, 
+
+\begin{equation}
+    u(x,t) = \int_{0}^{t}U(x,t-s;s) ds
+\end{equation}
+
+Solves the non-homogenous wave equation:
+
+\begin{equation}
+    u(x,t) = \int_{0}^{t}\int_{\mathbb{R}^n}K(x,y,t-s)f(y,s)dyds
+\end{equation}
+
+\begin{proof}
+    \begin{align*}
+        u_t &= \int_{0}^{t}U_t(t - s; s) ds + U(x,t-t;t) \\
+        &= \int_{0}^{t} \triangle U(t-s;s)ds + f(x,t)\\
+        &= \triangle u + f(x,t)
+    \end{align*}
+    The conversion of $U(x,0;t)$ to $f(x,t)$ is due to the initial conditions.
+\end{proof}
+
+\section*{Mean value formula for heat equation}
+
+\begin{definition}
+    For $x \in \mathbb{R}^n$, $t \in \mathbb{R}$, and $r > 0$. Define the heat ball as the following:
+    \begin{equation}
+        E(x,t;r) = \{(y,s) \in \mathbb{R}^n \times \mathbb{R}: s \leq t \text{ and } K(x,y,t-s) \leq 1/r^n\}
+    \end{equation}
+    This is not really a ball, but a closed elliptical curve. Note that the top point of the ball is the average of the heat inside the ball.
+\end{definition}
+
+\subsection*{Shape}
+
+Take $x=0$, $t=0$. Let $E(r) = E(0,0;r)$ and $(y,s) \in E(r)$ such that $s \leq 0$ and $K(-y, -s) \leq 1/r^n$. Then we obtain 
+
+\begin{equation}
+    \frac{1}{(4\pi (-s))^{n/2}}e^{-|y|^2/4(-s)} \leq \frac{1}{r^n}
+\end{equation}
+
+\begin{equation}
+    s \leq 0, \quad -\frac{n}{2}\log(-4\pi s) + \frac{|y|^2}{4s} + n\log r \geq 0
+\end{equation}
+
+Let 
+
+\begin{equation}
+    \Psi(y,s) = -\frac{n}{2}\log(-4\pi s) + \frac{|y|^2}{4s} + n\log r
+\end{equation}
+
+Continuing, 
+
+\begin{equation}
+    s \leq 0, \quad |y|^2 \leq 2n s \log(-4\pi s) - (4n\log(r))s
+\end{equation}
+
+This function is concave with respect to $s$. This is zero at $s=0$ and $s= -r^2/4\pi$. Then, the shape of the heat ball is 
+
+\begin{equation}
+    -\frac{r^2}{4\pi} \leq s \leq 0 
+\end{equation}
+
+And $$|y| \leq \sqrt{2ns\log(-4\pi s) - (4n\log (r))s}$$
+
+The above is the cross section of the heat ball. 
+
+\end{document}
