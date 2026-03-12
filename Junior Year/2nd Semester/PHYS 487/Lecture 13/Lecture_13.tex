@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 13}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 13}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Variational Principle
+\end{enumerate}
+
+\section*{Recap}
+
+We know that $\langle H \rangle \geq E_{GS}$. Then, start with some wave function parameterized by some set of numbers and minimize it. 
+We can make informed choices of the wave function.
+
+
+\section*{Example: Hydrogen molecule ion $H_2^{+}$}
+
+Two protons and one electron with distances $r$ and $r'$. We can't analytically calculate the ground state energy, but is this stable? Here, 
+
+\begin{equation}
+    \hat{H} = -\frac{\hbar^2}{2m}\nabla^2 - \frac{e^2}{4\pi\epsilon_0}\left( \frac{1}{r} + \frac{1}{r'} \right)
+\end{equation}
+
+Here, $V_{pp}$ is the proton and proton interaction (i.e. how the electron interacts with both of the protons). This is the Hamiltonian of the electron. A good trial wavefunction is:
+
+\begin{equation}
+    \psi() = A(\psi_0(r) + \psi_0(r'))
+\end{equation}
+
+Where, $\psi_0$ is the ground state wavefunction of the Hydrogen atom. This approach is called \underline{LCAo}. We first normalize the wavefunction, 
+
+\begin{equation}
+    1 = A^2\left[\underbrace{\int \psi_0^2 dr }_{=1}+ \underbrace{\int \psi_0^2(r')dr}_{=1} + 2\int \psi_0(r)\psi_0(r')dr\right]
+\end{equation}
+
+Now, consider the following coordinate system. The protons are separated by distance $R$ along the $z$ axis. Now, the electron is a distance $r'$ with angle parameters according to spherical coordinates. Then 
+
+\begin{equation}
+    r' = \sqrt{r^2 + R^2 - 2rR\cos\theta}
+\end{equation}
+
+So, then the integral evaluates
+
+\begin{equation}
+    \int dr \psi_0(r)\psi_0(r') = e^{-R/a}\left[  1 + \frac{R}{a} + \frac{1}{3}\left( \frac{R}{a} \right)^2 \right]
+\end{equation}
+
+Physically, this is $\langle \psi_0(r) | \psi_0(r') \rangle$ represents the double counting of the electron. This can also be interpreted as being orthogonal. This is called the \underline{overlap integral}. Next, we know that 
+
+\begin{equation}
+    H\psi_0(r) = \left( -\frac{\hbar^2}{2m}\nabla^2 - \frac{e^2}{4\pi \epsilon_0}\frac{1}{r} \right)\psi_0 = E_1 \psi_0
+\end{equation}
+
+So, this is hydrogen. Now, with our trial wavefunction, 
+
+\begin{align*}
+    H\psi &= A \left[ -\frac{\hbar^2}{2m}\nabla^2 - \frac{e^2}{4\pi \epsilon_0}\left( \frac{1}{r} + \frac{1}{r'} \right) \right]\left[ \psi_0(r) + \psi_0(r') \right] \\
+    &= E_1 \psi_0 - A(\frac{e^2}{4\pi \epsilon_0})\left( \frac{1}{r'}\psi_0(r) + \frac{1}{r}\psi_0(r') \right)
+\end{align*}
+
+If everything on the minus sign is positive, then we find lower energy and therefore the atom is stable. So now, 
+
+\begin{align*}
+    \langle H \rangle &= E_1 - 2A^2\left( \frac{e^2}{4\pi \epsilon_0} \right)\left[ \langle \psi_0(r) | 1/r' | \psi_0(r)\rangle + \langle \psi_0(r) | 1/r | \psi_0(r') \rangle \right] \\
+\end{align*}
+
+The first inner product is called the direct integral, and the second inner product is called the second integral. So the direct integral $D$ is 
+
+\begin{equation}
+    D = \frac{a}{R} - \left(  1 + \frac{a}{R} \right)e^{-R/a}
+\end{equation}
+
+And the exchange integral $X$ is 
+
+\begin{equation}
+    X = \left( 1 + \frac{R}{a} \right)e^{-R/a}
+\end{equation}
+
+Now, combining everything yields 
+
+\begin{equation}
+    \langle H \rangle = \left( 1 + 2\frac{D + X}{1 + I} \right)E_1
+\end{equation}
+
+Where $I$ is the double counting integral. Now, $V_{pp}$ is the proton-proton interaction. 
+
+\begin{equation}
+    V_{pp} = \frac{e^2}{4\pi \epsilon_0}\frac{1}{R} = \frac{-2a}{R}E_1
+\end{equation}
+
+Looking at $F(x)$ 
+
+\begin{equation}
+    F(x) = \frac{\langle H \rangle(x)}{E_1}, \quad x \equiv \frac{R}{a}
+\end{equation}
+
+Then, we find that $F(x)$ has a minimum around $x = 2.5$. Now, the question is that what if, instead of the trial wavefunction with a $+$, what if we chose a $-$? That is $\psi \sim \psi_0(r) - \psi_0(r')$. 
+This would no longer be bonding, but rather \underline{anti-bonding}.
+
+\section*{Hydrogen Molecule}
+
+Consider $H_2$. Then there are a lot of distances between the two protons, and 2 electrons, and the distances between the respective particles. Then consider the following trial wavefunction,
+
+\begin{equation}
+    \psi_{+}(r_1, r_2) = A_{+}\left( \psi_0(r_1)\psi_0(r_2') + \psi_0(r_1')\psi_0(r_2) \right)
+\end{equation}
+
+This is called the "Heitler--London" approximation. Alternatively, we can also define $\psi_{-}$. Then, doing the same thing as above. Then we get, a function $F(x) = \langle H \rangle/E_1$, then we obtain a minimum below $-2$. Exchange splitting (difference in $\langle H \rangle$) when we switch the sign in the spins of the molecule. 
+
+\end{document}
