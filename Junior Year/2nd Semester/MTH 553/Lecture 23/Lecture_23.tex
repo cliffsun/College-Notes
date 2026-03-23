@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 23}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 23}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Cauchy problem for 2nd order
+\end{enumerate}
+
+\section*{Cauchy problem for 2nd order}
+
+\begin{align*}
+    u_{xx} + u_{yy} &= u \\
+    u(x,0) &= f(x) \\
+    u_y(x,0) &= g(x)
+\end{align*}
+
+Then try to find a power series solution. Note, if $u$ is real analytic (i.e. it equals its Taylor series) around some point $(\tilde{x},0)$ on the real axis, then $u$ is 
+
+\begin{equation}
+    u(x,y) = \sum_{j,k=0}^{\infty}\left( \partial_x^{j}\partial_{y}^{k}u \right)(\tilde{x},0)\frac{1}{j!k!}(x - \tilde{x})^{j}y^k
+\end{equation}
+
+Note, this is just the Taylor series. Hence 
+
+\begin{equation}
+    f(x) = u(x,0) = \sum_{j=0}^{\infty}\left( \partial_{x}^{j}u \right)(\tilde{x},0)\frac{1}{j!}(x - \tilde{x})^{j}
+\end{equation}
+
+So $f$ is \underline{real analytic} and similarly so is $g$. \textbf{Q:} is real analyticity of Cauchy data $f,g$ sufficient for getting a solution? \textbf{A:} yes!
+
+\begin{theorem}
+    \underline{Cauchy-Kowalewski Theorem}. In essence, "Analytical Cauchy Problem has unique local analytic solution". Assume $f$ and $g$ are real analytic, then consider the following:
+    \begin{equation}
+        u_{yy} = G(x,y,u,u_x,u_y,u_{xx},u_{yx})
+    \end{equation}
+    In essence, you can rewrite the differential equation for $u_{yy}$. Moreover, 
+    \begin{align}
+        u(x,0) &= f(x) \\
+        u_y(x,0) &= g(x)
+    \end{align}
+    Where $G$ is real analytic as a function of $7$ variables near $(\tilde{x},0, f(\tilde{x}), f'(\tilde{x}), g(\tilde{x}), f''(\tilde{x}), g'(\tilde{x}))$.
+    Then, a unique real analytic solution $u(x,y)$ exists in a neighborhood of $(\tilde{x},0)$. 
+\end{theorem}
+
+\begin{proof}
+    Evans section 4.6. Rough idea: assume $u$ exists and determine all derivatives. Then determine that the power (Taylor) series converges. 
+\end{proof}
+
+Note, this solution does not guarantee \underline{well-posedness}. 
+
+\begin{definition}
+    A PDE is \underline{well-posed} if a solution
+    \begin{enumerate}
+        \item exists
+        \item is unique 
+        \item depends continuously on the data
+    \end{enumerate}
+    For instance, slightly perturbing $f$ and $g$ will slightly perturb $u(x,y)$. 
+\end{definition}
+
+Usually (often), if a PDE problem is ill-posed, then it is a bad model of physical reality. This is not always the case. 
+
+\end{document}

@@ -1,0 +1,244 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+\title{MTH 553: Lecture \#22}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \#22}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Mean value formula for the heat equation
+    \item Strong maximum principle
+\end{enumerate}
+
+\section*{Mean Value Formula for the Heat Equation}
+
+\begin{theorem}[Mean Value Theorem]
+Let $u \in C^\infty(\Omega_T)$ and assume $u_t = \Delta u$ in $\Omega_T$.  
+Let $E(x,t;r) \subset \Omega_T$. Then
+\[
+u(x,t) = \frac{1}{4r^n}
+\int_{E(x,t;r)}
+u(y,s)\frac{|x-y|^2}{(t-s)^2}\, dy\, ds .
+\]
+
+This is a weighted mean value formula.
+
+\textbf{Interpretation:} The temperature in the heat ball $E(x,t;r)$ determines the temperature at $(x,t)$.
+\end{theorem}
+
+\begin{proof}
+
+By translation we may assume $(x,t)=(0,0)$.
+
+\textbf{Step 1:} Assume $u \equiv 1$. Then the right-hand side becomes
+\[
+\frac{1}{4r^n}\int_{E(0,0;r)} \frac{|y|^2}{s^2}\, dy\, ds .
+\]
+
+Introduce the change of variables
+\[
+y = \xi \sqrt{-s}, \qquad s = -\sigma .
+\]
+
+Then
+\[
+dy = (-s)^{n/2} d\xi, \qquad ds = -d\sigma .
+\]
+
+Hence
+\[
+\int_{E(0,0;r)} \frac{|y|^2}{s^2} dy ds
+=
+\int \int |\xi|^2 \sigma^{\frac{n}{2}-2} d\xi d\sigma .
+\]
+
+Switching to spherical coordinates gives
+\[
+\int_0^{r^2} \int_0^\infty
+\rho^{n+1} e^{-\rho^2/(4\sigma)} d\rho d\sigma .
+\]
+
+Using the Gamma function identity
+\[
+\Gamma(z+1) = z\Gamma(z),
+\]
+we obtain that the integral equals $4r^n$. Therefore the formula holds for $u\equiv 1$.
+
+\medskip
+
+\textbf{Step 2:} Suppose $u_t = \Delta u$. Define
+
+\[
+\varphi(r) =
+\frac{1}{4r^n}
+\int_{E(0,0;r)}
+u(y,s)\frac{|y|^2}{s^2} dy ds .
+\]
+
+We show $\varphi'(r)=0$.
+
+Differentiating under the integral sign gives
+\[
+\varphi'(r)
+=
+\int_{E(0,0;r)}
+\nabla u \cdot \nabla \psi
++
+u_t \psi
+\, dy ds .
+\]
+
+Using $u_t=\Delta u$ we obtain
+
+\[
+\varphi'(r)
+=
+\int_{E(0,0;r)}
+\nabla u \cdot \nabla \psi
++
+(\Delta u)\psi
+\, dy ds .
+\]
+
+Let
+\[
+A = \int_{E} \nabla u \cdot \nabla \psi,
+\qquad
+B = \int_E (\Delta u)\psi .
+\]
+
+Applying integration by parts and the divergence theorem,
+
+\[
+B
+=
+\int_E \nabla \cdot (\psi \nabla u) - \nabla u \cdot \nabla \psi .
+\]
+
+Hence
+
+\[
+A + B = 0 .
+\]
+
+Thus $\varphi'(r)=0$, so $\varphi$ is constant. Taking the limit as $r\to0$ yields
+
+\[
+\varphi(r) = u(0,0).
+\]
+
+Therefore
+
+\[
+u(0,0)
+=
+\frac{1}{4r^n}
+\int_{E(0,0;r)}
+u(y,s)\frac{|y|^2}{s^2} dy ds .
+\]
+
+\end{proof}
+
+\section*{Strong Maximum Principle for the Heat Equation}
+
+\textbf{Note:} If $u$ satisfies the heat equation, then maxima propagate forward in time.
+
+\begin{theorem}[Strong Maximum Principle]
+Let $\Omega \subset \mathbb{R}^n$ be a bounded domain and $u\in C^\infty(\Omega_T)$ satisfy
+\[
+u_t = \Delta u .
+\]
+
+Then
+\[
+\max_{\Omega_T} u = \max_{\partial_p \Omega_T} u
+\]
+(where $\partial_p\Omega_T$ is the parabolic boundary).
+
+Furthermore, if for some interior point $(x_0,t_0)\in\Omega_T$ we have
+
+\[
+u(x_0,t_0) = \max_{\Omega_T} u,
+\]
+
+then $u$ is constant in $\Omega \times (-\infty,t_0]$.
+\end{theorem}
+
+\begin{proof}[Sketch]
+
+Assume $t<t_0$ and connect $(x,t)$ to $(x_0,t_0)$ by a path contained in $\Omega_T$.
+
+Cover this path with overlapping heat balls
+\[
+E_0, E_1, \dots , E_k .
+\]
+
+Using the mean value formula,
+
+\[
+u(x_0,t_0)
+=
+\frac{1}{4r^n}
+\int_{E_0}
+u(y,s)\frac{|x_0-y|^2}{(t_0-s)^2} dy ds .
+\]
+
+Since $u(y,s) \le M := u(x_0,t_0)$, equality implies
+
+\[
+u(y,s) = M \quad \text{for all } (y,s)\in E_0.
+\]
+
+Repeating this argument along the chain of heat balls yields
+
+\[
+u(x,t)=M
+\quad
+\text{for all } x\in\Omega, \; t<t_0 .
+\]
+
+Hence $u$ is constant.
+
+\end{proof}
+
+\end{document}
