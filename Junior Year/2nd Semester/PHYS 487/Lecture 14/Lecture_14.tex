@@ -1,0 +1,211 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 14}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 14}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Time dependent perturbation theory
+\end{enumerate}
+
+Dynamics: so far our Hamiltonian has been time independent which produces a phase accumulation. For example, 
+
+\begin{equation}
+    H = \hbar \omega_0 \cdot \hat{n} \cdot \frac{\vec{\sigma}}{2}
+\end{equation}
+
+Then, the wavefunction precesses around $\ket{0}$ for $\hat{n} = \hat{z}$. Consider a two-level system with 
+
+$$
+\ket{\psi(t=0)} = \ket{0}, \quad \text{initial condition}
+$$
+
+With the following Hamiltonians: 
+
+$$H_1 = \hbar \omega_1 \frac{\sigma_z}{2}, \quad H_2 = \hbar \omega_2 \frac{\sigma_x}{2}$$ 
+
+Now, say that we turn on the first Hamiltonian, then slowly turn the second Hamiltonian again. Then turn the first one again. In essence, this 
+is simply just walking on the sphere. However, the Hamiltonians do not commute, therefore, the path of which the wavefunction takes is not the same. Recall that 
+
+\begin{equation}
+    u = e^{-\frac{i}{\hbar}\hat{H}t}
+\end{equation}
+
+Then, consider 
+
+\begin{equation}
+    u_1 = e^{-\frac{i}{\hbar}H_1 t}, \quad u_2 = e^{-\frac{i}{\hbar}H_2 t}
+\end{equation}
+
+Note that these Hamiltonians do not commute. That is:
+
+\begin{equation}
+    u_2u_1 \ket{0} \neq u_1u_2\ket{0}
+\end{equation}
+
+For now, consider a TLS (two-level system). Then, 
+
+\begin{equation}
+    H = H^{(0)} + H'(t)
+\end{equation}
+
+Here, $H^{(0)}$ is the time independent Hamiltonian and $H'(t)$ is the time dependent part. Note that $H'(t)$ is supposed to be small. Then, consider the stationary states:
+
+\begin{equation}
+    \ket{\psi_a}, \quad \ket{\psi_b}, \quad \langle \psi_i|\psi_j \rangle = \delta_{ij}, \quad H^{(0)}\ket{\psi_i} = E_i\ket{\psi_i}
+\end{equation}
+
+Moreover, there is an initial condition 
+
+\begin{equation}
+    \ket{\psi(0)} = c_a\ket{\psi_a} + c_b\ket{\psi_b}, \quad |c_a|^2 + |c_b|^2 = 1
+\end{equation}
+
+For $H' \equiv 0$, then $\ket{\psi(t)} = u \ket{\psi(0)}$ where $u$ is applied to $\ket{\psi_a}$ and $\ket{\psi_b}$. There are no "state transitions", that is 
+
+\begin{equation}
+    | \langle \psi_i | \psi(t) \rangle |^2 = |c_i|^2 = \text{const.}
+\end{equation}
+
+Next, consider the following: at $t=0$, we turn on the time dependent perturbation. Then consider the following ansatz:
+
+\begin{equation}
+    \ket{\psi(t)} = c_a(t)\ket{\psi_a}e^{-iE_a t/\hbar} + c_b(t)\ket{\psi_b}e^{-iE_bt/\hbar}
+\end{equation}
+
+Then, solve the time dependent Schrodinger wave equation: 
+
+\begin{equation}
+    H\psi(t) = i\hbar \dot{\psi(t)}, \quad \text{for $c_i(t)$} 
+\end{equation}
+
+Then insert the Ansatz into SE:
+
+\begin{multline}
+    c_a (H^{(0)} + H')\ket{\psi_a}e^{-iE_at/\hbar} + c_b(H^{(0)} + H')\ket{\psi_b}e^{-iE_bt/\hbar} \\
+    = i\hbar \left[ (\dot{c_a} - c_a iE_a/\hbar)\ket{\psi_a}e^{-iE_at/\hbar} + (\dot{c_b} - c_biE_b/\hbar)\ket{\psi_b}e^{-iE_bt/\hbar} \right] 
+\end{multline}
+
+Some terms drop out. Then, multiply the entire equation by $\bra{\psi_a}$, then we obtain 
+
+\begin{equation}
+    c_a \langle \psi_a|H'|\psi_a \rangle e^{-iE_at/\hbar} + c_b\langle \psi_a | H' | \psi_b \rangle e^{-iE_bt/\hbar} = i\hbar \dot{c_a}e^{-iE_at/\hbar}
+\end{equation}
+
+Then, we obtain that 
+
+\begin{equation}
+    \dot{c_a} = -\frac{i}{\hbar}\left( c_a H'_{aa} + c_b H'_{ab}e^{i(E_a - E_b)t/\hbar}\right)
+\end{equation}
+
+Recall that $H_{ij} = \langle \psi_i | H | \psi_j \rangle$ and $A^{*}_{ij} = A_{ji}$. We obtain a similar equation for $c_b$. For now, we assume that $H_{ii}' = 0$, since the stationary states are not changed. Then, 
+
+\begin{equation}
+    \dot{c_a} = -\frac{i}{\hbar}H'_{ab}e^{-i\omega_0 t}c_b, \quad \dot{c_b} = -\frac{i}{\hbar}H'_{ba}e^{i\omega_0 t}c_a
+\end{equation}
+
+With $\omega_0 = (E_b - E_a)/\hbar$. Then, proceed with perturbation theory. Pick I.C. $c_a = 1$ and $c_b = 0$, and try to derive state transitions (none constant inner products). Then up to zero-th order, then 
+$H' \rightarrow 0$ and $c_a^{(0)} = 1$ and $c_b^{(0)} = 0$. Then, we insert the 0-th order solution into the RHS of equation 14 and try to derive the first order correction of $c_a$ and $c_b$. In general, this is a \underline{recursive process}. Then 
+
+\begin{equation}
+    \dot{c_a}^{(1)} = 0 \implies c_a^{(1)}(t) =1
+\end{equation}
+
+Then with $c_b$, we have that 
+
+\begin{equation}
+    \dot{c_b}^{(1)} = -\frac{i}{\hbar}H_{ba}e^{-i\omega_0 t} \implies c_b^{(1)} = -\frac{i}{\hbar} \int_{0}^{t}dt'H'_{ba}(t')e^{i\omega_0 t'}
+\end{equation}
+
+Then, for second order, we obtain 
+
+\begin{align}
+    \dot{c_a}^{(2)} &= -\frac{i}{\hbar}H'_{ab}e^{-i\omega_0 t}\left( -\frac{i}{\hbar} \right)\int_{0}^{t}dt' \dots \\
+    &= 1 - \frac{1}{\hbar^2}\int_{0}^{t}dt' H'_{ab}(t')e^{-i\omega_0 t'}\int_{0}^{t'}dt'' H'_{ba}(t'')e^{i\omega_0 t''}
+\end{align}
+
+And 
+
+\begin{equation}
+    c_b^{(2)} = c_b^{(1)}, \quad \text{because $c_a^{(1)} =1$}
+\end{equation}
+
+Sinusoidal perturbation: 
+
+\begin{equation}
+    \ket{\psi_a} = \ket{0}, \quad \ket{\psi_b} = \ket{1}, \quad H = \ket{\cdot}\bra{0} + E_1 \ket{1}\bra{1}
+\end{equation}
+
+Then consider the perturbation $H' = V \cos(\omega t)$. Then pick 
+
+\begin{equation}
+    \hat{V} = V(\ket{0}\bra{1} + \ket{1}\bra{0}) = V\sigma_x
+\end{equation}
+
+Physically, this is saying a static magnetic field along the $z$ axis and apply a sinusoidally varying b field in the x direction. Up to first order PT, we have that $c_0 =1$ and $c_1 =0$ at $t=0$. Then 
+
+\begin{align*}
+    c_1(t) &\approx -\frac{i}{\hbar}V\int_{0}^{t}\cos(\omega t')e^{i\omega_0 t'}dt' \\
+    &= -\frac{iV}{2\hbar}\int_{0}^{t}dt'\left( e^{i(\omega_0 + \omega)t'} + e^{i(\omega_0 - \omega)t'} \right) \\
+    &= -\frac{V}{2\hbar}\left[ \frac{e^{i(\omega_0 + \omega)t} - 1}{\omega_0 + \omega} + \frac{e^{i(\omega_0 - \omega)t} - 1}{\omega_0 - \omega} \right]
+\end{align*}
+
+This is a good approximation if $\omega \sim \omega_0$ (sorta same). Then $|\omega_0 - \omega| \ll \omega + \omega_0$. Then 
+
+\begin{align*}
+    c_1(t) &\approx -\frac{V}{2\hbar}\frac{e^{i(\omega_0 - \omega)t/2}}{\omega_0 - \omega}\left[ e^{i(\omega_0 - \omega)t/2} - e^{-i(\omega_0 - \omega)t/2}  \right] \\
+    &= -i\frac{V}{\hbar}\frac{\sin(\Delta \omega t/2)}{\Delta \omega}e^{i\Delta \omega t/2}
+\end{align*}
+
+Here, $\Delta \omega = \omega_0 - \omega$. Then, the probability to find $1$ in a measurement: 
+
+\begin{equation}
+    P_{10}(t) = |c_1|^2  = \frac{V^2}{\hbar^2}\frac{\sin^2(\Delta \omega t/2)}{\Delta\omega^2}
+\end{equation}
+
+
+
+\end{document}
