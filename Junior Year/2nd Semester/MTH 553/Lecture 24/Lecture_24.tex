@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 24}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 24}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Characteristics for 2nd order PDEs in 2 variables
+\end{enumerate}
+
+Assume $u \in C^2$ solves 
+
+\begin{equation}
+    a(x,y)u_{xx} + b(x,y)u_{xy} + c(x,y)u_{yy} = d(x,y,u,u_x,u_y)
+\end{equation}
+
+For example, the wave equation $u_{xx} - u_{yy} = 0$. So the question is that given a curve 
+
+\begin{equation}
+    \gamma = \begin{cases}
+        x = f(s) \\
+        y = g(s)
+    \end{cases}
+\end{equation}
+
+Does the Cauchy data on $\gamma$ which is 
+
+\begin{equation}
+    \begin{cases}
+        u = h_0(s) \\
+        \partial_{\nu}u = h_1(s)
+    \end{cases}
+\end{equation}
+
+determine all partial derivatives of $u$ on $\gamma$. If so, then $\gamma$ is a good curve for trying to solve the general PDE with Cauchy data specified on $\gamma$. Note, $\gamma$ is a free space curve of where the solution starts. Moreover, the Cauchy data is the value of $u$ on $\gamma$, or the initial condition. 
+
+Let the unit tangent vector $\tau = <f', g'>$ is the tangent vector of $\gamma$. Then $\nu = <g', f'>$ is the derivative perpendicular to $\gamma$. Note that $|\tau|^2 = 1$.  The answer to that question is that it depends. bruh. Firstly, calculate tangential and normal derivatives along $\gamma$. 
+That is, 
+
+\begin{equation}
+    h_0' = \partial_{\tau}u = \nabla u \cdot \tau = u_x f' + u_y g'
+\end{equation}
+\begin{equation}
+    h_1 = \partial_{\nu}u = \nabla u \cdot \nu = -u_xg' + u_yf'
+\end{equation}
+
+To find $u_x$ and $u_y$, we have that 
+
+\begin{align*}
+    u_x &= f'h_0' - g'h_1 = \phi(s)\\
+    u_y &= g'h_0' + f'h_1 = \psi(s)
+\end{align*}
+
+The first derivatives of $u$ are determined on $\gamma$. Then how do we determine the 2nd derivative on $\gamma$, 
+
+\begin{align*}
+    \phi'(s) &= \frac{d}{ds}u_x \\
+    &= u_{xx}x_s + u_{xy}y_s \\
+    &= u_{xx}f' + u_{xy}g' 
+\end{align*}
+\begin{align*}
+    \psi'(s) = u_{yx}f' + u_{yy}g'
+\end{align*}
+
+Then, using the PDE, we have that 
+
+\begin{equation}
+    d = u_{xx}a + u_{xy}b + u_{yy}c
+\end{equation}
+
+Which now gives us 3 equations and 3 unknowns. One can solve the system for $u_{xx}$, etc. at every point of $\gamma$ in terms of $h_0$, $h_1$, $a,b,c,d$, etc. except when the determinant is equal to 0. 
+That is, 
+
+\begin{equation}
+    \det\begin{pmatrix}
+        f' & g' & 0 \\
+        0 & f' & g' \\
+        a & b & c
+    \end{pmatrix}\begin{pmatrix}
+        u_{xx} \\
+        u_{xy} \\
+        u_{yy}
+    \end{pmatrix} = 0
+\end{equation}
+
+Then, we obtain 
+
+\begin{align*}
+    ag'^2 - bf'g' + cf'^2 &= 0 \\
+    a\left( \frac{g'}{f'} \right)^2 - b\left(\frac{g'}{f'} \right) + c &= 0 \\
+    a\left( \frac{dy}{dx} \right)^2 - b\left( \frac{dy}{dx} \right) + c &= 0
+\end{align*}
+
+If the final equation is true, then we cannot determine the 2nd order derivatives. Then, we call $\gamma$ a characteristic of the above equation is 
+
+\begin{equation}
+    \frac{dy}{dx} = \frac{b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{equation}
+
+\begin{definition}
+    At a point $(x_0, y_0) \in \mathbb{R}$
+    \begin{enumerate}
+        \item If $b^2 - 4ac > 0$, then there exists two characteristic curves through $(x_0,y_0)$, then call that PDE \underline{hyperbolic} at $(x_0,y_0)$. 
+        \item If $b^2 - 4ac = 0$, then there exists one characteristic curve through $(x_0,y_0)$, then call the PDE \underline{parabolic} at $(x_0,y_0)$. 
+        \item If $b^2 - 4ac < 0$, then there are no characteristic curves, call the PDE elliptic. 
+    \end{enumerate}
+\end{definition}
+
+Examples, for a wave equation
+
+\begin{equation}
+    v^2u_{xx} - u_{tt} = 0, \quad a=v^2, b=0, c=-1
+\end{equation}
+
+Then, the discriminant is $4v^2 > 0$, therefore, the wave equation is hyperbolic everywhere. Then, its characteristics are 
+
+\begin{equation}
+    \frac{dt}{dx} = \pm\frac{1}{v} \implies x \pm vt = \text{const.}
+\end{equation}
+
+For the heat equation, 
+\begin{equation}
+    u_{xx} - u_t = 0
+\end{equation}
+
+The heat equation is parabolic, and its characteristic curve is $t = \text{const.}$.
+
+For the Laplace equation, 
+
+\begin{equation}
+    u_{xx} + u_{yy} =0
+\end{equation}
+
+This equation is elliptic
+
+\end{document}

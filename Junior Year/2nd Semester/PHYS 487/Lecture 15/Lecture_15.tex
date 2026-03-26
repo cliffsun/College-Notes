@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 15}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 15}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Recap}
+We obtained differential equations for $c_a$ and $c_b$ for a wavefunction 
+
+\begin{equation}
+    \ket{\psi(t)} = c_a(t)\ket{\psi_0} + c_b(t)\ket{\psi_1}
+\end{equation}
+
+An example is when $H' = \hat{V}\cos\left( \omega t \right)$, with $\hat{V} = V(\ket{0}\bra{1} + \ket{1}\bra{0})$ and $H^{(0)} = (\hbar\omega_0/2) r_z$, then using perturbation theory, we 
+found that 
+
+\begin{equation}
+    |c_1|^2 \approx \frac{|V|^2}{\hbar^2}\frac{\sin^2(\Delta \omega t/2)}{\Delta \omega^2}
+\end{equation}
+
+With $\Delta \omega = \omega_0 - \omega$. The approximation of $\omega \approx \omega_0$ is called the \underline{rotating wave approximation}. Suppose 
+
+\begin{equation}
+    H' = \frac{V}{2}\left( \ket{0}\bra{1}e^{i\omega t} + \ket{1}\bra{0}e^{-i \omega t}\right)
+\end{equation}
+
+Here, the direction of oscillation rotates in the $x,y$ plane. 
+Moreover, for some time $t$, $H'$ becomes 
+$\sigma_x, \sigma_y, -\sigma_x, -\sigma_y$, etc. 
+
+\section*{Exact solution to the Rabi model}
+
+Method one, solve the ODE 
+
+\begin{equation}
+    \dot{c_a} = -\frac{i}{\hbar}H'_{ab}e^{-i\omega_0 t}c_b, \quad \dot{c_b} = -\frac{i}{\hbar}H'_{ba}e^{i\omega_0 t}c_a
+\end{equation}
+
+And 
+
+\begin{equation}
+    H' = \frac{V}{2}\left( \ket{0}\bra{1}e^{i\omega t} + \ket{1}\bra{0}e^{-i\omega t} \right)
+\end{equation}
+
+To solve (4), differentiate one and substitute. Then we obtain (note, $c_0$ is the same as $c_a$)
+
+\begin{equation}
+    \ddot{c}_0 = \frac{V}{2}\left[ \frac{\Delta \omega}{\hbar}c_1 - \frac{i}{\hbar}\dot{c}_1 \right]e^{-i(\omega_0 - \omega)t}
+\end{equation}
+\begin{equation}
+    \ddot{c}_0 = -i\Delta \omega \dot{c}_0 - \frac{V^2}{4\hbar^2}c_0
+\end{equation}
+
+Then, choose ansatz $c_0(t) = \exp(\lambda t)$, then we obtain that 
+
+\begin{equation}
+    \lambda = \frac{i}{2}\left[ \Delta \omega \pm \Omega_R \right], \quad \Omega_R = \sqrt{\Delta\omega^2 + \frac{V^2}{\hbar^2}}
+\end{equation}
+
+Here, $\Omega_R$ is the Rabi frequency. Therefore,
+
+\begin{equation}
+    c_0(t) = A\exp\left( \frac{i}{2}\left( \Delta \omega + \Omega_R \right)t \right) + B\exp\left( \frac{i}{2}(\Delta \omega- \Omega_R)t \right)
+\end{equation}
+
+Here, initial conditions of $c_0(0)$, etc. obtain $A,B$. Then, the modulus squared is 
+
+\begin{equation}
+    |c_0(t)|^2 = \frac{1}{2} - \frac{V^2/\hbar^2}{2\Omega_R^2}\cos(\Omega_R t)
+\end{equation}
+
+\section*{Rotating Frame}
+
+Apply a unitary to the wave function as a transformation, then we obtain 
+
+\begin{equation}
+    i\hbar \dot{\left( u\ket{\psi} \right)} = H\left(u \ket{\psi} \right)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    i\hbar u^{\dagger}\dot{u}\ket{\psi} + i\hbar u^{\dagger}u\dot{\ket{\psi}} = u^{\dagger}Hu\ket{\psi}
+\end{equation}
+
+Then, we obtain 
+
+\begin{equation}
+    i\hbar \dot{\ket{\psi}} = \left( u^{\dagger}Hu - i\hbar u^{\dagger}\dot{u} \right)\ket{\psi}
+\end{equation}
+
+Our choice of frame of the spin is to rotating with the magnetic field. 
+
+\begin{equation}
+    H = -\frac{\hbar \omega_0}{2}\sigma_z + \frac{\hbar\Omega}{2}\left( \ket{0}\bra{1}e^{i\omega t} + \ket{1}\bra{0}e^{-i\omega t} \right)
+\end{equation}
+
+Then, our choice of $u$ is $u = \exp(i\omega t\sigma_z/2)$. Here, $\sigma_z = \ket{0}\bra{0} - \ket{1}\bra{1}$. Calculate $\tilde{H}$, then we obtain:
+
+\begin{align*}
+    \tilde{H} &= \hbar \frac{\omega - \omega_0}{2}\sigma_z + \frac{\hbar \Omega}{2}\left( \ket{0}\bra{1} + \ket{1}\bra{0} \right) \\
+    &= \frac{\hbar \Delta \omega}{2}\sigma_z + \frac{\hbar\Omega}{2}\sigma_x
+\end{align*}
+
+\end{document}
