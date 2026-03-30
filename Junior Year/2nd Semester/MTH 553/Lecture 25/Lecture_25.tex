@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 25}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 25}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Finish heat eqiation
+    \item Start laplace equation
+\end{enumerate}
+
+\begin{theorem}
+    Uniqueness, backwards in time for heat equation. Let $\Omega \subset \mathbb{R}^n$ be bounded and smooth, then there is a one solution $v \in C^{2}(\overline{\Omega}_T)$.
+\end{theorem}
+
+In other words, 
+
+\begin{align*}
+    u_t - \triangle u &= f\\
+    u &= g, \quad \text{on the sides and top}
+\end{align*}
+
+Note that we are specifiying BC on the sides and on the top. Then we can reverse everything. 
+
+\begin{proof}
+    Suppose $u_1,u_2$ are two solutions. Let $w = u_1 - u_2$ so then 
+    \begin{align*}
+        w_t - \triangle w &= 0\\
+        w &= 0, \quad \text{on the sides and top}
+    \end{align*}
+    Let 
+    \begin{equation}
+        E(t) \equiv \int_{\Omega}w(x,t)^2dt
+    \end{equation}
+    Note that $E(T) = 0$. We want to obtain that $E(t) =0 $ for all $t$. Then recall 
+    \begin{align*}
+        E'(t) &= -2\int_{\Omega}ww_t dx \\
+        &= -2\int_{\Omega}w\triangle w dx \\
+        &= -2 \int |\nabla w|^2 dx \leq 0
+    \end{align*}
+    Next, we differentiate once again, 
+    \begin{align*}
+        E''(t) &= -4\int_{\Omega}\nabla w \cdot \nabla w_t dx \\
+        &= 4 \int_{\Omega}\triangle w w_t dx, \quad \text{by divergence theorem (IBP) using $w=0$ on sides, therefore $w_t =0$ on sides.} \\
+        &= 4\int_{\Omega}(\triangle w)^2 dx \geq 0
+    \end{align*}
+    Therefore, our energy is always going down in a "convex" fashion. But this isn't enough to state that $E(t) =0$ for all $t$. 
+    Next, we apply Cauchy-Schwartz. 
+    \begin{align*}
+        \implies E'(t)^2 &= 4 \left( \int_{\Omega}w \triangle w dx \right) \\
+        &\leq 4 \int_{\Omega}w^2 dx \cdot \int_{\Omega}(\triangle w)^2 dx \\
+        = 4E(t)E''(t)
+    \end{align*}
+    Case 1, if $E(t) = 0$ for all $t$, then we are done. Case 2, otherwise, there exists some interval where $E(t)$ is positive. In particular, choose some $[t_1,t_2]$ such that $E(t_2)$ is the point of which the $E(t_2)$ becomes zero.
+    Then, take $\log(E(t))''$, then obtain 
+    \begin{equation}
+        \left( \frac{E'(t)}{E(t)} \right)' = \frac{E''(t)}{E(t)} - \frac{E'(t)^2}{E(t)^2} \geq 0
+    \end{equation}
+    This is because we proved that $E'(t)^2 \leq E(t)E''(t)$. So $\log(E(t))$ is convex. But we know that $\log(E_2(t)) \rightarrow -\infty$ as $t \rightarrow t_2$. Therefore, this cannot be convex. This is because a convex function must come up at some point. 
+    This means that case 2 cannot happen. Therefore, we are in case 1 and we are done.
+\end{proof}
+
+\section*{Laplace's Equation}
+
+Call $u$ harmonic if 
+\begin{equation}
+    \triangle u = 0
+\end{equation}
+
+This is \underline{Laplace's Equation}. If $u$ is at equilibrium temperature, that is it doesn't depend on time. Then 
+\begin{equation}
+    u_t = \triangle u \implies \triangle u = 0
+\end{equation}
+
+This is a steady state temperature. Poisson's equation is a steady state equilibrium temperature with a driving force. That is 
+\begin{equation}
+    -\triangle u = f
+\end{equation}
+Here $f$ is a driving force. Here, if $f > 0$, then it is a heat source. vice versa means heat sink. Elemental harmonic functions
+\begin{enumerate}
+    \item Linear, $u(x) = a_1x_1 + a_2x_2 + \dots + b$
+    \item $n=2$, $u=x_1^2 - x_2^2$. This is a saddle shape, and is generic for graphs of harmonic functions.
+    \item $n=2$, $u= 1/\log|x| = 1/2 \cdot \log(x_1^2 + x_2^2)$. This is the \underline{fundamental} solution of the Laplacian. Here, the graph has a saddle shape in the $x_1$ and $x_2$ direction. 
+    \item $n=3$, then $u(x) = 1/|x|$ is also harmonic. Here, $|x| = \sqrt{\sum^3 x_i^2}$. 
+\end{enumerate}
+
+\end{document}
