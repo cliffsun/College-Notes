@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 26}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 26}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Green's functions? Missed first 10 mins of class
+\end{enumerate}
+
+The green's functions
+
+\begin{theorem}
+    (Green 1) 
+    \begin{equation}
+        \int_{\Omega}(\nu \nabla u + \nabla \nu \nabla u) dx = \int_{\partial\Omega}v \frac{\partial u}{\partial \nu}dS
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    (Green 2)
+    \begin{equation}
+        \int_{\Omega}(\nu \triangle u - u \triangle \nu) dx = \int_{\partial \Omega}\left(\nu \partial_{\nu}u - u \partial_{u}\nu \right)
+    \end{equation}
+\end{theorem}
+
+Both can be proved using the Divergence theorem.
+
+Corollary, 
+
+\begin{equation}
+    \int_{\Omega}\triangle u dx = \int_{\partial\Omega}\frac{\partial u}{\partial \nu}dS
+\end{equation}
+
+By taking $v \equiv 1$. 
+
+\begin{theorem}
+    The Dirichlet problem for Poisson's equation is 
+    \begin{align}
+        -\triangle u &= f, \quad \text{in $\Omega$} \\
+        u &= g, \quad \text{ on $\partial \Omega$}
+    \end{align}
+    Has at most one solution
+\end{theorem}
+
+\begin{theorem}
+    The Neumann problem for Poisson's equation is 
+    \begin{align}
+        -\triangle u &= f, \quad \text{in $\Omega$} \\
+        u &= g, \quad \text{ on $\partial \Omega$}
+    \end{align}
+    Has a solution only if 
+    \begin{equation}
+        -\int_\Omega f dx = \int_{\partial \Omega}h dx
+    \end{equation}
+    Here, this is the same as saying the heat source inside the region is balanced by the outwards heat flux at the boundary. There is one solution $u \in C^{2}(\overline{\Omega})$ up 
+    to an additive constant. In other words, $u+c$ is also a solution if $c$ is a constant. 
+\end{theorem}
+
+\begin{proof}
+    Part (a), suppose $u_1$ and $u_2$ are solutions. Then, 
+    \begin{align}
+        \triangle (u_1 - u_2) &= 0 \\
+        u_1 - u_2 &= 0, \quad \text{ on $\partial \Omega$}
+    \end{align}
+    Then, applying the first greens theorem, then we obtain 
+    \begin{equation}
+        \int_{\Omega}\nabla |(u_1 - u_2)|^2 dx = 0
+    \end{equation}
+    With $u = u_1 - u_2$ and $v = u_1 - u_2$. Then 
+    \begin{equation}
+        \nabla (u_1 - u_2) \equiv 0 \implies u_1 - u_2 = \text{const.}
+    \end{equation}
+    Using the fact that $\Omega$ is connected. 
+\end{proof}
+
+Remark, the Cauchy problem for Poisson's equation is ill posed on $\Omega$. This is where $u$ and $\partial_{\nu}u$ are specified. This is two degrees of freedom but uniqueness implies only one degree of freedom. 
+
+\subsection*{Mean Values and Maximum Principle}
+
+New notation: 
+
+\begin{equation}
+    \fint_{\partial B(x,r)} u dS = \frac{1}{|\partial B(x,r)|}\int_{\partial B(x,t)}u(y)dy
+\end{equation}
+\begin{equation}
+    = \frac{1}{\omega_n}\int_{S^{n-1}}u(x + r\xi)d\xi
+\end{equation}
+
+This is the mean value of $u$ over the surface of the ball $B(x,r)$, centered at $x$ with radius $r$. 
+
+Moreover, 
+
+\begin{equation}
+    \fint_{B(x,r)}udy 
+\end{equation}
+
+is the mean value of $u$ over the ball. 
+
+\begin{theorem}
+    Mean Value Theorem. Let $u \in C^{2}(\Omega)$, then $u$ is harmonic 
+    \begin{equation}
+        \iff u(x) = \fint_{\partial B(x,r)}udS
+    \end{equation}
+    For all $x,t$ with $B(x,r) \subset \Omega$. Similarly, 
+    \begin{equation}
+        u(x) = \fint_{B(x,r)}udy
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Proof of MVT (mean value theorem). Calculate
+    \begin{equation}
+        \int_{B(x,r)}\triangle u dy = \int_{\partial B(x,r)}\frac{\partial u}{\partial \nu}dS
+    \end{equation}
+    by the corollary. 
+    \begin{align*}
+        &\int_{S^{n-1}}\left[ \partial_r u(x + r\xi) \right]r^{n-1}d\xi \\
+        &= \omega_n r^{n-1}\partial_r\left[ \frac{1}{\omega_n} \int_{S^{n-1}}u(x + r\xi)d\xi\right] \\
+        &= \omega_n r^{n-1}\partial_r \fint_{\partial B(x,r)}u dy
+    \end{align*}
+    Here, $\nu$ is the normal derivative and which is the same as $r$. 
+    This is a very important calculation. If $\triangle u =0 $, then this mean value doesn't change. And in particular, 
+    \begin{equation}
+        \fint_{\partial B(x,r)}u dy = \text{const.}
+    \end{equation}
+    For all $r$. Take $r$ to be really small, then this is simply just $u(x)$. 
+\end{proof}
+
+Conversely, if $\triangle u \neq 0$. Then 
+\begin{equation}
+    \partial_{r} \fint_{\partial B(x,r)}udS \neq 0
+\end{equation}
+And in particular, $\partial_r [\dots] > 0$ if $\triangle u > 0$ on some ball $B(x,\rho)$. Hence, you don't get equality anymore. Therefore, $u$ is harmonic if it satisfies the mean value theorem. 
+\end{document}
