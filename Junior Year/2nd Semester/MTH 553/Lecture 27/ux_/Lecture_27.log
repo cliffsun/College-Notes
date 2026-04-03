@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.29)  3 APR 2026 12:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.29)  3 APR 2026 12:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/template/template.tex"
-(c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/template/template.tex
+**"c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/MTH 553/Lecture 27/Lecture_27.tex"
+(c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/MTH 553/Lecture 27/Lecture_27.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -265,23 +265,23 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 )
 \c@theorem=\count292
- (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.aux)
-\openout1 = `template.aux'.
+ (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.aux)
+\openout1 = `Lecture_27.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -346,37 +346,37 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 48.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 49.
  (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 48.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
  (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+esint on input line 48.
+LaTeX Font Info:    Trying to load font information for U+esint on input line 49.
  (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/esint\uesint.fd
 File: uesint.fd 
 ) [1
 
-{C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.aux)
+{C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7456 strings out of 474486
- 112535 string characters out of 5743755
- 1926542 words of memory out of 5000000
- 29641 multiletter control sequences out of 15000+600000
- 563819 words of font info for 60 fonts, out of 8000000 for 9000
+ 7500 strings out of 474486
+ 113822 string characters out of 5743755
+ 1936542 words of memory out of 5000000
+ 29681 multiletter control sequences out of 15000+600000
+ 566680 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 79i,6n,93p,481b,265s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on "c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.pdf" (1 page, 44546 bytes).
+ 79i,11n,93p,518b,309s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\cliff\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi600\esint10.pk><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on "c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.pdf" (2 pages, 142404 bytes).
 PDF statistics:
- 26 PDF objects out of 1000 (max. 8388607)
+ 70 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

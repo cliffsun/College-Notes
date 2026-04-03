@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 27}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 27}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Mean value theorem
+\end{enumerate}
+
+\begin{proof}
+    We first showed that 
+    \begin{equation}
+        \int_{B(x,r)}\triangle u dy = \omega_n r^{n-1}\partial_{r}\fint_{B(x,r)}
+    \end{equation}
+    Therefore, $u$ is harmonic if and only if the mean value is constant with respect to $r$. Thus, as $r$ goes to zero, we obtain that this converges to $u(x)$. Next, (1) implies (2) which is the
+    integral over the entire ball is constant because you can just add up all $\partial B(x,r)$ from 0 to $r$. (2) implies (1) since 
+    \begin{align*}
+        (2) \implies u(x)\int_{B(x,r)}1 dy &= \int_{B(x,r)}u(y)dy \\
+        &= u(x)\int_{\partial B(x,r)}dS = \int_{\partial B(x,r)}u dS
+    \end{align*}
+    This is because 
+    \begin{equation}
+        \int_{B} = \int_{0}^{r}\int_{\partial B}
+    \end{equation}
+\end{proof}
+
+\textbf{Submean value thoerem}: Let $u \in C^{2}(\Omega)$, then if $\triangle u \geq 0$, then the mean value of $u(x)$ in a ball centered around $x$ increases as $r$ increases.  
+
+Therefore, 
+
+\begin{equation}
+    u(x) \leq \fint_{\partial B}u dS
+\end{equation}
+
+\begin{equation}
+    u(x) \leq \fint_{B}udy
+\end{equation}
+
+Remark: if $u$ is subharmonic $\triangle u \geq 0$, then $$ r^{n-1}\partial_{r}\fint_{\partial B}u dS$$ is an increasing function of $r$. This is because $$\int_B \triangle u dy$$ is increasing with respect to $r$ $\triangle u \geq 0$. 
+
+\subsection*{Strong Maximum Principle}
+
+Let $u$ be subharmonic in a connected open set $\Omega$. This can be possibly unbounded. Then, either $u$ is constant or $u(x)$ is strictly less then 
+\begin{equation}
+    u < \sup_{y \in \Omega}u(y)
+\end{equation}
+
+For all $x \in \Omega$. This means that if we find some 'max' value in the interior, then there will always be some other value of which $u(y)$ is larger. If $u \in C(\overline{\Omega})$ and $\Omega$ is bounded. Then either $u$ is constant or 
+
+\begin{equation}
+    u(x) < \max_{y \in \partial \Omega}u(y) = \max_{\overline{\Omega}}u
+\end{equation}
+
+\begin{proof}
+    Here, a connected set cannot be written as a union of two disjoint sets. Assume that $A \equiv \sup_{y \in \Omega} < +\infty$. Then, we can decompose $\Omega$
+    \begin{equation}
+        \Omega = E \cup F
+    \end{equation}  
+    Where $E$ and $F$ are sets where 
+    \begin{equation}
+        E = \{x: \quad u(x) < A\}
+    \end{equation}
+    \begin{equation}
+        F = \{x: \quad u(x) = A\}
+    \end{equation}
+    Note that $E \cap F = \empty$. $E$ is open. $F$ is also open as follows. If $x \in F$. Then $$A = u(x) \leq \frac{1}{|B(x,r)|}\int_{B}u(y)dy$$ by the sub mean value theorem. But $u \leq \sup$, thus 
+    \begin{equation}
+        A \leq \frac{1}{|B|}\int_{B}A dy = A
+    \end{equation}
+    Therefore, equality must hold all throughout our proof. Hence, 
+    \begin{equation}
+        u(y) = A
+    \end{equation}
+    For all $y \in B$. Therefore, $F$ is open because $F$ contains a neighborhood. But $\Omega$ is connected, therefore, one of the open sets $E$ or $F$ must be $\Omega$. Either $u$ is constant or $\Omega = E$. 
+\end{proof}
+
+\begin{proof}
+    Either $u$ is constant or $u < A$. But $\sup_{\Omega}u = \max_{\overline{\Omega}}u = \max_{\partial \Omega}u$ since $u$ is continuous and $\overline{\Omega}$ is compact.  
+\end{proof}
+
+Consequence: continuous $L^{\infty}$ dependence on data for Dirichlet problem of Poisson's equation. If $\Omega$ is a bounded domain, then $u_1, u_2 \in C^{2} \cap C(\overline{\Omega})$. And they solve 
+\begin{align*}
+    -\triangle u_i &= f \\
+    u_1 &= g_i
+\end{align*} 
+
+(same $f$, different $g$). With $|g_1 - g_2| < \epsilon$ on $\partial \Omega$, then $|u_1 - u_2| \leq \epsilon$ in $\Omega$.
+Proof next time. 
+\end{document}

@@ -1,7 +1,7 @@
-PWD c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template
+PWD c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27
 INPUT C:\Users\cliff\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\template.tex
-OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.log
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\Lecture_27.tex
+OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.log
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
@@ -100,10 +100,10 @@ INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.s
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.aux
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.aux
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.aux
-OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.aux
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.aux
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.aux
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.aux
+OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.aux
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -151,14 +151,44 @@ INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint1
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.pdf
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.pdf
 INPUT C:\Users\cliff\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\template\ux_\template.aux
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Junior Year\2nd Semester\MTH 553\Lecture 27\ux_\Lecture_27.aux
+INPUT C:\Users\cliff\AppData\Local\MiKTeX\fonts\pk\ljfour\public\esint\dpi600\esint10.pk
+INPUT C:\Users\cliff\AppData\Local\MiKTeX\fonts\pk\ljfour\public\esint\dpi600\esint10.pk
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
