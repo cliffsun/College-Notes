@@ -1,0 +1,215 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 28}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 28}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Poissons equation
+\end{enumerate}
+
+\section*{Continuous $L^{\infty}$ dependence}
+
+\begin{equation}
+    \begin{cases}
+        \triangle u_1 = f \\
+        u_1 = g_1
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \begin{cases}
+        \triangle u_2 = f \\
+        u_2 = g_2
+    \end{cases}
+\end{equation}
+
+With $|g_1 - g_2| < \epsilon$ on $\partial \Omega$ implies that $|u_1 - u_2| \leq \epsilon$ on $\Omega$. 
+
+Proof, use the maximum principle of $u$ on $\partial \Omega$ (which is where $g$ is defined anyways). 
+
+\section*{Distributions}
+
+Let $\Omega$ be an open set on $\mathbb{R}^n$. 
+
+\begin{definition}
+   (Convergence in $C_0^{\infty}$) Let $v_{j}, v \in C_{0}^{\infty}(\Omega)$. Say $v_j \rightarrow v$ in $C_0^{\infty}$ if 
+   as $j \rightarrow \infty$ if 
+   \begin{enumerate}
+    \item Exists compact set $k \subset \Omega$ such that $v_j$ are supported in $K$. 
+    \item For all $\alpha$ (multi-indices), we have that $D^{\alpha}v_j \rightarrow D^{\alpha}v$ uniformly in $\Omega$ as $j \rightarrow \infty$.
+   \end{enumerate}
+\end{definition}
+
+For example, $$v + \frac{1}{j}v \rightarrow v$$
+
+\begin{definition}
+    \begin{enumerate}
+        \item (Distributions) Call a linear mapping 
+        \begin{equation}
+            F: C_{0}^{\infty}(\Omega) \rightarrow \mathbb{R}
+        \end{equation}
+        A \underline{distribution} if it is continuous, meaning $F(v_j) \rightarrow F(V)$ as $v_j \rightarrow v$. 
+        \item (Convergence of distributions) Let $F_k, F$ be distributions. Say $F_k \rightarrow F$ if 
+        \begin{equation}
+            F_k(v) \rightarrow F(v)    
+        \end{equation}
+        As $k \rightarrow \infty$ whenever $v$ is a test function and is in $C_{0}^{\infty}(\Omega)$. 
+    \end{enumerate}
+\end{definition}
+
+Notations, $\langle F, V \rangle$ or $\int_{\Omega}Fvdx$ for $F(v)$. Write $D = C_{0}^{\infty}(\Omega)$ and $D'$ is the space of distributions or the dual space of $D$. 
+
+\subsection*{Examples}
+
+All integrable functions are contained in all signed measures which is also contained within distributions. Given $f \in L^1(\Omega)$, define a distribution 
+
+\begin{equation}
+    F_f(v) = \int_{\Omega}fv dx
+\end{equation}
+
+Check that $F_f(v_j) \rightarrow F_f(v)$ as $v_j \rightarrow v$. This example also motivates the notation 
+
+\begin{equation}
+    \int_{\Omega}Fv dx
+\end{equation}
+
+for a distribution. Given a signed Borel measure $\mu$, we may define a distribution as 
+
+\begin{equation}
+    F_{\mu}(v) = \int_{\Omega}vd\mu
+\end{equation}
+
+Whatever $\mu$ means. Fix $y \in \mathbb{R}^n$. Define a distribution $\delta_y$ by: 
+
+\begin{equation}
+    \delta_y(v) = v(y)
+\end{equation}
+
+This is also called the delta distribution concentrated at $y$. Notationally, 
+
+\begin{equation}
+    \int_\Omega\delta_y v dx = v(y)
+\end{equation}
+
+We can also approximate the delta distribution. Let $f \in  L^1(\mathbb{R}^n)$ with 
+
+\begin{equation}
+    \int f dx = 1
+\end{equation}
+
+For $\epsilon > 0$, rescale $f$ as follows: Letting $$f_{\epsilon}(x) = \frac{1}{\epsilon^{n}}f\left( \frac{x}{\epsilon} \right)$$
+
+Note that 
+
+\begin{equation}
+    \int f_{\epsilon}dx = 1
+\end{equation}
+
+And 
+
+\begin{equation}
+    F_{f_{\epsilon}} \rightarrow \delta_0, \quad \epsilon \rightarrow 0
+\end{equation}
+
+We prove both statements:
+
+\begin{proof}
+    For all $v \in C_0^{\infty}$: 
+\end{proof}
+
+Then, we check 
+
+\begin{align*}
+    \langle F_{f_\epsilon}, v\rangle &= \int\frac{1}{\epsilon^n}f\left(\frac{x}{\epsilon}\right)v(x)dx \\
+    &= \int_{\mathbb{R}^n}f(y)v(\epsilon y)dy\\
+    &= \int_{\mathbb{R}^n}f(y)v(0) dy, \quad \text{by dominated convergence in measure theory} \\
+    &= v(0)\int_{\mathbb{R}^n}f(y)dy \\
+    &= v(0) = \langle \delta_0, v \rangle
+\end{align*}
+
+\begin{definition}
+    Derivatives of distributions. Given a distribution $u$ and a linear differential operator $L$, then define a new distribution
+    $$Lu(v) \equiv u(L' v)$$ where $L'$ is the adjoint of $L$.
+\end{definition}
+
+Notationally, 
+
+\begin{equation}
+    \langle Lu, v \rangle \equiv \langle u, L' v \rangle
+\end{equation}
+
+For instance, $L = \partial_{x_1}$, then 
+
+\begin{equation}
+    \langle \partial_{x_1} u , v \rangle = -\langle u, \partial_{x_1}v \rangle
+\end{equation}
+
+Therefore, every distribution is infinitely differentiable. Note, to say that $Lu = f$ in terms of distributions that 
+
+\begin{equation}
+    \langle Lu, v \rangle = \langle f, v \rangle, \quad \forall v \in C_0^{\infty}\left( \Omega \right)
+\end{equation}
+\begin{equation}
+    \langle u, L' v \rangle = \langle f, v \rangle
+\end{equation}
+
+If $u,f \in L^1(\Omega)$ (are integrable), then 
+
+\begin{equation}
+    \int u L' v dx = \int fv dx
+\end{equation} 
+
+If $Lu = f$ weakly where $u, f \in L^1(\Omega)$, then 
+
+\begin{equation}
+    Lu = f
+\end{equation}
+
+as distributions. 
+
+\end{document}
