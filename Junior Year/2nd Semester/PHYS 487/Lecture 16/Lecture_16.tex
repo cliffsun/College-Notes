@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Emission and absorption of radiation
+\end{enumerate}
+
+Recap: Given $H = H^{(0)} + H'(t)$ where $H'(t) = V\cos(\omega t)\sigma_x$, then we obtain rabi oscillations of the quantum state.
+
+Note, this is for a two level system. 
+
+\section*{Interaction with Radiation}
+
+Imagine an incoming wave with frequency $\omega$ going towards a two level system with a energy gap of $\hbar \omega$. Here, 
+
+\begin{equation}
+    H^{(0)} = \frac{\hbar\omega}{2}\sigma_z, \quad H' = \hbar \Omega \sigma_x \cos(\omega t)
+\end{equation}
+Physically:
+\begin{enumerate}
+    \item A magnetic field and a spin 1/2. Like $\hbar \omega \sigma_z / 2 = -\gamma B_z S_z$ and $\hbar \Omega \sigma_x = -\gamma B_x S_x$.
+    \item Electric field and electric dipole: $\frac{\hbar \omega_0}{2}\sigma_z:$ effective TLS (say $n=1, 2$ of hydrogen atom) and $\hbar \Omega \sigma_x:$ electric dipole (selection rule): $-E_0\langle 1 | \hat{p} |0 \rangle = -qE_0 \langle 1 | z | 0 \rangle$. In general, as long as the perturbation has interaction and there is a two level system, then we can match that problem to this idea.  
+\end{enumerate}  
+
+For example, let $\ket{0} = \ket{nlm}$ and $\ket{1} = \ket{n'l'm'}$. Then 
+
+\begin{equation}
+    \hbar \Omega \sigma_x = -qE_0 \langle n'l'm' | \hat{r} | nlm \rangle
+\end{equation}
+
+Note, this is not equal to zero if $\Delta l =  l - l' = \pm 1$ and $\Delta m = 0, \pm 1$. 
+For a TLS, there are only three operators, $\sigma_x, \sigma_y, \sigma_z$. 
+
+\textbf{Now:} consider three cases: 
+
+\begin{enumerate}
+    \item The incoming wave is absorbed (absorption)
+    \item Stimulated emission (coming from the incoming wave) $\ket{1} \rightarrow \ket{0}$
+    \item Spontaneous emission (no laser, just goes back to the ground state due to vacuum fluctuations) 
+\end{enumerate}
+
+Note, the incoming wave is \underline{incoherent}. This means that there is no well defined phase, and therefore, cannot be exactly predicted. 
+
+\subsection*{Incoherent Perturbation}
+
+Here, the incoming wave has components 
+
+\begin{equation}
+    E_i \cos(k_i \cdot r - \omega_i t + \phi_i)
+\end{equation}
+
+This is a mix of different waves, therefore, it is \underline{incoherent}. Energy density:
+
+\begin{align*}
+    u &= \frac{\epsilon_0}{2}E^2 + \frac{1}{2\mu_0}B^2\\
+    &= \epsilon_0E^2\\
+    &= \epsilon_0 E_0^2\cos(\omega t) \\
+    \langle u \rangle &= \frac{\epsilon_0}{2}E_0^2
+\end{align*}
+
+Substitute into $$P_{1 \rightarrow 0} = \frac{2u}{\epsilon_0 \hbar^2}|p^2| \frac{\sin^2(\Delta \omega t/2)}{\Delta \omega^2}$$
+
+Then, consider a range of frequencies. 
+
+\begin{equation}
+    u = \rho(\omega)d\omega = \text{ energy density in $(\omega, \omega + d\omega)$}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    P_{1 \rightarrow 0} = \frac{2}{\epsilon_0 \hbar^2}|p|^2 \int_{0}^{\infty}\rho(u)\left[ \frac{\sin^2(\Delta \omega t/2)}{\Delta \omega^2} \right]d\omega
+\end{equation}
+
+Note, the $\rho(\omega)$ term varies significantly slower than the $\sin^2$ term. Therefore, $\rho(\omega)$ is approximately constant. And we only have to worry around $\omega_0$ (where the peak happens in the $\sin^2$ term). Therefore, 
+
+\begin{equation}
+    P_{1\rightarrow 0}(t) \approx \frac{2|p|^2}{\epsilon_0 \hbar^2}\rho(\omega_0)\int\frac{\sin^2(\Delta \omega t/2)}{\Delta \omega^2}d\omega
+\end{equation}
+
+\begin{equation}
+    = \frac{|p|^2 \pi }{\epsilon_0 \hbar^2}\rho(\omega_0)t
+\end{equation}
+
+Therefore, the rate of $1 \rightarrow 0$ is 
+
+\begin{equation}
+    \dot{P}_{1 \rightarrow 0}\approx \frac{\pi|p|^2}{\epsilon_0 \hbar^2}\rho(\omega_0)
+\end{equation}
+
+\end{document}
