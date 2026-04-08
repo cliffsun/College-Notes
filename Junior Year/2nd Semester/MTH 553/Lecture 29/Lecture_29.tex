@@ -1,0 +1,215 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 29}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 29}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Distributions
+\end{enumerate}
+
+Recall last time, we defined what a derivative of a distribution was. Examples, let $$H_y(x) = \begin{cases}
+    0, & x \leq y \\
+    1, & x > y
+\end{cases}$$
+
+We proved that 
+
+\begin{equation}
+    H'(y) = \delta(y)
+\end{equation}
+
+Another example, let $$u_y(x) = \frac{1}{2}|x-y|$$
+
+Then, 
+
+\begin{equation}
+    u_y'' = \delta_y
+\end{equation}
+
+The first derivative gives the step function, then the second derivative gives the delta function. 
+
+\begin{proof}
+    \begin{equation}
+        u'_y(x) = \begin{cases}
+            -1/2, & x < y \\
+            1/2, & x > y
+        \end{cases} = H_y(x) - 1/2
+    \end{equation}
+    Then 
+    \begin{equation}
+        u''_y  = \delta_y
+    \end{equation}
+\end{proof}
+
+\section{Fundamental Solutions}
+
+Let $L$ be a linear differential operator, then let some region $\Omega$. Then consider a point $y$ with a $\delta_y$. Then solve 
+
+\begin{equation}
+    Lu = \delta_y
+\end{equation}
+
+For each fixed $y \in \Omega$. Suppose we have $G(x,y)$ which is locally integrable with respect to $x$ which also satisfies 
+
+\begin{equation}
+    LG(x,y) = \delta_y(x)
+\end{equation}
+
+This is simply the greens function. I.e. 
+
+\begin{align*}
+    \int_{\Omega}G(x,y)L'v(x) dx &= \int_{\Omega}\delta_y v(y)dy \\
+    &= v(y), \quad \forall v \in C^{\infty}_{0}(\Omega)
+\end{align*}
+
+Then, the function 
+
+\begin{equation}
+    w(x) = \int_\Omega G(x,y)f(y)dy
+\end{equation}
+
+Solves 
+
+\begin{equation}
+    Lw = f
+\end{equation}
+
+Here, $G(x,y)$ is the fundamental solution to $L$. Note, $w$ is analagous to the "sum" of responses to the impulses. 
+
+\begin{proof}
+    We prove that $Lw = f$ weakly. Let $w \in L^1$. (also, we can swap integration variables) 
+    \begin{align}
+        \int_{\Omega} w(x)L'v(x) dx &= \int_{\Omega}\int_{\Omega}G(x,y)Lv'(x)dx f(y)dy \\
+        &= \int_{\Omega}v(y)f(y)dy, \quad \text{because } LG = \delta_y
+    \end{align}
+    Therefore, $Lw = f$ weakly. 
+\end{proof}
+
+For example, $L = d_x^2$ on $\Omega$. THen $$G(x,y) = -\frac{1}{2}|x-y|$$
+
+is a greens function. This is because 
+
+\begin{equation}
+    d_x^2 G(x,y) = \delta_y
+\end{equation}
+
+On a bounded domain $\Omega$, then we get a Greens function from Dirichlet eigenfunctions. 
+
+\begin{equation}
+    G(x,y) = \sum_k \frac{1}{\lambda_k}\phi_k(x)\phi_k(y)
+\end{equation}
+
+Note that $G$ is symmetric under exchange of variables.
+
+\begin{proof}
+    Proof of eigenfunction expansion of the greens function. For a test function $v$, 
+    \begin{align*}
+        \int_{\Omega}G(x,y)(-\triangle v)(x)dx &= \sum_k \frac{1}{\lambda_k}\int_{\Omega}\phi_k(x)(-\triangle v)dx\phi_k(y)dy \\
+        &= \sum_k \frac{1}{\lambda_k}\int_{\Omega}(-\triangle \phi_k(x))v(x)dx\phi_k(y)dy \\
+        &= \sum_k \frac{1}{\lambda_k}\int_{\Omega}(\lambda_k \phi_k(x))v(x)dx\phi_k(y)dy \\
+        &= \sum_k \int_{\Omega}(\phi_k(x))v(x)dx\phi_k(y)dy \\
+        &= \sum_k \langle \phi_k, v\rangle_{L^2}\phi_k(y)dy \\
+        &= v(y)
+    \end{align*}
+    This proves that 
+    \begin{equation}
+        -\triangle G = \delta_y
+    \end{equation}
+    as distributions applied to the test function. Consequence, 
+    \begin{equation}
+        w(x) = \int_{\Omega}G(x,y)f(y)dy = \sum_k \frac{a_k}{\lambda_k}\phi_k(x)
+    \end{equation}
+    Where each
+    \begin{equation}
+        a_k = \int_{\Omega}\phi_k(y)f(y)dy = \langle \phi_k, f \rangle_{L^2}
+    \end{equation}
+\end{proof}
+
+\section*{Fundamental Solution on $\mathbb{R}^n$ and potentials}
+
+Motivation: we want $K(x)$ solving 
+
+\begin{equation}
+    -\triangle K = \delta_0
+\end{equation}
+
+Call $K$ the fundamental solution for Poisson's equation on $\mathbb{R}^n$ with pole at the origin. 
+Physically, $K$ is the gravitational potential with a point mass at the origin. Because the Laplacian is rotationally invariant, $K$ should also be rotationally invariant. 
+
+Guess $K = \psi(r)$:
+
+\begin{align}
+    \psi''(r) + \frac{n-1}{r}\psi'(r) &= 0
+\end{align}
+
+For all points in space except for $x \neq 0$. Here, 
+
+\begin{align*}
+    (r^{n-1}\psi'(r))' &= 0 \\
+    \psi'(r) &= \frac{c}{r^{n-1}}
+\end{align*}
+
+Therefore, 
+
+\begin{equation}
+    \psi(r) = \begin{cases}
+    c_1 + c_2 r, & n=1 \\
+    c_1 + c_2\log(1/r), & n=2 \\
+    c_1 + c_2\frac{1}{r^{n-2}}, & n \geq 3
+    \end{cases}
+\end{equation}
+
+Take $c_1 = 0$, since it doesn't affect the Laplacian. Choose $c_2$ such that 
+
+\begin{equation}
+    -\triangle K = \delta_0
+\end{equation}
+
+
+
+\end{document}
