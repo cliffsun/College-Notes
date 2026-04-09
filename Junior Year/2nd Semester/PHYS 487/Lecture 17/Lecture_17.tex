@@ -1,0 +1,183 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 17}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 17}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Spontaneous Emission and Fermi's Golden rule
+\end{enumerate}
+
+\section*{Einstein A \& B Coefficients}
+
+Consider a box with a bunch of two level atoms. Ground state $\ket{a}$, excited state $\ket{b}$. Then, the total number of atoms is 
+
+\begin{equation}
+    N_{\Sigma} = N_A + N_B
+\end{equation}
+
+Where $N_i$ is the number of atoms in the i-th state. Assume that atoms can decay spontaneously with rate $A$ (atoms decaying per unit time is then $AN_b(t)$). 
+Stimulated emission has a rate of $B_{b,a}\rho(\omega_0)$ ($\rho$ is the energy density per frequency). Then the number of atoms decaying due to stimulated emission is $B_{ba}N_b(t)\rho(\omega_0)$.
+Absorption: $B_{ab}\rho(\omega_0)$, then number of excited atoms per time is $B_{ab}\rho(\omega_0)N_A(t)$. 
+
+\par Then, we can create a rate equation
+
+\begin{equation}
+    \dot{N}_{b} = -N_B A - N_B B_{ba}\rho(\omega_0) + N_a B_{ab}\rho(\omega_0)
+\end{equation}
+
+We can make two assumptions. Firstly, the box's temperature is fixed, therefore $\rho(\omega_0)$ must be Boltzmann-distributed. Moreover, we can assume equilibrium, $\dot{N}_b = 0$. Then,
+\begin{equation}
+    \rho_{\omega_0} = \frac{A}{(N_A/N_B)B_{ab} - B_{ba}}
+\end{equation}
+
+Then from Boltzmann, we have that 
+
+\begin{equation}
+    \frac{N_a}{N_b} = \frac{\exp(-E_a/k_BT)}{\exp(-E_b/k_B T)} = \exp(\frac{\hbar \omega_0}{k_B T})
+\end{equation}
+
+Which then yields 
+
+\begin{equation}
+    \rho(\omega_0) = A\left( \exp\left( \frac{\hbar \omega_0}{k_B T}\right)B_{ab} - B_{ba} \right)^{-1}
+\end{equation}
+
+Planck's black body radiation formula states that 
+
+\begin{equation}
+    \rho(\omega) = \frac{\hbar}{\pi^2c^3}\frac{\omega^3}{e^{\hbar \omega/k_B T} - 1}
+\end{equation}
+
+You can find a solution if $B_{ab} = B_{ba}$, then 
+
+\begin{equation}
+    A = \frac{\omega_0^3\hbar}{\pi^2 c^3}B_{ba}
+\end{equation}
+
+With perturbation theory, 
+
+\begin{equation}
+    B_{ba} = \frac{\pi}{3\epsilon_0 \hbar^2}|p|^2, \quad A = \frac{\omega_0^3 |p|^2}{3\pi \epsilon_0 \hbar c^3}
+\end{equation}
+
+Consider a harmonic oscillator, starting on state $\ket{n}$. Then, the dipole moment is
+
+\begin{equation}
+    \hat{p} = \langle n | \hat{x} | n' \rangle
+\end{equation}
+
+And 
+
+\begin{equation}
+    \hat{x} = \sqrt{\frac{\hbar}{2m \omega}}\left( a_{+} + a_{-} \right)
+\end{equation}
+
+Also, assume $n' < n$. Then, we get a dipole moment 
+
+\begin{equation}
+    \hat{p} = q\sqrt{\frac{n\hbar}{2m \omega}}\delta_{n',n-1}
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    A_n = \frac{nq^2 \omega^2}{6\pi \epsilon_0 mc^3} \equiv \frac{1}{\tau_n}
+\end{equation}
+
+Note, the radiated power is $$P = A_n \cdot \hbar \omega = \frac{q^2\omega^2}{6\pi \epsilon_0 mc^3}(E - \hbar \omega/2)$$. 
+
+Classically, we have to use coherent states. (NOT STATIONARY STATES, since they are not classical)
+
+\begin{equation}
+    a_{-}\ket{\alpha} = \alpha\ket{\alpha}, \quad \ket{\alpha} = e^{-|\alpha|^2/2}\sum_{k}\frac{\alpha^k}{\sqrt{k!}}\ket{k}, \quad \langle a_{+}a_{-} \rangle = |\alpha|^2, \quad \langle H \rangle = \hbar \omega(|\alpha|^2 + 1/2)
+\end{equation}
+
+Probability in state $n$ is $$\langle n | \alpha \rangle^2 = e^{-|\alpha|^2/2}\frac{\alpha^{2n}}{n!}$$ 
+
+Therefore, the probability of decaying (power) 
+
+\begin{align*}
+    P = \hbar \sum_n |\langle n | \alpha \rangle |^2 \cdot A_n &= \hbar \omega \sum_n | \langle n | \alpha \rangle |^2 \cdot n \cdot A_1 \\
+    &= \hbar A_1 e^{-\langle \hat{n} \rangle}\sum_n \frac{\langle n \rangle^n}{n!}\cdot n \\
+    &= \hbar \omega A_1 e^{-\langle n \rangle} \langle n \rangle \sum_{n}\frac{\langle n \rangle^{n-1}}{(n-1)!} \\
+    &= \hbar \omega A_1 \langle n \rangle
+\end{align*}
+
+Note that $A_n = n \cdot A_1$. We can also compute the energy decay, note that 
+
+\begin{equation}
+    P = -\dot{E} = -\langle \dot{n} \rangle \hbar \omega = \hbar \omega A_1 \langle n \rangle = \langle n \rangle(t) = \langle\hat{n}\rangle(0)e^{-A_1t}
+\end{equation}
+
+\section*{Fermi's Golden Rule}
+
+Given an initial state $\ket{i}$, then what's the rate that the initial state transitions to $\ket{f}$ for a single state: 
+
+\begin{equation}
+    P_{i\rightarrow f} = \frac{| \langle i | V | f \rangle|^2}{\hbar^2}\frac{\sin^2(\Delta\omega t/2)}{\Delta \omega^2}
+\end{equation}
+
+But what if $\ket{f}$ is a continuum of states? Then $P$ (probability of leaving the initial state) is
+
+\begin{equation}
+    P = \int dE_n p(E_n)\frac{| \langle i | V | n \rangle |^2}{\hbar^2}\frac{\sin^2(\Delta\omega t/2)}{\Delta \omega^2}
+\end{equation}
+
+For $t \rightarrow \infty$, then pull out $\rho(E_f)$. We get an approximation: 
+
+\begin{equation}
+    P \approx \frac{\pi | \langle i | V | f \rangle^2}{2\hbar}\rho(E_f)t
+\end{equation}
+
+Then, the rate is 
+
+\begin{equation}
+    R = \frac{\pi | \langle i | V | f \rangle^2}{2\hbar}\rho(E_f) = \frac{2\pi }{\hbar}|Vif/2|^2\rho(E_f)
+\end{equation}
+
+\end{document}
