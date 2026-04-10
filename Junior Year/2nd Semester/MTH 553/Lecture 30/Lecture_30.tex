@@ -1,0 +1,190 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 30}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 30}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Previously}
+
+We got that 
+
+\begin{equation}
+    K(x) = \begin{cases}
+        c_2r & n=1\\
+        c_2\log(1/r) & n=2\\
+        c_2/r^{n-2} & n\geq 3
+    \end{cases}
+\end{equation} 
+
+\section*{Next}
+
+Find $c_2$. For $n=1$, $c_2 = -1/2$. For $n=2$, $v \in C^{\infty}_0(\mathbb{R}^2)$ take a big disk $\Omega$ with supp(v) and the origin. Choose $M > 0$ such that 
+
+\begin{equation}
+    ||\nabla v ||_{\infty} \leq M, \quad || \triangle v ||_{\infty} \leq M
+\end{equation}
+
+For $-\triangle K = \delta_{0}$. Then 
+
+\begin{equation}
+    \int_{B(\epsilon)}K\triangle v dx + \int_{\Omega/B(\epsilon)}K\triangle v dx = v(0)
+\end{equation}
+
+Here, $B(\epsilon)$ is a ball with radius $\epsilon$. Then in the first term, 
+
+\begin{equation}
+    | \int_{B(\epsilon)}K\triangle v dx | \leq M |c_2| \int_{B(\epsilon)}\log(1/r)dx = M|c_2|2\pi \int_{0}^{\epsilon}\log(1/r)rdr \rightarrow 0, \epsilon\rightarrow 0
+\end{equation}
+
+This result is because $\log$ is bounded. The second term, 
+
+\begin{align*}
+    \int_{\Omega / B(\epsilon)} K\triangle v dx &= \int_{\Omega / B(\epsilon)} \triangle K v dx + \int_{\{|x| = \epsilon\}}K\left( -\partial_{r}v \right)ds - \int_{\{|x| = \epsilon\}}\left( -\partial_{r}K \right)\left( v \right)ds
+\end{align*}
+
+Note, $\triangle K =0$ away from the origin. Now, we have the boundary conditions. Note that $K = c_2 \log(1/r)$: 
+
+\begin{align*}
+    &= -c_2 \log(1/\epsilon)\int_{\{|x| = \epsilon\}}\partial_r v ds - \frac{c_2}{\epsilon}\int_{|x|=\epsilon}vds 
+\end{align*}
+Note that $\partial_r K = -c_2/r$. Moreover, 
+\begin{align*}
+    &= -c_2\log(1/\epsilon)O(\epsilon) - 2\pi c_2 \fint_{\partial B}vds
+\end{align*}
+
+Here, $O(\epsilon)$ means bounded by a constant times epsilon. This is because $\partial_r v$ is bounded and the circle has a length of $2\pi \epsilon$. Then 
+
+\begin{equation}
+    \rightarrow 0 + -2\pi c_2 v(0), \quad \epsilon \rightarrow 0
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    -2\pi c_2 v(0)= -v(0), \quad c_2 = \frac{1}{2\pi}
+\end{equation}
+
+For $n \geq 3$, then it is easier. We then have a fundamnetal solution! 
+
+\begin{theorem}
+    (Fundamental solution for Laplacian)
+    \begin{equation}
+        K(x) = \begin{cases}
+            -\frac{1}{2}|x| & n = 1\\
+            \frac{1}{2\pi}\log(1/r) & n=2 \\
+            \frac{1}{(n-2)\omega_n}\frac{1}{|x|^{n-2}} & n \geq 3 
+        \end{cases}
+    \end{equation}
+\end{theorem}
+
+Here, a fundamental solution of $K$ means that $-\triangle K = \delta_0$. Therefore, we can take a convolution of $K$ with any poisson equation to obtain a general solution.
+Moreover, $\omega_n$ is the surface area of the unit sphere in $\mathbb{R}^n$. Note, $K \in L^1_{loc}(\mathbb{R}^n)$, i.e. 
+
+\begin{equation}
+    \int_{B(R)} |K(x)| dx < \infty
+\end{equation}
+
+For all $R$'s. However, 
+
+\begin{equation}
+    \int_{\mathbb{R}}|K(x)| = \infty
+\end{equation}
+
+So $K \notin L^1(\mathbb{R}^n)$. Note, this is because $K(x)$ decays too slowly. 
+
+\subsubsection*{Remark}
+
+By translation,
+
+\begin{equation}
+    K(x-y) \rightarrow \triangle K(x-y) = \delta_y
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    -\int_{\mathbb{R}^n}K(x-y)\triangle v(x)dx = v(y)
+\end{equation}
+
+Thus, 
+
+\begin{equation}
+    v(x) = \int_{\mathbb{R}^n}K(x-y)(-\triangle v)(y)dy
+\end{equation}
+
+This is just a representation formula, not a solution. However, the following convolution:
+
+\begin{equation}
+    u(x) = \int_{\mathbb{R}^n}K(x-y)f(y)dy
+\end{equation}
+
+solves $-\triangle u = f$ weakly in $\mathbb{R}^n$. (appropriate conditions of $f$) 
+
+\begin{theorem}
+    (Solving Poisson's equation on $\mathbb{R}^n$). $f \in L^1(\mathbb{R}^n)$ and $f$ has compact support. Under these conditions, Equation (12) solves (13) weakly. 
+    Furthermore, $\mathbb{R}^n / $supp(f) then we have $u \in C^{\infty}$ and 
+    \begin{equation}
+        -\triangle u = 0, \quad \text{classically} 
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    (a) $u \in L^1_{loc}$ for $E$ compact, 
+    \begin{align*}
+        \int_{E}|u(x)| dx &\leq \int_{supp(f)}\int_E|K(x-y)|dx |f(y)|dy \\
+        &\leq \int_{supp(f)}\int_{E^{*}}K(z)dzf(y)dy
+    \end{align*}
+    Where $E^{*} = \{x- y : x \in E, \; y \in supp(f)\}$ is bounded by compactness of $E$ and supp(f). 
+    \begin{align*}
+        &= \int_{E^{*}}|K(z)|dz  \cdot \int_{supp(f)}|f|dy < \infty
+    \end{align*}
+    As $x \rightarrow \infty$, we have that $K(x-y) \leq \frac{\text{const.}}{|x-y|^{n-2}} \rightarrow 0$. If $x \notin supp(f)$, then $u$ is smooth over this. In particular, 
+    \begin{equation}
+        u(x) = \int_{supp(f)}K(x-y)f(y)dy
+    \end{equation}
+    Can be differentiated. 
+\end{proof} 
+\end{document}
