@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 31}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 31}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Fundamental solutions
+\end{enumerate}
+
+If $f \in C_0^2(\mathbb{R}^n)$, then $u = k \star f$ solves $-\triangle u = f$ classically. 
+
+\begin{proof}
+    \begin{equation}
+        u(x) = \int_{\mathbb{R}^n}K(y)f(x-y)dy
+    \end{equation}
+    Fix $x$, then 
+    \begin{align*}
+        u_{x_i}(x) &= \lim_{h \rightarrow 0}\frac{u(x + he_i) - u(x)}{h} \\
+        &= \lim_{h\rightarrow 0}\int K(y)\frac{f(x-y + he_i) - f(x-y)}{h}dy \\
+        &= \int K(y) f_{x_i}(x-y)dy
+    \end{align*}
+    Similarly,
+    \begin{equation}
+        u_{x_i,x_j} = \int K(y)f_{x_ix_j}(x-y)dy
+    \end{equation}
+    Therefore, $u_{x_i,x_j}$ is continuous and $u \in C^2(\mathbb{R}^n)$. 
+\end{proof}
+
+Since $u$ is $C^2$ smooth and $-\triangle u = f$ weakly, then conclude $-\triangle u = f$ classically. 
+
+\section*{Potential Theory}
+
+We have solved Poisson on $\mathbb{R}^n$. Then, solve on bounded domains using Greens functions but rather than just eigenfunctions. 
+
+\begin{theorem}
+    \textbf{(Representation Formula for Poisson's Equation on Bounded Domain)} If $\Omega \subset \mathbb{R}^n$ and $n \geq 2$ is smooth and bounded, $u \in C^2(\overline{\Omega})$ and $x \in \Omega$. 
+    Then, 
+    \begin{equation}
+            u(x) = \int_{\Omega}K(x - y)(-\triangle u)(y)dy + \int_{\partial \Omega}\left( -u(y)\partial_{v_y}K(x-y) + K(x-y)\partial_{v_y}u \right)dS    
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    By arguing like last time (when we showed that $-\triangle K = \delta_0$), we obtain that 
+    \begin{equation}
+        \int_{B(x,\epsilon)}K(x-y)\triangle u(y)dy \rightarrow 0
+    \end{equation}
+    As $\epsilon\rightarrow 0$. Moreover, 
+    \begin{equation}
+        \int_{\Omega / B(x,\epsilon)}K(x-y)\triangle u(y)dy \rightarrow -u(x) + \int_{\partial \Omega}K(x-y)\partial_{v_y}u(y)dS(y) - \int_{\partial \Omega}\partial_{v_y}K(x-y)u(y)dS(y)
+    \end{equation}
+    As $\epsilon\rightarrow 0$. Previously, we can ignore the terms on $\partial \Omega$ since $\Omega$ had compact support. But now, we have to keep them... Adding equations (4) and (5) and moving some terms around proves the theorem.
+\end{proof}
+
+\textbf{What do the terms mean?}: THe first term is the domain potential. The second term is called the "double layer potential". The last term is called the "single layer potential". 
+
+\subsection*{Electrostatics in $\mathbb{R}^3$}
+
+Consider a point charge in $\mathbb{R}^3$ at $z$. Then, the electric field at $x$ has magnitude of $1/(x-z)^2$. Therefore, 
+\begin{equation}
+    E(x) = \frac{1}{|x-z|^2}\frac{x-z}{|x-z|}
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    E = -\nabla u, \quad u(x) = \frac{1}{|x-z|}
+\end{equation}
+
+The domain potential is 
+
+\begin{equation}
+    u(x) = 4\pi \int_{\mathbb{R}^3}K(x-y)\rho(y)dy
+\end{equation}
+
+Where $\rho(y)$ is the charge distribution. We think of the right hand side of the Poisson's equation as a charge distribution. For the single layer potential, 
+
+\begin{equation}
+    4\pi \int_{\partial \Omega}K(x-y)\sigma(y)dy
+\end{equation}
+
+Here, $\sigma(y)$ is the surface charge density $= \partial_{v_y}u$ on $\partial \Omega$. Lastly, the double layer potential 
+
+\begin{equation}
+    4\pi \int_{\partial \Omega}\frac{\partial K}{\partial v_y} \mu(y)dS(y)
+\end{equation}
+
+Where $\mu$ is the dipole moment of the charge. Note, $\partial_{v_y}K$ is the derivative of $K$ in the direction of the normal vector. This is a double layer potential the derivative of $K$ is non zero if there is a change in the charge in the boundary. 
+
+We also can't create a solution formula from the representation formula for the Poisson Equation in $\Omega$. This is because we can only specify the normal derivative or $u$, but not both. 
+
+\end{document}
