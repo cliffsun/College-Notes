@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 18}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 18}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Adiabatic Theorem
+\end{enumerate}
+
+\section*{Recap}
+
+Consider a sinusoidal perturbation, then also consider an initial state $\ket{i}$ and final state $\ket{f}$. Where $\ket{f}$ is a continuum of states. Then the probability of leaving $\ket{i}$ is 
+
+\begin{equation}
+    \int dE_n \rho(E_n)\frac{|\langle i | V | n \rangle |^2}{\hbar}\frac{\sin^2(\Delta \omega t/2)}{\Delta \omega^2}
+\end{equation}
+
+Then, the rate of leaving $\ket{i}$ is 
+
+\begin{equation}
+    R = \frac{2\pi}{\hbar}\frac{|V_{if}|^2}{2}\rho(E_f)
+\end{equation}
+
+Consider a chunk of material, now shoot some light into it along the $z$ direction. Which direction does the electron most likely come out? Let 
+
+$$\psi_0(r) = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}$$
+
+Firstly, find $\rho$. Then also find $V_{if}$. 
+
+\section*{Adiabatic Theorem \& Approximation}
+
+Adiabatic in stat mech is that no heat or mass exchange with environment. But quantum mechanically, if we are in a stationary state, then we will not leave it. 
+
+For instance, choose $$\ket{1} = \sqrt{\frac{2}{L}}\sin(\pi x/L), \quad E_1 = \frac{\pi^2 \hbar^2 }{2m L^2}$$
+
+If we extend the ground of the well to $2L$, then if the adiabatic theorem is true, then we will still be in the ground state. However, the final energy will be reduced by $1/4$. 
+This is different. The rest of the energy is put into making the well larger. 
+
+If we do this faster, then we can expand out the initial wavefunction in the basis states of the new well. But this requires a gap between the ground state and the excited states as a function of time. 
+
+\begin{proof}
+    Probability of leaving the state when changing the Hamiltonian. At all times 
+    \begin{equation}
+        H(t)\ket{n(t)} = E_n(t)\ket{n(t)}
+    \end{equation}
+    Time independent schrodinger wave equation for all $t$. Any state $\ket{\psi(t)} = \sum_n c_n(t)\ket{n(t)}$.
+    \begin{equation}
+        i\hbar \ket{\dot{\psi}(t)} = H(t)\ket{\psi(t)}
+    \end{equation}
+    Then, 
+    \begin{equation}
+        i\hbar \partial_t\left( \sum_n c_n(t)\ket{n(t)} \right) = H(t)\sum_n c_n(t)\ket{n(t)}
+    \end{equation}
+    \begin{equation}
+        i\hbar \left( \sum_n \left( \dot{c}_n\ket{n} + c_n\ket{\dot{n}} \right) \right) = H(t)\sum_n c_n \ket{\psi}
+    \end{equation}
+    Then, multiply by $\bra{m(t)}$ and obtain 
+    \begin{equation}
+        i\hbar \left[ \dot{c}_m(t) + \sum_n \langle m | c_n | \dot{n} \rangle  \right]= \sum_n c_n(t) \langle m(t) | H(t) | n(t) \rangle
+    \end{equation}
+    \begin{equation}
+        i\hbar\left( \dot{c}_m(t) + \sum_n  \langle m(t) | \dot{n}(t) \rangle \right) = c_m(t)E_m(t)
+    \end{equation}
+    Looking at $H(t)\ket{n(t)} = E_n(t)\ket{n(t)}$. Then take the time derivative:
+    \begin{equation}
+        \dot{H}n + H\dot{n} = \dot{E}_nn + E_n\dot{n}
+    \end{equation}
+    Then, 
+    \begin{equation}
+        m \dot{H} n + E_m m \dot{n} = E_n(t)\delta_{mn} + E_n(t) m \dot{n}
+    \end{equation}
+    For $n \neq m$, then 
+    \begin{equation}
+        \langle m | \dot{n} \rangle = \frac{\langle m | \dot{H} | n \rangle}{E_n - E_m}
+    \end{equation}
+    For $m = n$, then 
+    \begin{equation}
+        \langle m(t) | \dot{H} | m(t) \rangle = \dot{E}(t)
+    \end{equation}
+    Insert this back into our original equation: 
+    \begin{equation}
+        \dot{c}_m(t) + \left( \frac{i}{\hbar}E_m(t) + \langle m(t) | \dot{m}(t) \rangle \right)c_m(t) = \sum_{n \neq m} \frac{\langle m | \dot{H} | n \rangle}{E_m - E_n}c_n(t)
+    \end{equation}
+    Adiabatic approximation: assume that 
+    \begin{equation}
+        \frac{\langle m | \dot{H} | n \rangle}{E_m - E_n} \ll \frac{|E_n(t) - E_m(t)|}{\hbar}, \quad \forall t
+    \end{equation}
+    This is saying that the frequency generated by evolving the Hamiltonian does not excite all states. Then 
+    \begin{equation}
+        \dot{c}_m(t) = \left( -\frac{i}{\hbar}E_m(t) + \langle m(t)| \dot{m}(t) \rangle \right)c_m(t)
+    \end{equation} 
+    After integration, 
+    \begin{equation}
+        c_m(t) = c_m(0)e^{i\Theta_m(t)}e^{i\gamma_m (t)}
+    \end{equation}
+    Where, (dynamic phase)
+    \begin{equation}
+        \Theta_m(t) = \int\left( -\frac{i}{\hbar}E_m(t)\right)
+    \end{equation}
+    And (geometric phase)
+    \begin{equation}
+        \gamma_m(t) = i\int\left( \langle m(t)| \dot{m}(t) \rangle \right)
+    \end{equation}
+    Here, $\gamma_m(t)$ is always real. Therefore, 
+    \begin{equation}
+        c_m(t)^2 = \text{const.}
+    \end{equation}
+    We stay in the initial eigenstate. 
+\end{proof}
+
+\section*{Two Level System}  
+
+\begin{equation}
+    H = \frac{\hbar(\omega - \omega_0)}{2}\left( \ket{0}\bra{0} - \ket{1}\bra{1} \right) + \frac{\hbar \Omega}{2}\left( \ket{0}\bra{1} + \ket{1}\bra{0} \right)
+\end{equation}
+
+Diagonalize this: 
+
+\begin{equation}
+    E_{\pm} = \frac{\hbar}{2}\sqrt{\Delta \omega^2 + \Omega^2}
+\end{equation}
+
+With eigenstates 
+
+\begin{equation}
+    \ket{\psi_{+}} = \cos\theta/2 \ket{0} + \sin\theta/2\ket{1}
+\end{equation}
+\begin{equation}
+    \ket{\psi_{-}} = -\sin\theta/2 \ket{0} + \cos\theta/2\ket{1}
+\end{equation}
+
+Look at the energy as a function of $\Delta \omega$. 
+
+\end{document}
