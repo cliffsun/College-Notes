@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Midterm \#2 Recap}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Midterm \#2 Recap}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Key points}
+\begin{enumerate}
+    \item Green's Formulas
+    \item Some questions may be stated in $\mathbb{R}^2$ or $\mathbb{R}^3$
+    \item Lower order terms in heat equation (change of variables and reduce to heat equation)
+    \item Lower order terms in wave equation (change of variables and reduce to 2d wave equation)
+\end{enumerate}
+
+\textbf{Green's Formulas:} Let $\Omega$ be some domain. Then (Green 1) states that 
+\begin{equation}
+    \int_{\Omega}u \triangle v dx + \int_{\Omega}\nabla u \cdot \nabla v dx = \int_{\partial \Omega}u\frac{\partial v}{\partial \nu}dS
+\end{equation}
+
+Here, $\nu$ is the normal vector to $\partial \Omega$. Green 2 states that 
+\begin{equation}
+    \int_{\Omega}\left( u\triangle v - v \triangle u \right)dx = \int_{\partial\Omega}\left( u\frac{\partial v}{\partial \nu} - v\frac{\partial u}{\partial \nu} \right)dx
+\end{equation}
+
+Here, $v$ has compact support and is infinitely differentiable. Lower order terms:
+
+\begin{equation}
+    u_t = k \triangle u + \vec{b} \cdot \nabla u+ cu + f(x,t)
+\end{equation}
+Here, $k$ is the diffusion rate, $\vec{b}$ is the transport term (direction of propagation or moving coordinate frame), $c$ is the heat generation term, and $f(x,t)$ is an external source. To figure out what the 
+terms mean, just set all the other terms to be zero and reason out the equation. 
+
+For lower order terms in the heat equation, use change of variables. For the wave equation with the lower order terms, change of variables and solve with 2d wave equation.
+
+Continuous dependence for the heat equation. Using maximum principle, $|u_1 - u_2| \leq \epsilon$ initially for all $x$ and $|u_1 - u_2| \leq \epsilon$ on $\partial \Omega$. Then the max principle on $w = u_1 - u_2$ and $-w$ implies that $|w| \leq \epsilon$ on $\Omega_T$. 
+For enegry method, then $|u_1 - u_2| \leq \epsilon$ initially and $u_1 - u_2 \equiv 0$ on $\partial \Omega$. So then $w \equiv 0$ on $\partial \Omega$. Then you obtain $E'(t) \leq 0$. 
+
+Mininmum principle is just the maximum principle but applied to $-u$. That is, $u$ achieves its minimum value somewhere on the parabolic boundary. You can also create a strong minimum principle.  
+\end{document}
