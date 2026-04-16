@@ -1,0 +1,280 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 19}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 19}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Geometric Phase
+\end{enumerate}
+
+\section*{Geometric Phase}
+
+Imagine on the bloch sphere, and there are positions 1, 2, and 3 on the bloch sphere of which all the points are connected. Then consider moving from point 1 to 2 to 3 to 1. This path 
+generates an arbitrary phase. This idea is the geometric phase. 
+
+Recall, the geometric phase is defined as the following:
+
+\begin{equation}
+    \gamma_m(t) = i\int_{0}^tdt' \langle n(t) | \partial_{t'} | n(t) \rangle
+\end{equation}
+
+Let 
+
+\begin{equation}
+    H(t) \rightarrow H(p(t))
+\end{equation}
+
+Where $p = (p_1, p_2, \dots)$ is just a parameter space. Then consider 
+
+$$H[p]\ket{0[p]} = E_0[p]\ket{0[p]}$$
+
+Here, $0[p]$ is simply the ground state, and everything depends on $p$. Then, 
+
+\begin{align*}
+    \gamma_0 &= i\int_{0}^t dt' \langle 0[p] | \partial_{t'} | 0[p] \rangle \\
+    &= i\int_{0}^t dt' \partial_{t}p \langle 0[p] | \partial_{p} | 0[p] \rangle \\
+    &= i \int_{ p(0)}^{p(t)}dp \cdot a(p), \quad a = i\langle 0 |\partial_p | 0 \rangle
+\end{align*}
+
+Here, $\gamma_0$ is the berry phase. But there is also a gauge invariance. Instead of $\ket{0[p]}$, you can add $e^{i\theta(p)}\ket{0[p]}$. (no physical difference) But berry connection $a$ would change 
+
+\begin{equation}
+    a(p) \rightarrow a(p) + \nabla p \theta
+\end{equation}
+
+This means that $a$ is not physical and we cannot measure it. So then, 
+
+$$\gamma_0 = \gamma_0 + \theta(p(0)) - \theta(p(t))$$
+
+Here, $\theta(p(0)) = \theta(p(t))$ is zero in closed loops. Therefore, 
+
+\begin{equation}
+    \gamma_c = i\oint dp \cdot a(p), \quad \text{closed curve Berry Phase}
+\end{equation}
+
+\subsection*{Ex: Spin and Magnetic Field}
+
+Given some electron spin sitting in space at the origin. 
+Then build a time dependent Magnetic Field of which the B field vector traverses in a cone around the origin with angle $\alpha$ relative to the $z$ axis. 
+
+Here, $B(t)$ is a cone and 
+
+\begin{equation}
+    B(t) = B_0 \begin{pmatrix}
+        \sin(\alpha)\cos(\omega t) \\
+        \sin(\alpha)\sin(\omega t)\\
+        \cos(\alpha)
+    \end{pmatrix}
+\end{equation}
+
+And the spin operator is 
+
+\begin{equation}
+    S = \frac{\hbar}{2}\sigma = \frac{\hbar}{2}\begin{pmatrix}
+        \sigma_x \\
+        \sigma_y \\
+        \sigma_z
+    \end{pmatrix}
+\end{equation}
+
+Here, we will consider two basises. Let 
+
+\begin{equation}
+    \ket{0} = \begin{pmatrix}
+        1 \\
+        0
+    \end{pmatrix}, \quad \ket{1} = \begin{pmatrix}
+        0 \\
+        1
+    \end{pmatrix}
+\end{equation}
+
+and 
+
+\begin{equation}
+    H(t) = -\gamma B \cdot S = \frac{\hbar \omega}{2}\begin{pmatrix}
+        \cos(\alpha) & e^{-i\omega t}\sin(\alpha) \\
+        e^{i\omega t}\sin(\alpha) & -\cos(\alpha)
+    \end{pmatrix}
+\end{equation}
+
+Then, instantaneous eigenstates ($+$ means aligned with the magnetic field and $-$ vice versa)
+
+\begin{equation}
+    \ket{+(t)} = \begin{pmatrix}
+        \cos(\alpha/2)\\
+        e^{i\omega t}\sin(\alpha/2)
+    \end{pmatrix}, \quad \ket{-(t)} = \begin{pmatrix}
+        e^{-i \omega t}\sin(\alpha/2) \\
+        -\cos(\alpha/2)
+    \end{pmatrix}
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    E_{\pm} = \mp\frac{\gamma B_0 \hbar}{2}
+\end{equation}
+
+So then the starting point
+
+\begin{equation}
+    \ket{\chi(0)} = \ket{+(0)} = \begin{pmatrix}
+        \cos(\alpha/2) \\
+        \sin(\alpha/2)
+    \end{pmatrix}
+\end{equation}
+
+Ansatz, $$\ket{\chi(t)} = \begin{pmatrix}
+    c_0(t)e^{-i\omega_0 t} \\
+    c_1(t)e^{i \omega_0t}
+\end{pmatrix}$$
+
+To get these coefficients, we plug them into the schrodinger wave equation:
+
+\begin{equation}
+    i\hbar \ket{\dot{\chi}(t)} = H(t)\ket{\chi(t)}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \ket{\chi(t)} = \begin{pmatrix}
+        [\cos(\Omega t) - i\frac{\omega_0 - \omega}{2\Omega}\sin(\Omega t)]e^{-i\omega t/2}\cos(\alpha/2)\\
+        [\cos(\Omega t) - i\frac{\omega_0 + \omega}{2\Omega}\sin(\Omega t)]e^{i\omega t/2}\sin(\alpha/2)
+    \end{pmatrix}
+\end{equation}
+
+And 
+
+\begin{equation}
+    \Omega = \frac{1}{2}\left[ \left( \omega - \omega_0 \right)^2 + 4\omega \omega_0 \sin^2(\alpha/2) \right]
+\end{equation}
+
+Here, the adiabatic approximation is letting $\omega \ll \omega_0$. So then 
+
+\begin{align*}
+    \Omega &\approx \frac{1}{2}\left( \omega_0 + \omega^2 - 2\omega\omega_0 \left( 1 - \cos(\alpha) \right) \right)^{1/2} \\
+    &= \left[ \omega_0^2 + \omega^2 - 2\omega \omega_0 \cos(\alpha) \right]^{1/2} \\
+    &= \frac{1}{2}\omega_0\left( 1 - 2\frac{\omega}{\omega_0}\cos(\alpha) \right)^{1/2} \\
+    &= \frac{1}{2}\left( \omega_0 - \omega \cos(\alpha) \right)
+\end{align*}
+
+In the instantenous eigenbasis, we have that 
+
+\begin{equation}
+    \ket{\chi(t)} = [\cos(\Omega t) - i\left( \frac{\omega_0 - \omega \cos(\alpha)}{2\Omega} \right)\sin(\Omega t)]e^{-i \omega t/2}\ket{+(t)} + \frac{i \omega}{2\Omega}\sin(\alpha)\sin(\Omega t)e^{i \omega t}\ket{-(+)}
+\end{equation}
+
+In the adiabatic approximation, we need that the 2nd coefficient goes to $0$. Here, $\Omega \sim \omega_0/2$, then 
+
+\begin{equation}
+    \langle -(t) | \chi(t) \rangle ^2 = \frac{\omega^2}{4\Omega^2}\sin^2(\alpha)\sin^2(\Omega t) \ll 1
+\end{equation}
+
+Now, looking at the geometric phase. We have that 
+
+\begin{equation}
+    \ket{+(t)} = \cos(\alpha/2)\ket{0} + e^{i \omega t}\sin(\alpha/2)\ket{1}
+\end{equation}
+
+With 
+
+\begin{equation}
+    \gamma_0 = i\int_{0}^t dt' \langle + | \partial_{t} | + \rangle
+\end{equation}
+
+Here, 
+
+\begin{align*}
+    \partial_{t}\ket{+} &= i\omega e^{i \omega t}\sin(\alpha/2)\ket{1} \\
+    &= \begin{pmatrix}
+        0 \\
+        i\omega e^{i \omega t}\sin(\alpha/2)
+    \end{pmatrix}
+\end{align*}
+
+Therefore, 
+
+\begin{equation}
+    \gamma_0 = -\frac{\omega t}{2}\left( 1 - \cos(\alpha) \right)
+\end{equation}
+
+Connect to expression of $\chi(t)$ after making adiabatic expression. Then: 
+
+\begin{align*}
+    \ket{\chi(t)} &= \left[ \cos(\Omega t) - i \sin(\Omega t) \right]e^{-i \omega t/2}\ket{+(t)} \\
+    &= e^{i \omega t/2}e^{-i \Omega t}\ket{+(t)}
+\end{align*}
+
+Then, inserting the approximation that $\Omega \approx (\omega_0 - \omega\cos(\alpha))/2$ obtains 
+
+\begin{equation}
+    \ket{+(t)}\approx e^{-i\omega t/2\left( 1 - \cos(\alpha) \right)}\cdot e^{-i\omega_0 t/2}\ket{+(t)}
+\end{equation}
+
+Here, the left term is the geometric phase. 
+
+\section*{Aharanov-Bohm Effect}
+
+Imagine you make a perfect solenoid with a constant magnetic field on the inside. Now imagine moving a distance $b$ much further away from the
+solenoid with radius $a$ ($b \gg a$). Then $B = \nabla \times A = 0$. But $A$ is not zero, therefore, 
+
+\begin{equation}
+    A' = A + \nabla \Lambda \rightarrow \nabla \times A' = 0
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    i \hbar \psi(r) = \left[ \frac{1}{2m}\left( -i \hbar \nabla - qA \right)^2 + q\varphi \right]\psi(r)
+\end{equation}
+
+Then, $\ket{\psi'} = e^{iq\Lambda/\hbar}\ket{\psi}$. This means that even without a presence of a magnetic field, a particle can pick up a phase difference by traversing in a circle around the solenoid. 
+
+\end{document}

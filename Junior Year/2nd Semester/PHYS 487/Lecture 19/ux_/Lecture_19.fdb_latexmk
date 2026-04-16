@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1776278073.51775 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/MTH 553/Midterm 2 recap/recap.tex" "ux_/recap.pdf" "recap" 1776278074.25567 0
+["pdflatex"] 1776359632.39998 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/PHYS 487/Lecture 19/Lecture_19.tex" "ux_/Lecture_19.pdf" "Lecture_19" 1776359633.61262 0
   "C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1775064822 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/cliff/AppData/Local/MiKTeX/fonts/pk/ljfour/public/esint/dpi600/esint10.pk" 1775064827 10544 98310bcde49216f80aa312f1d8eb1acb ""
   "C:/Users/cliff/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1759126511 24225046 55af49e39e241b9a83b183759167ed82 ""
@@ -33,11 +33,13 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
+  "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1247596667 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1247596666 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247596673 34694 870c211f62cb72718a00e353f14f254d ""
+  "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb" 1247596673 35309 940e81a5b9e04201a07e8b33a3ae6e64 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.sty" 1643997108 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/generic/iftex/ifvtex.sty" 1643997108 1057 525c2192b5febbd8c1f662c9468335bb ""
@@ -88,11 +90,11 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1700599895 10214 547fd4d29642cb7c80bf54b49d447f01 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/tools/verbatim.sty" 1700599895 7500 db31c3d04f8bc9010e47a5efbbace9ff ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/MTH 553/Midterm 2 recap/recap.tex" 1776278072 4107 646ff944b18681f023866b92b97c8802 ""
-  "recap.tex" 1776278072 4107 646ff944b18681f023866b92b97c8802 ""
-  "ux_/recap.aux" 1776278074 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "Lecture_19.tex" 1776359631 8433 5fad99c992b602e2b58910423f452fde ""
+  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/PHYS 487/Lecture 19/Lecture_19.tex" 1776359631 8433 5fad99c992b602e2b58910423f452fde ""
+  "ux_/Lecture_19.aux" 1776359633 32 c81c40425fbb5e93b90fba65da0b5e61 "pdflatex"
   (generated)
-  "ux_/recap.aux"
-  "ux_/recap.log"
-  "ux_/recap.pdf"
+  "ux_/Lecture_19.aux"
+  "ux_/Lecture_19.log"
+  "ux_/Lecture_19.pdf"
   (rewritten before read)

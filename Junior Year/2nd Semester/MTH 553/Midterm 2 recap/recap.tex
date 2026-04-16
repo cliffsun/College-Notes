@@ -75,6 +75,37 @@ terms mean, just set all the other terms to be zero and reason out the equation.
 
 For lower order terms in the heat equation, use change of variables. For the wave equation with the lower order terms, change of variables and solve with 2d wave equation.
 
+Heat equation change of variables:
+
+\begin{equation}
+    v(x,t) = e^{-bt/k}u(x - at/k, t/k)
+\end{equation}
+
+Transforms 
+
+\begin{equation}
+    u_t = k\triangle u + a \cdot \nabla u + bu \rightarrow v_{t'} = \triangle' v
+\end{equation}
+
+Where $t' = t/k$ and $x' = x - at/k$.
+
+Energy of a heat equation:
+
+\begin{equation}
+    \epsilon(t) = \int_{\Omega}u^2 dx
+\end{equation}
+
+For lower order terms in wave equation. For 
+
+\begin{equation}
+    v_{tt} - c^2v_{xx} + \delta^2 v = 0, \quad w(x,y,t) = \cos(c^{-1}\delta y)v(x,t)
+\end{equation}
+
+
+\begin{equation}
+    v_{tt} - c^2v_{xx} - \delta^2 v = 0, \quad w(x,y,t) = \cosh(c^{-1}\delta y)v(x,t)
+\end{equation}
+
 Continuous dependence for the heat equation. Using maximum principle, $|u_1 - u_2| \leq \epsilon$ initially for all $x$ and $|u_1 - u_2| \leq \epsilon$ on $\partial \Omega$. Then the max principle on $w = u_1 - u_2$ and $-w$ implies that $|w| \leq \epsilon$ on $\Omega_T$. 
 For enegry method, then $|u_1 - u_2| \leq \epsilon$ initially and $u_1 - u_2 \equiv 0$ on $\partial \Omega$. So then $w \equiv 0$ on $\partial \Omega$. Then you obtain $E'(t) \leq 0$. 
 
