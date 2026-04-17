@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 32}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 32}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Green's Function from fundamental solution
+\end{enumerate}
+
+Let $n \geq 2$. Let $u$ be harmonic, $\triangle u = 0$. Then the representation theorem (from last class) states that 
+
+\begin{align*}
+    u(x) &= \int_{\partial \Omega}\left( -u(y)\frac{\partial K}{\partial v_y}(x-y) + K(x-y)\frac{\partial u}{\partial v_y} \right)dS(y)
+\end{align*}
+
+Assume that for each $x \in \Omega$, we have a corrector function. That is, a harmonic function $w_x(y)$ with 
+
+\begin{center}
+    $w_x(y) = K(x-y)$ when $y \in \partial \Omega$
+\end{center}
+
+This is simply just an arbitrary function with the kernel at its boundary. This is also an assumption. Then, applying green 2 to the harmonic functions $u$ and $w_x$ yields 
+
+\begin{equation}
+    0 = \int_{\partial \Omega}(u(y)\frac{\partial w_x}{\partial v_y} - w_x(y)\frac{\partial u}{\partial v_y})dS(y)
+\end{equation}
+
+Let $G(x,y) = K(x-y) - w_x(y)$, then $G(x,y) = 0$ when $x \in \Omega$ and $y \in \partial \Omega$. We call Green's function on $\Omega$ with Dirichlet boundary conditions. 
+
+Adding the 2nd and the third formula yields 
+
+\begin{equation}
+    u(x) = \int_{\partial \Omega}\left( -\frac{\partial G}{\partial v_y}(x,y)g(y) \right)dS(y)
+\end{equation}
+
+Therefore, $u$ solves $\triangle u = 0$ in $\Omega$ and $u= g$ on $\partial \Omega$. This is called the Poisson integral formula and comes from the fact that we assumed a corrector function. 
+Note: this is still a representation formula. But we will prove that this is a solution formula for a half space and a ball. 
+
+Call $H(x,y) = -\partial_{v_y} G(x,y)$ for $x \in \Omega$ and $y \in \partial \Omega$. This is the Poisson Kernel. 
+
+\textbf{Remarks:}
+\begin{enumerate}
+    \item Omit proof that the corrector exists. 
+    \item In section 4.2de, find $G$ and $H$ explicitly when $\Omega$ is a half space or a ball. 
+    \item $G(x,y) = G(y,x)$ (will prove on the homework)
+    \item $G$ is a fundamental solution for $\Omega$ in the sense that 
+    \begin{align*}
+        -\triangle_x G(x,y) &= -\triangle_x G(y,x)\\
+        &= -\triangle_x (K(y-x) - w_y(x)) \\
+        &= \delta_y(x) + 0
+    \end{align*}
+    Hence, 
+    \begin{equation}
+        v(x) = \int_{\Omega}G(x,y)f(y)dy
+    \end{equation} 
+Thus, $w = u + v$ solves $-\triangle w = f$ on $\Omega$ and $w = g$ on $\partial \Omega$. Then we solve poisson's equation using $G$ using Laplace's equation using $H$. Note, $H$ is the normal partial derivative of $G$. 
+    Solves poisson's equation $-\triangle v = f$ on $\Omega$ and $v=0$ on $\partial \Omega$. 
+    \item $G(x,y)$ is the potential at $y$ due to a positive point charge at $x$ with the boundary grounded. 
+\end{enumerate}
+
+\section*{Dirichlet Problem on halfspace}
+
+Let $\Omega = \mathbb{R}^{n}_{+}$ (upper half of $\mathbb{R}^n$). Let $y = (y_1, \dots, y_n)$, $y^* = (y_1, \dots, y_{n-1}, -y_n)$ so $y = y^*$ when $y \in \partial \mathbb{R}^{n}_{+}$ ($y_n = 0$). So then 
+$\hat{y} = (y_1, \dots, y_{n-1}, 0) \in \partial \mathbb{R} \approx (y_1, \dots, y_{n-1}) \in \mathbb{R}^{n-1}$. We first check that $w_x(y) = K(x-y^*)$ is harmonic for $y \in \mathbb{R}_{+}^{n}$. Note, $y^{*} \neq x$, staying away from the singularity defined in $-\triangle u = \delta_x$.
+
+And if $y \in \partial \mathbb{R}$, then $w_x(y) = K(x-y)$. This is simply the corrector function. 
+
+\begin{equation}
+    G(x,y) = K(x - y) - K(x - y^*)
+\end{equation}
+
+Here, $G(x,y) = G(y,x)$. Then take 
+
+\begin{align*}
+    H(x,y) &= -\frac{\partial G}{\partial v_y}(x,y)\\
+    &= \frac{\partial}{\partial y_n}G(x,y)\bigg|_{y_n=0} \\
+    &= \partial_{y_n}\left( \frac{1}{(n-2)\omega_n}|x-y|^{2-n} - \frac{1}{(n-2)\omega_n}|x-y^*|^{2-n} \right)\bigg|_{y_n = 0}
+\end{align*}
+
+THE NORMAL VECTOR GOES INWARDS. The above calculation is also for $n \geq 3$. In general, 
+
+\begin{equation}
+    H(x,y) = \frac{2 x_n}{\omega_n}\frac{1}{|x - \hat{y}|^n}
+\end{equation}
+
+for $x \in \Omega$, $\hat{y} \in \partial \mathbb{R}^{n}_{+} \cong \mathbb{R}^{n-1}$. For $n=2$, we obtain the same formula. 
+
+\begin{theorem}
+    (Existence for the Dirichlet problem for harmonic functions on the halfspace) Let $$g(\hat{y}) \in C(\mathbb{R}^{n-1}) \cap L^{\infty}(\mathbb{R}^{n-1})$$
+    Then the Poisson formula 
+    \begin{equation}
+        u(x) = \frac{2x_n}{\omega_n}\int_{\mathbb{R}^{n-1}}\frac{g(\hat{y})}{|x - \hat{y}|^n}d\hat{y}
+    \end{equation}
+    Defines a harmonic function in halfspace that is $C^{\infty}$ smooth and bounded with $u$ extending continuously to $\overline{\mathbb{R}_{+}^{n}}$ such that $u = g$ on $\partial \mathbb{R}^{n}_{+}$ and $u$ is a unique such function.  
+\end{theorem}
+
+
+
+\end{document}
