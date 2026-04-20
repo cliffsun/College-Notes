@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 33}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 33}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Midterm Review
+\end{enumerate}
+
+\section*{Midterm Review}
+
+Problem 4: 
+
+\begin{align*}
+    \int_{\mathbb{R}^3}K(x-y)f(y)dy &= \int_{\infty}\int_{S^2}K(x - r\xi)F(r)d\xi r^2 dr
+\end{align*}
+
+Using spherical coordinates.
+
+\section*{Last Time}
+
+We solve Poisson and Laplace equation on Dirichlet half space. Found $G(x,y)$ using odd reflection (method of images). We also found that the Poisson Kernel is 
+
+\begin{equation}
+    H(x,y) = \partial_{y_n}G(x,y)\bigg|_{y_n = 0}
+\end{equation}
+
+Now, we need to prove a theorem. In particular, assume $g$ is continuous on $\mathbb{R}^{n-1}$ and is bounded. Then, we want to show 
+
+\begin{equation}
+    u(x) = \frac{2x_n}{\omega_n}\int_{\mathbb{R}^n}\frac{g(\hat{y})}{|x - \hat{y}|^n}d\hat{y}
+\end{equation}
+
+is harmonic over this Dirichlet half space and also converges to $g(\hat{x})$ as $x \rightarrow \hat{x} \in \partial R_{+}^{n}$. That is, the solution satisfies the initial condition. 
+
+\begin{proof}
+    We first assume that $g \equiv 1$. Then $u \equiv 1$ since 
+    \begin{align*}
+        &\frac{2\hat{x}_n}{\hat{\omega}_n}\int_{\mathbb{R}^{n-1}}\frac{1}{|x - \hat{y}|}d\hat{y} \\
+        &=  \frac{2\hat{x}_n}{\hat{\omega}_n}\int_{\mathbb{R}^{n-1}}\frac{1}{x_n^n|\left( \frac{\hat{x} - \hat{y}}{x_n}, 1 \right)|^n}d\hat{y}
+    \end{align*}
+    This last line is because $y = (y_1, \dots y_{n-1}, 0)$. Thus 
+    \begin{align*}
+        &\frac{2}{\omega_n}\int_{\mathbb{R}^{n-1}}\frac{1}{|(\hat{z}, 1)|^n}d\hat{z} \\
+        &= \frac{2\omega_{n-1}}{\omega_n}\int_{0}^{\infty}\frac{\rho^{n-2}}{(\rho^2 + 1)^{n/2}}d\rho
+    \end{align*}
+    With spherical coordinates on $\mathbb{R}^{n-1}$. This evaluates to $1$ using some clever integral tricks (trig sub, geometry argument). 
+\end{proof}
+
+\begin{proof}
+    By (1), we have that $$u(x) \leq ||g||_{L^{\infty}}\frac{2x_n}{\omega_n}\int_{\mathbb{R}^{n-1}}\frac{1}{|\hat{x} - \hat{y}|^{n}}d\hat{y}$$
+    $$= ||g||_{L^{\infty}}$$
+    Therefore, u is bounded by the $L^{\infty}$-norm of $g$. Moreover, $u$ is smooth since we can differentiate repeatedly through the integral with respect to $x$ because 
+    \begin{center}
+        $\frac{1}{|x - \hat{y}|}$ is never a singularity since $\hat{y}$ is on the boundary.
+    \end{center}
+    Notation wise, $x \in \mathbb{R}^{n}_{+}$ and $y \in \partial \mathbb{R}_{+}^{n}$. $u$ is also harmonic by differentiating through the integral. 
+    \begin{align*}
+        \triangle u &= \int_{\mathbb{R}^{n-1}}\triangle_x H(x,\hat{y})g(\hat{y})d\hat{y}
+    \end{align*}
+    Note that 
+    \begin{equation}
+        \triangle H = \partial_{y_n}\triangle G = 0
+    \end{equation}
+    Therefore, $u$ is harmonic. Now, this next proof is \textbf{VERY IMPORTANT}. We are trying to show that $u$ is $g$ at the boundary. Fix $\hat{z} \in \mathbb{R}^{n-1}$. Then we want to show that $u(x) \rightarrow g(\hat{z})$ as $x \rightarrow \hat{z}$.
+\end{proof}
+
+\begin{proof}
+    Let $\epsilon > 0$. Choose $\delta >0$ such that $|\hat{y} - \hat{z}| < \delta \implies |g(\hat{y}) - g(\hat{z})| < \epsilon$. This is a statement that we can make since we assumed that $g$ is continuous. Then, 
+    \begin{align*}
+        g(\hat{z}) &= \int_{\mathbb{R}^n}H(x,\hat{y})g(\hat{z})d\hat{y}, \quad \text{trivial statement}
+    \end{align*} 
+    So let, $u(x) - g(\hat{z})$, then we obtain 
+    \begin{align*}
+        &= \int_{\mathbb{R}^{n-1}}H(x,\hat{y})[g(\hat{y}) - g(\hat{z})]d\hat{y} \\
+        &= \int_{\{|\hat{y} - \hat{z}| < \delta\}} + \int_{\{|\hat{y} - \hat{z}| \geq \delta\}}\\
+        &= I_1 + I_2
+    \end{align*}
+    For all x, 
+    \begin{equation}
+        |I_1| \leq \epsilon\int_{\{|\hat{y} - \hat{z}| < \delta\}}H(x,\hat{y})d\hat{y} \leq \epsilon
+    \end{equation}
+    And 
+    \begin{equation}
+        \limsup_{x \rightarrow \hat{z}}|I_2| = \frac{2x_n}{\omega_n} \int_{\{|\hat{y} - \hat{z}| \geq \delta\}} \frac{1}{|\hat{x} - \hat{y}|^n}d\hat{y} \cdot 2 ||g||_{L^{\infty}}
+    \end{equation}
+    Note, we are able to take $x \rightarrow \hat{y}$ since $x$ never reaches the singularity. ($x_n \rightarrow 0$)
+    \begin{align*}
+        &\leq 0 \cdot \int_{|y - z| \geq \delta} \frac{1}{|\hat{z}- \hat{y}|^n} \cdot 2 ||g||_{L^{\infty}} = 0
+    \end{align*}
+    This is because the integral is finite since $\hat{y}$ doesn't go to $\hat{z}$ and therefore the integral doesn't blow up. Thus, 
+    \begin{equation}
+        \limsup_{x \rightarrow \hat{z}} |u(x) - g(\hat{z})| \leq \epsilon
+    \end{equation}
+    But $\epsilon$ is arbitrary. Therefore, $\epsilon \rightarrow 0 \implies u(x) \rightarrow g(\hat{z})$. 
+\end{proof}
+
+\end{document}
