@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 34}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 34}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Ball
+\end{enumerate}
+
+\section*{Dirichlet problem for Laplace's Equation in ball}
+
+Let $y^* = a^2/|y| \cdot y/|y|$. Therefore, $|y^*| = a^2/|y|$ Here, we use method of images (reflection) to find $G$ and $H$ for $\Omega = B(a)$. 
+We call $y^*$ the \underline{reflection} of $y$ in the sphere of radius $a$. Note, 
+
+\begin{equation}
+    |y|^2|x-y^*|^2 = |x|^2|x^* - y|^2
+\end{equation}
+
+We need a corrector function $w_x(y)$ for $n \geq 3$ for this Dirichlet problem. Define 
+
+\begin{equation}
+    w_x(y) = \begin{cases}
+        \frac{1}{(n-2)w_na^{n-2}} & x = 0\\
+        \frac{a^{n-2}}{|x|^{n-2}} K(x^* - y) & x \neq 0
+    \end{cases}
+\end{equation}
+
+We can also rewrite this formula to be:
+
+\begin{equation}
+    w_x(y) = \frac{a^{n-2}}{|y|^{n-2}}K(x-y^*)
+\end{equation}
+
+When $y \neq 0$. Note, this is the \underline{Kelvin inversion} w.r.t $y$. For $n=2$, then 
+
+\begin{equation}
+    w_x(y) = \begin{cases}
+        \frac{1}{2\pi}\log(1/a) & x = 0\\
+        \frac{1}{2\pi}\log\left( \frac{a}{|x||x^* - y|} \right) & x \neq 0
+    \end{cases}
+\end{equation}
+
+Performing a Kelvin inversion yields 
+
+\begin{equation}
+    w_x(y) = \frac{1}{2\pi}\log\left( \frac{a}{|y||x- y^*|} \right)
+\end{equation}
+
+Assume that $|x| < a$, so $x \in B(a)$. Then the definition (2) shows that $w_x(y)$ is harmonic w.r.t. $y$ since it is defined away from the origin. 
+Moreover, if $y \in \partial B(a)$. That is $|y| = a$. Then, 
+
+\begin{equation}
+    w_x(y) = K(x-y)
+\end{equation}
+
+Therefore, the green function for the ball is 
+
+\begin{equation}
+    G(x,y) = K(x-y) - w_x(y)
+\end{equation}
+
+\textbf{This section is useful for the homework.}
+
+\section*{Poisson Kernel}
+
+Let $x$ be non-zero. For $n \geq 2$, then for all $n$, the definitions of $G$ and $w_x$ in (1) imply that 
+
+\begin{align}
+    \partial_{y_i}G(x,y) &= \frac{1}{\omega_n}\left[ |x-y|^{-n}(x_i - y_i) - \frac{a^{n-2}}{|x|^{n-2}}|x^* - y|^{-n}(x_i^* - y_i) \right]
+\end{align}
+
+When $|y| = a$, then formula (1) implies that 
+
+\begin{equation}
+    \frac{a}{|x|}\frac{1}{|x^* - y|} = \frac{1}{|x-y^*|} = \frac{1}{|x-y|}
+\end{equation}
+
+This is because $y^* = y$ when $y \in \partial B(a)$. As well, 
+
+\begin{equation}
+    x_i^* = \frac{a^2}{|x|^2}x_i
+\end{equation}
+
+Therefore, one can simplify (8) to obtain: 
+
+\begin{equation}
+    \frac{\partial G}{\partial y_i} = -\frac{y_i}{a^2 \omega_n}\frac{1}{|x-y|^n}(a^2 - |x|^2), \quad |y| = a
+\end{equation}
+
+Therefore, 
+
+\begin{align}
+    H(x,y) &= -\frac{\partial G}{\partial \nu} = -\nabla G \cdot \nu \\
+    &= -\nabla G \cdot \frac{y}{a}\\
+    &= \frac{a^2 - |x|^2}{a \omega_n}\frac{1}{|x-y|^n}
+\end{align}
+
+This is valid for $x \in B(a)$ ($x$ is in the ball) and $ y \in \partial B$ ($y$ is on the boundary of the ball). 
+
+\begin{theorem}
+    (Dirchlet Problem on the Ball) Assume $g \in C(\partial B(a))$ is continuous. Then the Poisson formula is:
+    \begin{equation}
+        u(x) = \frac{a^2 - |x|^2}{a \omega_n}\int_{\partial B(a)}\frac{g(y)}{|x-y|^n}dy
+    \end{equation}
+    \textbf{Why do we only have to integrate it over the boundary of the ball?}
+\end{theorem}
+
+This is a smooth harmonic function with $\Delta u = 0$ that is bounded on $B(a)$ and $u$ extends continuously to $\overline{B(a)}$ and extends to $g$ on $\partial B$. 
+
+\begin{proof}
+    \begin{itemize}
+        \item (1) True when $u\equiv 1$ and $g \equiv 1$ by Poisson Integral Representation. 
+        \begin{equation}
+            u(x) = \int_{\partial \Omega} -\frac{\partial G}{\partial v_y}u(y)dS(y) 
+        \end{equation}
+        Of which we derived using the green's formula.
+        \item (2-5) Modify the half space proof. (lol) 
+        \item (6) u is the unique such harmonic function with $u = g$ on $\partial B(a)$.   
+    \end{itemize}
+\end{proof}
+
+\end{document}
