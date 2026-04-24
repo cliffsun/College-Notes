@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 20}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 20}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Introduction to Quantum Information
+\end{enumerate}
+
+\section*{Intro to QI}
+
+Today, we will understand the root cause of complexity in quantum information theory. Also, does this "complexity" in quantum information help us with computing? 
+Also, how does quantum become "classical", i.e. measurement causing a transition. 
+
+Note, quantum information theory is the intersection of information theory and quantum mechanics. Thus, quantum computation is the intersection of QM predictions and QI. 
+
+Now, consider $N$ qubits with states $\alpha_i\ket{0}_i + \beta_i\ket{1}_i$. In general, a regular computer requires about 64 bits of information to store $\alpha_i, \beta_i$. Therefore, 
+a computer needs exponentially large amount of bits.
+
+If $N \sim 100$+, then it is completely classically untractable. (need more bits than protons in the visible universe) 
+
+\section*{Quantum Circuits}
+
+Consider a initial state $\ket{0}$. Then imagine that we apply a time evolution operator $u$ on $\ket{0}$ and measure $\ket{0}$. The time evolution operator can be decomposed into a series of operations done by 
+$\sigma_i$ (Pauli Matrices). These are also "gates". We can consider quantum circuits with multiple qubits.
+
+Consider $\ket{0}_a$ and perform a unitary $u_a$. Similarly for $\ket{0}_b$ and $u_b$. Then, we can introduce multi-qubit gates. Such gates can cause entangling, such as the CNOT gate (controlled not). (if the control qubit is $\ket{1}$, then invert the state of the other qubit). 
+
+\subsection*{Example with superposition input}
+
+Let $a: \ket{+}$ and $b: \ket{0}$. Here, $$\ket{+} = \frac{1}{\sqrt{2}}\left( \ket{0} + \ket{1} \right)$$
+
+Then act a CNOT gate on both of the qubits and measure both qubits. Here, 
+
+\begin{align}
+    \ket{\psi}_{ab} &= \frac{1}{\sqrt{2}}\left( \ket{0}_a + \ket{1}_a\right)\ket{0}_b \\
+    &= \frac{1}{\sqrt{2}}\left( \ket{0}\ket{0} + \ket{1}\ket{0} \right)
+\end{align}
+
+Then, acting the CNOT gate on this system yields
+
+\begin{equation}
+    \frac{1}{\sqrt{2}}\left( \ket{0}\ket{0} + \ket{1}\ket{1} \right)
+\end{equation}
+
+This is an entangled state (bell state). Note, no matter what basis we measure this state in, we will always observe correlations. 
+
+\section*{Deutsch's Algorithm}
+
+Consider a one bit function $f(x)$ where $x$ is a classical bit of which we input into $f$. There are 4 total possible functions that we can define. 
+Then, Deutsch's Algorithm solves if $f$ is a constant function. 
+
+Classically, we need to call this function twice in order to determine if $f(0) = f(1)$. But quantumly, we only have to call the function once. Consider a two qubit system $\ket{x}$ and $\ket{y}$ where y is the result. 
+
+Then act $u_f$ on $x$ and $y$ with $x$ is the same and $y \rightarrow y \oplus f(x)$. 
+
+\end{document}

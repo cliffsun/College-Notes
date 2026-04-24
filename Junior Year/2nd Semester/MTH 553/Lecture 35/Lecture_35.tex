@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 35}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 35}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{To sum it up}
+We have a Poisson integral formula solving:
+\begin{align}
+    \Delta u = 0 & \Omega \\
+    u = g & \partial \Omega
+\end{align}
+
+When $\Omega$ is the half space and when $\Omega$ is a ball. Note that $g$ is continuous and bounded. We take the normal derivative of the Greens function over $\Omega$. 
+
+Using the formula for the greens function on the halfspace and ball, we can also solve Poisson's equation 
+
+\begin{align}
+    \Delta u = f & \Omega \\
+    u = 0 & \partial \Omega
+\end{align}
+
+As 
+
+\begin{equation}
+    v(x) = \int_{\Omega}G(x,y)f(y)dy
+\end{equation}
+
+As for uniqueness, both the solutions of Poisson's and Laplace's equationa are unique. This can be proved using the max principle and energy methods. 
+
+\section*{Harnack Inequality}
+
+We will study qualitative properties of harmonic functions. Let $E \subset \Omega \subset \mathbb{R}^n$ be a compact subset. Then there exists $$C = C(\Omega, E)$$ such that for all 
+harmonic functions $u$ on $\Omega$, if $u > 0$ in $\Omega$, then 
+
+\begin{equation}
+    \max_E u \leq C\min_E u \implies \frac{u(x)}{u(y)} \leq C
+\end{equation}
+
+i.e. positive harmonic functions have bounded oscillations. 
+This actually isn't trivial, since this implies that the ratio is always constant (which is not the case for general bounded functions). 
+This is a homework problem. \textbf{Hint:} use Poisson's formula for the ball. 
+
+\begin{theorem}
+    (Liouville's Theorem) If $u$ is harmonic on $\mathbb{R}^n$ and is bounded, then $u$ is constant.
+\end{theorem}
+
+\begin{proof}
+    Let $a > 0$, then use the Poisson Integral formula for the ball $B(0,a)$ (origin with radius $a$)
+    \begin{align}
+        u(x) &= \frac{a^2 - |x|^2}{a \omega_n}\int_{\partial B(a)}\frac{u(y)}{|x-y|^n}dS(y)
+    \end{align}
+    Differentiate this with respect to $x_i$:
+    \begin{align}
+        u_{x_i}(x=0) &= 0 + \frac{a^2}{a \omega_n}\int_{\partial B(a)}\frac{ny_iu(y)}{|y|^{n+2}}\\
+        |u_{x_i}(x=0)| &\leq \frac{a}{\omega_n}\frac{n}{|a^{n+1}|} ||u||_{L^{\infty}} (\omega_n a^{n-1})\\
+        &= \frac{n}{a}||u||_{L^{\infty}}
+    \end{align}
+    If $a \rightarrow \infty$, then $u_{x_i}(x=0) \rightarrow 0$. Thus, $u$ is constant on $\mathbb{R}^n$. 
+\end{proof}
+
+\section*{Real Analyticity}
+
+If $u$ is harmonic then it is real analytic (equals its Taylor Series) and hence in particular is $C^{\infty}$ smooth. 
+
+\section*{Compactness}
+
+Suppose $\{u_k\}$ is a uniform bounded sequence of harmonic functions in $\Omega \in \mathbb{R}^n$. Then if $\overline{B(x,r)} \subset \Omega$, then $\{u_k\}$ contains a 
+subsequence which will converge uniformly on the ball and to some harmonic function. 
+
+\begin{proof}
+    Let $B(x,r)$ be in $\Omega$ and be a distance $a$ away from $\partial \Omega$. In other words, 
+    \begin{equation}
+        a = \text{dist}(\partial \Omega, \partial B(x,r))
+    \end{equation}
+    Therefore, $a > 0$. Let $M > 0$ such that $||u_k||_{L^{\infty}} \leq M$. Let $x_0 \in B(x,r)$ be the center of a ball $B(x,a)$ (Note, this ball DOESN'T hit the boundary). 
+    By our argument from Liouville, we have that 
+    \begin{equation}
+        |\nabla u _k(x_0) | \leq \text{const.}\frac{nM}{a}
+    \end{equation}
+    Which is true for all $x_0 \in B(x,r)$. Now, by Arzela-Ascoli, we get that there exists a 
+    uniformly convergent subsequence with continuous limit function. On homework 11, we will prove that this function is harmonic. (lol) Using the Poisson integral formula. 
+\end{proof}
+
+This result also says that the imbedding I: $\{\text{bounded harmonic functions on $\Omega$ with uniform norm}\} \rightarrow C(\overline{B})$ is compact. 
+
+\end{document}
