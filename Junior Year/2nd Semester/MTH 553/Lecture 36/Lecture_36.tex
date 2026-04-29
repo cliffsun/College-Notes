@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 36}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 36}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Dirichlet's Principle
+\end{enumerate}
+
+Here, we attempt to solve Poisson's equations by minimizing energy. Let $\Omega$ be bounded and smooth in $\mathbb{R}^n$. Let $f \in C\left( \overline{\Omega} \right)$ and $g \in C(\partial \Omega)$. 
+
+Define 
+
+\begin{equation}
+    E[w] = \int_{\Omega}\left( \frac{1}{2}|\nabla w|^2 - w f \right)dx
+\end{equation}
+
+For $w$ in the set 
+
+\begin{equation}
+    A = \{w \in C^2(\overline{\Omega}): \quad w = g \text{ on $\partial \Omega$}\}
+\end{equation}
+
+Here, we assume that $A \neq \emptyset$. Note that $w$ is really any arbitrary function that equals $g$ on $\partial \Omega$. 
+
+\begin{theorem}
+    If 
+    \begin{align}
+        -\triangle u &= f, \quad \Omega \\
+        u &= g, \quad \partial \Omega
+    \end{align}
+    Then, Dirichlet's principle states that:
+    \begin{equation}
+        E[u] = \min_{w \in A}E[w]
+    \end{equation}
+\end{theorem}
+
+Note that if $u \in A$ and also satisfies Dirichlet's Principle, then 
+
+\begin{align}
+        -\triangle u &= f, \quad \Omega \\
+        u &= g, \quad \partial \Omega
+\end{align}
+
+Therefore, 
+
+\begin{center}
+    DP $\iff$ $u$ solves Poisson's equations
+\end{center}
+
+\begin{proof}
+    (a) Let $-\triangle u = f$. Then for all $w \in a$, then we have 
+    \begin{align}
+        0 &= \int_{\Omega}\left( -\triangle u - f \right)\left( u - w \right)dx \\
+        &= \int_{\Omega}\left[ \nabla u \cdot \nabla (u - w) - f(u - w) \right]
+    \end{align}
+    By green 1 since $ u = g = w$ on $\partial \Omega$. Then 
+    \begin{align}
+        &= \int_{\Omega}\left[ |\nabla u|^2 - \nabla u \cdot \nabla w - fu + fw \right]dx \\
+        &\geq \int_{\Omega}\left[ \frac{1}{2}|\nabla u|^2 - \frac{1}{2}|\nabla w|^2 - fu + fw \right]dx
+    \end{align}
+    Therefore, 
+    \begin{equation}
+        E[w] \geq E[u]
+    \end{equation}
+    Which implies the Dirichlet principle. 
+\end{proof}
+
+We next prove $\impliedby$. 
+
+\begin{proof}
+    (b) Fix $v \in C^{\infty}_0(\Omega)$ and let 
+    \begin{equation}
+        e(\tau) = E[u + \tau v], \quad \tau \in \mathbb{R}
+    \end{equation} 
+    Since $u + \tau v \in A$, the DP implies 
+    \begin{equation}
+        e(0) \leq e(\tau) \implies e'(0) = 0
+    \end{equation}
+    Then 
+    \begin{align}
+        0 &= \frac{d}{dt}\int_{\Omega}\left[ \frac{1}{2}|\nabla u|^2 + \taiu \nabla u \cdot \nabla v + \frac{\tau^2}{2}|\nabla v|^2 - uf - \tau v f\right] \\
+        &= \int_{\Omega}\left[ \nabla u \cdot \nabla v - vf \right] \\
+        &= \int_{\Omega}\left( -\triangle u - f \right)v dx
+    \end{align}
+    By green 1 since $v = 0$ on $\partial \Omega$. Therefore, for all $v \in C^{\infty}_0(\Omega)$, we have that $-\triangle u - f = 0$ and $u \in A$, therefore, $u = g$ on $\partial \Omega$. 
+\end{proof}
+
+\end{document}
