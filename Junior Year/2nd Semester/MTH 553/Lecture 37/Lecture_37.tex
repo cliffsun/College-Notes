@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 37}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 37}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Similarity Method
+\end{enumerate}
+
+\section*{Similarity Method}
+
+A lot of PDEs have \underline{similarity} solutions defined as 
+
+\begin{equation}
+    u(x,t) = t^{\alpha}w(t^{\beta} x)
+\end{equation}
+
+For some constants $\alpha, \beta$. For instance, for the one dimensional heat equation 
+
+\begin{equation}
+    u_t = u_{xx}
+\end{equation}
+
+Then we can substitute this similarity solution into this PDE to obtain 
+
+\begin{equation}
+    u_t = t^{\alpha - 1}\left( \alpha w(t^{\beta}x) + \beta(t^{\beta}x)w'(t^{\beta}x) \right)
+\end{equation}
+\begin{equation}
+    u_{xx} = t^{\alpha + 2\beta}w''(t^{\beta}x)
+\end{equation}
+
+To get the $t$ terms to disappear, let $\alpha + 2\beta = \alpha -1$ implies that 
+
+\begin{equation}
+    \beta = -\frac{1}{2}
+\end{equation}
+
+Then, we can obtain an equation in terms of $w$, 
+
+\begin{equation}
+    w''(y) = \alpha w(y) + \beta yw'(y)
+\end{equation}
+\begin{equation}
+    w''(y) = \alpha w(y) - \frac{1}{2} yw'(y)
+\end{equation}
+
+Where $y = t^{\beta} x \in \mathbb{R}$. In essence, we have reduced the PDE into an ODE. T
+hen, we can solve this ODE for $w$. Let $\alpha = \beta$ (note, this choice permits conservation of heat). Therefore, $\alpha = \beta = -1/2$. Then, 
+
+\begin{equation}
+    \int_{-\infty}^{\infty}t^{\beta}w(t^{\beta}x)dx = \int_{-\infty}^{\infty}w(y)dy
+\end{equation}
+
+Note that this is independent of $t$. On the LHS, this is the total heat (since you are integrating the heat equation over $x$). And this doesn't depend on $t$ which means that 
+$\alpha = \beta = -1/2$ permits heat conservation. We solve 
+
+\begin{align}
+    w'' &= -\frac{1}{2}\left( w + yw' \right)\\
+    w'' &= -\frac{1}{2}\left( yw \right)' \\
+    w' &= -\frac{1}{2}yw + c_1, \quad \text{choose $c_1 = 0$} \\
+    w(y) &= C\exp(-\frac{y^2}{4})
+\end{align}
+
+Gaussian equation. Therefore,
+
+\begin{align}
+    u(x,t) &= t^{-1/2}w(t^{-1/2}x)\\
+    &= \frac{C}{(4\pi t)^{1/2}}\exp(-x^2/4t) 
+\end{align}
+
+\subsection*{Remarks}
+
+\begin{enumerate}
+    \item The choice of $\beta$ was forced to eliminate the leading powers of $t$
+    \item Other choices of $\alpha$ are mathematically possible. Although not physically possible. 
+\end{enumerate}
+
+\section*{Traveling wave for a non-linear PDE}
+
+This is called the Korteweg-de Vries equation (KdV). 
+
+\begin{equation}
+    u_t + 6uu_{x} + u_{xxx} = 0
+\end{equation}
+
+Note that this equation is non-linear and third order. Interpretation: $u$ is the height of water or electrical wave in one dimension.
+Let's try a traveling wave. 
+
+\begin{equation}
+    u(x,t) = v(x - ct)
+\end{equation}
+
+We then obtain 
+
+\begin{equation}
+    -cv'(y) + 6v(y)v'(y) + v'''(y) = 0
+\end{equation}
+
+Where $y = x - ct$. We can integrate everything 
+
+\begin{equation}
+    -c v + 3v^2 + v'' = a
+\end{equation}
+
+Where $a$ is a constant. Multiply by $2v'$ and integrate 
+
+\begin{equation}
+    (v')^2 = cv^2 - 2v^3 + 2av + b
+\end{equation}
+
+Where $b$ is a constant. This is a non-linear ODE that is first order. Suppose $v,v',v''$ tend to $0$ as $y \rightarrow \pm \infty$. This is a solitary wave. 
+Thus, $b=0$ and $a=0$. Therefore, for a solitary wave, we obtain 
+
+\begin{equation}
+    v' = \pm v\sqrt{c - 2v}
+\end{equation}
+
+This is a seperable non-linear ODE. Change variable, let $$v(y) = \frac{c}{2}\sech^2(\theta(y))$$ 
+
+Then we obtain:
+
+\begin{align}
+    \pm v\sqrt{c - 2v} &= \pm \frac{c}{2}\sech^2(\theta)\sqrt{c - c\sech^2\theta} \\
+    &= \pm\frac{c^{3/2}}{2}\sech^2\theta \tanh(\theta)  
+\end{align}
+\begin{equation}
+    v'(y) = -c\sech^2\theta \tanh\theta
+\end{equation}
+
+Thus 
+
+\begin{equation}
+    \frac{d\theta}{dy} = \pm \frac{\sqrt{c}}{2} \implies \theta = \pm \frac{\sqrt{c}}{2}\left( y - \phi \right)
+\end{equation}
+
+Thus, 
+
+\begin{equation}
+    \boxed{v(y) = \frac{c}{2}\sech^2\left( \frac{\sqrt{c}}{2}[y - \phi] \right)}
+\end{equation}
+
+This is our solitary wave with height $c/2$ with speed $c$. They are related! In particular, tall waves travel faster. When tall soliton 
+wave overtakes small wave, then the tall wave gets a bump forwards and the small wave gets pushed back. But they keep the same shape for some reason. 
+
+\end{document}
