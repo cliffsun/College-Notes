@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 38}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 38}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Reaction diffusion traveling wave
+\end{enumerate}
+
+\section*{Traveling wave for a bistable reaction diffusion equation}
+
+\begin{equation}
+    u_t = u_{xx} + f(u)
+\end{equation}
+
+Here, $f(u)$ is a reaction term. This models the diffusion of a substance with chemical reaction generatin new material at the rate of $f(u)$. 
+
+Suppose our curve $f$ has two humps whos middle intersects $a$. Note that the top hump is larger than the bottom hump. Here, $0 < a < 1$ and 
+
+\begin{equation}
+    \int_{0}^{1}f(z)dz > 0
+\end{equation}
+
+That is, there is more area over the axis than under the axis. But now, what does bistable mean? Here, $u \equiv 0$ is a stable solution of the PDE. 
+
+If $u \equiv -\epsilon$ then $f(u) > 0$, so then $u$ approaches $0$. If $u \equiv \epsilon$, then $f(u) < 0$. So then $u$ also approaches $0$. This is to say that the solution $u \equiv 0$ is \underline{stable}.
+
+Similarly, $u\equiv 1$ is also stable. However, $u = a$ is unstable. Therefore, we call the PDE bistable because there are two stable steady state solutions. 
+
+Our goal is find 
+
+\begin{equation}
+    u(x,t) = v(x + ct)
+\end{equation}
+
+We need that 
+
+\begin{equation}
+    \begin{cases}
+        v(-\infty) = 0 \\
+        v'(\pm\infty) = 0
+    \end{cases}
+\end{equation}
+
+Now, substitute into the PDE to obtain 
+
+\begin{equation}
+    cv'(s) = v''(s) + f(v(s))
+\end{equation}
+
+Where $s = x + ct \in \mathbb{R}$. Here, we will use the phase plane method to turn this 2nd order 
+ODE into two first order ODEs. So then, we obtain 
+
+\begin{align}
+    v' &= w \\
+    w' &= f(v) + cw
+\end{align}
+
+Then we want 
+
+\begin{enumerate}
+    \item $(v,w) \rightarrow (1,0)$ as $s \rightarrow \infty$
+    \item $(v,w) \rightarrow (0,0)$ as $s \rightarrow -\infty$
+\end{enumerate}
+
+Here, to understand the system at $(0,0)$, we aim to linearize the ODE: 
+
+\begin{equation}
+    \begin{pmatrix}
+        v'\\
+        w'
+    \end{pmatrix} = \begin{pmatrix}
+        0 & 1 \\
+        -f'(0) & c
+    \end{pmatrix}\begin{pmatrix}
+        v \\
+        w
+    \end{pmatrix}
+\end{equation}
+
+Then find the eigenvalues of $A$ (the above matrix) to obtain
+
+\begin{equation}
+    \lambda_{\pm} = \frac{c \pm \sqrt{c^2 - 4f'(0)}}{2}
+\end{equation}
+
+At $(1,0)$, the linearization is 
+
+\begin{equation}
+    \begin{pmatrix}
+        (v - 1)'\\
+        w'
+    \end{pmatrix} = \begin{pmatrix}
+         0 & 1 \\
+         -f'(1) & c
+    \end{pmatrix}\begin{pmatrix}
+        v - 1\\
+        w
+    \end{pmatrix}
+\end{equation}
+
+Then the eigenvalues of 
+
+\begin{equation}
+    \lambda_{\pm} = \frac{c \pm \sqrt{c^2 - 4f'(1)}}{2}
+\end{equation}
+
+Note, $f'(0) < 0$ and $f'(1) < 0$, which then means that 
+
+\begin{equation}
+    \lambda_{-} < 0 < \lambda_{+}
+\end{equation}
+
+Therefore, you have an incoming eigenvector and an outgoing eigenvector. We claim that there is a unique $c >0$ such that the outgoing trajectories between $(0,0)$ and $(1,0)$ are connected. 
+
+Here, to find such a $c$, use Lypunov function 
+
+\begin{equation}
+    E(v,w) = \int_{0}^vf(z)dz + \frac{1}{2}w^2
+\end{equation}
+
+Which increases along trajectories of ODE systems. Then 
+
+\begin{align}
+    \frac{d}{ds}E(v(s), w(s)) &= (f(v(s)) + v''(s))v'(s) \\
+    &= cv'(s)^2 > 0
+\end{align}
+
+\end{document}
