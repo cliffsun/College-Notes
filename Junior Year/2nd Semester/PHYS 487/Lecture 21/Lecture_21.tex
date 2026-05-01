@@ -1,0 +1,187 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 21}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 21}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Enter here
+\end{enumerate}
+
+\end{document}\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 21}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 21}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item More quantum stuff
+\end{enumerate}
+
+\section*{Density Matrix}
+
+Density matrix is defined as 
+
+\begin{equation}
+    \rho: \;\; \ket{\psi}\bra{\psi}
+\end{equation}
+
+Note that $\rho_{ii}$ are all real values and 
+
+\begin{equation}
+    \sum_i \rho_{ii} =1 \iff \Tr(\rho) = 1
+\end{equation}
+
+Moreover, 
+
+\begin{equation}
+    \rho_{ij} = \rho_{ji}^{*}
+\end{equation}
+
+\section*{Imperfect Knowledge}
+
+If we want to move the system into a state $\ket{+}$ but there is some variation from the desired state. Then how do we describe this? Use the density matrix 
+
+\begin{equation}
+    \rho = \frac{1}{N}\sum_{\chi}\ket{\psi_{\chi}}\bra{\psi_{\chi}}
+\end{equation}
+
+for mixed states. That is $\ket{\psi_{\chi}} \neq \ket{\psi_{i}}$ for all $i, \chi$. Here, we don't know $\ket{\psi_{\chi}}$ exactly. Then we can represent everything with an average vector. Here, 
+
+\begin{enumerate}
+    \item totally mixed: average is $0$
+    \item totally pure: average is 1
+    \item a bit of both: average $\in (0,1)$
+\end{enumerate}
+
+Pure states have a basis where 
+
+\begin{equation}
+    \rho^2 = \rho
+\end{equation}
+
+This is also called an \underline{Idempotent matrix}. Also in pure states, 
+
+\begin{equation}
+    \Tr[\rho^2] = \Tr[\rho] =1 
+\end{equation}
+
+But for mixed states 
+
+\begin{equation}
+    \Tr[\rho^2] < \Tr[\rho] < 1
+\end{equation}
+
+Then we can define a linear entropy (mixing) as 
+
+\begin{equation}
+    1 - \Tr[\rho^2]
+\end{equation}
+
+We can also define measurements, 
+
+\begin{equation}
+    \Pr[\chi] = | \langle \chi | \psi \rangle |^2 = \langle \chi | \rho | \psi \rangle
+\end{equation}
+
+And an expectation value 
+
+\begin{equation}
+    \langle A \rangle = \Tr[\rho A]
+\end{equation}
+
+And a time evolution on $\rho$ as 
+
+\begin{equation}
+    \rho = -\frac{i}{\chi}[\rho, H]
+\end{equation}
+
+\end{document}
