@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 553: Lecture \# 39}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 553: Lecture \# 39}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Continuation of trajectory
+\end{enumerate}
+
+Let 
+
+\begin{equation}
+    E(v,w) = \int_{0}^{v}f(z)dz + \frac{1}{2}w^2
+\end{equation}
+
+We showed that 
+
+\begin{equation}
+    \frac{d}{ds}E(v(s), w(s)) = cw^2(s) \geq 0
+\end{equation}
+
+This means that the energy increases along trajectories. We note that 
+
+\begin{equation}
+    E(0,0) < E(1,0)
+\end{equation}
+
+Since 
+
+\begin{equation}
+    \int_{0}^{1}f(v)dv > 0
+\end{equation}
+
+For large $c$, the trajectory cuts through the level sets (lines where the energy is constant) quickly. That is, the energy increases rapidly. Here, then the trajectories do not meet. 
+
+For small $c$, the energy will change slowly, but then the trajectory will not meet (undershot). 
+
+Therefore, there must be some in-between value of $c$ of which these trajectories will meet. 
+
+\section*{Schr\"odinger's equation on $\mathbb{R}^n$}
+
+Only difference between SE and heat equation is "i". Recall, we found the fundamental solution to the heat equation by Fourier Transform. 
+
+\begin{equation}
+    u_t = \triangle u
+\end{equation}
+
+With 
+
+\begin{equation}
+    u(x,t) = \frac{1}{(4\pi t)^{n/2}}\int_{\mathbb{R}^n}\exp(-|x-y|^2/4t)g(y)dy
+\end{equation}
+
+Then Schr\"odinger's equation 
+
+\begin{equation}
+    iu_t + \triangle u = 0
+\end{equation}
+
+On $\mathbb{R}^n$. With $u(x,t) \in \mathbb{C}$, or is a complex function. Just the heat equation but with $t$ replaced by $it$. Then 
+
+\begin{equation}
+    \frac{\partial u}{\partial (it)} = \triangle u \iff \frac{1}{i}\partial_t u - \triangle u =0
+\end{equation}
+
+Multiply by $i^2 = -1$ to obtain SE. So then replacing $t$ with $it$ should obtain the fundamental solution of Schr\"odinger's equation. 
+
+\begin{equation}
+    u(x,t) = \frac{1}{\left( 4\pi it \right)^{n/2}}\int_{\mathbb{R}^n}\exp(i|x-y|^2/4t)g(y)dy
+\end{equation}
+
+Should solve Schr\"odinger's equation with $u = g(x)$ at $t=0$. For $x \in \mathbb{R}$ and for all $t \in \mathbb{R}$ and $t \neq 0$. You can check (9) directly by differentiating through the integral. We also assume that 
+$g \in L^1$ and $|y^2|g(y) \in L^1$. That is, $g$ is integrable. Does $u(x,t) \rightarrow g(x)$ at $t \rightarrow 0$? Yes, using the method of stationary phases. 
+
+SE is time reversible. That is $u(x,-t)$ also solves (SE). For the Schr\"odinger on the bounded domain $\Omega \subset \mathbb{R}^n$ with Dirichlet boundary conditions, then the solution 
+is written in terms of eigenfunctions $\{\phi_k\}$. 
+
+\begin{equation}
+    u(x,t) = \sum_{k}c_k \exp(-i \lambda_k t)\phi_k(x)
+\end{equation}
+
+
+
+\end{document}
