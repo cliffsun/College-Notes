@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 487: Lecture \# 22}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 487: Lecture \# 22}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Decoherence
+\end{enumerate}
+
+Let the system be called $\ket{S}$ with some spins. Let $\ket{E}$ be the environment be a collection of $N = \mathcal{O}(10^{23})$ other spins. 
+
+Then let the initial state be $$\ket{S} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}$$ Then the total system is 
+
+$$\ket{\psi_{SE}} = \ket{S}_i \otimes \ket{E}_i$$
+
+Let the environment be in states $\ket{e}_0$ and $\ket{e}_1$ (both are combinations of spins in $E$). In principle, the resulting final state $S$ is 
+
+\begin{equation}
+    \Tr_{E}[\rho_{SE}] = \rho_s = \sum_i \braket{e_i | \rho_{SE} | e_i} = \sum_i \braket{e_i | \Psi_{SE}}\braket{\Psi_{SE} | e_i}
+\end{equation}
+
+This is called a \underline{partial trace}. We would perform this calculation as follows: 
+\begin{align}
+\frac{1}{2}
+\Big(
+\bra{e_0}
+\left( \ket{0}\ket{e_0} + \ket{1}\ket{e_1} \right)
+\left( \bra{0}\bra{e_0} + \bra{1}\bra{e_1} \right)
+\ket{e_0}
+\;+\;
+\bra{e_1}
+\left( \ket{0}\ket{e_0} + \ket{1}\ket{e_1} \right)
+\left( \bra{0}\bra{e_0} + \bra{1}\bra{e_1} \right)
+\ket{e_1}
+\Big)
+\end{align}
+
+This turns out to be 
+
+\begin{equation}
+    \frac{1}{2}\left[ \ket{0}\bra{0} + \ket{1}\bra{1} + \braket{e_1 | e_0}\ket{0}\bra{1} + \braket{e_0|e_1}\ket{1}\bra{0} \right]
+\end{equation}
+
+But what makes $\braket{e_0|e_1} = 0$? If there is at least one spin that is not matching between $\ket{e_0}$ and $\ket{e_1}$. Thus, if $\braket{e_1|e_0} \approx 0$, then 
+
+\begin{equation}
+    \rho_s = \frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}
+\end{equation}
+
+This is the basis of decoherence. That is, the environment can change the density matrix of $\rho_s$ which then changes the initial quanutm state. Then, the 
+quantum state is no longer in a superposition of $\ket{0}$ and $\ket{1}$, but rather only in either $\ket{0}$ or $\ket{1}$.  
+
+As a starting point, 
+
+\begin{equation}
+    \dot{\rho}_{SE} = -\frac{i}{\hbar}\left[ H_{SE}, \rho_{SE} \right]
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \rho_{SE}(t + \Delta t) = u_{SE}(\Delta t)\left[ \rho_{s}(t) \otimes \rho_E(t) \right]u^{\dagger}_{SE}(\Delta t)
+\end{equation}
+
+Let there be a "jump operator" 
+
+\begin{equation}
+    L_n = \braket{e_n | u | e_0}
+\end{equation}
+
+Which dictates the probability of the environment jumping from $e_0$ to $e_n$. Then 
+
+\begin{equation}
+    \rho_s(t + \Delta t) = \sum_n L_n \rho_s(t)L_{n}^{\dagger}
+\end{equation}
+
+We can then expand 
+
+\begin{equation}
+    L_0 \approx \mathbb{I} + \left( -iH_s - \frac{1}{2} \sum_n A_n^{\dagger}A_n\right)dt
+\end{equation}
+
+Where 
+
+\begin{equation}
+    L_n \approx \sqrt{\gamma_n}dt A_n
+\end{equation}
+
+Here, $\gamma_n$ is the rate of evolution of $E$. Then, you can rewrite everything into a differential equation for $\rho_s$. That is 
+
+\begin{equation}
+    \dot{\rho_s} = -i [H_s, \rho_s] + \sum_n \gamma_n (A_n \rho_s A_n^{\dagger}) - \frac{1}{2}\{ A_n^{\dagger}A_n, \rho_s \}
+\end{equation}
+
+\section*{Measurement -- Von Neumann Model}
+
+Suppose there is a pointer $\ket{P_i}$. Then we want 
+
+\begin{equation}
+    \alpha\ket{0} + \beta\ket{1} \rightarrow \alpha\ket{0}\ket{p_0} + \beta\ket{1}\ket{p_1}
+\end{equation}
+
+This is also called a "cat state". Since measuring if a particle decayed means that the cat is dead, etc. 
+
+After applying some time evolution operator of 
+
+$$u = \exp(-i H_{int}t/\hbar)$$
+
+Then 
+
+\begin{equation}
+    H_{int} = \hbar g_{int}\sigma_z \otimes p_i
+\end{equation}
+
+
+
+\end{document}
