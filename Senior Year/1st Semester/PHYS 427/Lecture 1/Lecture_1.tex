@@ -1,0 +1,231 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 1}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 1}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Probability and Multiplicity
+\end{enumerate}
+
+\section*{Notes}
+\begin{enumerate}
+    \item Homework due Mondays at 11am in the homework box in interpass (427)
+    \item Discussion is on Tuesdays, weekly quizzes
+    \item 2 Midterms (October, November) in class, One final
+\end{enumerate}
+
+\section*{Microstates and Macrostates}
+
+\begin{definition}
+    A \underline{Microstate} is the complete description of every particle or configuration of a system, down to every detail. 
+\end{definition}
+
+\begin{definition}
+    A \underline{Macrostate} is a description of a few measurable properties of a configuration. 
+\end{definition}
+
+In this class, we will review gas, solids, liquids, and magnets. 
+
+\textbf{Example 1:} Consider a few gas molecules in a box, then each particle has a position and a momentum. Then, a microstate will be a description of all the atoms position and momentum, i.e. 
+
+\begin{equation}
+    \text{Microstate} = \{x_i, p_i\}
+\end{equation}
+
+The macrostate will be 
+
+\begin{equation}
+    \text{Macrostate} = p, T, V
+\end{equation}
+
+Or pressure, temperature, and volume. 
+
+
+\textbf{Example 2:} Consider a polymer that is a long chain of several other molecules. Then 
+
+\begin{equation}
+    \text{Microstate} = \{\text{configuration of each polymer}\}
+\end{equation}
+
+\begin{equation}
+    \text{Macrostate} = \{\text{Distance from end to end of polymer chain}\}
+\end{equation}
+
+\textbf{Example 3:} Consider a magnet with spins up and down in various configurations. This is an Ising Model. Then, the microstate would be 
+
+\begin{center}
+    Microstate $=$ Configuration of every spin in the magnet
+\end{center}
+
+\begin{center}
+    Macrostate $=$ Average magnetization (average of all the spin values), $M$
+\end{center}
+
+\subsection*{Example}
+
+The most probable macrostate is the one who has the most degenerate microstates. Consider a box divided into a left half and a right half. 
+Consider the fact that we have $N$ particles in this box. Let the Macrostate be the number of particles in the left half $n_L$. Then $n_R = N - n_L$. 
+
+\textbf{Microstate:} Configuration of $N$ particles as a list of $L/R$ state of each particle. That is, whether a particle is in the left or right half. Like 
+
+\begin{center}
+    LRRLRRL$\dots$
+\end{center}
+
+Consider multiplicity $\Omega(n_L, N)$. Then consider a table with the Microstate on the left column, $\Omega$ in the middle, and Macrostate on the right. 
+
+Here, $N=1$
+\begin{center}
+\begin{tabular}{|c c c|} 
+ \hline
+ Microstate & $\Omega$ & Macrostate \\ [0.5ex] 
+ \hline\hline
+ Particle on the right & 1 & $n_L = 0$ \\ 
+ \hline
+Particle on the left & 1 & $n_L = 1$ \\
+\hline
+\end{tabular}
+\end{center}
+Total number of microstates is $2 = 2^1$, and total number of macrostates is $1$. 
+
+For $N=2$
+\begin{center}
+\begin{tabular}{|c c c|} 
+ \hline
+ Microstate & $\Omega$ & Macrostate \\ [0.5ex] 
+ \hline\hline
+ 2 particles on the right & 1 & $n_L = 0$ \\ 
+ \hline
+Symmetric particle distribution & 2 & $n_L = 1$ \\
+\hline
+2 particles on the left & 1 & $n_L = 2$ \\
+\hline
+\end{tabular}
+\end{center}
+Total number of microstates is $4 = 2^2$, and macrostates is $3 = 2 + 1$. 
+
+For $N=3$,
+\begin{center}
+\begin{tabular}{|c c c|} 
+ \hline
+ Microstate & $\Omega$ & Macrostate \\ [0.5ex] 
+ \hline\hline
+ 3 particles on the right & 1 & $n_L = 0$ \\ 
+ \hline
+1 particle on the left & 3 & $n_L = 1$ \\
+\hline
+1 particle on the right & 3 & $n_L = 2$ \\
+\hline
+3 particles on the left & 1 & $n_L = 3$ \\
+\hline
+\end{tabular}
+\end{center}
+Total number of microstates is $8 = 2^3$, and macrostates is $4 = 3 + 1$. 
+
+\begin{definition}
+    A \underline{Statistical Ensemble} is the total collection of all possible microstates of a system.
+\end{definition}
+
+The total number of microstates is $2^N$ and the total number of macrostates is $N+1$. 
+This is for a system with only \underline{two states.}
+
+Note, for small $N$, the probability of measuring a specific macrostate will not be that much different from each other. All the tools we develop in this course work in the \underline{Thermodynamic limit}, that is $N \rightarrow \infty$. 
+
+Next, we derive the general formula for the multiplicity. For the first particle, we have $N$ choices. For the 2nd particle, we have $N-1$ choices. Etc. In general, for the $n-th$ L particle, we have $N- n_L + 1$ choices. 
+
+Then, the number of choice is $N(N-1)(N-2)\dots(N - n_L + 1)$ if there are only $L$ slots.  
+
+Here, the general formula for the multiplicity is 
+
+\begin{equation}
+    \Omega(n_L, N) = \frac{N(N-1)\dots(N - n_L +1)}{n_L!} = \frac{N!}{n_L!(N - n_L)!} = \begin{pmatrix}
+        N \\
+        n_L
+    \end{pmatrix}
+\end{equation}
+
+This is also $N$ "choose" $n_L$. 
+
+The reason why we divide the number of choices by $n_L$ is because, since all the particles are identical, we can rearrange them in $n_L!$ possible configurations in the left box, but we would get back the same configuration since all the particles are identical. 
+
+Moreover, using the binomial thereom which states 
+
+\begin{equation}
+    (p + q)^N = \sum^N_{n=0}\begin{pmatrix}
+        N \\
+        n
+    \end{pmatrix}p^{n}q^{N-n}
+\end{equation}
+
+\begin{equation}
+    2^N = \sum \begin{pmatrix}
+        N\\
+        n_L
+    \end{pmatrix} = \sum \Omega(n_L, N)
+\end{equation}
+
+\textbf{Fundamental Assumption:} In a closed, isolated system (i.e., non-interacting with surroundings), each microstate in a system is equally likely. Therefore, the probability of measuring one particle microstate is $1/2^N$. But some macrostates are more likely than others. 
+
+Therefore, the probability that $n_L$ out of $N$ particles are to the left is 
+
+\begin{equation}
+    P(n_L, N) = \frac{\Omega(n_L, N)}{\sum_{n_L}\Omega(n_L, N) \iff \text{ total \# of states}}
+\end{equation}
+
+As $N \rightarrow \infty$, $P(n_L, N) \rightarrow \delta_{N/2}$, which is the delta function located at $N/2$ particles on the left and right. Check that 
+
+\begin{align}
+    \sum P &= 1\\
+    \langle n_L \rangle &= \frac{N}{2} \\
+    \langle f(n_L) \rangle &= \sum f(n_L)P(n_L)
+\end{align}
+
+
+
+\end{document}

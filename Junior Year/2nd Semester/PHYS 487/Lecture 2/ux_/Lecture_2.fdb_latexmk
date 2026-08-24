@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1769108212.85944 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/PHYS 487/Lecture 2/Lecture_2.tex" "ux_/Lecture_2.pdf" "Lecture_2" 1769108213.65866 0
-  "C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1759126747 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1782062658.22772 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/PHYS 487/Lecture 2/Lecture_2.tex" "ux_/Lecture_2.pdf" "Lecture_2" 1782062659.98406 0
+  "C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1777336590 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/cliff/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1759126750 11548 db38d18730a192df313ad25b3b0818ff ""
   "C:/Users/cliff/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1759126511 24225046 55af49e39e241b9a83b183759167ed82 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
@@ -180,9 +180,9 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/physics/physics.sty" 1356002062 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/tools/verbatim.sty" 1700599895 7500 db31c3d04f8bc9010e47a5efbbace9ff ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "Lecture_2.tex" 1769108212 6874 a4b822e3fcf8c45527632eec0e4bc6a9 ""
-  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/PHYS 487/Lecture 2/Lecture_2.tex" 1769108212 6874 a4b822e3fcf8c45527632eec0e4bc6a9 ""
-  "ux_/Lecture_2.aux" 1769108213 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
+  "Lecture_2.tex" 1782062657 6874 a4b822e3fcf8c45527632eec0e4bc6a9 ""
+  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Junior Year/2nd Semester/PHYS 487/Lecture 2/Lecture_2.tex" 1782062657 6874 a4b822e3fcf8c45527632eec0e4bc6a9 ""
+  "ux_/Lecture_2.aux" 1782062659 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
   (generated)
   "ux_/Lecture_2.aux"
   "ux_/Lecture_2.log"
