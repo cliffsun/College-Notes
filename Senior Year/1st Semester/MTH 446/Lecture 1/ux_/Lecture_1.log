@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.29)  26 AUG 2026 12:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.29)  26 AUG 2026 13:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Senior Year/1st Semester/PHYS 427/Lecture 2/Lecture_2.tex"
-(c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Senior Year/1st Semester/PHYS 427/Lecture 2/Lecture_2.tex
+**"c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Senior Year/1st Semester/MTH 446/Lecture 1/Lecture_1.tex"
+(c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Senior Year/1st Semester/MTH 446/Lecture 1/Lecture_1.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -265,8 +265,8 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 )
 \c@theorem=\count292
- (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\PHYS 427\Lecture 2\ux_\Lecture_2.aux)
-\openout1 = `Lecture_2.aux'.
+ (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 1\ux_\Lecture_1.aux)
+\openout1 = `Lecture_1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
 LaTeX Font Info:    ... okay on input line 47.
@@ -359,24 +359,24 @@ LaTeX Font Info:    Trying to load font information for U+esint on input line 49
 File: uesint.fd 
 ) [1
 
-{C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\PHYS 427\Lecture 2\ux_\Lecture_2.aux)
+{C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] (c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 1\ux_\Lecture_1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7532 strings out of 474486
- 114478 string characters out of 5743755
- 1942542 words of memory out of 5000000
- 29711 multiletter control sequences out of 15000+600000
- 566334 words of font info for 73 fonts, out of 8000000 for 9000
+ 7529 strings out of 474486
+ 114394 string characters out of 5743755
+ 1938542 words of memory out of 5000000
+ 29708 multiletter control sequences out of 15000+600000
+ 566027 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 79i,14n,93p,517b,347s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\cliff\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi600\esint10.pk><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\PHYS 427\Lecture 2\ux_\Lecture_2.pdf" (4 pages, 156453 bytes).
+ 79i,11n,93p,516b,309s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 1\ux_\Lecture_1.pdf" (2 pages, 127722 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
+ 64 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
