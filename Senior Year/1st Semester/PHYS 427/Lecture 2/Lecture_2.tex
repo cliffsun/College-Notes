@@ -1,0 +1,294 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Multiplicity of Physical Systems
+\end{enumerate}
+
+\section*{Review}
+
+Useful: 
+
+\begin{equation}
+    (p + q)^N = \sum^N_{n=0}\begin{pmatrix}
+        N \\
+        n
+    \end{pmatrix}p^nq^{N-n}
+\end{equation}
+
+One can also take the following derivative:
+
+\begin{equation}
+    p\partial_p p^{n} = n p^n
+\end{equation}
+
+Then, taking the derivative of both sides of Eq.(1) and multiply it by $p$, then we obtain:
+
+\begin{align}
+    Np(p + q)^{N-1} &= \sum^{N}\begin{pmatrix}
+        N \\
+        n
+    \end{pmatrix}np^n q^{N -n}\\
+    Np &= \sum^{N}\begin{pmatrix}
+        N \\
+        n
+    \end{pmatrix}np^n q^{N -n}
+\end{align}
+
+Therefore, $\langle n \rangle = pN$. Such a procedure can be repeated for $\langle n^2 \rangle$. Here, 
+
+\begin{align}
+    \langle n^2 \rangle &= \sum n^2 \begin{pmatrix}
+        N \\
+        n
+    \end{pmatrix}p^n q^{N-n}
+\end{align}
+
+Moreover, 
+
+\begin{equation}
+    \left( p \partial_p \right)^2 p^{n} = n^2 p^n
+\end{equation}
+
+Then, 
+
+\begin{align}
+    \sum \begin{pmatrix}
+        N \\
+        n
+    \end{pmatrix}n^2 p^n q^{N-n} &= \left( p \partial_p \right)^2 (p + q)^N \\
+    &= p \partial_p Np(p + q)^{N-1} \\
+    &= Np(p + q)^{N-1} + N(N-1)p^2(p +q)^{N-2} \\
+    \langle n^2 \rangle &= Np + N(N-1)p^2
+\end{align}
+
+Here, $P(n)$ is a peak. The width of that peak is shown as 
+
+\begin{align}
+    \sigma_n^2 &= \langle (n - \langle n \rangle)^2 \rangle \\
+    &= \langle n^2 \rangle  - \langle n \rangle^2
+\end{align}
+
+The relative width can be calculated as $\sigma_n / \langle n \rangle$, and is useful for comparing the true standard deviation versus the magnitude of the atoms we are dealing with.
+E.g., a $\sigma_n \sim 1$ and $\mu \sim 10^{23}$ means that $\sigma_n$ doesn't really mean anything. This is essentially a delta function. 
+
+\section*{Multiplicity of a physical system}
+
+We assume that the system is closed (i.e., an isolated system). This also means that the system does not interact with the outside environment. Then, let $U$ be the total energy of the system. Then,
+
+\begin{center}
+    U is constant in the isolated system
+\end{center}
+
+Later, $U$ can exchange with some sort of bath (environment). The macrostate of the system is defined as $\Omega(U,N)$ where $N$ is the total number of atoms. 
+
+\subsection*{Einstein model of solid}
+
+Assume that we have a 2d lattice of atoms, and each atom are coupled to each other by springs. Then, treat all the atoms as a collection of $N$, independent quantum harmonic oscillators. As a reminder, the energy levels are 
+
+\begin{equation}
+    E_i = \hbar \omega (n_i + 1/2), \quad n_i = 0,1,2,\dots
+\end{equation}
+
+Here, $i$ is the index of each atom. Then, 
+
+\begin{equation}
+    U = \sum_i E_i = \hbar \omega (n + \frac{N}{2})
+\end{equation}
+
+Here, we neglect the zero point energy since $\hbar \omega N/2$. 
+Moreover, we also have that: $$n = \sum_i^N s_i$$
+
+So then, what is $\Omega(U, N)$? In other words, how many microstates correspond to the same total energy $U$ correspond to $n$ quanta? This is possible when
+
+\begin{equation}
+    s_1 + s_2 + \dots = n
+\end{equation}
+
+This is also the integer partitions of $n$. We can imagine drawing out $n$ different dots (up to $n$ quanta) and dividing them up. There is a maximum of $N-1$ partitions. 
+
+Then, there are a total of $n + (N-1)$ slots. Then, the bionomial coefficient is 
+
+\begin{equation}
+    \begin{pmatrix}
+        n + (N-1) \\
+        n
+    \end{pmatrix}
+\end{equation}
+
+Here, $n$ is the number of quanta and $N-1$ is the number of partitions between the atoms. Therefore, there is a total number of $n + N-1$ arrangements of the partitions and the quanta. We also choose $n$ quanta, which is to say how many times 
+are we able to arrange $n$ in these slots given that the partitions remain "still". 
+
+We can also approximate 
+
+\begin{equation}
+    \Omega(n,N) = \frac{(n + N -1)!}{n!(N-1)!}
+\end{equation}
+
+Using stirling's approximation for $N >>1$, we derive that 
+
+\begin{align}
+    \ln(N!) &= \ln\left[ N(N-1)(N-2)\dots \right] \\
+    &= \ln N + \ln (N-1) + \dots\\
+    &= \sum_x \ln x \approx \int_1^N \ln(x)dx\\
+    &\approx N \ln N - N
+\end{align}
+
+In an Einstein solid, we have that 
+
+\begin{align}
+    \ln \Omega(n,N) &= \ln\left[ (n + N)! \right] - \ln \left[N! \right] = \ln \left[ n! \right] \\
+    &\approx (n + N)\ln(n + N) - N\ln N - n \ln n
+\end{align}
+
+In the high temperature limit, for $n \gg N$, then 
+
+\begin{align}
+    \ln (n + N) &= \ln \left( n \left( 1 + \frac{N}{n} \right) \right) \\\
+    &= \ln n + \ln \left( 1 + \frac{N}{n} \right) \\
+    &\approx \ln n + \frac{N}{n}
+\end{align}
+
+Therefore, 
+
+\begin{equation}
+    \ln \Omega (n,N) \approx N\ln \left( \frac{n}{N} \right) + N
+\end{equation}
+
+Therefore, 
+
+\begin{align}
+    \Omega &= e^{\ln \Omega} \approx e^{N \ln (N/n) + N}\\
+    &= \left( e \frac{n}{N} \right)^N\\
+    &= \left( \frac{eU}{N \hbar \omega} \right)^N
+\end{align}
+
+Here, $n = U/\hbar \omega$. Therefore, 
+
+\begin{equation}
+    \Omega \sim U^N
+\end{equation}
+
+For a lot of systems, we have that 
+
+\begin{equation}
+    \Omega \sim U^f
+\end{equation}
+
+In an Einstein solid, $f \sim N$. 
+
+\subsection*{Entropy}
+
+Here, we define Entropy as:
+
+\begin{equation}
+    \sigma = \ln \Omega
+\end{equation}
+
+This is so that $\sigma$ is additive when you add two systems together and calculate its multiplied multiplicity. Then, 
+
+\begin{equation}
+    \sigma(U,N) = N \ln \left( \frac{eU}{N \hbar \omega} \right)
+\end{equation}
+
+If you double the system, then $U \rightarrow 2U$ and $N \rightarrow 2N$, then $\sigma \rightarrow 2\sigma$. Note, this is only true in the high temperature limit. 
+
+\subsection*{Paramagnetic}
+
+Collection of non-interacting spins. Then, $$N = n_{\uparrow} + n_{\downarrow}$$
+
+Such spins have a dipole moment
+
+\begin{equation}
+    \vec{mu} = g \frac{q}{2m}\vec{s}
+\end{equation}
+
+Then, the energy is then: (for a B field in the z direction)
+
+\begin{equation}
+    U = -\vec{\mu} \cdot \vec{B} = -\mu_z B
+\end{equation}
+
+Such that 
+
+\begin{equation}
+    \mu_z = g \frac{q\hbar}{2m}m_z, \quad m_z = -s, -s + 1, \dots, s-1, s
+\end{equation}
+
+Here, $s = 1/2$ (i.e., we only deal with particles with a spin-1/2.) There are only two energy levels. 
+
+Working within the binary system for $s = 1/2$, then 
+
+\begin{equation}
+    \Omega(n_{\uparrow}, N) = \frac{N!}{(n_{\uparrow}!)(N - n_{\uparrow})!}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \Omega(U, N) = \frac{N!}{(N/2 - U/(2 \mu B))!(N/2 + U/(2\mu B))!}
+\end{equation}
+
+Here, we used the fact that $U = n_{\uparrow}(-\mu B) + n_{\downarrow}(\mu B)$. Here, 
+
+\begin{equation}
+    n_{\uparrow} = \frac{N}{2} - \frac{U}{2\mu B}
+\end{equation}
+
+\textbf{The above equation is necessary for the homework.} We can also then use Stirling's approximation to then obtain 
+
+\begin{equation}
+    \ln \Omega(n_{\uparrow}, N) \iff \sigma (n_{\uparrow, N}) = N \ln N - (N - n_{\uparrow})\ln (N - n_{\uparrow}) - n_{\uparrow}\ln n_{\uparrow}
+\end{equation}
+
+You can also re-express this using equation (40) to get $\sigma(U,N)$. $\sigma(U,N)$ as a function of $U$ looks like a half parabola with a maximum at $U = 0$. 
+
+\end{document}
