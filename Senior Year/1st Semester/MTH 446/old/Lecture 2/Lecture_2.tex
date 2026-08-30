@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 2}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 2}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Complex numbers and Riemann sphere
+\end{enumerate}
+
+\section*{Review}
+
+We can think of complex numbers as a vector on a 2-d plane, $z = a + bi$. We previously defined the complex conjugate $\overline{z} = a - bi$.
+
+We can also define 
+
+\begin{equation}
+    \theta = \arccos\left( \frac{a}{\sqrt{a^2 + b^2}} \right)
+\end{equation}
+
+Then, we can write this as 
+
+\begin{align}
+    \frac{z}{|z|} &= \cos\theta + i\sin\theta \\
+    &= e^{i\theta}
+\end{align}
+
+We can also divide by a complex number as 
+
+\begin{equation}
+    \frac{1}{z} = \frac{\overline{z}}{|z|^2}
+\end{equation}
+
+The complex numbers are denoted as $\mathbb{C}$. Also, $C_1$ means the unit circle on the plane. Here, 
+
+\begin{equation}
+    C_1 = \{z \in \mathbb{C}: |z| = 1\}
+\end{equation}
+
+Therefore, each $z$ can be written as $\cos\theta + i\sin\theta$ for some $\theta$. Consider the equation 
+
+\begin{equation}
+    |z|^n = 1 \implies |z| = 1
+\end{equation}
+
+Also, consider 
+
+\begin{equation}
+    z^n = 1\implies e^{in \theta} = 1
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \cos n\theta + i \sin n \theta = 1
+\end{equation}
+
+This means that 
+
+\begin{equation}
+    \cos n\theta = 1 \implies n \theta = l2\pi, l \in [1, n]
+\end{equation}
+
+and 
+
+\begin{equation}
+    \sin n\theta = 0 \implies n \theta = k \pi 
+\end{equation}
+
+The "cube" roots of unity, that is solving for 
+
+\begin{equation}
+    \exp(i\theta)^3 = 1
+\end{equation}
+
+Yields 
+
+\begin{equation}
+    \theta = 2\pi/3, 4\pi/3, 6\pi/3
+\end{equation}
+
+This corresponds to 
+
+\begin{equation}
+    \omega = -\frac{1}{2} \pm i \frac{\sqrt{3}}{2}
+\end{equation}
+
+\section*{Riemann Sphere}
+
+Imagine we put a sphere on a 2d plane such that it's tangent to the origin. Consider the north pole of this sphere, then we can associate that with infinity. Think of it like wrapping the 2d plane into a sphere, we can map points on the sphere to points on the 2-d plane. 
+
+We call this sphere $S^2$. Then, we can also consider "linear fractional transformations", called by 
+
+\begin{equation}
+    w = \frac{az + b}{cz + d}
+\end{equation}
+
+Such mapping is simply a transformation of the Riemann sphere into another Riemann sphere. Here, $w$ is the new coordinate, transformed from the original coordinate $z$.  
+
+THis function is also reversible that is, 
+
+\begin{equation}
+    z = \frac{-dw + b}{cw + a}
+\end{equation}
+
+\end{document}

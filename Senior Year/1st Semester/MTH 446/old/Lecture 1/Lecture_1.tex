@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 1}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 1}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Introduction into class
+    \item Introduction into Complex numbers
+\end{enumerate}
+
+\section*{Introduction}
+\begin{enumerate}
+    \item 2 Midterms (100 points each); 1st is early october. 2nd is mid november. 
+    \item 1 Final (200 points)
+    \item Homeworks (60-80 points)
+    \item Textbook: Churchill \& Brown (homeworks come from this)
+\end{enumerate}
+
+\section*{Complex numbers}
+
+Complex numbers are created from the real number line, such that 
+
+\begin{equation}
+    z = a + bi, \quad a,b \in \mathbb{R}, \; i \in \mathbb{C}
+\end{equation}
+
+It follows that 
+
+\begin{equation}
+    (a + bi) + (c + di) = (a + c) + (b + d)i
+\end{equation}
+
+Moreover, 
+
+\begin{equation}
+    (a + bi)(c + di) = ac + adi + bci - bd
+\end{equation}
+
+This is just the standard distributive rule. You also have to introduce the complex conjugate:
+
+\begin{equation}
+    \overline{z} = a - bi, \quad z = a + bi
+\end{equation}
+
+The conjugate is $\overline{z}$. Here, then some more properties:
+
+\begin{align}
+    \overline{(z\times w)} &= \overline{z} \times \overline{w} \\
+    \overline{z + w} &= \overline{z} + \overline{w}
+\end{align}
+
+Also, 
+
+\begin{equation}
+    z \cdot \overline{z} = a^2 + b^2 \geq 0
+\end{equation}
+
+Then define 
+
+\begin{equation}
+    |z| = \sqrt{z \overline{z}} = \sqrt{a^2 + b^2}
+\end{equation}
+
+Also 
+
+\begin{equation}
+    z \cdot \frac{z}{|z|^2} = 1
+\end{equation}
+
+Therefore,
+
+\begin{equation}
+    z \neq 0 \implies \frac{1}{z} = \frac{\overline{z}}{|z|^2}
+\end{equation}
+
+This means that all non-zero complex numbers have an inverse. Also, 
+
+\begin{equation}
+    |zw| = |z| |w|
+\end{equation}
+
+Then, we can also think of such complex numbers geometrically, on a 2-d plane. Consider 
+
+\begin{equation}
+    \frac{z}{|z|} = \frac{a}{\sqrt{a^2 + b^2}} + \frac{b}{\sqrt{a^2 + b^2}}i
+\end{equation}
+
+This is simiilar to seeing a cosine and a sine. In particular, 
+
+\begin{equation}
+    \cos\theta = \frac{a}{\sqrt{a^2 + b^2}}, \quad \sin\theta = \frac{b}{\sqrt{a^2 + b^2}}
+\end{equation}
+
+Then, $\theta$ is the argument of $z$, denoted as $\arg(z)$. Then 
+
+\textbf{Is this correct?:}
+\begin{equation}
+    z = \frac{z}{|z|}(\cos\theta + i\sin\theta)
+\end{equation}
+
+Moreover, 
+
+\begin{equation}
+    e^{i\theta} = \cos\theta + i\sin\theta
+\end{equation}
+
+This is also called $\text{cis}(\theta)$. Then consider 
+
+\begin{align}
+    e^{i\theta}\cdot e^{i\phi} &= (\cos\theta + i\sin\theta)(\cos\phi + i\sin\phi)\\
+    &= \cos\theta\cos\phi - \sin\theta\sin\phi + (\cos\theta\sin\phi + \sin\theta\cos\phi)i \\
+    &= \cos(\theta + \phi) + \sin(\theta + \phi)i\\
+    &= e^{i(\theta + \phi)} \iff \text{cis}(\theta + \phi)
+\end{align}
+
+You can also derive $e^{i\theta}$ from the taylor series expansion. I won't add that here.
+
+Also, you can think of $z$ as 
+
+\begin{equation}
+    z = |z|e^{i\theta}
+\end{equation}
+
+Towards next class, a complex function is a function of two variables. Such that 
+
+\begin{equation}
+    f(x + iy) = u(x,y) + iw(x,y)
+\end{equation}
+
+Then define a complex derivative 
+
+\begin{equation}
+    \frac{f(z + \Delta z)}{\Delta z}
+\end{equation}
+
+\end{document}

@@ -1,7 +1,7 @@
-PWD c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2
+PWD c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2
 INPUT C:\Users\cliff\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2\Lecture_2.tex
-OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2\ux_\Lecture_2.log
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2\Lecture_2.tex
+OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2\ux_\Lecture_2.log
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
@@ -102,10 +102,10 @@ INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.s
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2\ux_\Lecture_2.aux
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2\ux_\Lecture_2.aux
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2\ux_\Lecture_2.aux
-OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2\ux_\Lecture_2.aux
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2\ux_\Lecture_2.aux
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2\ux_\Lecture_2.aux
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2\ux_\Lecture_2.aux
+OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2\ux_\Lecture_2.aux
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -164,10 +164,10 @@ INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
-OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2\ux_\Lecture_2.pdf
+OUTPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2\ux_\Lecture_2.pdf
 INPUT C:\Users\cliff\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
-INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\Lecture 2\ux_\Lecture_2.aux
+INPUT c:\Users\cliff\OneDrive - University of Illinois - Urbana\College\Classes\Class-Notes\Senior Year\1st Semester\MTH 446\old\Lecture 2\ux_\Lecture_2.aux
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\cliff\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb

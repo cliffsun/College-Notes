@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 3 (catching up)}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 3 (catching up)}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Properties of Argument
+\end{enumerate}
+
+Let $z \in \mathbb{C}$, $z \neq 0$, $\varphi \in \arg(z)$, and if $-\pi < \varphi \leq \pi$, then 
+$\varphi$ is called the \underline{principal value} of $\arg(z)$ with notation 
+
+\begin{equation}
+    \varphi = \arg(z)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \varphi = \arg(z) \iff \varphi \in \arg(z) \land -\pi  < \varphi \leq \pi
+\end{equation}
+
+As an example with
+\begin{equation}
+    \arg(i) = \{\pi/2 + 2\pi n, n \in \mathbb{Z}\}
+\end{equation}
+
+Then, use $\pi/2 \in \arg(z)$ as the \underline{principal value}. Thus, 
+
+\begin{equation}
+    \arg(i) = \pi/2
+\end{equation}
+
+Also, 
+
+\begin{equation}
+    \arg(-1) = \{\pi + 2\pi n\}
+\end{equation}
+
+Thus, the principal value of $-1$ is $\pi$. 
+
+Also, $\arg(\overline{z}) = \arg(z)$ if $z$ is not a negative real number (i.e., $\varphi \neq \pi$). 
+
+\begin{proof}
+    Let $\varphi = \arg(z)$, then $-\pi < \varphi \leq \pi$. Since $z$ is not a negative real number, then $\varphi \neq 0$. Also, $-\varphi \in \arg(\overline{z})$ (by reflection), also 
+    \begin{equation}
+        -\pi < \varphi < \pi \implies -\pi < -\varphi < \pi
+    \end{equation}
+    Thus, we conclude that $-\varphi = \arg(\overline{z})$. 
+    Therefore, 
+    \begin{equation}
+        -\varphi = -\arg(z) = \arg(\overline{z})
+    \end{equation}
+\end{proof}
+
+\section*{Exponentiation of complex numbers}
+
+Let $r = |z| = \sqrt{x^2 + y^2}$, then 
+
+\begin{equation}
+    z = r\left( \frac{x}{r} + i \frac{y}{r} \right)
+\end{equation}
+
+Note that 
+
+\begin{equation}
+    \left( \frac{x}{r} \right)^2 + \left( \frac{y}{r} \right)^2 = 1
+\end{equation}
+
+Also, there is a $\theta$ such that 
+
+\begin{equation}
+    \cos\theta = \frac{x}{r}, \sin\theta = \frac{y}{r}
+\end{equation}
+
+Thus, 
+
+\begin{equation}
+    z = r(\cos\theta + \sin\theta) = e^{i\theta}
+\end{equation}
+
+For $\theta \in \mathbb{R}$. In general, $z \in \mathbb{C}$ and $z \neq 0$, then 
+
+\begin{equation}
+    z = re^{i\theta}, \theta \in \arg(z)
+\end{equation}
+
+You can also multiply complex numbers together 
+
+\begin{equation}
+    e^{\i\theta_1} e^{i\theta_2} = e^{i(\theta_1 + \theta_2)}
+\end{equation}
+
+Also, $\theta_1 \in \arg(z_1), \theta_2 \in \arg(z_2)$, then $\theta_1 + \theta_2 \in \arg(z_1 + z_2)$. 
+
+\section*{Important remark}
+
+Note that $\theta_1 = \arg(z_1)$ and $\theta_2 = \arg(z_2)$, then it is not always the case that $\theta_1 + \theta_2 = \arg(z_1z_2)$
+
+List of important results:
+
+\begin{enumerate}
+    \item $e^{i(\theta_1 + \theta_2)} = e^{i\theta_1}e^{i\theta_2}$
+    \item $e^{i(\theta_1 - \theta_2)} = e^{i\theta_1}/e^{i\theta_2}$
+    \item $e^{-i\theta} = 1/e^{i\theta}$
+    \item $|e^{i\theta}| = 1$
+\end{enumerate}
+
+
+\end{document}

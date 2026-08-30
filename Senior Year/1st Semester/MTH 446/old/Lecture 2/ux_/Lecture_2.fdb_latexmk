@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1787943067.88011 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Senior Year/1st Semester/MTH 446/Lecture 2/Lecture_2.tex" "ux_/Lecture_2.pdf" "Lecture_2" 1787943069.1626 0
+["pdflatex"] 1788102499.86873 "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Senior Year/1st Semester/MTH 446/old/Lecture 2/Lecture_2.tex" "ux_/Lecture_2.pdf" "Lecture_2" 1788102501.09611 0
   "C:/Users/cliff/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1777336590 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/cliff/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1759126511 24225046 55af49e39e241b9a83b183759167ed82 ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -87,8 +87,8 @@
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/tools/verbatim.sty" 1700599895 7500 db31c3d04f8bc9010e47a5efbbace9ff ""
   "C:/Users/cliff/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "Lecture_2.tex" 1787943067 3694 3cfa2f56ff1f7e5bea8ced0584173182 ""
-  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Senior Year/1st Semester/MTH 446/Lecture 2/Lecture_2.tex" 1787943067 3694 3cfa2f56ff1f7e5bea8ced0584173182 ""
-  "ux_/Lecture_2.aux" 1787943068 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
+  "c:/Users/cliff/OneDrive - University of Illinois - Urbana/College/Classes/Class-Notes/Senior Year/1st Semester/MTH 446/old/Lecture 2/Lecture_2.tex" 1787943067 3694 3cfa2f56ff1f7e5bea8ced0584173182 ""
+  "ux_/Lecture_2.aux" 1788102500 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
   (generated)
   "ux_/Lecture_2.aux"
   "ux_/Lecture_2.log"

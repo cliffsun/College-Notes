@@ -28,7 +28,7 @@
 }
 
 
-\title{MTH 446: Lecture \# 1}
+\title{MTH 446: Lecture \# 1 (catch up)}
 \author{Cliff Sun}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -41,7 +41,7 @@
 
 \pagestyle{fancy}
 \lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
-\chead{MTH 446: Lecture \# 1}
+\chead{MTH 446: Lecture \# 1 (catch up)}
 \rhead{Cliff Sun}
 
 \begin{document}
@@ -50,133 +50,94 @@
 
 \section*{Lecture Span}
 \begin{enumerate}
-    \item Introduction into class
-    \item Introduction into Complex numbers
+    \item Review of complex numbers
 \end{enumerate}
 
-\section*{Introduction}
+\begin{definition}
+    A \underline{set} A is a collection of elements combined. They also follow a rule.
+\end{definition}
+
+Some examples:
+
 \begin{enumerate}
-    \item 2 Midterms (100 points each); 1st is early october. 2nd is mid november. 
-    \item 1 Final (200 points)
-    \item Homeworks (60-80 points)
-    \item Textbook: Churchill \& Brown (homeworks come from this)
+    \item The empty set $\empty$ is the set with no elements
+    \item If $x$ is an element of $A$, then we write it as $x \in A$. Else, $x \notin A$. 
 \end{enumerate}
 
-\section*{Complex numbers}
+Following abbreviations, $x \in A \iff$ x is contained in A. Else, x is not contained in A. Some important sets of numbers:
 
-Complex numbers are created from the real number line, such that 
+\begin{enumerate}
+    \item $\mathbb{N} = \{1,2,3,\dots\}$ (set of Natural numbers)
+    \item $\mathbb{Z} = \{0,1,-1,2,-2,\dots\}$ (set of Integers)
+    \item $\mathbb{Q} - \{p/q: p,q \in \mathbb{Z}\}$ and $\gcd(p, q) = 1$. (set of rational numbers)
+    \item $\mathbb{R}$, the set of reals 
+\end{enumerate}
 
-\begin{equation}
-    z = a + bi, \quad a,b \in \mathbb{R}, \; i \in \mathbb{C}
-\end{equation}
+If $A,B \neq \empty$, then $y = f(x)$ for $x \in A, y \in B$ is a mapping which assigns each $x$ to a unique $y$, denoted as $f: A \rightarrow B$, also called a mapping. 
 
-It follows that 
+If $A,B \neq \empty$, then \underline{Cartesian product} $A \times B$ is $\{(x,y): x \in A, y \in B\}$
 
-\begin{equation}
-    (a + bi) + (c + di) = (a + c) + (b + d)i
-\end{equation}
+Standard set theory notations for $A,B$ sets:
 
-Moreover, 
+\begin{enumerate}
+    \item $A \subseteq B \iff x \in A \implies x \in B$
+    \item $x \in A \cup B \iff (x \in A) \lor (x \in B)$
+    \item $x \in A \cap B \iff (x \in A) \land (x \in B)$
+    \item $x \in A / B \iff (x \in A) \land (x \notin B)$
+\end{enumerate}
 
-\begin{equation}
-    (a + bi)(c + di) = ac + adi + bci - bd
-\end{equation}
+Rules of addition:
+\begin{enumerate}
+    \item Commutative
+    \item Associative
+    \item Additive identity
+    \item Additive inverse
+\end{enumerate}
 
-This is just the standard distributive rule. You also have to introduce the complex conjugate:
+Rules of multiplication
+\begin{enumerate}
+    \item Commutative
+    \item Associative
+    \item Multiplicative identity
+    \item Multiplicative inverse
+    \item Distributive
+\end{enumerate}
 
-\begin{equation}
-    \overline{z} = a - bi, \quad z = a + bi
-\end{equation}
+Let $F$ be a non-empty set on which operations of addition and multiplication are given. Then $F$ is an (algebraic) field if 
+\begin{enumerate}
+    \item $F$ contains more than one element
+    \item $F$ with these properties satisfies all addition and multiplication properties. 
+\end{enumerate}
 
-The conjugate is $\overline{z}$. Here, then some more properties:
+Thus, we say that (F, "+", "$\cdot$") is an Algebraic field. As an example, ($\mathbb{R}$, "+", "$\cdot$") is an Algebraic field in the field of real numbers. 
 
-\begin{align}
-    \overline{(z\times w)} &= \overline{z} \times \overline{w} \\
-    \overline{z + w} &= \overline{z} + \overline{w}
-\end{align}
+\section*{Hamilton's construction of complex numbers}
 
-Also, 
+Recall $\mathbb{R^2} = \{(x,y): x,y \in \mathbb{R}\}$ and $z = (x,y)$. In complex analysis, define 
 
-\begin{equation}
-    z \cdot \overline{z} = a^2 + b^2 \geq 0
-\end{equation}
+\begin{enumerate}
+    \item $\mathbb{C} = \mathbb{R}^2$ (complex plane)
+    \item $z = (x,y)$ (complex number)
+    \item $x = \Re(z)$ (real part of $z$)
+    \item $y = \Im(z)$ (imaginary part of $z$)
+\end{enumerate}
 
-Then define 
-
-\begin{equation}
-    |z| = \sqrt{z \overline{z}} = \sqrt{a^2 + b^2}
-\end{equation}
-
-Also 
-
-\begin{equation}
-    z \cdot \frac{z}{|z|^2} = 1
-\end{equation}
-
-Therefore,
-
-\begin{equation}
-    z \neq 0 \implies \frac{1}{z} = \frac{\overline{z}}{|z|^2}
-\end{equation}
-
-This means that all non-zero complex numbers have an inverse. Also, 
-
-\begin{equation}
-    |zw| = |z| |w|
-\end{equation}
-
-Then, we can also think of such complex numbers geometrically, on a 2-d plane. Consider 
+Therefore, in $\mathbb{R}^2$ (and therefore in $\mathbb{C}$), we can define addition as 
 
 \begin{equation}
-    \frac{z}{|z|} = \frac{a}{\sqrt{a^2 + b^2}} + \frac{b}{\sqrt{a^2 + b^2}}i
+    z_1 + z_2 = (x_1 + x_2, y_1 + y_2)
 \end{equation}
 
-This is simiilar to seeing a cosine and a sine. In particular, 
+Next, introduce multiplication, define 
 
 \begin{equation}
-    \cos\theta = \frac{a}{\sqrt{a^2 + b^2}}, \quad \sin\theta = \frac{b}{\sqrt{a^2 + b^2}}
+    z_1z_2 = (x_1x_2 - y_1y_2, x_1y_2 + x_2y_1)
 \end{equation}
 
-Then, $\theta$ is the argument of $z$, denoted as $\arg(z)$. Then 
+Such operations satisfy all rules of addition and multiplication as well as distribution. 
 
-\textbf{Is this correct?:}
-\begin{equation}
-    z = \frac{z}{|z|}(\cos\theta + i\sin\theta)
-\end{equation}
+\section*{Euler's notation}
 
-Moreover, 
-
-\begin{equation}
-    e^{i\theta} = \cos\theta + i\sin\theta
-\end{equation}
-
-This is also called $\text{cis}(\theta)$. Then consider 
-
-\begin{align}
-    e^{i\theta}\cdot e^{i\phi} &= (\cos\theta + i\sin\theta)(\cos\phi + i\sin\phi)\\
-    &= \cos\theta\cos\phi - \sin\theta\sin\phi + (\cos\theta\sin\phi + \sin\theta\cos\phi)i \\
-    &= \cos(\theta + \phi) + \sin(\theta + \phi)i\\
-    &= e^{i(\theta + \phi)} \iff \text{cis}(\theta + \phi)
-\end{align}
-
-You can also derive $e^{i\theta}$ from the taylor series expansion. I won't add that here.
-
-Also, you can think of $z$ as 
-
-\begin{equation}
-    z = |z|e^{i\theta}
-\end{equation}
-
-Towards next class, a complex function is a function of two variables. Such that 
-
-\begin{equation}
-    f(x + iy) = u(x,y) + iw(x,y)
-\end{equation}
-
-Then define a complex derivative 
-
-\begin{equation}
-    \frac{f(z + \Delta z)}{\Delta z}
-\end{equation}
+$z = x + iy$. 
 
 \end{document}

@@ -28,7 +28,7 @@
 }
 
 
-\title{MTH 446: Lecture \# 2}
+\title{MTH 446: Lecture \# 2 (catching up)}
 \author{Cliff Sun}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -41,7 +41,7 @@
 
 \pagestyle{fancy}
 \lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
-\chead{MTH 446: Lecture \# 2}
+\chead{MTH 446: Lecture \# 2 (catching up)}
 \rhead{Cliff Sun}
 
 \begin{document}
@@ -50,102 +50,83 @@
 
 \section*{Lecture Span}
 \begin{enumerate}
-    \item Complex numbers and Riemann sphere
+    \item Properties of $|z|$
 \end{enumerate}
 
-\section*{Review}
+If $z = x + iy$, then $|z| = \sqrt{x^2 + y^2} = |\overline{z}|$. Some more properties:
 
-We can think of complex numbers as a vector on a 2-d plane, $z = a + bi$. We previously defined the complex conjugate $\overline{z} = a - bi$.
+\begin{enumerate}
+    \item $\forall z \in \mathbb{C}$, $|z| \geq 0$ and $|z| = 0 \iff z = 0$
+    \item $\forall z_1,z_2 \in \mathbb{C}$, $|z_1z_2| = |z_1||z_2|$
+    \item (Triangle inequality), $\forall z_1z_2 \in \mathbb{C}$, $|z_1 + z_2| \leq |z_1| + |z_2|$
+\end{enumerate}
 
-We can also define 
+\begin{proof}
+    (Proof of 2). 
+    \begin{align}
+        |z_1z_2|^2 &= (z_1z_2)(\overline{z_1z_2}) \\
+        &= (z_1z_2)(\overline{z_1}\overline{z_2}) \\
+        &= (z_1 \overline{z_1})(z_2 \overline{z_2}) \\
+        &= |z_1|^2|z_2|^2
+    \end{align}
+\end{proof}
 
-\begin{equation}
-    \theta = \arccos\left( \frac{a}{\sqrt{a^2 + b^2}} \right)
-\end{equation}
+\begin{proof}
+    (Proof of 3)
+    \begin{align}
+        |z_1 + z_2|^2 &= (z_1 + z_2)(\overline{z_1 + z_2}) \\
+        &= (z_1 + z_2)(\overline{z_1} + \overline{z_2}) \\
+        &= |z_1|^2 + z_1\overline{z_2} + z_2\overline{z_1} + |z_2|^2\\
+        &= |z_1|^2 + 2\Re(z_1z_2) + |z_2|^2\\
+        &\leq |z_1|^2 + |z_1||z_2| + |z_2|^2\\
+        &= (|z_1| + |z_2|)^2
+    \end{align}
+\end{proof}
 
-Then, we can write this as 
+\begin{corollary}
+    $\forall z_1,z_2 \in \mathbb{C}$, $||z_1| - |z_2|| \leq |z_1 - z_2|$
+\end{corollary}
 
-\begin{align}
-    \frac{z}{|z|} &= \cos\theta + i\sin\theta \\
-    &= e^{i\theta}
-\end{align}
+\begin{proof}
+    \begin{align}
+        |z_1| &= |z_2 + (z_1 - z_2)| \\
+        &\leq |z_2| + |z_1 - z_2| \\
+        |z_1| - |z_2| \leq |z_1 - z_2|
+    \end{align}
+\end{proof}
 
-We can also divide by a complex number as 
-
-\begin{equation}
-    \frac{1}{z} = \frac{\overline{z}}{|z|^2}
-\end{equation}
-
-The complex numbers are denoted as $\mathbb{C}$. Also, $C_1$ means the unit circle on the plane. Here, 
-
-\begin{equation}
-    C_1 = \{z \in \mathbb{C}: |z| = 1\}
-\end{equation}
-
-Therefore, each $z$ can be written as $\cos\theta + i\sin\theta$ for some $\theta$. Consider the equation 
-
-\begin{equation}
-    |z|^n = 1 \implies |z| = 1
-\end{equation}
-
-Also, consider 
-
-\begin{equation}
-    z^n = 1\implies e^{in \theta} = 1
-\end{equation}
-
-Then, 
-
-\begin{equation}
-    \cos n\theta + i \sin n \theta = 1
-\end{equation}
-
-This means that 
+You also can construct an alternative form of the equation of the circle centered at $z_0$ with radius $z$:
 
 \begin{equation}
-    \cos n\theta = 1 \implies n \theta = l2\pi, l \in [1, n]
+    |z - z_0| = R \iff |z|^2 - 2\Re(z \overline{z_0}) + |z_0|^2 = R^2
 \end{equation}
 
-and 
+Example: given $13 = 2^2 + 3^2$ and $74 = 5^2 + 7^2$, express $962 = 13 \cdot 74$ as the sum of two squares. 
+
+\begin{proof}
+    Let $z = 2 + 3i$ and $w = 5+ 7i$, then 
+    \begin{align}
+        |zw|^2 &= |z|^2|w|^2 \\
+        &= 13 \cdot 74 = 962
+    \end{align}
+    Then calculate 
+    \begin{equation}
+        zw = -11 + 29i
+    \end{equation}
+    Thus, 
+    \begin{equation}
+        962 = 11^2 + 29^2
+    \end{equation}
+\end{proof}
+
+\section*{Polar coordinates}
+
+Let $z \in \mathbb{Z}$ and $z \neq 0$. Let $r = |z|$, then 
 
 \begin{equation}
-    \sin n\theta = 0 \implies n \theta = k \pi 
+    \arg(z) = \{\theta + 2\pi n: n \in \mathbb{Z}\}
 \end{equation}
 
-The "cube" roots of unity, that is solving for 
-
-\begin{equation}
-    \exp(i\theta)^3 = 1
-\end{equation}
-
-Yields 
-
-\begin{equation}
-    \theta = 2\pi/3, 4\pi/3, 6\pi/3
-\end{equation}
-
-This corresponds to 
-
-\begin{equation}
-    \omega = -\frac{1}{2} \pm i \frac{\sqrt{3}}{2}
-\end{equation}
-
-\section*{Riemann Sphere}
-
-Imagine we put a sphere on a 2d plane such that it's tangent to the origin. Consider the north pole of this sphere, then we can associate that with infinity. Think of it like wrapping the 2d plane into a sphere, we can map points on the sphere to points on the 2-d plane. 
-
-We call this sphere $S^2$. Then, we can also consider "linear fractional transformations", called by 
-
-\begin{equation}
-    w = \frac{az + b}{cz + d}
-\end{equation}
-
-Such mapping is simply a transformation of the Riemann sphere into another Riemann sphere. Here, $w$ is the new coordinate, transformed from the original coordinate $z$.  
-
-THis function is also reversible that is, 
-
-\begin{equation}
-    z = \frac{-dw + b}{cw + a}
-\end{equation}
+This is called the argument of $z$. 
 
 \end{document}
