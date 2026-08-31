@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 3}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 3}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Thermal equilibrium and temperature
+\end{enumerate}
+
+\section*{Review}
+
+For a paramagnet, $\sigma$ is a closed parabola with a max at $N=0$ and is zero at the locations where the spins are all aligned (down and up). 
+
+Also, Einstein solid was $\Omega = U^N\implies \sigma = \ln \Omega$. These are all closed systems (zero interaction with surroundings), i.e. $U$ and $N$ are constant. 
+
+\section*{2 coupled systems}
+
+Now, consider \underline{2 coupled systems that can exchange energy but not particles} (thermal contact). Consider two systems $A: U_A, N_A$ and $B: U_B, N_B$. If each system is closed, then all variables are constant. 
+
+Then 
+
+\begin{equation}
+    \Omega(U_A,U_B) = \Omega(U_A)\Omega(U_B)
+\end{equation}
+
+Now, consider the case that they are in thermal contact. Then, $U = U_A + U_B$ is fixed, but $U_A$ and $U_B$ can vary. $N_A$ and $N_B$ are fixed. Then, 
+
+\begin{equation}
+    \Omega_{\text{tot}} = \sum \Omega_A(U_A)\Omega_B(U - U_A)
+\end{equation}
+
+\subsection*{2 Einstein solids}
+
+$\Omega(U) \sim U^N$. Then, plotting 
+
+\begin{equation}
+    \Omega_A(U_A)\Omega_B(U- U_A)
+\end{equation}
+
+You obtain some sort of peak, with a width of the peak as $\sigma_{U_A}$ (not entropy). The peak in $\Omega$ represents the most likely state. Now, find $\max(\ln(\Omega))$ for an Einstein solid. Calculate:
+\begin{align}
+    \ln(\Omega_A(U_A)\Omega_B(U - U_A)) &= \ln(\Omega_A(U_A)) + \ln(\Omega_B(U - U_A)) \\
+    &= \partial_{U_A}\ln(\Omega_A(U_A)) + \partial_{U_A}\ln(\Omega_B(U - U_A)) \\
+    \frac{N_A}{\overline{U_A}} - \frac{N_B}{U - \overline{U_A}} &= 0 \\
+    \frac{U}{U_A} - 1 &= \frac{N_B}{N_A}\\
+    \overline{U_A} &= \frac{U}{1 + N_B/N_A}\\
+    \overline{U_B} &= U - U_A = \frac{U}{1 + N_B/N_A}\\
+    \frac{\overline{U_A}}{N_A} &= \frac{\overline{U_B}}{N_B} = \frac{U}{N_A + N_B}
+\end{align} 
+
+In the most likely macrostate, the average energy per oscillator across both systems is equal. 
+
+The width of the peak can be calculated as follows. Let $U_A = \overline{U_A} + \delta U$. We calculated previously that 
+
+\begin{equation}
+    \Omega(U) = \left( \frac{eU}{N \hbar \omega} \right)^N
+\end{equation}
+
+Here, we let $U = U_A + \delta U$.
+
+Then plug the above equation into $\ln(\Omega_A) + \ln(\Omega_B)$, and you obtain 
+
+\begin{align}
+    &= 2N + N \ln\left( \frac{\overline{U_A} + \delta U}{N \hbar \omega} \right) + N\ln\left( \frac{\overline{U_A} - \delta U}{N \hbar \omega} \right) \\
+    &= 2N - 2N\ln(N \hbar \omega) + N\ln(\overline{U_A}^{2} - \delta^2)\\
+    U_A^2 - \delta U^2 &= U_A^2\left( 1 - \frac{\delta U^2}{U_A^2} \right) \\
+    &= 2N \ln\left( \frac{e \overline{U_A}}{N\hbar \omega} + N\ln\left( 1- \frac{\delta U^2}{U^2} \right) \right) \\
+    &\approx 2N\ln\left( \frac{eU_A}{N\hbar \omega}\right) - \frac{N \delta U^2}{U_A^2}
+\end{align}
+
+Finally, exponentiating both sides yields 
+
+\begin{align}
+    \Omega_A \cdot \Omega_B &= \left( \frac{eU_A}{N\hbar \omega} \right)^{2N}\exp(-\frac{N\delta U^2}{U_A^2})
+\end{align}
+
+This means that, up to a taylor expansion around $U_A$, this curve is a gaussian. Then, we find that (the standard deviation)
+
+\begin{align}
+    \sigma_{U_A} &= \frac{U_A}{\sqrt{2N}} \\
+    \frac{\sigma_{U_A}}{U_A} &= \frac{1}{\sqrt{2N}}
+\end{align}
+
+Therefore, for $N \gg 1$, we have that this relative width goes to $0$. Then, we can conclude that 
+
+\begin{equation}
+    \Omega_{\text{tot}} = \sum_{U_A}\Omega_A \Omega_B \approx \Omega_A(\overline{U}_A)\Omega_B(U - \overline{U}_A)
+\end{equation}
+
+Next, consider entropy 
+
+\begin{equation}
+    \sigma = \ln \Omega
+\end{equation}
+
+Now, bring two systems into thermal contact at $t=0$. Then, 
+
+\begin{equation}
+    \sigma_{\text{tot}} = \sigma_A(U_A) + \sigma_B(U - U_A)
+\end{equation}
+
+We assume initially that $U_A(t=0) > U_B(t=0)$. Initially, $\sigma(t=0) = \sigma(U_A(t=0)) + \sigma(U_B(t=0))$. Then, it evolves into 
+
+\begin{equation}
+    \sigma = \sigma_A(\overline{U_A}) + \sigma_B(U - \overline{U_A})
+\end{equation}
+
+The system evolves into a configuration that maximizes its total entropy, but entropy of individual systems may go down. This is the 2nd law of thermodynamics. ALso, 
+
+\begin{equation}
+    \frac{\partial \sigma_{\text{tot}}}{\partial U_A} = 0 = \partial_{U_A}\sigma_{A} + \partial_{U_B}\sigma_B \left( \frac{\partial U_B}{\partial U_A} \iff -1 \right)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \partial_{U_A}\sigma_A = \partial_{U_B}\sigma_B
+\end{equation}
+
+\textbf{question: maximize $\sigma$ as a function of $U_A$? Or is $\sigma$ natural log of the total multiplicicty (i.e., summing over all multiplicites wr..t $U_A$)}
+
+\section*{Formal definition of fundamental temperature}
+
+\begin{equation}
+    \frac{1}{\tau} = \left( \frac{\partial \sigma}{\partial U} \right)_N
+\end{equation}
+
+Equilibrium condition states that $\tau_A = \tau_B$ (or the fundamental temperatures are the same). 
+
+\textbf{0-th law of thermodynamics:} If $A$ is in thermal equilibrium with systems $B$ and $C$, then the temps of A,B,C are all the same. 
+
+Absolute temperature $T$ measured in Kelvin is $$\tau = k_B T$$
+
+$k_B$ is the Boltzmann constant. Then, the convention definition of entropy is 
+
+\begin{equation}
+    S = k_B \ln(\Omega)
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \frac{1}{T} = \left( \frac{\partial S}{\partial U} \right)_N
+\end{equation}
+
+Also, calculate 
+
+\begin{align}
+    \Delta S &= \Delta S_A + \Delta S_B  \\
+    &= \frac{\partial S_A}{\partial U_A}\Delta U_A + \frac{\partial S_A}{\partial U_B} \\
+    &= \frac{1}{T_A}\Delta U_A + \frac{1}{T_B} \Delta U_B \\
+    &= \left( \frac{1}{T_A}- \frac{1}{T_B} \right) \Delta U_A \geq 0 \\      
+\end{align}
+
+If $T_A > T_B$, then energy must flow from $U_A$ to $U_B$, i.e., $\Delta U_A < 0$. Therefore, energy flows from hot to cold.
+
+Also, $\Delta U_A = T_A \Delta S_A = -T_B \Delta S_B = -\Delta U_B$. This form of energy transfer is also called heat. As an example, $\Omega \sim U^N$. Then, 
+
+\begin{equation}
+    S = Nk_B \ln (U) + f(\text{other variables besides $U$})
+\end{equation}
+
+Now, 
+
+\begin{align}
+    \frac{1}{T} &= \frac{\partial S}{\partial U} = Nk_B \frac{\partial}{\partial U} \ln U \\
+    U &= Nk_B T 
+\end{align}
+
+\end{document}
