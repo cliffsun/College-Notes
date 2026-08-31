@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 4}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 4}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Roots of complex numbers
+\end{enumerate}
+
+\section*{Simple multiplication example}
+
+In general, evaluating if $z_1z_2 = z_3$, we can either (1) distribute and evalaute element-by-element or (2) check that the modulus of the RHS = LHS and that the arguments of both are the same.
+
+\textbf{Need to review what values of cos correspond to $\theta$ values}. 
+
+To obtain the argument of a complex number, calculate 
+
+\begin{equation}
+    z = |z|\left( \frac{z}{|z|} \right)
+\end{equation}
+
+Here, then the complex number $z/|z|$ corresponds to some $e^{i\theta}$. We can find this by solving 
+
+\begin{equation}
+    \cos\theta = x, \quad \sin\theta = y
+\end{equation}
+
+For $z/|z| = x + iy$. Note, the argument of a product is the sum of the arguments of each product term. 
+
+\begin{theorem}
+    De Moisre's formula states that 
+    \begin{equation}
+        (\cos\theta + i\sin\theta)^n = \cos n\theta + i\sin n\theta
+    \end{equation}
+    Proof: use $e^{i\theta} = \cos\theta + i\sin\theta$. 
+\end{theorem}
+
+We can use De Moisre's formula to derive useful trigonometric identities, and matching the imaginary part with the other imaginary part, and etc. 
+
+\section*{Roots of complex numbers}
+
+Let $z = re^{i\theta}$, then we want to find 
+\begin{equation}
+    w^n = z
+\end{equation}
+
+Here, then 
+
+\begin{align}
+    w^n &= re^{i\theta}
+\end{align}
+
+Let $w = \rho e^{i\phi}$, then 
+
+\begin{equation}
+    \rho^n = r, \quad n\phi = \theta + 2\pi k,\; k \in \mathbb{Z}
+\end{equation}
+
+Clearly, $\rho = r^{1/n}$, and 
+
+\begin{equation}
+    \phi = \theta/n + 2\pi k/n
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    z^{1/n} = \{r^{1/n} \exp(i(\frac{\theta}{n} + \frac{2\pi k}{n})): \quad k = 0, \dots, n-1\}
+\end{equation}
+
+There are many values of this number.
+
+\begin{definition}
+    Let $z \in \mathbb{C}$, then let $\theta = \arg(z)$ (principal value of $\arg(z)$), then 
+    \begin{equation}
+        r^{1/n}e^{i\arg(z)/n}
+    \end{equation}
+    This is the \underline{principal root}, with the notation of $^n\sqrt{z}$ (as opposed to $z^{1/n}$). 
+\end{definition}
+
+Suppose $z \neq 0$ and $z = re^{i\theta}$, then 
+
+\begin{align}
+    z^{1/2} = \{c_0, c_1\} \iff \{\sqrt{r}e^{i\theta/2}, \sqrt{r}e^{i(\theta/2 + 2\pi/2) \iff \sqrt{r}}e^{i\theta/2}e^{i\pi} = -\sqrt{r}e^{i\theta/2}\}
+\end{align}
+
+As another example, 
+
+\begin{equation}
+    1^{1/2} = \{1, -1\}
+\end{equation}
+
+However, $\sqrt{1}$ (principal root) is $1$. 
+
+\subsection*{Example}
+
+Evaluate $(-16)^{1/4}$ and find the principal value. Here, $\pi = \arg(-16)$. Then, 
+
+\begin{equation}
+    c_k = 2e^{(\pi/4 + 2\pi k/4 )i}
+\end{equation}
+
+Calcuate 
+
+\begin{align}
+    c_0 &= 2\left( \frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2} \right) \\
+    c_1 &= 2\left( -\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2} \right) \\
+    c_2 &= 2\left( -\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2} \right) \\
+    c_3 &= 2\left( \frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2} \right)
+\end{align}
+
+Here, then the principal root is $c_0 = \sqrt{2} + i\sqrt{2}$ because $\pi = \arg(z)$. \textbf{This will probably be on the midterm.}
+
+
+
+\end{document}
