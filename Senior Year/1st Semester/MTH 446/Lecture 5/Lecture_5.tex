@@ -1,0 +1,207 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 5}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 5}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Enter here
+\end{enumerate}
+
+\section*{Review}
+
+To evaluate $\sqrt{1 - i\sqrt{3}}$, we first find the $re^{i\theta}$ representation of this complex number, then take the root of this representation, which is the following: $$r^{1/2}\exp(i\theta/n + 2\pi k/n)$$. 
+
+For instance, 
+
+\begin{align}
+    2\left( \frac{1}{2} - i\frac{\sqrt{3}}{2} \right) &= \cos\left( -\pi/3 \right) + i\sin(-\pi/3) \\
+    &= 2\exp(-i\frac{\pi}{3})
+\end{align}
+
+Therefore, 
+
+\begin{align}
+    c_0 = \sqrt{2}\exp(-i\frac{\pi}{6}) &= \sqrt{2}\left( \cos(-\pi/6) + i\sin(-\pi/6) \right) \\
+    &= \sqrt{2}\left( \frac{\sqrt{3}}{2} - i\frac{1}{2} \right)\\
+    &= \frac{\sqrt{6}}{2} - i\frac{\sqrt{2}}{2}
+\end{align}
+
+Moreover, $c_1 = -c_0$, therefore, 
+
+\begin{equation}
+    c_1 = -\frac{\sqrt{6}}{2} + i\frac{\sqrt{2}}{2}
+\end{equation}
+
+\section*{Regions in the complex plane}
+
+\begin{definition}
+    \underline{$\epsilon$-neighborhood}. Let $\epsilon > 0$ and $z_0 \in \mathbb{C}$, then the \underline{$\epsilon$-neighborhood of $z_0$} is defined as:
+    \begin{equation}
+        \mathcal{D}_{\epsilon} = \{z \in \mathbb{C}: |z - z_0| < \epsilon\}
+    \end{equation}
+    This defines a 2D circle on the complex plane where all values in $\mathcal{D}_{\epsilon}$ are contained within a neighborhood of $\epsilon$ around the point $z_0$. 
+\end{definition}
+
+
+\begin{definition}
+    \underline{Deleted $\epsilon$-neighborhood}. Let $\epsilon >0$ and $z_0 \in \mathbb{C}$, then the \underline{deleted $\epsilon$ neighborhood} is defined as 
+    \begin{equation}
+        \dot{\mathcal{D}}_{\epsilon} = \{z \in \mathbb{C}: 0 < |z - z_0| < \epsilon\}
+    \end{equation}
+    The region of $\dot{\mathcal{D}}_{\epsilon}$ doesn't include the point $z_0$,, and is a subset of $\mathcal{D}_{\epsilon}$. 
+\end{definition}
+
+\begin{definition}
+    Let $U \subset \mathbb{C}$ and $z_0 \in U$. Then the point $z_0$ is an \underline{interior point} of $U$ if there exists $\epsilon_0 > 0$ such that 
+    \begin{equation}
+        \mathcal{D}_{\epsilon}(z_0) \subset U
+    \end{equation}
+    This means that there exists a small circle around $z_0$ if $z_0$ is in $U$. This excludes any points on $\partial U$. 
+\end{definition}
+
+\begin{definition}
+    Let $U \in \mathbb{C}$ and $z_0 \notin U$. Then the point $z_0$ is called the \underline{exterior point} of $U$ if $e_0 > 0$ such that 
+    \begin{equation}
+        \mathcal{D}_{\epsilon} \subset \mathbb{C}/U
+    \end{equation}
+    The inverse of the previous definition, minus the boundary points of $U$.
+\end{definition}
+
+\begin{definition}
+    Let $U \subset \mathbb{C}$ and $z_0 \in \mathbb{C}$. Then the point $z_0$ is called a \underline{boundary point} of $U$ if $z_0$ is neither an interior point or an exterior point. 
+    \begin{center}
+        The set of all boundary points of $U$ is denoted by $\partial U$
+    \end{center}
+\end{definition}
+
+So, $z_0 \in \mathbb{C}$ is a boundary point of $U$ (i.e., $z_0 \in \partial U$). Therefore, $z_0 \in \partial U$ if and only if $z_0$ is not an interior point and $z_0$ is not an exterior point. 
+
+$z_0$ is an interior point of $U$ if and only if $\exists \epsilon_0 > 0$ such that $\mathcal{D}_{\epsilon_0} \subset U$. 
+
+$z_0$ is not an interior point of $U$ if and only if 
+
+\begin{equation}
+    \lnot (\exists \epsilon_0: \mathcal{D}_{\epsilon_0}(z_0)\subset U) \iff \forall \epsilon > 0, \; \mathcal{D}_{\epsilon} \cap \mathbb{C}/U \neq \emptyset
+\end{equation}
+
+Then, $z_0$ is an exterior point of $U$ if and only if 
+
+\begin{equation}
+    \exists \epsilon_0 > 0: \mathcal{D}_{\epsilon_0}(z_0) \subset \mathbb{C}/U
+\end{equation}
+
+Then, $z_0$ is not an exterior point of $U$ if and only if 
+
+\begin{equation}
+    \forall \epsilon > 0, \mathcal{D}_{\epsilon} \cap U \neq \emptyset
+\end{equation}
+
+Therefore, $z_0 \in \partial U$ if and only if ($z_0$ is not an interior point) and ($z_0$ is not an exterior point) if and only if 
+
+\textbf{This statement is really important!}
+\begin{equation}
+    \forall \epsilon > 0, \left( \mathcal{D}_{\epsilon}(z_0) \cap \mathbb{C}/U \neq \emptyset \right) \land \left( \mathcal{D}_{\epsilon}(z_0) \cap u \neq \emptyset \right)
+\end{equation}
+
+In words, $z_0 \in \mathbb{C}$ is a boundary point of $U$ if and only if $\forall \epsilon > 0$, $\mathcal{D}_{\epsilon}(z_0)$ contains points in $U$ and outside of $U$.
+
+\begin{definition}
+    A set $U \subset \mathbb{C}$ is called an open set if $U$ contains no boundary points if and only if $\partial U \cap U \emptyset$.
+    \begin{enumerate}
+        \item Notation: $U \subset \circ \mathbb{C} \iff$ $U$ is open in $\mathbb{C}$
+    \end{enumerate}
+\end{definition}
+
+We claim that the emptyset $\emptyset$ is open in $\mathbb{C}$. This also means that $\emptyset \subset \circ \mathbb{C} \iff \partial \emptyset \cap \emptyset = \emptyset$
+
+Something to note: If $u \neq \emptyset$, then $U \subset \circ \mathbb{C} \iff$ every point of $U$ is an interior point. Therefore, a non-empty set $U \subset \mathbb{C}$ is open if and only if for every $z_0 \in U$, then there is an $\epsilon >0$ such that $\mathcal{D}_{\epsilon} \subset U$.  
+
+In particular, $\mathbb{C}$ is clearly open. 
+
+\begin{proof}
+    We wish to prove that 
+    \begin{equation}
+        (u \neq \emptyset) \land (u \subset \circ \mathbb{C}) \iff (u \neq \emptyset) \land \left( \text{every point of U is interior} \right)
+    \end{equation}
+    In other words, given $U \neq \emptyset$ and $U \subseteq \circ \mathbb{C}$, then we wish to prove that every point of $U$ is an interior point. Firstly, let $z_0 \in U \implies z_0 \notin \partial U$. Then 
+    \begin{equation}
+        z_0 \notin \partial U \iff \lnot \left( \text{$z_0$ is not an interior point} \land \text{$z_0$ is not an exterior point} \right)
+    \end{equation}
+    Therefore, $z_0$ is an interior point or an exterior point. But also $z_0$ is in $U$. Therefore, $z_0$ cannot be an exterior point. Therefore, $z_0$ is an interior point. 
+\end{proof}
+
+\begin{proof}
+    We next prove ($\impliedby$). Here, we are given that every point in $U$ is an interior point. We wish to prove that $U$ is open in $\mathbb{C}$. 
+
+    Let $z_0 \in U$, then if $z_0$ is an interior point, then there exists an $\epsilon > 0$ such that $\mathcal{D}_{\epsilon} \subseteq U$. But this is the definition of an open set. 
+\end{proof}
+
+\begin{definition}
+    A set $F \in \mathbb{C}$ is \underline{closed} if $\partial F \subseteq F$. 
+\end{definition}
+
+\subsection*{Examples}
+
+We prove that $\partial \emptyset = \emptyset$. Contrary to the claim that $\partial \emptyset \neq \emptyset$. Then $\exists z_0 \in \partial \emptyset \iff \forall (\mathcal{D}_{\epsilon} \cap \emptyset \neq \emptyset) \land (\mathcal{D}_{\epsilon} \cap \mathbb{C}/\emptyset \neq \emptyset)$. 
+However, the intersecton of any set with the empty set is empty. Therefore, we arrive at a contradicton. 
+
+Therefore, we conclude that $\emptyset \subseteq \circ \mathbb{C}$ because $\partial \emptyset = \emptyset$ and $\partial \emptyset \cap \emptyset = \emptyset$. But also, $\partial \emptyset \subseteq \emptyset$, therefore, the empty set is also closed. 
+
+Next, we prove that $\partial \mathbb{C} = \emptyset$. For the sake of contradiction, suppose $\partial \mathbb{C} \neq \emptyset$, then $\exists z_0 \in \partial \mathbb{C} \iff \forall (\mathcal{D}_{\epsilon} \cap \mathbb{C} \neq \emptyset) \land (\mathcal{D}_{\epsilon} \cap \mathbb{C}/\mathbb{C} \neq \emptyset)$.
+But $\mathbb{C}/\mathbb{C} = \emptyset$, therefore, we arrive at a contradiction. 
+
+We can also prove that $\mathbb{C}$ is a open set. But since $\emptyset \subseteq \mathbb{C}$, $\mathbb{C}$ is also a closed state. 
+
+\begin{proposition}
+    A set $F$ is closed if and only if $\mathbb{C}/F$ is open. 
+\end{proposition}
+
+We will prove it next time. 
+
+\end{document}

@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{IQUIST Seminar notes: 9/1}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{IQUIST Seminar notes: Amorphous Defects and Superconducting Control of scaled quantum systems}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+% \section*{Lecture Span}
+% \begin{enumerate}
+%     \item Amorphous Defects and Superconducting Control of scaled quantum systems
+% \end{enumerate}
+
+\section*{Notes}
+
+Hamiltonian:
+
+\begin{equation}
+    4E_c(n - n_g)^2 - E_j\cos(\pi \Phi_a)\cos(2\pi \Phi) + E_L(\Phi - \Phi_D)^2
+\end{equation}
+
+This is a flux qubit, you can also apply  
+
+\begin{enumerate}
+    \item $\alpha$ bias by tilting potential
+    \item $\Delta$ bias by adding a double potential
+\end{enumerate}
+
+Questions:
+\begin{enumerate}
+    \item Why does $\alpha$ bias matter? (i.e, why does tilting the potential well matter?)
+\end{enumerate}
+
+You can use the $\alpha$ biasing to construct an "AND" gate. 
+
+Room temperature and CMOS control requires many cable connections to Millikelvin qubits. They developed a control chip used for this AND gate. 
+
+Dual rail basis is 
+
+\begin{equation}
+    \ket{0} = \ket{10}, \quad \ket{1} = \ket{01}
+\end{equation}
+
+The state is where the photon is on the "rail". 
+
+The $CZ$ and the preparation of the zero state is due to amorphous defects in the flux qubits. They used FEM to prove that these amorphous defects are dominant. 
+
+They found that BOE preclean and EBL at 4.7x reduced area helps with reducing the defect. They used RQL-based superconducting qubit architecture. 
+\end{document}
