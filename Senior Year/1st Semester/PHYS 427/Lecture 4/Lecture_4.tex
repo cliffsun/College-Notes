@@ -1,0 +1,301 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 4}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 4}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Entropy of an ideal gas
+\end{enumerate}
+
+\section*{Review}
+
+Let $f$ has a temperature $T$ and the reservoir $R$ has another temperature $T_1$. We assume that $R \gg f$. The reservoir exchanges heat with the system $f$, until both have the same temperature ($T = T_1$). 
+
+\subsection*{Paramagnets}
+The entropy is a negative parabola shape. Here, then 
+
+\begin{equation}
+    \frac{1}{T} = \frac{\partial S}{\partial U}
+\end{equation}
+
+On the LHS of the graph, we have that the temperature is negative. Vice versa on the RHS of the graph. Suppose you put the paramgnet with $T = \infty$ in contact with another system at finite temperature $T_B$. The heat should flow from the hotter to the colder system. Calculate 
+
+\begin{align}
+    \Delta S_{tot} &= \Delta S_{A} + \Delta S_{B}\\
+    &= \frac{\partial S_A}{\partial U_A} \Delta U_A + \frac{\partial S_B}{\partial U_B} \Delta U_B \\
+    &= \left( \frac{1}{T_A} - \frac{1}{T_B}\right)\Delta U_A \\
+    &= \left( -\frac{1}{T_B} \right)\Delta U_A \geq 0
+\end{align}
+
+Therefore, $\Delta U_A$ must be negative, which means that energy flows from $U_A$ into $U_B$, as expected. 
+
+now, if $T_A < 0$ and $T_B > 0$, then 
+
+\begin{align}
+    \Delta S_{tot} &= \Delta S_{A} + \Delta S_{B}\\
+    &= \frac{\partial S_A}{\partial U_A} \Delta U_A + \frac{\partial S_B}{\partial U_B} \Delta U_B \\
+    &= \left( \frac{1}{T_A} - \frac{1}{T_B}\right)\Delta U_A \\
+    &= \left( -\frac{1}{|T_A|} - \frac{1}{|T_B|} \right)\Delta U_A
+\end{align}
+
+Here, it shows that energy flows from $A$ to $B$. This means that the system with $T<0$ behaves like a system that is hotter than the other system with $T>0$. 
+
+\newpage
+
+\section*{Entropy of an Ideal Gas}
+
+Consider free, independent, indistinguishable particles. Assume monatomic gas. Consider a volume with dimensions $L_x, L_y, L_z$. Then the volume of the box is $V=L_xL_yL_z$.
+
+Now, we consider the multiplicity $\Omega(U,N)$ of this configuration. From quantum mechanics, recall that 
+
+\begin{align}
+    H\Psi &= \epsilon \Psi(r,t)\\
+    -\frac{\hbar^2}{2m}\nabla^2 \psi(r,t) &= \epsilon\psi(r,t) 
+\end{align}
+
+Then 
+
+\begin{equation}
+    \epsilon = \frac{p^2}{2m} = \frac{\hbar^2}{2m}\left( k_x^2 + k_y^2 + k_z^2 \right)
+\end{equation}
+
+Where
+
+\begin{equation}
+    k_i = \frac{\pi n_i}{L_i}
+\end{equation}
+
+Where $n_i = 1,2,3,\dots$ are the quantum numbers. The energy is quantized, as 
+
+\begin{equation}
+    \epsilon = \frac{\hbar^2\pi^2}{2m}\left( \frac{n_x^2}{L_x^2} + \frac{n_y^2}{L_y^2} + \frac{n_z^2}{L_z^2} \right)
+\end{equation}
+
+Then, we wish to find $\Omega(U,N)$, i.e., finding all the microstates that have the same energy. Or the same number of integers $\{n_x,n_y,n_z\}$ with the same energies. 
+
+Working in the $k$ space, we can draw a square around each point in $k$ (on the $k_x$-$k_y$ plane) with a $x$ length of $\pi/L_x$ and a $y$ length of $\pi/L_y$. Then, 
+
+\begin{equation}
+    |k| = \sqrt{k_x^2 + k_y^2 + k_z^2}
+\end{equation}
+
+Then, if we construct a sphere, then $\Omega$ is the \# of lattice points which intersect the surface of this sphere. There is no simple, exact solution for this problem. But we can ask how many states are within energy less of $\epsilon$. How many microstates have an energy $\leq \epsilon$. 
+
+If we want to do this, we can just calculate the volume and divide by the volume of each sphere. Each state occupies a box in the k space with a volume 
+
+\begin{equation}
+    \frac{\pi^3}{L_xL_yL_z} = \frac{\pi^3}{V}
+\end{equation}
+
+Therefore, the \# of microstates with energy $\leq \epsilon$ is approximately 
+
+\begin{equation}
+    \approx \frac{\text{volume of sphere in $k$ space with radius $\sqrt{2m \epsilon/\hbar^2}$}}{\pi^3/V}
+\end{equation}
+
+Then let $\Phi(\epsilon)$ be the \# of microstates with energy $\leq \epsilon$. Then 
+
+\begin{align}
+    \Phi(\epsilon) &\approx \frac{\frac{4\pi}{3}k^3/8}{\pi^3/V} \\
+    &= \frac{V}{6\pi^2}\left( \frac{2m}{\hbar^2} \right)^{3/2}\epsilon^{3/2}
+\end{align}
+
+We only consider $1/8$ of the coordinate space since $k_i \geq 0$. This is a good approximation for $k \gg \Delta k = \pi/L$ and $\epsilon \gg \Delta \epsilon = \pi^2\hbar^2/(2mV^{2/3})$. 
+
+Consider \# of microstates in a narrow range of energies within $[\epsilon, \epsilon + \delta \epsilon]$. Then the number of energies is approximately 
+
+\begin{align}
+    \Omega(\epsilon, \epsilon + \delta \epsilon) &= \Phi(\epsilon + \delta\epsilon) - \Phi(\epsilon) \approx \frac{\partial \Phi}{\partial \epsilon}\delta \epsilon \\
+    &= \frac{V}{4\pi^2}\left( \frac{2m}{\hbar^2} \right)^{3/2}\sqrt{\epsilon}\delta \epsilon
+\end{align}
+
+\section*{2D ideal gas}
+
+We can also calculate $\Phi(\epsilon)$ in two dimensions. Then, each state occupies $\pi^2/L_xL_y = \pi^2/A$.
+
+\begin{align}
+    \Phi(\epsilon) &= \frac{\text{area of circle}}{\text{area per state}} \\
+    &= \frac{\pi k^2/4}{\pi^2/A}\\
+    &= \frac{A}{4\pi}\left( \frac{2m}{\hbar^2} \right)\epsilon
+\end{align}
+
+We can get our multiplicity in two dimensions, with 
+
+\begin{align}
+    \Omega(\epsilon, \epsilon + \delta \epsilon) &= \frac{\partial \Phi}{\partial \epsilon}\delta \epsilon \\
+    &= \frac{A}{4\pi}\left( \frac{2m}{\hbar^2} \right)\delta \epsilon
+\end{align}
+
+\section*{Density of states}
+
+$D(\epsilon)$ is the number of states per energy interval. Here, 
+
+\begin{equation}
+    D(\epsilon) = \frac{\partial \phi}{\partial \epsilon}
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \Phi(\epsilon) = \int_0^{\epsilon}d\epsilon' D(\epsilon')
+\end{equation}
+
+Then 
+
+\begin{equation}
+    \Omega(\epsilon, \epsilon + \delta\epsilon) = D(\epsilon) \delta\epsilon
+\end{equation}
+
+However, everything we have done is for one particle in a box. How do we generalize to $10^{23}$ particles? 
+
+\section*{Extension to 2,3, $\dots$, N particles}
+
+With 2 particles, you have a two particle wavefunction. Here, then 
+
+\begin{equation}
+    U = \epsilon_1 + \epsilon_2 = \frac{p_1^2}{2m} + \frac{p_2^2}{2m} = \frac{\hbar^2}{2m}\left( \sqrt{\sum_{i,j} k_{i_j}^2} \right)
+\end{equation}
+
+Here, $i_j$ is the i-th coordinate axis (x,y,z) for the j-th particle. Then, each two particle state occupies a space of
+
+\begin{equation}
+    \left( \frac{\pi^3}{V} \right)^2
+\end{equation}
+
+You can generalize towards higher dimensional states. States with energy $\leq U$ occupy a volume of 
+
+\begin{equation}
+    \frac{1}{(2^3)^2} \text{ of the hypersphere}
+\end{equation}
+
+For $N$ particles, the states are on a lattice in $3N$ dimensional $k$ space, with a volume of 
+
+\begin{equation}
+    \left( \frac{\pi^3}{V} \right)^N
+\end{equation}
+
+States with energy less than $U$ occupy a volume of $1/2^{3N}$ of the hypersphere in $3N$ dimensional $k$ space. Then, $[U, U + \delta\epsilon]$ occupies volume of $1/2^{3N}$ of hypershell in $3N$ dim k space. 
+
+Here, $k \sim \sqrt{U}$ since $\epsilon = \hbar^2k^2/2m \implies k \sim \sqrt{\epsilon}$.
+\begin{enumerate}
+    \item ($N=1$) $\Phi_1(U) \sim Vk^3 \sim VU^{3/2}$
+    \item ($N=2$) $\Phi_2(U) \sim V^2k^6 \sim V^2 U^{3}$
+    \item ($N$) $\Phi_N(U) \sim V^{N}k^{3N} \sim V^{N}U^{3N/2}$
+\end{enumerate}
+
+This implies that 
+
+\begin{equation}
+    \Omega_N(U, U + \delta U) \sim V^{N}U^{3N/2 - 1}
+\end{equation}
+
+Avoid overcounting of the states, since the particles are indistinguishable. Then, you have to divide the multiplicity by $N!$. Then 
+
+\begin{equation}
+    \Omega(U, U + \delta U) = \frac{g_{3N}}{2^{3N}N!}\left( \frac{V}{\pi^3} \right)^N\left( \frac{2m}{\hbar^2} \right)^{3N/2}\frac{U^{3N/2 - 1}}{2} \delta U
+\end{equation}
+
+Here, $g_{D}$ is the solid angle of a hypershell in $D$ dimensions. For instance, $g_{3} = 4\pi$. We can also rewrite $\Omega$ as 
+
+\begin{equation}
+    \Omega_N(U, U + \delta U) = \frac{g_{3N}}{2^{3N + 1}N!}\left( \frac{U}{\Delta \epsilon} \right)^{3N/2 - 1}\frac{\delta U}{\Delta \epsilon}, \quad \Delta \epsilon = \frac{\hbar^2 \pi^2}{2mV^{2/3}}
+\end{equation}
+
+We then derive the entropy, 
+
+\begin{align}
+    S(U,U + \delta U, V) &= k_B \ln(\Omega_N) \\
+    &= Nk_B \ln V + \left( \frac{3N}{2} - 1\right)k_B \ln U + \text{ other terms that don't depend on $U$ or $V$}
+\end{align}
+
+Then, 
+
+\begin{equation}
+    S(U,V) = Nk_B \ln V + \frac{3N}{2}k_B \ln U + k_B \ln f(N)
+\end{equation}
+
+\textbf{what is f???} Then, 
+
+\begin{equation}
+    \frac{1}{T} = \frac{\partial S}{\partial U} = \frac{3N k_B}{2U}
+\end{equation}
+
+Therefore, it follows that 
+
+\begin{equation}
+    U = \frac{3}{2}Nk_B T
+\end{equation}
+
+Define pressure 
+
+\begin{equation}
+    p = T\left( \frac{\partial S}{\partial V} \right)_{U,N}
+\end{equation}
+
+An example:
+Consider then $V_{tot} = V_a + V_b$ is fixed. But $V_i$ can vary. Then 
+
+\begin{equation}
+    S = S_A + S_A
+\end{equation}
+
+Then 
+
+\begin{align}
+    \frac{\partial S}{\partial V} &= 0 = \frac{\partial S_A}{\partial V_A}\delta V_A + \frac{\partial S_B}{\partial V_B}\delta V_B \\
+    \frac{\partial S_A}{\partial V_A} &= \frac{\partial S_B}{\partial V_B}
+\end{align}
+
+This is equilibrium. We can use the above equation to obtain the pressure and 
+
+\begin{equation}
+    PV = Nk_B T
+\end{equation}
+
+\end{document}
