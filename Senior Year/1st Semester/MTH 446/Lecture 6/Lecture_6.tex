@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 6}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 6}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Sets
+\end{enumerate}
+
+From last lecture, we claimed that: 
+
+\begin{proposition}
+    A set $F$ is closed if and only if $\mathbb{C}/F$ is open. 
+\end{proposition}
+
+\begin{proof}
+    (Let $F$ be a closed set) Let $z_0 \in \mathbb{C}/F \iff z_0 \notin F \implies z_0 \notin \partial F$. Next, $z_0 \notin \partial F$ if and only if ($z_0$ is an interior point of $F$) or ($z_0$ is an exterior point of $F$). Clearly, since $z_0 \in F$, we have that $z_0$ is an exterior point, 
+    and therefore, $z_0$ is an interior point of $\mathbb{C}/F$. 
+\end{proof}
+
+\begin{proof}
+    ($\impliedby$) Let $z_0 \in \mathbb{C}/F$, then $z_0$ is an interior point of $\mathbb{C}/F$. This is the same that $z_0$ is an exterior point of $F$. Thus, $z_0 \notin \partial F$. Therefore, $z_0 \notin F$ and $z_0 \notin \partial F$. Then, $\partial F \subseteq F$.
+\end{proof}
+
+\begin{definition}
+    Let $A \subseteq \mathbb{C}$. Then, 
+    \begin{enumerate}
+        \item The interior of $A$ is $A/\partial A$, i.e., the set of all interior points
+        \item The closure of $A$ is $A \cup \partial A$.  
+    \end{enumerate}
+    Then, interior of $A$ is $\text{int}(A)$ and the closure of $A$ is $\overline{A}$. 
+\end{definition}
+
+Therefore, $\partial A = \overline{A}/\text{int}(A)$. For every set $A \subseteq \mathbb{C}$, then int(A) is open in $\mathbb{C}$. For every set $A \subseteq \mathbb{C}$, then $\overline{A}$ is closed in $\mathbb{C}$. 
+
+int(A) is the largest open set containing $A$, and int(A) is the union of all open sets in $A$. 
+
+\subsection*{Example}
+
+$\epsilon$-neighborhood of $z_0$, $D_{\epsilon_0}(z_0)$. Find $\partial (D_{\epsilon_0}(z_0))$, int($D_{\epsilon_0}(z_0)$), and $\overline{D_{\epsilon_0}(z_0)}$. 
+
+\textbf{Solution:} We first find $\partial D$. Then let $z_1 \in D_{\epsilon_0}(z_0)$. Let $z_2$ be outside of $D$, then $\exists \epsilon_1 > 0$ such that $D_{\epsilon_1}(z_0) \subseteq \mathbb{C}/D$. Then $z_1$ is an exterior point of $A$ (outside of $D$). Then $z_1 \notin \partial A$. 
+
+Next, let $z_2 \in D_{\epsilon_0}(z_0)$, then $\exists \epsilon_2$ such that $D_{\epsilon_2}(z_0) \subseteq A = D_{\epsilon_0}(z_0)$. Then, $z_2$ is an interior point of $A$, then $z_2 \notin \partial A$. 
+
+Let $|z_3 - z_0| = \epsilon_0$. Then, $\forall \epsilon > 0$, $D_{\epsilon}(z_3) \cap A \neq \emptyset$ and $D_{\epsilon}(z_3) \cap \mathbb{C}/ A \neq 0$. Then, $z_3 \in \partial D$. Then, 
+
+\begin{align}
+    \partial A &= \{|z - z_0| = \epsilon_0\} \\
+    \text{int}(A) &= A/\partial A = \{z \in \mathbb{C}: |z - z_0| < \epsilon_0\}/\{z \in \mathbb{C}: |z - z_0| = \epsilon\}\\
+    \overline{A} &= A \cup \partial A = \{z \in \mathbb{C}: |z - z_0| \leq \epsilon_0\}
+\end{align}
+
+\textbf{Key point: find the boundary point first before finding the other spaces.}
+
+\subsection*{Example}
+
+Let $U = \{z \in \mathbb{C}: \Im(z) > 1\}$. This is a half plate with a "dotted line" over $y=1$. Let $z_1$ be clearly outside of the boundary, then $\exists \epsilon_1 > 0$ such that $D_{\epsilon_1}(z_1) \subseteq \mathbb{C}/U$. Then $z_1$ is an exterior point of $U$. 
+
+Next, consider $z_2$ that is clearly in $U$. Then, exists $\epsilon_2$ such that $D_{\epsilon_2} \subseteq U$. Therefore, $z_2$ is an interior point of $U$.
+
+Finally, consider $z_2$ that lies on the boundary of $U$, where $y=1$. Then for all $\epsilon_3 > 0$, then $D_{\epsilon_3}(z_0) \cap U \neq \emptyset$ and $D_{\epsilon_3} \cap (U / \mathbb{C}) \neq \emptyset$. Therefore, $z_3 \in \partial U$. From this, we can define 
+
+\begin{align}
+    \partial U &= \{z \in \mathbb{C}: \Im(z) = 1\} \\
+    \text{int}(U) &= U/\partial U = U, \quad \text{thus, $U$ is open in $\mathbb{C}$}\\
+    \overline{U} &= U \cup \partial U
+\end{align}
+
+\subsection*{Example}
+
+$G = \{z \in \mathbb{C}/\{0\}: 0 \leq \arg(z) \leq \pi/4\}$. Find $\partial G$, int(G), and $\overline{G}$. 
+
+We can consider three situations. $z$ is clearly inside $G$, $z$ is clearly outside $G$, and $z$ is on the edge of $G$.  
+
+Firstly, let $z$ be clearly outside of $G$. Then $\exists \epsilon_1 > 0$ such that $D_{\epsilon_1}(z_1) \subseteq \mathbb{C}/G \implies z = z_1$ is an exterior point of $G$. Therefore, $z \notin \partial G$.
+
+Let $z \in G /\{z \in \mathbb{C}/\{0\} : \arg(z) = 0, \pi/4\}$. Then, exists $\epsilon_2 > 0$ such that $D_{\epsilon_2}(z_2) \subseteq G \implies z_2$ is an interior point of $G \implies z_2 \notin \partial G$. 
+
+Finally, let $z=0$. Then for all $\epsilon$, we have that $D(z) \cap G \neq 0$ and $D(z) \cap \mathbb{C}/G \neq \emptyset$. Therefore, $0 \in \partial G$. 
+
+\textbf{On the exam:} Use a sketch and also definitions together. 
+
+Also, $z_3 \in \{z \in \mathbb{C}/ \{0\}: \arg(z) = \pi/4\}$. Then, for all $\epsilon$, $D_{\epsilon}(z) \cap G \neq 0$ and $D_{\epsilon}(z) \cap \mathbb{C}/G \neq \emptyset$. Therefore, $z \in \partial G$. Clearly, $z_4 \in \{z \in \mathbb{C}/\{0\}: \arg(z) = 0\} \in \partial G$. Therefore, 
+
+\begin{align}
+    \partial G &= \{0\} \cup \{z \in \mathbb{C}/\{0\}: \arg(z) = \pi/4\} \cup \{z \in \mathbb{C}/\{0\}: \arg(z) = 0\} \\
+    \text{int}(G) &= G/\partial G = \text{remove 0, remove $\pi/4$ and $0$.}, \quad 0< \arg(z) < \pi/4 \\
+    \overline{G} &= G \cup \partial G = G \cup \{0\}
+\end{align}
+
+$G$ is not open, since it doesn't contain its boundary points. 
+
+\end{document}
