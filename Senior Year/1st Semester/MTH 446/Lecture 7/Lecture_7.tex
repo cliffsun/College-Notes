@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 7}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 7}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Topology of the complex plane
+\end{enumerate}
+
+\begin{definition}
+    A \underline{polygonal} line is formed by a finite number of line intervals, joined end to end 
+\end{definition}
+
+\begin{definition}
+    A non-empty set $A$ is called \underline{(polygonally) connected} if every two points of $A$ can be connected by a polygonal line that lies completely in $A$. 
+    In otherwords, you can draw a continuous line from $z_0$ to $z_1$ for every $z_0,z_1 \in A$. 
+\end{definition}
+
+\begin{definition}
+    A non-empty open set is called \underline{domain} if it is connected. 
+\end{definition}
+
+\begin{definition}
+    A domain together with some, none, or all of its boundary points is called a \underline{region}. 
+\end{definition}
+
+\begin{definition}
+    Let $A \subseteq \mathbb{C}$ and $z_0 \in \mathbb{C}$. The point $z_0$ is called an \underline{accumulation point} of $A$ if 
+    \begin{equation}
+        \forall \epsilon > 0, \;\; \overset{\circ}{D}_{\epsilon}(z_0) \cap A \neq \emptyset
+    \end{equation}
+    Note, $\overset{\circ}{D}$ is the \textit{deleted $\epsilon$ neighorborhood!!!} Therefore, every $z_0$ is an accumlation point if every deleted $\epsilon$ neighorborhood of $z_0$ conntains at least one point of $A$. 
+\end{definition}
+
+A single point is not an accumulation point!
+
+\subsection*{Example}
+
+Let $A = \{i\}$. Then prove that $i \in \partial A$. and $i$ is not an accumulation point. 
+
+\begin{enumerate}
+    \item We first prove that $i \in \partial A$. In particular, $D_{\epsilon}(i) \cap A \neq \emptyset$ and $D_{\epsilon}(i) \cap \mathbb{C}/A \neq \emptyset$. Therefore, $i \in \partial A$.
+    \item $i$ is not an accumulation point, because $\overset{\circ}{D}_{\epsilon}(i) \cap A = \emptyset$. 
+\end{enumerate}
+
+\subsection*{Example}
+
+Suppose 
+
+\begin{equation}
+    A = \{z \in \mathbb{C}/\{0\}: 0 \leq \arg(z)  \pi/2\}
+\end{equation}
+
+Then, prove that $z=0$ is an accumulation point. 
+
+\begin{proof}
+    Draw a deleted $\epsilon$ neighorborhood at $0$. From the sketch, we see that $\overset{\circ}{D}_{\epsilon}(0) \cap A \neq \emptyset$. Therefore, $0$ is an accumulation point of $A$. 
+\end{proof}
+
+\subsection*{Example}
+
+Let
+
+\begin{equation}
+    A = \{z_n = i^n: n = 1,2,3,\dots\}
+\end{equation}
+
+Find the set of all accumulation points.
+
+\begin{proof}
+    It is obvious that $A = \{1,-1,i,-i\}$. Then let $\epsilon_1 = \min_i\{|z_i - i|\}$, then for $\epsilon < \epsilon_1$, we have that $\overset{\circ}{D}_{\epsilon}(z_0) \cap A = \emptyset$. Therefore, $i$ is not an accumulation point. By symmetry, it follows that all other points of $A$ are not accumulation points.  
+    Next, let $z_0 \notin A$. Then, let $\epsilon_2 = \min_i\{|z_i - z_0|\}$, then choose $\epsilon < \epsilon_2$, then $D_{\epsilon}(z_0) \cap A = \emptyset$. Therefore, $z_0$ is not an accumulation point. 
+\end{proof}
+
+Therefore, the set of all accumulation points of is $\emptyset$.
+
+\begin{definition}
+    A point $z_0 \in F$ is an \underline{isolated point} of $F$ if $$\exists \epsilon > 0: \overset{\circ}{D}_{\epsilon}(z_0) \cap F = \emptyset$$
+    For example, all points of the set $A= \{i, 1, -1, -i\}$. 
+\end{definition}
+
+It follows that every point of $F$ is either an accumulation point of $F$ or it is an isolated point of $F$. 
+
+\section*{Functions of complex variables}
+
+Let $D \subseteq \mathbb{C}$ be non empty. Then $w = f(z)$, where $z \in D$ and $w \in \mathbb{C}$ is called the \underline{function of the complex variable}, i.e. 
+
+\begin{equation}
+    f: D \subseteq \mathbb{C} \rightarrow \mathbb{C}
+\end{equation}
+
+$D$ is called the domain of definition. 
+
+\subsection*{Example}
+
+\begin{equation}
+    f(z) - \frac{1}{1 + z^2}
+\end{equation}
+
+Then the domain of $f$ is $\mathbb{C}/\{i, -i\}$.
+
+\subsection*{Example}
+
+$f(z) = |z|^2$. Then domain of $f$ is $\mathbb{C}$. 
+
+\subsection*{Example}
+
+Consider 
+
+\begin{equation}
+    P_n(z) = \sum_i a_i x^i
+\end{equation}
+
+With $a_i \in \mathbb{C}$ for all $i$. Then $P_n(z)$ is called a \underline{polynomial of degree $n$}. Then, the domain of $P_n$ is $\mathbb{C}$. 
+
+\subsection*{Example}
+
+\begin{equation}
+    f(z) = \arg(1/z)
+\end{equation}
+
+Then, the domain of $f$ is $\mathbb{C}/\{0\}$. 
+
+Next, set $u(x,y) = \Re(f(z)) = \Re(f(x + iy))$ and $S(x,y) = \Im(f(z))$. Then 
+
+\begin{equation}
+    f(z) = u(x,y) + iS(x,y)
+\end{equation}
+
+\subsection*{Example}
+
+Let $f(z) = z^2$. Then $f(z) = (x + iy)^2 = zx^2 + 2xyi - y^2 = (x^2 - y^2) + 2xyi$. Therefore, $u = x^2 - y^2$ and $s = 2xy$. 
+
+\subsection*{Example}
+
+Let $f(z) = x^2 + 2y + 5xi$. Write $f$ in terms of $z$. Let $x = (z + \overline{z})/2$ and $y = (z - \overline{z})/2i$. Then plug these substitutions into the function. 
+
+Next time, we will discuss the polar coordinates. 
+
+\end{document}
