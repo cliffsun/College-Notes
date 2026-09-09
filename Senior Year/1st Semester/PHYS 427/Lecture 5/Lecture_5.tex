@@ -1,0 +1,291 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 5}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 5}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Canonical Ensemble
+\end{enumerate}
+
+\section*{Finishing the previous section}
+
+Pressure 
+
+\begin{equation}
+    p =T \left( \frac{\partial S}{\partial V} \right)_{U,N}
+\end{equation}
+
+Require that $V_{tot} = V_A + V_B$ is fixed. Then, $S_{tot} = S_A + S_B$. Then maximize $S$ by $\partial S/ \partial V = 0$. 
+
+Then, 
+
+\begin{equation}
+    \partial_{V_A}S_A = \partial_{V_B}S_B \implies p_A = p_B \text{ if } T_A = T_B
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    S(U,V) = Nk_B \ln V + f(\text{other constants independent of $V$})
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    p = T \frac{\partial S}{\partial V} = \frac{N k_B T}{V} \implies pV = N k_B T
+\end{equation}
+
+\section*{Canonical Ensemble}
+
+We have only considered closed systems, $U,N=\text{const}$. This is the microcanonical ensemble. The likeliest macrostate has the most microstates.  
+
+More common, system is not closed. But the temperature is fixed. Here, $\rho$ has an energy $\epsilon$ and $R$ is a reservoir. But the combined system is closed. Therefore, $U = U_R + \epsilon$ is fixed. This is called the \underline{canonical ensemble}. We assume that they both have a fixed number of particles. 
+
+\subsection*{Properties of the canonical ensemble}
+
+Boltzmann distribution. If $\rho$ is in a single quantum state $i$ with energy $\epsilon_i$. What is the probability of being in this state? Answer: boltzmann distribution. 
+
+The fundamental assumption is that 
+
+\begin{equation}
+    P(\epsilon_i) = \frac{\Omega_{R + \rho}(\epsilon_i)}{\sum_{\epsilon_i}\Omega_{R + \rho}(\epsilon_i)}
+\end{equation}
+
+Note, 
+
+\begin{equation}
+    \Omega_{R + \rho} = \Omega_R(U_0 - \epsilon_i)\Omega_\rho(\epsilon_i) = \Omega_R(U_0 - \epsilon_i)
+\end{equation}
+
+This is because $\Omega_{\rho}(\epsilon_i) = 1$ (an assumption, one state per energy). Consider 
+
+\begin{equation}
+    \frac{p(\epsilon_1)}{p(\epsilon_2)} = \frac{\Omega_{R + \rho}(U_0 - \epsilon_1)}{\Omega_{R + \rho}(U - \epsilon_2)}
+\end{equation}
+
+Then, $S = k_B \ln \Omega \implies \Omega = \exp(S/k_B)$, then we obtain 
+
+\begin{equation}
+    \frac{\exp(S_R(U_0 - \epsilon_1)/k_B)}{\exp(S_R(U_0 - \epsilon_2)/k_B)}  = \exp\left[ \left( S_R(U_0 - \epsilon_1) - S_R(U_0 - \epsilon_2) \right)/k_B \right]
+\end{equation}
+
+Then, 
+
+\begin{align}
+    S_R(U_0 - \epsilon_1) &= S_R(U_0) - \frac{\partial S}{\partial U}\bigg|_{U_0}\epsilon_i + \dots \\
+    &\approx S_R(U_0) - \frac{\epsilon_i}{T}
+\end{align}
+
+For reservoir much larger than $\rho$, then 
+
+\begin{equation}
+    S_R(U_0 - \epsilon_1) - S_R(U_0 - \epsilon_2) \approx -\frac{\epsilon_1 - \epsilon_2}{T}
+\end{equation}
+
+In equilibrium, $T_R = T_\rho = T$, then 
+
+\begin{equation}
+    \frac{P(\epsilon_1)}{P(\epsilon_2)} = \exp\left( -\frac{\epsilon_1 - \epsilon_2}{k_B T} \right)
+\end{equation}
+
+We know that $\sum_i p(\epsilon_i) = 1$. Then, 
+
+\begin{equation}
+    \sum_j \frac{p(\epsilon_j)}{p(\epsilon_i)} = \sum_j \exp(-(\epsilon_j - \epsilon_i)/k_B T) = \exp(\epsilon_i/k_BT) \sum_j \exp(-\epsilon_j /k_B T)= \frac{1}{p(\epsilon_i)}
+\end{equation}
+
+Inverting both sides yields 
+
+\begin{equation}
+    p(\epsilon_i) = \frac{\exp(-\epsilon_i/k_B T)}{\sum_j \exp(-\epsilon_j/k_B T)}
+\end{equation}
+
+This is the boltzmann distribution. Thus, $\exp(-\epsilon_i/k_B T)$ is called the Boltzmann factor. Definition the partition function 
+
+\begin{equation}
+    Z(T) = \sum_i \exp(-\frac{\epsilon_i}{k_B T})
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    p(\epsilon_i) = \frac{\exp(-\epsilon_i/k_B T)}{Z(T)}
+\end{equation}
+
+Reminder, $\epsilon_i$ is the energy of the system. Recall that the fundamental assumption was that every microstate is equally likely. But here, the microstate of $R + \rho$ is equally likely. Assume that $\epsilon_1 > \epsilon_2$. Then, for that, $U_0 - \epsilon_1 < U_0 - \epsilon_2$ (energy of reservoir). Then the entropy of the combined system is 
+
+\begin{equation}
+    S_{R + f} = S_R(U_0 - \epsilon_1) < S_R(U_0 - \epsilon_2)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \Omega_{R + \rho} = \Omega_R(U_0 - \epsilon_1) < \Omega_R(U_0 - \epsilon_2)
+\end{equation}
+
+\section*{Applications}
+
+\subsection*{Mean Values}
+
+\begin{equation}
+    U = \langle \epsilon \rangle = \sum_i \epsilon_i p(\epsilon_i) = \frac{\sum_i \epsilon_i \exp(-\epsilon_i/k_B T)}{Z(T)}
+\end{equation}
+
+Let $\beta = 1/k_B T$. Then 
+
+\begin{equation}
+    U = -\frac{\partial}{\partial \beta}\ln(Z(T)) = -\frac{1}{Z}\partial_{\beta} Z(T)
+\end{equation}
+
+Writing in terms of $T$, 
+
+\begin{equation}
+    U = \frac{k_B T^2}{Z}\partial_T Z(T)
+\end{equation}
+
+\subsection*{Example}
+
+Spin 0.5 in B field. What's the average energy? First, find $Z$. Secondly, calcuate $U = \partial_\beta \ln Z(\beta)$. Here, 
+
+\begin{equation}
+    Z = e^{\mu B/k_B T} + e^{-\mu B/k_B T}
+\end{equation}
+
+You can also calculate:  
+
+\begin{equation}
+    U = -\mu B \frac{\sinh(\mu B/ k_B T)}{\cosh(\mu_B/k_B T)} = -\mu B \tanh(\mu B/k_B T)
+\end{equation}
+
+\subsection*{Partition function $Z$ and its properties}
+
+$Z$ in the canonical ensemble versus $\Omega$ in the microcanonical ensemble.
+
+\begin{equation}
+    Z = \sum_i \exp(\epsilon_i/k_BT)
+\end{equation}
+
+\begin{equation}
+    \Omega = \sum 1
+\end{equation}
+
+With $\rho$, write $\epsilon_1 < \epsilon_2 < \dots$. Then, $Z(T)$ contains points which get smaller. If $k_B T < \Delta \epsilon$, then only the first few terms contribute significantly. In this limit, then we can approximate $Z(T)$ with the sum of its first few terms. 
+
+If $k_B T \gg \Delta \epsilon$, then many terms contribute. Then, use an integral instead of sum.
+
+Comment: consider $Z$ for independent distinguishable particles. Then, 
+
+\begin{equation}
+    \epsilon_{tot} = \sum_i \epsilon_i
+\end{equation}
+
+No interactions (independent). Then, 
+
+\begin{equation}
+    Z_{tot} = \sum_{\epsilon_1, \dots, \epsilon_n} \exp(-\beta \epsilon_{tot}) = \prod_i \sum_{\epsilon_i}e^{-\beta \epsilon_i} = Z_1Z_2\dots Z_N
+\end{equation}
+
+For indistinguishable, independent particles. Then, you cannot overcount. Then, 
+
+\begin{equation}
+    Z(T) \neq Z_1^N
+\end{equation}
+
+Write 
+
+\begin{equation}
+    Z_{tot} = Z_1^N/N!
+\end{equation}
+
+\subsection*{N independent spin-1/2 particles in B field}
+
+\begin{equation}
+    U = -\frac{\partial}{\partial \beta}\ln(Z_{tot}) = -\frac{\partial}{\partial \beta}\ln(Z_1^N) = -N\partial_{\beta}\ln(Z_1) = -N\mu B \tanh(\beta \mu B)
+\end{equation}
+
+\begin{equation}
+    M = -\frac{U}{B} = N \mu \tanh(\beta \mu B)
+\end{equation}
+
+\subsection*{Example: Ideal gas}
+
+$N$ particles in this box. $k_i = \pi n_i/L_i$. Here, 
+
+\begin{equation}
+    \epsilon_i = \frac{\hbar^2}{2m}\sum_i k_i^2
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    Z_1(T) = \sum_{\epsilon_1}\exp(-\epsilon_1/k_B T)
+\end{equation}
+
+Plug (32) into (33). Sum can be turned into gaussian integral. 
+
+\begin{equation}
+    Z_1(T) = \sum_{n_x}^{\infty}\exp(-\frac{\hbar^2\pi^2n_x^2}{2m L_x^2 k_B T})\sum_{n_y}^{\infty}\exp(-\frac{\hbar^2\pi^2n_y^2}{2m L_x^2 k_B T})\dots
+\end{equation}
+
+Let 
+
+\begin{equation}
+    \alpha_i = \frac{\hbar^2 \pi^2}{2m L_i^2 k_B T} \implies \sum e^{-\alpha_i n_i^2}
+\end{equation}
+
+For low T, $\alpha$ decays fast. For high T, $\alpha$ decays slow. Then, you approximate it with an integral 
+
+\begin{equation}
+    \int dn_x \exp(-\alpha_x n_x^2) = \frac{1}{2}\sqrt{\frac{\pi}{\alpha_x}}
+\end{equation}
+
+Page 6 in lecture 5 for one particle. For n particles, take $Z_1^n/N!$. 
+
+\end{document}
