@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 8}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 8}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Rigorous definition of continuity of complex functions
+\end{enumerate}
+
+Missed the first two mins of Lecture, was just defining what a complex function is. 
+
+\section*{Functions of Complex variables}
+
+\subsection*{Example}
+
+Let $f(z) = z^2$ and $z \neq 0$, then $z = re^{i\theta}$, then 
+
+\begin{equation}
+    f(z) = r^2e^{2i\theta} = r^2(\cos2\theta + i\sin2\theta)
+\end{equation}
+
+Then $f$ doubles the angle parameter and the magnitude of the number. 
+
+\section*{Limits}
+
+\begin{definition}
+    ($\epsilon$-$\delta$ definition of limit) Let $D \subseteq \mathbb{C}$ and $z_0$ be an accumulation point of $D$. Let $w_0 \in \mathbb{C}$ and $f: D \rightarrow \mathbb{C}$. We say that $f$ has a limit $w_0$
+    as $z \rightarrow z_0$ as $\lim_{z \rightarrow z_0}f(z) = w_0$. In other words 
+    \begin{equation}
+        \forall \epsilon >0, \exists \delta_{\epsilon} = \delta_{\epsilon}(z_0, f) > 0: z \in D, 0 < |z - z_0| < \delta_{\epsilon} \implies |f(z_0) - w_0| < \epsilon
+    \end{equation}
+\end{definition}
+
+\textbf{Q:} Why is it required that $0 < |z - z_0| \iff z \neq z_0$? 
+
+\textbf{A:} So we don't get singularities. It approaches, but it never equals. This is the fundamental definition of limits. 
+
+\textbf{Q:} Why does $z_0$ have to be an accumulation point? 
+
+\textbf{A:} Let $D = \mathbb{N}$ and $z_0 = 1$. We know that $z=1$ is an isolated point of $\mathbb{N}$. Then, we dont find a point $0 < |z - 1| < \delta_\epsilon$ for some $\epsilon$ if $\delta_{\epsilon} < 1$. Otherwise, if $z_0$ isn't an accumulation point, then we choose $z = 1$. This allows
+us to define continuous limits. 
+
+\subsection*{Example}
+
+Let $f(z) = iz/2$. Prove that $\lim_{z\rightarrow 1}f(z)$ exists and find it. 
+
+\begin{proof}
+    We first have to find $w_0$. Guess $w_0 = i/2$. Then, this means that for every $\epsilon > 0$, it follows that 
+    \begin{equation}
+        \exists \delta > 0: |z - 1| < \delta_\epsilon \implies |f(z) - i/2| < \epsilon
+    \end{equation}
+    Then calculate 
+    \begin{align}
+        |i/2||z - 1| < \delta_{\epsilon}/2  = \epsilon 
+    \end{align}
+    Then, here, $\delta_{\epsilon} = 2\epsilon$. Therefore, for every $\epsilon >0$, choose $\delta = 2\epsilon$ such if $|z - 1| < \delta$, then it is the case that $|f(z) - i/2| < \epsilon$. 
+\end{proof}
+
+This means that if $\lim f$ exists, then no matter how $z$ approaches $z_0$, then $f(z)$ approaches $w_0$. No matter the trajectory of which we approach $z_0$, it must be the case that $f(z) \rightarrow w_0$. 
+
+\subsection*{Example}
+
+Let $f(z) = z/\overline{z}$. Prove that $\lim f$ does not exist. 
+
+\begin{proof}
+    Let $z = x \in \mathbb{R}$ without the origin. Then $z \rightarrow 0$. Then, consider $f(z) = x/x = 1$. Then, $f(z) \rightarrow 1$ as $z \rightarrow 0$. But on the complex plane, 
+    it is the case that $f(z) \rightarrow -1$ as $z \rightarrow i0$ if $z = iy$. Therefore, $\lim f$ DNE. 
+\end{proof}
+
+\section*{Algebraic properties of limits}
+
+Let $D \subseteq \mathbb{C}$ and $z_0$ be an accumulation point of $D$. Then, let $f,g: D \rightarrow \mathbb{C}$ and $c \in \mathbb{C}$. Then, suppose $\lim f$ and $\lim g$ exists, then 
+\begin{enumerate}
+    \item $\lim (cf) = c\lim f$
+    \item $\lim (f + g) = \lim f + \lim g$
+    \item $\lim fg = \lim f \lim g$
+    \item if $\lim g \neq 0$, then $\lim f/g = \lim f/\lim g$
+    \item In particular, $\lim 1/g = 1/\lim g$. 
+\end{enumerate}
+
+\subsection*{Example}
+
+If $\lim_{z \rightarrow z_0} z = z_0$. To solve this, we just use the definition of the limit for this problem. First, 
+\begin{equation}
+    |f(z) - z_0| < \epsilon \iff |z - z_0| < \epsilon
+\end{equation}
+
+Choose $\delta = \epsilon$, then it is the case that if $|z - z_0| < \delta = \epsilon$, then $|f(z) - z_0| < \epsilon$.  
+
+\subsection*{Example}
+
+If $\lim_{z\rightarrow z_0} = \overline{z}_0$, then 
+
+\begin{equation}
+    |f(z) - \overline{z}_0| = |\overline{z} - \overline{z}_0| = |\overline{(z- z_0)}| = |z - z_0| < \epsilon
+\end{equation}
+
+Therefore, if $\delta = \epsilon$, then $|z - z_0| < \delta =\epsilon$, then $|\overline{z} - \overline{z}_0| < \epsilon$. 
+
+\subsection*{Example}
+
+If $\lim_{z \rightarrow z_0}\Re(z) = \Re(z_0)$. Here, $\Re(z_0) = (z_0 + \overline{z}_0)/2$, then we use the properties of limits to obtain:
+
+\begin{equation}
+    \lim Re(z) = 1/2(\lim z + \lim \overline{z}) = 1/2(z_0 + \overline{z}_0) = \Re(z_0)
+\end{equation}
+
+We can use this same technique for $\lim_{z \rightarrow z_0} \Im(z)$, and $\lim_{z \rightarrow z_0} |z|^2$ (use product of limits). 
+
+\subsection*{Example}
+
+$\lim_{z \rightarrow z_0} |z| = |z_0|$. Here, we use the definition of the limit. 
+
+\begin{equation}
+    |h(z) - |z_0|| < ||z| - |z_0|| \leq |z - z_0| < \epsilon
+\end{equation}
+Then, choose $\delta = \epsilon$. 
+
+\section*{Continuity of functions of complex variables}
+
+\begin{definition}
+    Let $D \subseteq \mathbb{C}$ and $z_0$ is an accumulation point of $D$ and $f: D \rightarrow \mathbb{C}$. Then, the function $f$ is \underline{continuous} if 
+    \begin{enumerate}
+        \item $z_0 \in D = \text{dom}(f)$
+        \item $\lim_{z \rightarrow z_0} f(z)$ exists
+        \item $\lim_{z \rightarrow z_0} f(z) = f(z_0)$. 
+    \end{enumerate}
+\end{definition}
+
+Hence, $f$ is a continuous function at $z = z_0$ if $f$ is defined at $z = z_0$ and $\forall \epsilon > 0$, $\exists \delta > 0$ such that $|z - z_0| < \delta$ and $z \in D$, then $|f(z) - f(z_0)| < \epsilon$. 
+
+$f$ is called $\underline{continuous in D}$ if $f$ is continuous for every point in $D$. The set of all functions $f$ continuous in $D$ is called $C(D)$. 
+
+We will review the algebraic properties of continous functions next time. 
+
+\end{document}
