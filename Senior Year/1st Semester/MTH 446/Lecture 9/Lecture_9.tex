@@ -1,0 +1,223 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 9}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 9}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Continuous complex functions
+\end{enumerate}
+
+\section*{Continuous complex functions}
+
+Recall that the definition of a continuous complex function:
+
+\begin{definition}
+    Let $D \subseteq \mathbb{C}$ and $z_0$ is an accumulation point of $D$ and $f: D \rightarrow \mathbb{C}$. Then, the function $f$ is \underline{continuous} if 
+    \begin{enumerate}
+        \item $z_0 \in D = \text{dom}(f)$
+        \item $\lim_{z \rightarrow z_0} f(z)$ exists
+        \item $\lim_{z \rightarrow z_0} f(z) = f(z_0)$. 
+    \end{enumerate}
+\end{definition}
+
+The algebraic properties of continuous functions. Let $D \subseteq \mathbb{C}$ and $z_0$ be an accumulation point of $D$. Left $f,g: D \rightarrow \mathbb{C}$ be continuous functions at $z=z_0$. Let $c \in \mathbb{C}$, then 
+\begin{enumerate}
+    \item $(cf)$ is continuous at $z=z_0$
+    \item $f + g$ is continuous at $z=z_0$
+    \item $fg$ is $\dots$
+    \item If $g(z_0) \neq 0$, then $f/g$ is $\dots$, in particular, $1/g$ is $\dots$. 
+\end{enumerate}
+
+\subsection*{Example}
+
+Let $n \in \mathbb{N}$ and $P_n(z) = a_0 + a_1z + a_2z^2 + \dots$ where $a_n \neq 0$ and $a_j \in \mathbb{C}$ for all $j$.
+Then, each of the monmials are continuous in $\mathbb{C}$. 
+
+Remark: suppose $D \subseteq \circ\mathbb{C}$, then $f,g$ cont. implies $\alpha f + \beta g$ also cont. 
+
+Also, $fg$ is also cont. 
+
+\section*{Infinite limits of complex functions}
+
+Recall, $\lim f(z) = w \iff \forall \epsilon >0, \exists \delta >0: 0 < |z - z_0| < \delta, z \in \text{dom}(f) \implies |f(z) - w_0| < \epsilon$ (definition of limit). 
+
+To every $\epsilon$-neighborhood of $w_0$, corresponds a deleted $\delta$ neighborhood of $z_0$ such that 
+
+\begin{equation}
+    f(\overset{\circ}{D}_{\delta}(z_0) \cap D) \subseteq D_{\epsilon}(w_0)
+\end{equation}
+
+Now, introduce the infinite point $\infty$. Define the Riemann sphere. The sphere is an ordinary unit sphere $S^2$ in $\mathbb{R}^3$ given by 
+
+\begin{equation}
+    x_1^2 + x_2^2 + x_3^2 = 1
+\end{equation}
+
+We project the complex plane onto the R sphere. This is also called the stereographic projection. The infinite points of the complex plane are mapped onto the top of the R sphere, also the north pole $N$. 
+
+Consider the point $z = x + iy$. Draw a line from the point $z$ to the North Pole, and this line intersects at a single point on the sphere (this is where $z$ gets mapped onto the sphere). 
+
+Note, only the infinite points of the complex plane get mapped directly onto $N$. 
+
+Therefore, $\mathbb{C} \overset{\sim}{=} S^2/\{N\}$, that is the complex plane is isomorphic to this Riemann sphere minus the north pole. $N$ represents infinity. 
+
+\begin{definition}
+    The \underline{extended complex plane} is $\mathbb{c} \cup \{\infty\}$. This is isomorphic to the entire R sphere. 
+\end{definition}
+
+\begin{definition}
+    The \underline{distance} between two points of the R sphere is the standard euclidean distance in $\mathbb{R}^3$.
+\end{definition}
+
+Definition of limit at infinity. Then, $\overset{\circ}{D}_{\epsilon}(\infty)$ is defined as 
+
+\begin{equation}
+    \overset{\circ}{D}_{\epsilon}(\infty) = \{z \in \mathbb{C}: |z| > 1/\epsilon\}
+\end{equation}
+
+$1/\epsilon$ is the radius of the projected circle onto the x-y plane of the deleted epsilon neighborhood. 
+
+\begin{definition}
+    Let $G \subseteq \mathbb{C}$ and $z_0 \in \mathbb{C}$ be an accumulation point of $G$. Let $f : G \rightarrow \mathbb{C}$. Define 
+    \begin{equation}
+        f(\overset{\circ}{D}_{\delta}(z_0) \cap G) \subseteq D_{\epsilon}(\infty) \subseteq \overline{\mathbb{C}}
+    \end{equation}
+\end{definition}
+
+Therefore, 
+
+\begin{equation}
+    f(\overset{\circ}{D}_\delta(z_0) \cap G) \subseteq \mathbb{C}
+\end{equation}
+
+
+\begin{equation}
+    f(D_\delta(z_0) \cap G) \subseteq \overset{\circ}{D}_\delta(z_0)
+\end{equation}
+
+Therefore, $\lim f(z) = \infty$ iff for all deleted e neighberhood at $\infty$ exists deleted delta D of z0 such that 
+
+\begin{equation}
+    f(\overset{\circ}{D}_\delta(z_0) \cap G) \subseteq \overset{\circ}{D}(\infty)
+\end{equation}
+
+Let $z_0$ be an accumulation point of $G$, then deleted e neighborhood intersect $G$. 
+
+If $z_0 = \infty$, then deleted e neighberhood intersects $G$. 
+
+If $z_0 \in \mathbb{C}$, then 
+
+$\lim f = \infty \iff 0 < |z - z_0| < \delta, z \in G \implies |f(z)| > 1/\epsilon$. 
+
+$\lim f(z) = \infty$, such that $|z| > 1/\delta$ and $f(z) > 1/\epsilon$. 
+
+For $z \rightarrow \infty$, use Riemann sphere to let $ z> 1/\delta$. 
+
+Useful fact: Let $z_0 \in \mathbb{C} \land z_0 = \infty$.
+
+\begin{equation}
+    \lim f(z) = \infty \iff \lim \frac{1}{f} = 0
+\end{equation}
+
+\begin{proof}
+    Suppose $z_0 = \infty$. Then, 
+    \begin{equation}
+        \lim f(z) = \infty \iff \forall \epsilon >0, \exists \delta >0: |z| > 1/\delta, z \in G \implies |f(z)| > 1/\epsilon
+    \end{equation}
+    Then 
+    \begin{equation}
+        \lim 1/f(z) = 0 \iff |z| > 1/\delta  \implies 1/|f(z)| < \epsilon 
+    \end{equation}
+    Therefore, $\lim 1/f(z) = 0 \iff \lim f(z) = \infty$. 
+\end{proof}
+
+\subsection*{Example}
+
+Prove that:
+\begin{equation}
+    \lim_{z \rightarrow \infty} =\frac{z^2 + 1}{z-1} = \infty
+\end{equation}
+
+\begin{proof}
+    Use the useful fact. $$\lim \frac{z^2 + 1}{z-1} = \infty \iff \lim \frac{z-1}{z^2 + 1} = 0$$
+
+    Use the algebraic properties of limits, then 
+    \begin{equation}
+        \frac{z/z^2 - 1/z^2}{z^2/z^2 + 1/z^2} = \frac{1/z - 1/z^2}{1 + 1/z^2} \rightarrow 0
+    \end{equation} 
+
+\end{proof}
+
+\section*{Continuity of functions of complex variable with values in $\overline{\mathbb{C}}$}
+Recall that $f: G \subseteq \overline{\mathbb{C}} \rightarrow \overline{\mathbb{C}}$ is called continuous if 
+
+(same definitions of conitnuity)
+\begin{enumerate}
+    \item $z_0 \in G$
+\end{enumerate}
+
+\subsection*{Example}
+
+Let $f(z) = 1/z$, $z \neq 0$. Extend to $\tilde{f}$, then 
+
+\begin{equation}
+    \tilde{f}(z) = \begin{cases}
+        1/z & z \neq 0, \neq \infty\\
+        \infty & z = 0\\
+        0 & z = \infty
+    \end{cases}
+\end{equation}
+
+\textbf{This may be on the midterm.}
+
+We consider the following cases. We consider the first case. Clearly, by the algebraic properties of cont. limits, we have that $1/z$ is clearly cont. 
+
+Consider the second case. $\lim 1/\tilde{f} = \lim 1/f =0$, then it is clear that $\lim z = 0$. 
+
+\end{document}
