@@ -1,0 +1,217 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 10}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 10}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Limits of complex functions
+\end{enumerate}
+ 
+\section*{Recap}
+
+You may have to extend functions to the extended complex plane. An example
+
+\begin{equation}
+    \tilde{f}(z) = \begin{cases}
+        1/z & z \neq 0 \lor \infty \\
+        0 & z = \infty \\
+        \infty & z=0
+    \end{cases}
+\end{equation}
+
+Use algebraic properties of limits. For the third case, prove that $1/f(z) = z \rightarrow 0$. Clearly, this is true.
+
+Also, we need to show that $z \rightarrow z_0$, where $z_0 \in G = \text{dom}(f)$. In other words, $z_0$ needs to be in the domain of $f$. 
+
+For the second case, $|z| > 1/\delta \implies |1/z - 0| = 1/|z| < \epsilon \iff |z| > 1/\epsilon$. Therefore, let $\delta = \epsilon$, then we see that 
+\begin{equation}
+    \lim_{z \rightarrow 0} (1/z) = 0
+\end{equation}
+
+Therefore, $\tilde{f} \in C(\overline{\mathbb{C}})$ (cont. in the extended complex plane). 
+
+\subsection*{Example}
+
+(Mobius transformation) Defined by 
+\begin{equation}
+    M(z) = \frac{az + b}{az + d}:  a,b,c,d \in \mathbb{C}
+\end{equation}
+\begin{equation}
+    \det\begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix} \neq 0
+\end{equation}
+
+Therefore, if $M(z) = 1/z = (0 \cdot z + 1)/(1 \cdot z + 0)$ which is 
+
+\begin{equation}
+    \begin{pmatrix}
+        0 & 1 \\
+        1 & 0 
+    \end{pmatrix}
+\end{equation}
+
+Extend $M$ to the extended complex plane. Consider 
+
+\begin{equation}
+    M_1 \circ M_2 = M_1(M_2(z))
+\end{equation}
+
+With $\det M_1 \neq 0$ and $\det M_2 \neq 0$. Let $c \neq 0$, then we can extend $M$ to the extended complex plane:
+
+\begin{equation}
+    \tilde{M}(z) = \begin{cases}
+        \frac{az + b}{cz + d} & z \neq \infty, z \neq -d/c \\
+        \infty & z = -d/c \\
+        a/z & z = \infty
+    \end{cases}
+\end{equation}
+
+Case 1: if $z \neq \infty$ and $z \neq -d/c$. Then $az + b$ and $cz + d$ are in $C(\overline{\mathbb{C}})$. Moreover, $cz + d \neq 0$. Then, by the algebraic properties of cont. functions, then $\tilde{M}(z)$ is cont. 
+
+Case 2: if $z = -d/c$. Firstly, $-d/c \in \overline{\mathbb{C}}$. Next, write
+
+\begin{equation}
+    \lim_{z \rightarrow -d/c} \tilde{M}(z) = \infty \iff \lim_{z \rightarrow -d/c} 1/\tilde{M}(z) = 0
+\end{equation}
+
+Then 
+
+\begin{align}
+    \lim 1/\tilde{M} &= \lim \frac{cz + d}{az + b} \\
+    \frac{cz + d}{az + b} \rightarrow \frac{0}{- ad/c + b} = 0 \iff ad - bc \neq 0
+\end{align}
+
+But, this is the definition of the Mobius transformation, therefore, $1/\tilde{M}(z) \rightarrow 0 \iff \tilde{M}(z) \rightarrow \infty$.
+
+Case 3: $z_0 \rightarrow \infty$. Then, evaluate 
+
+\begin{equation}
+    \lim \frac{az + b}{cz + d} = \lim \frac{a + b/z}{c + d/z} \rightarrow a/c
+\end{equation}
+
+Here, we used the algebraic properties of cont. functions.  
+
+Next, if $c = 0$, then $ad - bc = ad \neq 0$ which means that $a \neq 0$ and $d \neq 0$. Therefore, 
+
+\begin{equation}
+    M(z) = a/d \cdot z + b/d
+\end{equation}
+
+Then 
+
+\begin{equation}
+    M(z) = A z + B, A \neq 0
+\end{equation}
+
+We define this transformation otno the extended complex plane. in other words, 
+
+\begin{equation}
+    \tilde{M}(z) = \begin{cases}
+        Az + B  & z \neq \infty\\
+        \infty & z = \infty
+    \end{cases}
+\end{equation}
+
+Case 1: obvious. 
+
+Case 2:
+
+\begin{align}
+    \lim 1/M(z) &= \lim \frac{1}{Az + B}  = \lim \frac{1/z}{A + B/z} \rightarrow 0/A = 0
+\end{align}
+
+Therefore, $\lim \tilde{M}(z) = \infty$ and $\tilde{M}(\infty) = \infty$. Therefore, $\tilde{M} \in \overline{\mathbb{C}}$.
+
+\textbf{Midterm:}
+\begin{enumerate}
+    \item 5 problems 20 points each, no cheat sheet. 
+    \item problem 1: general information about complex numbers. Conjugate, modulus. $|z|^2 = z \overline{z}$. 
+    \item problem 2: roots of complex number. Principal root
+    \item problem 3: Problem of limits
+    \item problem 4: Problem related to Demoire formula
+    \item problem 5: problem related to open set, closed set, interior, boundary (D intersects with outside and inside for all $\epsilon$). Find closure. Accumulation points. 
+\end{enumerate}
+
+\section*{Complex Derivative}
+
+\begin{definition}
+    $f$ is complex differentiable at $z = z_0$ if the following exists:
+    \begin{equation}
+        f'(z_0) = \lim \frac{f(z) - f(z_0)}{z - z_0s}
+    \end{equation}
+    $f'(z_0)$ is the complex derivative at $z=z_0$. Of course, $D$ is open in $\mathbb{C}$ and $f: D \rightarrow \mathbb{C}$.  
+\end{definition}
+
+Of course, 
+
+\begin{enumerate}
+    \item $(\alpha f + \beta g)' = \alpha f' + \beta g'$
+    \item $(fg)' = f'g + fg'$
+    \item Quotient rule is the same, if $g(z_0) \neq 0$.
+\end{enumerate}
+
+\section*{Cauchy-Riemann equations}
+
+Suppose that $f'(z_0)$ exists. Then, (recall that $f = u + iv$) 
+
+\begin{equation}
+    f'(z_0) = u_x + i v_x = v_y - iu_x, \text{approaching limit from real and complex axis}
+\end{equation}
+
+Therefore, the Cauchy-Riemann equations. 
+
+\begin{equation}
+    u_x = v_y, \quad u_y = -v_x
+\end{equation}
+
+
+
+\end{document}
