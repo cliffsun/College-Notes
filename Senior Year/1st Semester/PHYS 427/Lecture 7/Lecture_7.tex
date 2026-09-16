@@ -1,0 +1,219 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 7}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 7}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Helmholtz Free Energy
+\end{enumerate}
+
+\section*{Recap}
+
+At high temperatures, each quadratic DOF gives $k_B T /2$ to the energy. 
+
+\begin{theorem}
+    Equipartition theorem. 
+    \begin{equation}
+        \epsilon = a_1 q_1^2 + a_2 q_2^2 + \dots + a_n q_n^2
+    \end{equation}
+    Here, $q_i$ are continuous variables varying from $-\infty$ to $\infty$. For example, 
+    \begin{equation}
+        \epsilon = \frac{p^2}{2m} + \frac{1}{2}m \omega^2 x^2
+    \end{equation}
+\end{theorem}
+
+In the high temperature limit, you turn the partition function into integrals. Then 
+
+\begin{equation}
+    Z(T) \approx A\int dq_i \dots dq_n e^{-\epsilon_i(q_1,q_2,\dots,q_n)\beta}
+\end{equation}
+
+Then, 
+
+\begin{align}
+    p(\epsilon_i) &= e^{-\epsilon_i/k_B T}/Z(T) = A \frac{dq_1 \dots dq_N e^{-\beta \epsilon(q_i)}}{A \int [\dots]}
+\end{align}
+
+Then, 
+
+\begin{equation}
+    \langle \epsilon_{q_1} \rangle = \langle a_1 q_1^2 \rangle = \frac{\int dq_{i}\dots a_1q_1^2 e^{-\beta \epsilon(q_i)}}{Z(T)}
+\end{equation}
+
+The integrals upstairs and downstairs cancel. Then, this fraction is
+
+\begin{equation}
+    = \frac{\int_{-\infty}^{\infty} dq_1 a_1q_1^2 \exp(\dots a_1q_1)}{\int \exp(\dots a_1q_1)}
+\end{equation}
+
+\begin{align}
+    &= -\frac{\partial}{\partial \beta}\ln \left[ \int dq_1 \exp(\dots a_1 q_1^2) \right] \\
+    &= -\partial_{\beta}\ln \left( \beta^{-1/2} \right)\\
+    &= \frac{1}{2\beta} = \frac{1}{2}k_B T
+\end{align}
+
+This is simply the equiparitition theorem (only valid in the high temperature limit!). 
+
+\subsection*{Example: Maxwell velocity distribution}
+
+Probability for an atom in a gas to have speed in the range $[v, v + dv]$. For this, use spherical coordinates. Here, 
+
+\begin{equation}
+    \langle v \rangle = \sqrt{\frac{8 k_B T}{\pi m}}
+\end{equation}
+\begin{equation}
+    \langle v^2 \rangle = \frac{3k_B T}{m}
+\end{equation}
+
+\section*{Helmholtz Free Energy}
+
+To recap, we have had the microcanonical ensemble ($U$ is fixed, and volume of the system is fixed), then the entropy of this system increases until maximum. 
+
+The canonical ensemble is if the system is coupled to a reservoir $R$ that is much larger than the system. Both have a fixed temperature of $T = T_S = T_R$, fixed by the reservoir. Also, volume of the system is fixed. 
+
+The total energy $U_R + U_S$ is fixed. But both can individually vary. Therefore, the entropy of the system is max because $R + S$ is closed.
+
+Is there a quantity of the system alone that is at an extremum? This is the Helmholtz free energy! Here, the number of particles $N$ is fixed. 
+
+Start with $S(U,V)$, then 
+
+\begin{align}
+    dS &= \partial_{U}S dU + \partial_V S dV \\
+    &= \frac{1}{T}dU + \cancelto{0}{\frac{p}{T}dV}\\
+    &= \frac{1}{T}dU
+\end{align}
+
+Assume that volume is fixed, or $dV = 0$. Here, $dS_{R + S} = 0 = dS_R + dS_S$. Then 
+
+\begin{equation}
+    = \frac{dU_R}{T} + dS_S
+\end{equation}
+
+Moreover, $dU_R = -dU_S$. Then, 
+\begin{equation}
+    dS = -\frac{dU_S}{T} + dS_S = -\frac{1}{T}d\left(U_S - TS_S\right)
+\end{equation}
+Thus, 
+\begin{equation}
+    -\frac{1}{T}dF = -\frac{1}{T}d\left( U_S - TS_S \right)
+\end{equation}
+
+Here, $F$ is the Helmholtz free energy. Therefore, if $R + S$ is at equilibrium, then $F$ is at a minimum. 
+
+The thermodynamic identity is below:
+\begin{equation}
+    dS = \frac{1}{T}dU + \frac{p}{T}dV \iff dU = TdS - pdV
+\end{equation}
+
+This is also the first law of thermodynamics. $TdS$ is the heat and $pdV$ is the work done on the system. For Helmholtz free energy, 
+
+\begin{align}
+    dF &= dU - TdS - SdT \\
+    &= TdS - pdV - TdS - SdT \\
+    &= -pdV - SdT \\
+    &= \frac{\partial F}{\partial V}dV + \frac{\partial F}{\partial T}dT
+\end{align}
+
+Therefore, $F = F(T,V)$. Canonical ensemble is fixed by the temperature and the volume. Therefore, 
+
+\begin{equation}
+    p = -\frac{\partial F}{\partial V}, \quad S = -\frac{\partial F}{\partial T}
+\end{equation}
+
+Is there a relationship between $F$ and $Z$? Consider a microcanonical ensemble, then 
+
+\begin{equation}
+    S_S = k_B \ln(\Omega)
+\end{equation}
+
+In the canonical ensemble, $Z$ is like $\Omega$ such that:
+
+\begin{equation}
+    F = -k_B T \ln(Z)
+\end{equation}
+
+A quick sketch of this formula:
+
+\begin{align}
+    F &= U - TS \\
+    \iff S &= \frac{U - F}{T} \\
+    \frac{\partial F}{\partial T} &= \frac{F - U}{T}
+\end{align}
+
+Here, equation (25) solves the above diff eq. Here, 
+
+\begin{align}
+    p &= k_B T \partial_{V}\ln (Z) \\
+    S &= \partial_{T}(k_B T \ln(Z))
+\end{align}
+
+For an ideal gas, $Z = (n_Q V)^N/N!$. 
+
+Quantum density:
+\begin{equation}
+    n_Q = \left( \frac{mk_B T}{2\pi \hbar^2} \right)^{3/2}
+\end{equation}
+
+Then we use the above equations to derive:
+
+\begin{equation}
+    p = \frac{ Nk_B T}{V} \iff pV = Nk_B T 
+\end{equation}
+
+Moreover, using Stirling's approximation:
+
+\begin{align}
+    S &= -F/T + U/T \\
+    &= N k_B \ln(n_Q V) - Nk_B \ln N + N k_B + k_B T \partial_T \ln(T^{-3/2}) \\
+    &= Nk_B \left[ \ln \left( \frac{n_Q V}{N} \right) + 5/2 \right]
+\end{align}
+
+This is called the Sackur-Tetrode equation. 
+
+\end{document}
