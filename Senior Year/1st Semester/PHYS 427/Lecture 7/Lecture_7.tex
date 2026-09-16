@@ -216,4 +216,14 @@ Moreover, using Stirling's approximation:
 
 This is called the Sackur-Tetrode equation. 
 
+\subsection*{Example}
+
+System with two energy levels. Calculate $S$ and $T \rightarrow \infty, T \rightarrow 0$. The partition function $e^0 + e^{-\beta \Delta} = 1 + e^{-\beta \Delta}$. Then, 
+
+\begin{equation}
+    S = \partial_T \left( k_B T \ln(Z) \right) = k_B T\ln\left( 1 + e^{-\Delta /k_B T} \right) + \frac{\Delta}{T}\frac{\exp(-\Delta/k_B T)}{1 + \exp(-\Delta/k_B T)}
+\end{equation}
+
+As $T \rightarrow 0$, $S \rightarrow 0$. As $T \rightarrow \infty$, then $S \rightarrow k_B \ln(2)$. 
+
 \end{document}
