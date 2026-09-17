@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Midterm \# 1 Study}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Midterm \# 1 Study}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Study for midterm 1
+\end{enumerate}
+
+\section*{Q1: General information about complex numbers}
+
+\begin{enumerate}
+    \item $|z|^2 = z\cdot\overline{z}$
+    \item Normalize $z$ to find argument
+    \item $\cos\theta$ and $\sin\theta$ values at various $\theta$'s 
+\end{enumerate}
+
+\section*{Q2: Roots of complex numbers}
+
+Remember to divide $2\pi k$ by $n$, where $n$ is the root of the problem. Then, iterate through $k$. Also, $k=0$ is the principal root. 
+
+\section*{Q3: Limits}
+
+\begin{enumerate}
+    \item Algebraic properties of limits and cont. functions
+    \item All polynomials are continuous
+    \item $\epsilon$-$\delta$ definition
+\end{enumerate}
+
+\section*{Q4: Demoire's formula}
+
+\begin{equation}
+    (\cos\theta + i\sin\theta)^n = \cos n\theta + i \sin n\theta
+\end{equation}
+
+\section*{Q5: Sets}
+
+\begin{enumerate}
+    \item Boundaries (for all $\epsilon > 0$, $D_{\epsilon}(z_0)$ intersects with interior $A$ and exterior $\mathbb{C}/A$)
+    \item Interior, $D_{\epsilon}(z_0) \subset A$ for all $\epsilon$. 
+    \item Exterior, the same but $\subset \mathbb{C}/A$
+    \item Open sets don't contain their boundary, closed is the contrary.
+    \item Closure 
+    \item Accumulation points, deleted $\epsilon$ neighborhood. 
+\end{enumerate}
+
+\end{document}
