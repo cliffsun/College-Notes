@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 11}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 11}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item CR equations
+\end{enumerate}
+
+\section*{Cauchy Riemann Equations}
+
+The derivative w.r.t the real number line is the same as that on the complex number line. Note that $z = z_0 + h$, then 
+
+\begin{align}
+    x + iy &= (x_0 + h) + iy_0
+\end{align}
+
+Therefore, 
+
+\begin{align}
+    \frac{f(z) - f(z_0)}{z - z_0} &= \frac{(u(x + h, y) - u(x,y)) + i(v(x + h, y) - v(x,y))}{h} \\
+    &= \partial_x u + i \partial_x v
+\end{align}
+
+Similarly, taking the partial derivative on the complex plane yields:
+
+\begin{align}
+    \frac{f(z) - f(z_0)}{z - z_0} &= \frac{(u(x, y + h) - u(x,y)) + i(v(x, y + h) - v(x,y))}{ih} \\
+    &= -i\partial_y u + \partial_y v
+\end{align}
+
+Therefore, 
+
+\begin{equation}
+    \partial_x u = \partial_y v, \quad \partial_x v = -\partial_y u
+\end{equation}
+
+\subsection*{Example}
+
+Let $f(z) = x + iy$. Here, the CR equations are not satisfied. Therefore, $f'(z)$ DNE for all $z \in \mathbb{C}$. 
+
+\subsection*{Example}
+
+Consider $f(z) = x^2 + y^2$. $f'(z)$ DNE if $z \neq 0$ by the necessary conditions of complex differentiability. next, 
+
+\begin{equation}
+    \lim_{z \rightarrow 0}\frac{|z|^2}{z} = \lim \overline{z} = 0
+\end{equation}
+
+Therefore, $f$ is complex differentiable only at the origin. 
+
+\subsection*{Example}
+
+$f(z) = \overline{z}\Im(z)$. Here, 
+
+\begin{equation}
+    f(z) = xy - iy^2
+\end{equation}
+
+Here, we obtain that $f(z)$ is not complex differentiable for $z \neq 0$ by the necessary condition of complex differentiability. 
+
+At $f'(z)$, 
+
+\begin{equation}
+    f'(z) = \lim \frac{\overline{z}\Im(z)}{z} = \lim \frac{|\overline{z}| |\Im(z)|}{|z|} = \lim |y| = 0
+\end{equation}
+
+Therefore, $f$ is complex differentiable only at the origin. 
+
+\subsection*{Example}
+
+For $f(z) = z^2 = (x^2 + y^2) + 2xy i$. The C.R. equations are satisfied at every point, but we cannot conclude that $d/dz (z^2)$ exists at every point $z \in \mathbb{C}$. We need the next theorem... 
+
+\begin{theorem}
+    \underline{Sufficient conditions for complex differentiability}. Let $f: G \rightarrow \mathbb{C}$ be a function. If $u_x,u_y,v_x,v_y$ are continuous at $z = z_0$ and the CR equations 
+    are satisfied at $z = z_0$. Then $f'(z_0)$ exists.
+\end{theorem}
+
+\subsection*{Example}
+
+Use the previous example $f(z) = z^2$. Then, the CR equations are satisfied everywhere, and thus $f$ is CD everywhere on $\mathbb{C}$. 
+
+\textbf{Must verify that $v_i$ and $u_i$ are continuous!!!}
+
+\subsection*{Example}
+
+$f(z) = 2x + ixy$. 
+
+Formal ending: ''By the necessary condition of complex differentiability, $f'(z)$ does not exist if $z \neq 2$". 
+
+\end{document}
