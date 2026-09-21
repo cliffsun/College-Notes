@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 8}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 8}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Heat and Work
+\end{enumerate}
+
+\section*{Recap}
+
+Micro canonical ensemble: fixed energy, number of particles. Canonical ensemble has a reservoir, combined energy and temperature are constant. 
+
+For MCE, $S(U,V)$ is maximized in equilibrium. For CE, $F(U,V)$ is minimized in equilibrium. 
+
+For MCE, $\Omega(U) = \sum_{\text{all states with energy $U$}} 1$. 
+
+For CE, $Z(T) = \sum e^{-\epsilon_i/k_B T}$. 
+
+For MCE, $S = k_B \ln \Omega$. 
+
+For CE, $F = -k_B T \ln Z$. 
+
+For MCE, 
+
+\begin{align}
+    dS &= \left( \partial_{U}S \right)_V dU + \left( \partial_{V}S \right)dV \\
+    &= \frac{1}{T}dU + \frac{p}{T}dU
+\end{align}
+
+For CE, 
+
+\begin{align}
+    dF &= \left( \partial_{T}F \right)_TdT  + \left( \partial_V F\right)_T dV \\
+    &= -S dT - pdV
+\end{align}
+
+You can match definitions to then rewrite $T$ in terms of $S$, $p$ in terms of $F$, and etc. 
+
+\section*{Heat and Work}
+
+Thermodynamic identity:
+
+\begin{equation}
+    dU = TdS - pdV
+\end{equation}
+
+\begin{enumerate}
+    \item Work: can be electrical, or mechanical
+    \item Heat: cannot be completely converted into work because of the 2nd law of thermodynamics
+\end{enumerate}
+
+The 2nd law of thermodynamics states $\Delta S \geq 0$, and this is the \underline{total entropy of a system!}
+
+Consider a reservoir of temperature $T_H$, then it takes heat $Q_H$, then outputs $Q_C$ (heat that goes into the cold reservoir) and $W$. Then 
+
+\begin{equation}
+    Q_H = W + Q_C
+\end{equation}
+
+Then 
+
+\begin{align}
+    \Delta S_{tot} &= \Delta S_{hot} + \Delta S_{cold} \geq 0 \\
+    &= -\frac{Q_H}{T_H} + \frac{Q_C}{T_C} \geq 0
+\end{align}
+
+The bottom reservoir then must be colder than the top reservoir. Define efficiency, 
+
+\begin{equation}
+    \eta = \frac{W}{Q_H} = 1 - \frac{Q_C}{Q_H}
+\end{equation}
+
+The maximum possible efficiency for $\Delta S_{tot} = 0$, then 
+
+\begin{align}
+    \frac{Q_C}{Q_H} &= \frac{T_C}{T_H}
+\end{align}
+
+Then, the max efficiency is 
+
+\begin{equation}
+    \eta_{\max} = 1 - \frac{T_C}{T_H}
+\end{equation}
+
+This is the Carnot efficiency. But you can have losses along the way, such as $\Delta S_{tot} > 0$, which can be caused by a heat leak from H to C. 
+
+\subsection*{Irreversible processes}
+
+Create $\Delta S_{tot}>0$ that cannot be removed due to the 2nd law of thermodynamics. 
+
+\section*{Carnot Cycle}
+
+Idealized way to realize a heat engine at the maximal efficiency $\eta_{\max}$. Start at $(T_H, S_1)$, then heat up to $(T_H, S_2)$. Then go $(T_H, S_2)$ to $(T_C, S_2)$. Then to $(T_C, S_1)$, then close the loop. 
+
+Here, 
+
+\begin{equation}
+    \oint dQ = (T_H - T_C)(S_2 - S_1)
+\end{equation}
+
+The area of this rectangle is the work done by the engine. You can then calculate 
+
+\begin{equation}
+    \eta = \frac{W}{Q_H} = \frac{(T_H - T_C)(S_2 - S_1)}{T_H(S_2 - S_1)} = 1 - \frac{T_C}{T_H} 
+\end{equation}
+
+Note, reversible cooling and heating ($\Delta S =0$) need to be very slow; otherwise, you gain entropy. But this is not practical. 
+
+\subsection*{Monatomic ideal gas as working substance}
+
+Sackur-Tetrode equation 
+
+\begin{equation}
+    S = Nk_B T\left( \ln\left( \frac{n_Q V}{N} \right) + \frac{5}{2} \right)
+\end{equation}
+
+$PV = Nk_B T$. for isothermal, $PV = \text{const.}$. 
+
+For isentropcic, 
+
+\begin{equation}
+    S = Nk_B \left[ \ln(T^{3/2}) + \ln(V) \right]
+\end{equation}
+
+Then $T^{3/2}V$ is constant, which means that $p^{3/2}V^{5/2} = \text{const.}$. Then 
+
+\begin{equation}
+    pV^{\gamma} = \text{const.}
+\end{equation}
+
+For monatomic ideal gas. For $\gamma = 5/3 = C_P/C_V$. For an ideal gas, you can plot it on a PV diagram. 
+
+First, isothermal expansion. Then, isentropic expansion. Then isothermal. Then isentropic. You can then calculate the work done by the system.
+
+\begin{equation}
+    W = (T_H - T_C)(S_2 - S_1)
+\end{equation}
+
+Irreversible expansion. Box with wall with door in the middle. Volume on left is $V_i$ and on right is $V_f$. $Q = 0$. Also, $\Delta U = 0 \iff \Delta T =0$.
+The entropy $\Delta S = Nk_B\left[ \ln\left( V_f/V_i \right) \right] > 0$. 
+
+\end{document}
