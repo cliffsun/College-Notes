@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 12}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 12}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Complex derivatives
+\end{enumerate}
+
+\section*{Complex derivatives}
+
+Note, by the \underline{necessary condition of complex differentiability}, $f'$ DNE for $z$ such that the CR equations are not satisfied. 
+
+By the \underline{sufficient condition of CD}, $f'$ exists for $z$ such that the CR equations are satisfied. 
+
+\section*{CR equations in polar coordinates}
+
+\begin{align}
+    u_r &= \frac{1}{r}v_{\theta} \\
+    \frac{1}{r}u_{\theta} &= -v_r
+\end{align}
+
+\begin{proof}
+    Use the chain rule and the fact that $x = r\cos\theta$ and $y = r\sin\theta$ to convert the CR equations in rectangular coordinates to polar coordinates. That is, 
+    \begin{equation}
+        \frac{du}{d\theta} = u_x x_{\theta} + u_y y_{\theta}
+    \end{equation}
+\end{proof}
+
+\begin{equation}
+    u_x = u_r\cos\theta + \sin\theta/r \cdot u_{\theta}
+\end{equation}
+\begin{equation}
+    u_y = u_r\cos\theta - \sin\theta/r \cdot u_{\theta}
+\end{equation}
+
+\subsection*{Example}
+
+If $z_0 \neq 0$, then $f'(z_0)$ exists, then 
+
+\begin{equation}
+    f'(z_0) = -\frac{i}{z_0}\left( u_{\theta} +iv_{\theta} \right)
+\end{equation}
+
+\begin{proof}
+    $f'(z_0) = u_x + iv_x =  u_r\cos\theta - \sin\theta/r \cdot u_{\theta} + i(v_r\cos\theta + -\sin\theta/r \cdot v_{\theta})$. You then obtain 
+    \begin{align}
+        &= -\frac{i}{r}\left[ u_{\theta}(\cos\theta - i\sin\theta) + iv_{\theta}(\cos\theta - i\sin\theta) \right]\\
+        &= -\frac{i}{r}\left[ \left( u_{\theta} + iv_{\theta} \right)e^{-i\theta} \right] = -\frac{i}{re^{i\theta}}\left( u_{\theta} + iv_{\theta} \right) = -\frac{i}{z_0}\left( u_{\theta} + iv_{\theta} \right)
+    \end{align}
+\end{proof}
+
+\section*{More Operators}
+
+Will not be used in class, but useful to mention for completeness. 
+
+\begin{align}
+    \partial_z &= \frac{1}{2}\left( \partial_x - i\partial_y \right) \\
+    \partial_{\overline{z}} &= \frac{1}{2}\left( \partial_x + i\partial_y \right) \\
+\end{align}
+
+Note that 
+
+\begin{equation}
+    \partial_{\overline{z}}f = 0 \iff \text{ CR equations }
+\end{equation}
+
+\begin{equation}
+    \partial_{z}f = u_x + iv_x
+\end{equation}
+
+\section*{Analytical Functions}
+
+\begin{definition}
+    Let $D$ be open in $\mathbb{C}$ and not empty. Then, $f$ is \underline{analytic} at $z_0$ if there is $\epsilon >0$ (NOT FOR ALL $\epsilon>0$) such that $D_{\epsilon}(z_0) \subseteq D$ and $f'$ exist for every $z \in D_{\epsilon}(z_0)$. 
+\end{definition}
+
+Note, if $f'$ is only differentiable at $z_0$ but DNE for some $z$ close to $z_0$, then $f$ is not analytic at $z_0$.  
+
+\begin{definition}
+    $f$ is analytical on $U$ if it is analytic at every point $U$, which is the domain of $f$. Set of all analytical functions is denoted by $H(U)$, $H$ meaning holomorphic. 
+\end{definition}
+
+\begin{theorem}
+    Let $f$ and $g$ analytic, then 
+    \begin{enumerate}
+        \item $\alpha f + \beta g \in H(U)$ is analytic
+        \item $fg$ is analytic.  
+        \item $f/g$ is analytic if $g \neq 0$ at $z_0$. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    \underline{Uniqueness property of analytic functions}. 
+\end{theorem}
+
+\end{document}
