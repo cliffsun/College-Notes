@@ -1,0 +1,190 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 9}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 9}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Thermodynamic potentials
+\end{enumerate}
+
+\section*{Recap}
+
+For reversible processes, $dQ = TdS$. 
+
+For irrversible processedm $dQ < TdS$
+
+\section*{Thermodynamic Potentials}
+
+Up to this point, we have covered two thermodynamic potentials:
+
+(Fixed temperature and volume)
+\begin{equation}
+    F = U - TS, \quad U
+\end{equation}
+
+For some intuition, $F$ represents the maximal work you can extract from the system.   
+
+Let $U = Q + W$, then for irrversible processes, we obtain 
+
+\begin{equation}
+    W_{on} > \Delta F
+\end{equation}
+
+Today, we will cover two more potentials. We define enthalpy:
+
+(fixed pressure)
+\begin{equation}
+    H = U + pV
+\end{equation}
+
+The final energy is Gibbs Free Energy:
+
+(temperature and pressure fixed)
+\begin{equation}
+    G = U + pV - TS
+\end{equation}
+
+These are the maximum amount of work you can take out of a system (reversible process). Then, 
+
+\begin{align}
+    \Delta G &= \Delta U + p \Delta V - T \Delta S \\
+    &= Q + W + p \Delta V - T \Delta S \\
+    &= W + p \Delta V
+\end{align}
+
+Then, $\Delta G$ would be the extra work you need to do on top of the ideal work in order to push work out of a system. 
+
+Now, we have four quantities in the form of thermodynamic potentials:
+
+\begin{enumerate}
+    \item $U(S,V)$; $dU = TdS - pdV$ (thermodynamic identity)
+    \item Helmholtz free energy: $F(T,V) = U - TS$
+    $$dF = dU - TdS - S dT \iff dF = -pdV - S dT$$
+    \item Enthalpy: $H(p,S) = U + pV$, then
+    $$dH = dU + pdV + Vdp \iff dH = T dS + Vdp$$
+    \item Gibbs Free energy: $G(p, T) = U + pV - TS$, then 
+    $$dG = Vdp - S dT$$
+\end{enumerate}
+
+\section*{Maxwell's Relations}
+
+Use mixed partials equivalences to derive the relations. Note that, 
+
+\begin{equation}
+    T = \partial_S U, \quad p = -\partial_{V} U
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \frac{\partial T}{\partial V} = -\frac{\partial p}{\partial S}
+\end{equation}
+
+Also, 
+
+\begin{equation}
+    dF = -S dT - pdV \iff -S = \partial_T F, \quad -p = \partial_V F
+\end{equation}
+ 
+Therefore, 
+
+\begin{equation}
+    \partial_{V}S  = \partial_{T}p
+\end{equation}
+
+Use $dH$ to derive 
+
+\begin{equation}
+    \partial_p T = \partial_S V
+\end{equation}
+
+Use $dG$ to derive 
+
+\begin{equation}
+    \partial_T V = -\partial_p S
+\end{equation}
+
+\subsection*{Example}
+
+Given gas, meausre $T,V$. But we want $S$. Then, we know that the natural variables of $S$ is $U,V$.
+But we want $S$ in terms of $T$ and $V$. We first note that:
+
+\begin{equation}
+    dS = \partial_T S dT + \partial_V S dV
+\end{equation}
+
+Then, introduce heat capacity. 
+
+\begin{equation}
+    C_V = \left( \frac{dQ}{dT} \right)_V = T \frac{\partial S}{\partial T}
+\end{equation}
+
+Also, 
+
+\begin{equation}
+    \frac{\partial S}{\partial V} = \frac{\partial p}{\partial T}
+\end{equation}
+
+Then, 
+
+\begin{align}
+    dS &= \partial_T S dT + \partial_V S dV \\
+    &= \frac{C_V}{T}dT + \left( \partial_T p \right) dV
+\end{align}
+
+Use ideal gas law to obtain 
+
+\begin{align}
+    dS &= \frac{C_V}{T}dT + \frac{Nk_B}{V}dV\\
+    S_f - S_i &= \frac{3}{2}Nk_B \ln\left( T_f/T_i \right) + Nk_B \ln\left( V_f/V_i \right)
+\end{align}
+
+
+
+\end{document}
