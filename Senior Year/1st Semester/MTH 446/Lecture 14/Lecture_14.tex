@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 14}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 14}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Properties of complex derivatives
+\end{enumerate}
+
+\section*{Complex Differentiability}
+
+Remark, if $f \in H(D)$ and $f = u + iv$, then $u,v$ are infinitely differentiable. 
+
+\begin{definition}
+    $u$ is said to be \underline{harmonic conjugate} of $u$ if 
+    \begin{align}
+        u_x &= v_y \\
+        u_y &= -v_x
+    \end{align}
+    In $D$. We abbreviate harmonic conjugate as h.c. 
+\end{definition}
+
+In other words, if $u,v \in H(D)$, then $v$ is a h.c. of $u$ in $D$ iff $f = u + iv \in H(D)$. How to find a harmonic conjugate? 
+
+\subsection*{Example}
+
+Let $u = 2x - x^3 + 3xy^2$. Find $v$, the harmonic conjugate of $u$. We can verify that $u$ is harmonic. Use the C.R. equations to obtain that 
+
+\begin{equation}
+    v_y = 2 - 3x^2 +  3y^2 \iff v = \int dy (2 - 3x^2 + 3y^2)
+\end{equation}
+
+Then, we obtain 
+
+\begin{equation}
+    v = 2y - 3x^2y + y^3 + C(x)
+\end{equation}
+
+Then 
+
+\begin{equation}
+    v_x = -6xy + C'(x) = -u_y = -6xy
+\end{equation}
+
+Therefore, $C'(x) = 0 \implies C(x) = \rm const.$ Then, 
+
+\begin{equation}
+    v = 2y - 3x^2y + y^3 + C
+\end{equation}
+
+\subsection*{Example}
+
+If $v$ is h.c. of $u$ and $\tilde{v}$ is h.c. of $u$, then $\tilde{v} = v + C$ for some const. $C$.  
+
+\subsection*{Example}
+
+Suppose $u,v$ are h.c.'s of each other, then $u,v$ are constant in $D$. 
+
+\begin{proof}
+    This means that 
+    \begin{align}
+        u_x &= v_y \\
+        u_y &= -v_x 
+    \end{align}
+    And vice versa. Then, we arrive that 
+    \begin{equation}
+        u_x = -u_x \iff u_x = 0, \in D
+    \end{equation}
+    We obtain similar equations for $v_x, v_y,u_y$. Therefore, $\nabla u \equiv \rm const.$ and $\nabla v \equiv \rm const.$  
+\end{proof}
+
+\begin{theorem}
+    \underline{Reflection Principle:} Suppose $f \in H(D)$, and contains segment of the x axis and is symmetric to the axis (lower half in $D$ is reflection of the upper half w.r.t the x axis). Then, 
+    \begin{equation}
+        \overline{f(z)} = f(\overline{z})
+    \end{equation}
+    if and only if $f(x)$ is real for every $x$ on that segment. 
+\end{theorem}
+
+\subsection*{Example}
+
+Suppose $P_n$ is a n-th degree polynomial with real coefficients. Then, one can prove that 
+\begin{equation}
+    P_n(\overline{z}) = \overline{P_n(z)}
+\end{equation}
+
+\begin{definition}
+    The exponential of $z$ is 
+    \begin{equation}
+        \exp(z) = \exp(x)\exp(iy) \iff \exp(x)\left( \cos(y) + i\sin(y) \right)
+    \end{equation}
+    This is the exponential function.
+\end{definition}
+
+\subsection*{Properties}
+
+\begin{enumerate}
+    \item $\exp(z_1 + z_2) = \exp(z_1)\exp(z_2)$
+    \item $\forall z \in \mathbb{C}$, $|\exp(z)| = e^x > 0$
+    \item $\forall z \in \mathbb{C}$, $e^{-z} = 1/e^{z}$. 
+    \item $e^{z_1 - z_1} = e^{z_1}/e^{z_2}$
+    \item $\exp(z)$ is a periodic function wiht period $p = 2\pi i$ for all $z \in \mathbb{C}$. Note, the period is a complex number.
+    \textit{Proof:} $\exp(x)\exp(y + 2\pi) = e^x(\cos(y + 2\pi) + i\sin(2\pi))$. Therefore, $u,v \in C^{\infty}(\mathbb{C})$. 
+\end{enumerate}
+
+
+
+\end{document}

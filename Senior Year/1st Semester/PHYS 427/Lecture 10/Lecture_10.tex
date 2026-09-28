@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 10}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 10}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Chemical Potential
+\end{enumerate}
+
+\section*{Chemical Potential}
+
+So far, $N = \rm const.$ and $U = U_1 + U_2$, $V$ and $N$ are all const. 
+
+\subsection*{Diffusive equilibrium}
+
+\begin{align}
+    dS &= dS_1 + dS_2 \\
+    &= \partial_{U_1}S_1 dU_1 + \partial_{V_1}S_1 dV_1 + \partial_{N_1}S_1 dN_1
+\end{align}
+
+Then, $dU_1 = dU_2$ and etc. Moreover, $dS = dS_1 + dS_2 = 0$. Then, we arrive at 
+
+\begin{align}
+    0 &= \left[ \frac{\partial S_1}{\partial U_1} - \frac{\partial S_2}{\partial U_2} \right]dU_1 + \dots \\
+    &= \left( \frac{1}{T_1} - \frac{1}{T_2} \right)dU_1 + \left( \frac{p_1}{T_1} - \frac{p_2}{T_2} \right)dV_1 + \left( \frac{\mu_1}{T_1} - \frac{\mu_2}{T_2} \right)dN_1
+\end{align}
+
+Here, we define the chemical potential $\mu$ as 
+
+\begin{equation}
+    \mu = -T\frac{\partial S}{\partial N}
+\end{equation}
+
+Note, if $\mu < 0$, then the entropy increases w.r.t $N$. Then, we arrive at: 
+
+\begin{equation}
+    T_1 = T_2, \quad p_1 = p_2, \quad \mu_1 = \mu_2
+\end{equation}
+
+From eq. (2), we arrive that 
+
+\begin{equation}
+    dS = \frac{1}{T}dU + \frac{p}{T}dV - \frac{\mu}{T}dN
+\end{equation}
+
+If $N$ is allowed to vary, then this is the thermodynamic identity. Then, it follows that:
+
+\begin{equation}
+    dU = TdS - pdV + \mu dN
+\end{equation}
+
+We can then define 
+
+\begin{equation}
+    \mu = \frac{\partial U}{\partial N}
+\end{equation}
+
+A difference in $\mu$ drives heat flow. If $\mu_1 > \mu_2$ with $T_1 = T_2$ and $p_1 = p_2$. Then, 
+
+\begin{equation}
+    dS = \left[ \partial_{N_1}S_1 - \partial_{N_2}S_2 \right]dN_1 \geq 0
+\end{equation}
+
+If the inside term is less than zero, then $dN_1 \leq 0$. Therefore, particles move from $N_1$ to $N_2$ (and therefore higher potential to lower potential). 
+
+Also,
+
+\begin{equation}
+    \mu = \frac{\partial F}{\partial N}
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    dF = \left( \frac{\partial F_1}{\partial N_1} - \frac{\partial F_2}{\partial N_2} \right)dN_1 = 0
+\end{equation}
+
+Therefore, in equilibrium, we have that the inside term must be 0. 
+
+\subsection*{Example: Chemical potential of an ideal gas}
+
+We calculate 
+
+\begin{equation}
+    F = -k_B T\ln(Z), \quad Z = \frac{(n_Q V)^N}{N!}
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    F = - Nk_B T \left( -\ln(n_Q V) + \ln(N) - 1  \right)
+\end{equation}
+
+Then, we calculate 
+
+\begin{equation}
+    \mu = k_B T \ln\left( \frac{n}{n_Q} \right)
+\end{equation}
+
+For classical gas of $n \ll n_Q$, then $\mu < 0$. For argon, then $\mu = 0.42\rm eV$. 
+
+\subsection*{Example}
+
+This is the Nernst equation. Two systems with a potential difference across each system. Then ideal gas with a charge $Q$. Then, $\epsilon_i = p_i^2/2m + qV_{1,2}$. 
+
+We calculate 
+
+\begin{align}
+    Z &= \frac{1}{N!}\left( \sum_i \exp(-\beta \epsilon_i) \right)^{N_1} \\
+    &= \frac{1}{N!}\left( \exp(-\beta q v_1)n_Q V_1 \right)^{N_1}
+\end{align}
+
+Note, we are ignoring interactions between particles. Then, you can calculate 
+
+\begin{equation}
+    F_1 = -N_1k_B T\left( e^{-\beta q v_1}n_Q V_1 \right) + N_1 k_B T\ln N_1 - N_1 k_B T 
+\end{equation}
+
+Note, the capital $V$ is the volume, and lowercase $v_1$ is the potential.
+Then, 
+
+\begin{equation}
+    \mu_1 = -k_B T \ln\left( \frac{n_1}{n_Q}\right) + qv_1
+\end{equation}
+
+This is the internal chemical potential plus the external chemical potential. The Nernst equation is then 
+
+\begin{equation}
+    q\Delta v = k_B T \ln(\frac{n_2}{n_1})
+\end{equation}
+
+In general, 
+
+\begin{equation}
+    \Delta \mu_{\rm ext} = -\Delta \mu_{\rm int} 
+\end{equation}
+
+In dilute solutions, 
+
+\begin{equation}
+    \mu = \mu_{\rm sol} + k_B T \ln\left( \frac{n_{\rm sol}}{n_0} \right)
+\end{equation}
+
+Here, $n_0$ is 1 mole of the solute. The gravitational potential is 
+
+\begin{equation}
+    \mu(h) = k_B T \ln\left( n(h)/n_Q \right) + mgh        
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \mu(h) = n(0)\exp(-mgh/k_B T)
+\end{equation}
+
+
+
+\end{document}
