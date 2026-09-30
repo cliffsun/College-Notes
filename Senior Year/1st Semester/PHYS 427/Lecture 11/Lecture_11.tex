@@ -1,0 +1,188 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 11}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 11}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Gibbs Free Energy
+\end{enumerate}
+
+Exam: 50 mins. also, $Z$, $F$, and $\langle U \rangle$. Cheat sheet front and back. 
+
+\section{Gibbs Free Energy}
+
+$$G = U + pV - TS$$
+
+Now, Gibbs free energy had fixed pressure and constant particles. Also, reservoir and the system is closed. Then, the $dS_{R + S} = 0$. Then, 
+
+\begin{equation}
+    dS_{R + S} = dS_R + dS_S = \frac{dU_R}{T_R} + \frac{p_R}{T_R}dV_R + dS_S
+\end{equation}
+
+Also, assume that 
+
+\begin{align}
+    dU_R &= -dU_S \\
+    dV_R &= -dV_S \\
+    T_R &= T_S\\
+    p_R &= p_S
+\end{align}
+
+Then, 
+
+\begin{equation}
+    dS_{R + S} = -\frac{1}{T}d\left( U_S + pV_S - TS_S  \right) \iff -\frac{1}{T}dG
+\end{equation}
+
+Therefore, $S$ is maximized if $G$ is minimized. 
+
+In a microcanonical ensemble, $S$ is closed with fixed $U,V$. Entropy can only increase.
+
+In a canonical ensemble, a system and a reservoir are coupled. $T_{R/S},V_S$ are fixed. Then, $F$ decreases with $\Delta F_S \leq 0$. 
+
+In a different ensemble where the system is inside the reservoir and volume can change, $T_{S/R}$ are the same and fixed, $p_{S/R}$ are the same and fixed. Then $G$ decreases and $\Delta G_S < 0$. 
+
+\begin{align}
+    dU &= TdS - pdV + \mu dN \\
+    dF &= -pdV - SdT + \mu dN \\
+    dG &= -S dT + Vdp + \mu dN
+\end{align}
+
+For a monoatomic ideal gas, 
+
+\begin{equation}
+    G = U + pV - TS
+\end{equation}
+
+then 
+
+\begin{align}
+    G &= \frac{3}{2}Nk_B T - Nk_B T - Nk_B T\left( \ln(n_Q/n) + 5/2  \right) \\
+    &= Nk_B T\ln\left( n/n_Q \right)
+\end{align}
+
+Also, $\mu$ for an ideal gas 
+
+\begin{equation}
+    \mu = k_B T \ln(n/n_Q) \implies G = N\mu
+\end{equation}
+
+Such a relationship is true in general. In general, 
+
+\begin{equation}
+    G = \sum \mu_i N_i
+\end{equation}
+
+\subsection*{Example: Chemical equilibrium}
+
+For chemical reactions under fixed $T,p$. Then, $G$ is the thermodynamic potential. In equilibrium, $G$ is minimized. 
+
+Nitrogen fixation: 
+
+\begin{equation}
+    N_2 + 3H_2 \iff 2 NH_3
+\end{equation}
+
+Or 
+
+\begin{equation}
+    2NH_3 - N_2 - 3H_2 = 0
+\end{equation}
+
+By convention, reactants are negative and products are positive. In equilibrium, 
+
+\begin{equation}
+    dG = 0 = -SdT + Vdp + \sum \mu_i dN_i
+\end{equation}
+
+Then, $dN_i$ is the changes in the \# of molecules for species $i$ during the reaction. At fixed pressure and temperatures, 
+
+\begin{equation}
+    dG = 0 = \sum_i \mu_i dN_i = \mu_{N_2}(-1) + \mu_{H_2}(-3) + \mu_{NH_3}(2) 
+\end{equation}
+
+Then,  
+
+\begin{equation}
+    0 = -\mu_{N_2} - 3\mu_{H_2} + 2\mu_{NH_3}
+\end{equation}
+
+This technique for equilibrium condition can be generalized. We can use the ideal gas formula to approximate this reaction: $p_i = n_i k_B T$ where $n_i = N_i/V$. For an ideal gas, 
+
+\begin{equation}
+    \mu_i = k_B T\ln\left( \frac{n_i}{n_Q} \right) = k_B T \ln\left( \frac{p_i}{n_Q k_B T} \right)
+\end{equation}
+
+People can also write it as 
+
+\begin{equation}
+    \mu_i = \mu^0_i + k_B T \ln\left( p_i/p_0 \right)
+\end{equation}
+
+$p_i$ is the partial pressure which is hypothetical pressure that gas $i$ would have if it alone occupieed the volume. Then, $p_0$ is 1 atmosphere. And 
+
+\begin{equation}
+    \mu^0_i = k_B T \ln\left( \frac{p_0}{n_Q k_B T} \right)
+\end{equation}
+
+We can then rewrite everything as 
+
+\begin{equation}
+    \frac{p_{\rm NH_2}^2 p_0^2}{p_{\rm N_2}^2p_{\rm H_2}^3} = \exp(-\frac{\Delta G^0}{k_B T}), \quad \Delta G^0 = -\mu_{N_2}^0 - \dots
+\end{equation}
+
+This is the law of mass action. In dilute solutions, the same steps work since you can write chemical potentials as 
+
+\begin{equation}
+    \mu_i = m^0_i + k_B T \ln(n_i/n_0)
+\end{equation}
+
+Where $n_0$ is 1 mol/liter and $n_i$ is the concentration of solute given in mol/lit. 
+
+\end{document}
