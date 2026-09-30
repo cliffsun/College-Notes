@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 15}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 15}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Complex logs
+\end{enumerate}
+
+\section*{Complex functions}
+
+\begin{definition}
+    $f: \mathbb{C} \to \mathbb{C}$ is an \underline{entire function} if $f \in H(\mathbb{C})$. 
+\end{definition}
+
+Here, $\exp(z)$ is an entire function. Moreover, $u,v \in C^{\infty}$. Also, we can verify 
+
+\begin{equation}
+    \frac{d}{dz}\exp(z) = \frac{d}{dx}\exp(z) = \exp(z)
+\end{equation}
+
+Also, $\exp(z)$ can be negative. 
+
+\subsection*{Logarithm}
+
+Note, $w = \log z \iff e^{w} = z$. Note, $\log$ is not defined for $z=0$. Let $z = r\exp(i\theta)$, then 
+
+\begin{equation}
+    \exp(u + iw) = \exp(u)\exp(iw) = r\exp(i\theta)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    r = \exp(u), \quad \exp(iw) = \exp(i\theta)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    u = \ln(r), \quad w = \theta + 2\pi n, n \in \mathbb{Z}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \log(z) = \{\ln r + i(\theta + 2\pi n) : n \in \mathbb{Z}\}
+\end{equation}
+
+Or 
+
+\begin{equation}
+    \log(z) = \ln|z| + i\arg(z)
+\end{equation}
+
+Thus, log is a multi-valued function. By the definition of $\log z$, therefore, 
+
+\begin{equation}
+    \exp(\log(z)) = z 
+\end{equation}
+
+\subsection*{Example}
+
+Find $\log(\exp(z))$. Note $\exp(z)$. Therefore, $r = \exp(x), \iff \ln(r) = x$. Note, 
+
+\begin{align}
+    \log(z) &= \{x + i(y + 2\pi n): n \in \mathbb{Z}\} \\
+    &= \{z + 2\pi n i: n \in \mathbb{Z}\}
+\end{align}
+
+\begin{definition}
+    The \underline{Principal value} of $\log(z)$ is defined as (capitalized Log) $\text{Log}(z) = \ln|z| + i \arg(z)$. Therefore, 
+    \begin{equation}
+        \text{Log}(z) = \ln(r) + i\theta, \quad \theta \in (-\theta, \theta]
+    \end{equation}
+\end{definition}
+
+The domain of $\text{Log}(z)$ (principal argument) is considered for all domain except for the line $(-\infty, 0]$. This is because bound of the principle value is from $-\pi < \theta \leq \pi$. 
+
+\subsection*{Example}
+
+$\log(-1)$? Note, then 
+
+\begin{equation}
+    \log(-1) = \{\ln|-1| + i(\pi + 2\pi n)\}
+\end{equation}
+
+Then, principal value of $-1$ is $i\pi$. 
+
+\begin{definition}
+    Define the single valued branch of $\log(z)$ as follows:
+    \begin{equation}
+        \log(z) = \ln(r) + i\theta, \quad \alpha < \theta < 2\pi + \alpha
+    \end{equation}
+    If $\alpha = -\pi$, then we obtain the principal branch of $\log(z)$. 
+\end{definition}
+
+The purpose of the principal branch is to keep $\log$ a single-valued function. 
+
+\subsection*{Example}
+
+Let $\alpha = \pi/4$, then 
+
+\begin{equation}
+    \pi/4 < \theta < 9\pi/4
+\end{equation}
+
+Then find $\log(-1)$. Note that $\text{Log}(-1) = i\pi$ is the principal value of $\log(-1)$. Then, $\text{Log}(-1)$ isn't defined for principal branch when $\alpha = -\pi$, but is define when $\alpha = \pi/4$.
+
+For $1-i$, $\arg(1-i)$ is $-\pi/4$, but to find the principal branch, 
+
+\begin{equation}
+    \pi/4 < -\pi/4 + 2\pi n < 9\pi/4
+\end{equation}
+
+Since $n=0$ is not defined, try $n=1$, then we obtain 
+
+\begin{equation}
+    -\pi/4 +  2\pi = 7\pi/4
+\end{equation}
+
+Therefore, the principal branch of $-\pi/4$ is $7\pi/4$. Therefore, 
+
+\begin{equation}
+    \log(1-i) = \ln \sqrt{2} + i7\pi/4 
+\end{equation}
+
+\end{document}
