@@ -1,0 +1,171 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 17}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 17}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Complex logs
+\end{enumerate}
+
+\section*{Complex logs}
+
+Consider the analytic single-valued branch of $\log z$ as 
+
+\begin{equation}
+    \log z = \ln r + i\theta, \quad \frac{3}{4}\pi < \theta < \frac{11}{4}\pi
+\end{equation}
+
+Recall that 
+
+\begin{equation}
+    (1-i)^{4i} = \exp(4i\ln(1-i))
+\end{equation}
+Then find 
+
+\begin{equation}
+    \left( \theta \in \arg(1-i) \right) \land (3\pi/4 < \theta < 11\pi/4)
+\end{equation}
+
+You have to choose the $n$ of which $3\pi/4 < \theta < 11\pi/4$. 
+
+\section*{Analyticity of single valued of $z^c$}
+
+We can prove that $z^c$ is analytic. Moreover, 
+
+\begin{equation}
+    \frac{d}{dz}(z^c) = \frac{c}{z}\exp(c\log(z)) = cz^{c-1}
+\end{equation}
+
+Moreover, we can define the following:
+
+\begin{equation}
+    c^z = \exp(z\log c)
+\end{equation}
+
+\section*{Trigonometric Functions}
+
+\begin{definition}
+    For every $z \in \mathbb{C}$, define 
+    \begin{equation}
+        \cos z = \frac{e^{iz} + e^{-iz}}{2}, \quad \sin z = \frac{e^{iz} - e^{-iz}}{2i}
+    \end{equation}
+    It can be proved that $\cos z$ and $\sin z$ are entire functions. Thus,  $\cos, \sin \in H(\mathbb{C})$. Such functions follow the standard trigonometric differentiation rules. 
+\end{definition}
+
+You can also show 
+
+\begin{enumerate}
+    \item $\sin(z_1 + z_2) = \sin z_1 \cos z_2 + \sin z_2 \cos z_1$
+    \item $\sin(z_1 - z_2) = \sin z_1 \cos z_2 - \sin z_2 \cos z_1$
+    \item $\cos(z_1 + z_2) = \cos z_1 \cos z_2 - \sin z_1 \sin z_2$
+    \item $\cos(z_1 - z_2) = \cos z_1 \cos z_2 + \sin z_1 \sin z_2$
+\end{enumerate}
+
+Prove that $f(z) = (1 - \cos 2z )/2 = \sin^2 z = g(z)$.
+
+\begin{proof}
+    Since $f(z) = g(z)$ for $z \in \mathbb{R}$, by the uniqueness property, it follows that $f(z) = g(z)$ for all $z \in \mathbb{C}$. 
+\end{proof}
+
+You can also prove all the trig identities by the uniqueness property. We can also calculate 
+
+\begin{equation}
+    \sin(i) = \frac{e - \exp(-1)}{2}i
+\end{equation}
+
+Note that $|\sin(i)| > 1$. 
+
+Also, define 
+
+\begin{equation}
+    \cosh(x) = \frac{\exp(x) + \exp(-x)}{2}, \quad \sinh(x) = \frac{\exp(x) - \exp(-x)}{2}
+\end{equation}
+
+Define 
+
+\begin{equation}
+    \cosh(z) = \dots, \quad \sinh(z) = \dots
+\end{equation}
+
+Note 
+
+\begin{enumerate}
+    \item $\sin(iy) = i\sinh(y)$
+    \item $\cos(iy) = \cosh(y)$
+\end{enumerate}
+
+Calculate 
+
+\begin{align}
+    \cos(z) &= \cos(x)\cos(iy) - \sin(x)\sin(iy) \\
+    &= \cos x\cosh y - i \sin x \sinh y
+\end{align}
+
+\begin{align}
+    \cos^2 z &= \cos^2 x \cosh^2 y  + \sin^2 y \sin^2 x \\
+    &= \cos^2x (1 + \sinh^2 y) + \sinh^2 y \sin^2x \\
+    &= \cos^2 x + \sinh^2 y
+\end{align}
+
+Therefore, 
+
+\begin{align}
+    |\cos z| &= \sqrt{\cos^2 x + \sinh^2 y} \\
+    |\sin z| &= \sqrt{\sin^2 x + \sinh^2 y}
+\end{align}
+
+Moreover, 
+
+\begin{equation}
+    \frac{d}{dz}\cosh z = \sinh z
+\end{equation}
+
+
+
+\end{document}

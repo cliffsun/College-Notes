@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{PHYS 427: Lecture \# 12}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{PHYS 427: Lecture \# 12}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Grand Canonical Ensemble
+\end{enumerate}
+
+For midterm, $\Omega, S, T, Z, F$. Up to and including lecture 10. 
+
+\section*{Grand Canonical Ensemble}
+
+Reservoir and system are coupled. Note that $U_{\rm tot}$ and $N_{\rm tot}$ are fixed. Also, $S$ is in a single microstate $i$ with energy $\epsilon_i$, $N_i$ particles. 
+
+The probability for $S$ to be in that state is 
+
+\begin{equation}
+    p(N_i, \epsilon_i) = \frac{\Omega_{R + S}(N_i, \epsilon_i)}{\sum \Omega_{R + S}}
+\end{equation}
+
+Moreover, 
+
+\begin{equation}
+    \Omega_{R + S} = \Omega_R \Omega_S
+\end{equation}
+
+Then, 
+
+\begin{align}
+    \frac{p(N_1, \epsilon_1)}{p(N_2, \epsilon_2)} &= \frac{\Omega_R(N_0 - N_1, U_0 - \epsilon_1)}{\Omega_R(N_0 - N_2, U_0 - \epsilon_2)} \\
+    &= \frac{\exp(S_R(\dots)/k_B)}{\exp(S_R(\dots)/k_B)} \\
+    &= \exp((S_R(N_1) - S_R(N_2))/k_B)
+\end{align}
+
+Then, expand about $U_0$ and $N_0$, then 
+
+\begin{align}
+    S_R &\approx S_R(U_0, N_0) - \frac{\partial S_R}{\partial N} \cdot N_1 - \frac{\partial S}{\partial U}\cdot \epsilon_1\\
+    &= S_R + \frac{\mu}{T}N_1 - \frac{\epsilon_1}{T}
+\end{align}
+
+Then, 
+
+\begin{equation}
+    \frac{p_1}{p_2} = \frac{\exp\left( \frac{\mu N_1 - \epsilon_1}{k_B T} \right)}{\exp(\frac{\mu N_2 - \epsilon_2}{k_B T})}
+\end{equation}
+
+Moreover, we know that 
+
+\begin{equation}
+    \sum_i \frac{p_i}{p_2} = \frac{1}{p_2}
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    p_2 = \frac{\exp(-(\epsilon_1 - \mu N_1)/k_B T)}{\mathcal{Z}}
+\end{equation}
+
+Here, $\mathcal{Z}$ is the Gibbs sum and defined as: 
+
+\begin{equation}
+    \mathcal{Z} = \sum_{N_i, \epsilon_i(N_i)}e^{-\left( \epsilon_i - \mu N_i \right)/k_B T}
+\end{equation}
+
+The top is called the Gibbs factor. Also, 
+
+\begin{equation}
+    \mathcal{Z} = \sum_N \exp(\mu N/k_B T) Z(N,T)
+\end{equation}
+
+Also,
+
+\begin{equation}
+    \langle N \rangle = \lambda \frac{\partial}{\partial \lambda} \ln (\mathcal{Z}(\lambda, T))
+\end{equation}
+
+Where 
+
+\begin{equation}
+    \lambda = \exp(\mu/k_B T)
+\end{equation}
+
+\begin{equation}
+    \langle \epsilon \rangle = \frac{\mu}{\beta}\partial_{\mu} \ln \mathcal{Z} - \partial_{\beta}\ln \mathcal{Z}
+\end{equation}
+
+Next, we calculate 
+
+\begin{enumerate}
+    \item $\mathcal{Z}$ for myoglobin
+    \item probability that a single $O_2$ bounds to it
+\end{enumerate}
+
+Note, the \# of $O_2$ binded to the myoglobin is either $N=0$ or $N=1$. Then, the gibbs sum is 
+
+\begin{equation}
+    \mathcal{Z} = 1 + \exp(-\beta(\epsilon_{O_2} - \mu))
+\end{equation}
+
+The prob. of 1 $O_2$ binding to the myoglobin is 
+
+\begin{equation}
+    f = \frac{1}{1 + \lambda^{-1}\exp(\epsilon_{O_2}/k_B T)}
+\end{equation}
+
+Then, assume that $O_2$ is in equilibrium with the Mb and $O_2$, then treat oxygen as an ideal gas and calculate 
+
+\begin{equation}
+    \mu(O_2) = k_B T \ln\left( n_{O_2}/n_Q \right)
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    f = \frac{p}{p + n_Q k_B T \exp(\epsilon_{n_Q}/k_B T)}
+\end{equation}
+
+Here, $p$ is the partial pressure of Oxygen. 
+
+\section*{Formalism}
+
+Assume two chemical species $N^0_A$ and $N^0_B$, then 
+
+\begin{equation}
+    \mathcal{Z} = \sum_{N_A, N_B, \dots}\exp((\mu_A N_A + \dots)/k_B T)\sum_{\epsilon(N_A, N_B,\dots)}\exp(-\epsilon(N_A,N_B,\dots)/k_B T)
+\end{equation}
+
+\section*{Carbon monoxide poisoning}
+
+Assume $O_2$ and $CO$ in the air. They are competing to attach to your myoglobin. But $CO_2$ has a lower binding energy. The probability of $CO_2$ binding to Mb is greater than that of $O_2$. 
+
+\end{document}

@@ -1,0 +1,213 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 16}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 16}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Complex Logs
+\end{enumerate}
+
+\section*{Complex logs}
+
+Find $2\log(-1 + i)$. Note that 
+
+\begin{align}
+    -1 + i &= \sqrt{2}\left( -\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2} \right) \\
+    &= \sqrt{2}\left( \cos(3\pi/4) + i\sin(3\pi/4) \right) \\
+    &= \sqrt{2}\exp(i3\pi/4)
+\end{align}
+
+Therefore, 
+
+\begin{equation}
+    \arg(-1 + i) = 3\pi/4
+\end{equation}
+
+Therefore,
+
+\begin{equation}
+    \log(-1 + i) = \ln(\sqrt{2}) + i\frac{3\pi}{4}
+\end{equation}
+
+Thus, 
+
+\begin{equation}
+    2\log(-1 + i) = \ln(2) + i\frac{3\pi}{2}
+\end{equation}
+
+Note, $\log(z^2) = 2\log(z)$. 
+
+\section*{Analyticity of the single-valued branch of $\log(z)$}
+
+Consider the single-valued branch of $\log(z)$, defined as 
+
+\begin{equation}
+    \log(z) = \ln(r) + i\theta, \quad \alpha < \theta < 2\pi + \alpha
+\end{equation}
+
+Then, the domain of this log is $\mathbb{C}/\text{branch cut}$. Thus, $\log: D_{\alpha} \to \mathbb{C}$. Then, 
+
+\begin{equation}
+    \log(z) = u(r, \theta) + iv(r, \theta)
+\end{equation}
+
+Moreover, $u = \ln(r)$, and $v(r,\theta) = \theta$. Thus, 
+
+\begin{align}
+    u_r &= 1/r \\
+    u_{\theta}  &= 0 \\
+    v_r &= 0 \\
+    v_{\theta} &= 1
+\end{align}
+
+The CR equations in Polar are 
+
+\begin{equation}
+    u_r = \frac{1}{r}v_{\theta}, \quad v_r = -\frac{1}{r}u_{\theta}
+\end{equation}
+
+The first equation is satisified. The second equation is also satisifed. Therefore, $\log(z)$ is complex differentiable except for the branch cut. 
+
+\section*{Derivative of $\log(z)$}
+
+Let $\log(z) = \ln r + i\theta$. Then recall that
+
+\begin{equation}
+    f'(z) = -\frac{i}{z}\left( u_{\theta} + iv_{\theta} \right)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    f'(z) = -\frac{i}{z}\left( 0 + i \right) = \frac{1}{z}
+\end{equation}
+
+If $z=0$ is called the branch point of $\log(z)$ (the point at which all the branch cuts intersect). 
+
+\section*{Bernoulli's Sophism}
+
+Bernoulii showed that $\log(z) = \log(-z)$. But this isn't a proof, so its a sophism. 
+
+\section*{Identities}
+
+Define, 
+
+\begin{equation}
+    c\log(z) = c\left[ \ln r + i(\theta + 2\pi k) \right]
+\end{equation}
+
+We can prove the following:
+\begin{enumerate}
+    \item $z^n = \exp(n \log z)$
+    \item $z^{1/n} = \exp(\frac{1}{n}\log z)$
+\end{enumerate}
+
+\section*{The power function}
+
+Note that $z^n = \exp(n\log(z))$. This motivates the following definition: 
+
+\begin{equation}
+    z^c = \exp(c\log z), \quad c \in \mathbb{R}
+\end{equation}
+
+Therefore, $z^c$ is a multiple valued function. The principle value is 
+
+\begin{equation}
+    P.V z^c = \exp(c\rm Log(z))
+\end{equation}
+
+Example, 
+
+\begin{equation}
+    i^i = \exp(i\log(i))
+\end{equation}
+
+Note that $i = \exp(i\pi/2)$. Then, 
+
+\begin{equation}
+    \exp(i(\ln(1) + i(\pi/2 + 2\pi k))) = \exp(-\frac{4k + 1}{2}\pi), k \in \mathbb{Z}
+\end{equation}
+
+Thus, 
+
+\begin{equation}
+    i^i = \exp(i\rm Log(i)) = \exp(-\pi/2)
+\end{equation}
+
+\subsection*{Example}
+
+Let $\alpha = 3\pi/4$. Then, use the single valued log to evaluate $z^i$. Then, 
+
+\begin{equation}
+    i^i = \exp(i\log(i)) = \exp(i\theta), \quad \theta \in (\alpha, 2\pi + \alpha)
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \theta = 5\pi/2
+\end{equation}
+
+is the value we want. 
+
+Evaluate 
+
+\begin{equation}
+    (1-i)^{4i}
+\end{equation}
+
+This is the same as:
+
+\begin{equation}
+    \exp(4i\log(1-i))
+\end{equation}
+
+
+
+\end{document}
