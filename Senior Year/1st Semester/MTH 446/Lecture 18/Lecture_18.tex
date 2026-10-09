@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 18}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 18}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Hyperbolic complex functions
+\end{enumerate}
+
+\section*{Complex trig}
+
+Note that $\sinh$ and $\cosh$ are periodic functions with period $2\pi i$. We can then define 
+
+\begin{enumerate}
+    \item $\tanh = \sinh/\cosh$
+    \item $\coth = \cosh/\sinh$. 
+    \item $\sech = 1/\cosh$
+    \item $\csch = 1/\sinh$
+\end{enumerate}
+
+Here, such functions are defined for $z$ values such that the denominator is not zero. We can also define derivatives of the hyperbolic trigs. 
+
+\section*{Inverse trig functions}
+
+\begin{equation}
+    w = \arcsin(z) \iff z = \sin(w)
+\end{equation}
+
+Note we can rewrite 
+
+\begin{equation}
+    z = \frac{\exp(iw) + \exp(-iw)}{2i}
+\end{equation}
+
+Then, we can solve for $w$ in terms of z, as (letting $t = \exp(i\omega)$)
+
+\begin{equation}
+    t^2 - 2izt - 1 = 0
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    t = \frac{2iz \pm [(2iz)^2 + 4]^{1/2}}{2}
+\end{equation}
+
+Then, you obtain 
+
+\begin{equation}
+    w = \arcsin(z) = -i\log(iz + (i - z^2)^{1/2})
+\end{equation}
+
+Defining the domain of definition is difficult. We will just assume that $z_0$ is defined for $\arcsin$. 
+
+\subsection*{Example}
+
+Calculate $\arcsin(i)$. Then, using the formula, we obtain 
+
+\begin{equation}
+    \arcsin = -i\log(-1 \pm \sqrt{2})
+\end{equation}
+
+Then, 
+
+\begin{equation}
+    \log(-1 \pm \sqrt{2}) = \begin{cases}
+        \ln(-1 + \sqrt{2}) + 2\pi n i \\
+        \ln(1 + \sqrt{2}) + (\pi + 2\pi n)i
+    \end{cases}
+\end{equation}
+
+Note, that we can rewrite this guy as 
+
+\begin{equation}
+    \arcsin(i) = \pi n + (-1)^{n} i \ln(\sqrt{2} + 1)
+\end{equation}
+
+\section*{Derivative of $\arcsin$}
+
+We use the single-valued branch of $\log$. Then 
+
+\begin{equation}
+    \arcsin' = \frac{1}{(1-z^2)^{1/2}}
+\end{equation}
+
+\section*{Complex-valued functions of real variable}
+
+An interval $I \subseteq \mathbb{R}$ is \underline{non-degenerate} if it contains two or more points. Therefore, $I$ contains infinitely many points. Consider functions $w$ on $I$, a non-degenerate interval. Then, 
+
+\begin{equation}
+    w(t) = u(t) + iv(t)
+\end{equation}
+
+For derivatives, we have 
+
+\begin{equation}
+    w' = u' + iv'
+\end{equation}
+
+Also, 
+
+\begin{enumerate}
+    \item $D_t(z_0 w) = z_0 w'$
+    \item $D_t(\exp(z_0 t)) = z_0 \exp(z_0 t)$
+\end{enumerate}
+
+
+
+\end{document}

@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{braket}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}
+
+
+\title{MTH 446: Lecture \# 19}
+\author{Cliff Sun}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{one minute paper}[theorem]{One Minute Paper}
+
+\pagestyle{fancy}
+\lhead{\textbf{\thepage}\ \ \nouppercase{\rightmark}}
+\chead{MTH 446: Lecture \# 19}
+\rhead{Cliff Sun}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Span}
+\begin{enumerate}
+    \item Riemann Integration
+\end{enumerate}
+
+\section*{Integration}
+
+\begin{equation}
+    \int_a^b w dt = \int_a^b u + i\int_a^b v
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    \Re \int w dt = \int Re w
+\end{equation}
+
+\begin{equation}
+    \Im \int w dt = \Im Re w
+\end{equation}
+
+Consider a vector function in $\mathbb{R}^2$, then 
+
+\begin{equation}
+    \int_a^b f = (\int_a^b x, \int_a^b y)
+\end{equation}
+
+Three properties:
+\begin{enumerate}
+    \item $\int_a^b (f + g) = \int f + \int g$
+    \item $\Re \int w dt = \int Re w$
+    \item $\Im \int w dt = \Im Re w$
+    \item $\int z_0 f = z_0 \int f$
+\end{enumerate}
+
+We consider piecewise continuous functions. 
+A function $h$ is piecewise continuous if $h$ is continuous at every point of $[a,b]$ except for a finite set of points $\{x_0,\dots, x_n\}$. 
+
+Here, $x_0 = a$ and $x_n = b$ WLOG. $h$ also has a one-sided limit. Suppose $x_j \in \{a,b\}$, then the left and right limit of $h$ as $x \to x_j$ must exist.
+
+It is known that every piecewise continuous function is Riemann integrable. The fundamental theorem of calculus: 
+
+\begin{equation}
+    \int_a^b w' = w(b) - w(a)
+\end{equation}
+
+This is true even for complex functions. Now, let $w$ be piecewise continuous. Then, $|w|$ is also piecewise continuous. 
+
+\begin{theorem}
+    Let $w:[a,b] \to \mathbb{C}$ be a piecewise continuous function. Then the following inequality holds:
+    \begin{equation}
+        |\int_a^b w dt | \leq \int_a^b |w| dt
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    If $\int_a^bwdt = 0$, then we are done. Next, assume $\int_a^b w dt \neq 0$. Then, 
+    \begin{align}
+        \int_a^b w dt &= r_0 \exp(i\theta_0)\\
+        |\int_a^b w dt| &= r_0 \\
+        &= \Re\left( \int_a^b \exp(-i\theta_0)wdt \right)\\
+        &= |\int_a^b \Re(\exp(-i\theta_0)w dt) \\
+        &\leq \int_a^b |\Re(\exp(-i\theta_0)w)|dt \\
+        |\int_a^b w dt| = r_0 &\leq \int_a^b |\Re(\exp(-i\theta_0)w)|dt \leq \int_a^b |\exp(-i\theta_0)w|dt = \int_a^b |w| dt
+    \end{align}
+\end{proof}
+
+\subsection*{Example}
+
+Let 
+
+\begin{equation}
+    P_n(x) = \frac{1}{\pi}\int_0^\pi (x + i\sqrt{1 - x^2}\cos\theta)^n d\theta
+\end{equation}
+
+Then prove that $|P_n| \leq 1$. Then 
+
+\begin{equation}
+    |P_n| \leq \frac{1}{\pi}\int_0^\pi|x + i\sqrt{1-x^2}\cos\theta|^n d\theta
+\end{equation}
+
+Moreover, 
+
+\begin{equation}
+    |x + i\sqrt{1 - x^2}\cos\theta|^2 = x^2 + (1 - x^2)\cos^2\theta \leq x^2 + 1 - x^2 = 1
+\end{equation}
+
+Therefore, 
+
+\begin{equation}
+    |x + i \sqrt{1 - x^2}\cos\theta|^n \leq 1
+\end{equation}
+
+Thus, 
+
+\begin{equation}
+    |P_n| \leq \frac{1}{\pi}\int_0^\pi d\theta = 1
+\end{equation}
+
+\begin{definition}
+    A \underline{Curve} is a continuous function $\gamma:[a,b] \to \mathbb{C}$
+\end{definition}
+
+\begin{definition}
+     A curve is \underline{closed} if $\gamma(a) = \gamma(b)$
+\end{definition}
+
+\begin{definition}
+    A curve $\gamma$ is smooth if 
+    \begin{enumerate}
+        \item $\gamma \in C^1$
+        \item $\gamma' \neq 0$ for all $t$.  
+    \end{enumerate}
+\end{definition}
+
+Example, $\gamma = (t^2, t^3)$ is not smooth. 
+
+\begin{definition}
+    A curve $g$ is called a \underline{simple curve} if $t_1,t_2 \in [a,b]$ and $t_1 \neq t_2$, then $\gamma(t_1) \neq \gamma(t_2)$. 
+\end{definition}
+
+You can have a simple, closed curve. The arc length of a curve is 
+
+\begin{equation}
+    s(\gamma) = \int_a^b \sqrt{x'^2 + y'^2}dt
+\end{equation}
+
+Note that $|\gamma'| = \sqrt{x'^2 + y'^2}$, and therefore, in complex notation, we have that:
+
+\begin{equation}
+    s(\gamma) = \int_a^b |g'| dt
+\end{equation}
+
+
+
+\end{document}
